@@ -1,0 +1,140 @@
+{% for test in node.tests if config.testsEnabled %}
+        {% if test.runOrder == 'Before' %}
+            {{ test_stage(test.name, test.continueOnFailure) }}
+            {{ test.templateString }}
+        {% endif %}
+    {% endfor %}
+
+{% if node.materializationType == 'table' %}
+	{% if config.preSQL %}
+		{{ stage('Pre-SQL') }}
+		{{ config.preSQL }}
+	{% endif %}
+	
+	
+	
+		{% if config.truncateBefore %}
+	
+			{{ stage('Truncate  Table') }}
+			TRUNCATE IF EXISTS {{ ref_no_link(node.location.name, node.name) }}
+	
+		{% endif %}
+	
+	
+		{% if config.insertStrategy in ['UNION', 'UNION ALL'] %}
+			{{ stage( config.insertStrategy + ' Sources' | string ) }}
+			INSERT INTO {{ ref_no_link(node.location.name, node.name) }}
+				(
+					{% for col in columns %}
+						"{{ col.name }}"
+						{%- if not loop.last -%},{% endif %}
+					{% endfor %}
+				)
+		{% endif %}
+	
+	
+		{% for source in sources %}
+	
+			{% if config.insertStrategy == 'INSERT' %}
+				{{ stage('Insert ' + source.name | string ) }}
+	
+				INSERT INTO {{ ref_no_link(node.location.name, node.name) }}
+				(
+					{% for col in columns %}
+						"{{ col.name }}"
+						{%- if not loop.last -%},{% endif %}
+					{% endfor %}
+				)
+			{% endif %}
+
+
+{%- set sumcol = []  -%}
+{%- set senticol = []  -%}
+{%- set extractcol = []  -%}
+{%- set quecol = []  -%}
+{%- set translatecol = []  -%}
+{%- set langcol = []  -%}
+
+
+
+{% if config.summarizefunction %}
+    {%- for i in config.pby.get('items') -%}
+        {% set sumcol = sumcol.append(i.partColName.name) %}
+    {%- endfor %}
+{% endif %}
+
+{% if config.sentimentfunction %}
+    {%- for i in config.sby.get('items') -%}
+        {% set senticol = senticol.append(i.spartColName.name) %}
+    {%- endfor %}
+{% endif %}
+
+{% if config.translatefunction %}
+    {%- for i in config.tby.get('items') -%}
+        {% set translatecol = translatecol.append(i.tpartColName.name) %}
+		{% set langcol = langcol.append(i.lanorder ) %}
+    {%- endfor %}
+{% endif %}
+{% set seq = translatecol + langcol if translatecol is defined and langcol is defined else [] %}
+
+{% if config.extractfunction %}
+    {%- for i in config.exby.get('items') -%}
+        {% set extractcol = extractcol.append(i.epartColName.name) %}
+		{% set quecol = quecol.append(i.askque | escape) %}
+    {%- endfor %}
+{% endif %}
+{% set seq = extractcol + quecol if extractcol is defined and quecol is defined else [] %}
+
+
+SELECT
+{% for col in source.columns %}
+    {% if col.name in sumcol %}
+        SNOWFLAKE.CORTEX.SUMMARIZE({{ get_source_transform(col) }}) AS "{{ col.name }}"
+    {% elif col.name in senticol %}
+        SNOWFLAKE.CORTEX.SENTIMENT({{ get_source_transform(col) }}) AS "{{ col.name }}"	
+	{% elif col.name in translatecol %}
+        {% set col_index = translatecol.index(col.name) %}
+		SNOWFLAKE.CORTEX.TRANSLATE({{ get_source_transform(col) }}, {{ langcol[col_index] }}) AS "{{ col.name }}"
+		
+	{% elif col.name in extractcol %}
+        {% set col_index1 = extractcol.index(col.name) %}
+		SNOWFLAKE.CORTEX.EXTRACT_ANSWER({{ get_source_transform(col) }}, '''{{quecol[col_index1]}}''') AS "{{ col.name }}"
+		
+    {% else %} 
+        {{ get_source_transform(col) }} AS "{{ col.name }}"
+    {% endif %}
+    {%- if not loop.last -%}, {% endif %}
+{% endfor %}
+
+
+
+
+{{ source.join }}
+	
+			{% if config.insertStrategy in ['UNION', 'UNION ALL'] and not loop.last %}
+				{{config.insertStrategy}}
+			{% endif %}
+	
+		{% endfor %}
+	
+	{% if config.postSQL %}
+		{{ stage('Post-SQL') }}
+		{{ config.postSQL }}
+	{% endif %}
+{% endif %}
+
+{% if config.testsEnabled %}
+	{% for test in node.tests %}
+		{% if test.runOrder == 'After' %}
+			{{ test_stage(test.name, test.continueOnFailure) }}
+			{{ test.templateString }}
+        {% endif %}
+	{% endfor %}
+
+	{% for column in columns %}
+		{% for test in column.tests %}
+			{{ test_stage(column.name + ": " + test.name) }}
+			{{ test.templateString }}
+		{% endfor %}
+	{% endfor %}
+{% endif %}

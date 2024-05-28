@@ -1,0 +1,96 @@
+{%- set sumcol = []  -%}
+    {%- set senticol = []  -%}
+    {%- set extractcol = []  -%}
+	{%- set cextractcol = []  -%}
+    {%- set quecol = []  -%}
+	{%- set cquecol = []  -%}
+    {%- set translatecol = []  -%}
+    {%- set langcol = []  -%}
+{%- set SYSCOLUMNS = ['CONTRIBUTOR','METRIC_CONTROL','METRIC_TEST','SURPRISE','RELATIVE_CHANGE','GROWTH_RATE','EXPECTED_METRIC_TEST','OVERALL_METRIC_CONTROL',
+    'OVERALL_METRIC_TEST','OVERALL_GROWTH_RATE','NEW_IN_TEST','MISSING_IN_TEST'] -%}
+    
+	
+	
+{{- stage('Create View ') }}
+{% for source in sources %}
+  {% if config.extractfunction %}
+    {%- set extractcol = [] %}
+    {%- set quecol = [] %}
+    {%- for i in config.exby.get('items') %}
+        {% set _ = extractcol.append(i.epartColName.name) %}
+        {% set _ = quecol.append(i.askque) %}
+    {%- endfor %}
+  {% endif %}
+  
+  {% if config.continuous_dimensions %}
+    {%- set cextractcol = [] %}
+    {%- set cquecol = [] %}
+    {%- for i in config.cexby.get('items') %}
+        {% set _ = cextractcol.append(i.cepartColName.name) %}
+        {% set _ = cquecol.append(i.caskque) %}
+    {%- endfor %}
+  {% endif %}
+  
+CREATE OR REPLACE VIEW {{- ref_no_link(node.location.name, node.name) }} AS (
+WITH INPUT AS (
+SELECT
+{% for col in source.columns -%}
+    {%- if col.name not in extractcol and col.name not in cextractcol and col.name not in SYSCOLUMNS %}
+        {{ get_source_transform(col) }} AS "{{ col.name }}",
+
+    {%- endif -%}
+{% endfor -%}
+
+
+{%- if extractcol -%}
+{{ '{' -}}
+{% for idx in range(0, extractcol|length) -%}
+    '{{ quecol[idx] }}':{%- for col in source.columns %}
+        {%- if col.name == extractcol[idx] -%}
+            {{- get_source_transform(col) }}
+        {%- endif -%}
+    {%- endfor %}{%- if not loop.last %},{%- endif -%}
+{%- endfor -%}
+{{ '}' }} AS CATEGORICAL_DIMENSIONS,
+{% endif %}
+
+
+
+{%- if cextractcol -%}
+     {{ '{' -}}
+    {% for cidx in range(0, cextractcol|length) -%}
+        '{{ cquecol[cidx] }}': {%- for col in source.columns %}
+            {%- if col.name == cextractcol[cidx] %}
+                {{- get_source_transform(col) -}}
+            {%- endif -%}
+            {%- endfor %}{%- if not loop.last %},{%- endif -%}
+    {%- endfor -%}
+    {{ '}' }} AS CONTINUOUS_DIMENSIONS
+{% else %}
+    { } AS CONTINUOUS_DIMENSIONS
+{% endif %}
+
+{{- source.join }}
+)
+SELECT RESULT.* 
+FROM INPUT, TABLE(
+  SNOWFLAKE.ML.TOP_INSIGHTS(
+  INPUT.CATEGORICAL_DIMENSIONS,
+  INPUT.CONTINUOUS_DIMENSIONS,
+  CAST(INPUT.{{config.metriccol.name}} AS FLOAT),
+  INPUT.{{config.labelcol.name}}
+  )
+  OVER (PARTITION BY 0)
+) RESULT
+
+{% if config.filterit|length > 4 %}
+   {{- config.filterit }}
+   {{ sortorder_by_colv () -}})
+{% else %}
+
+{{ sortorder_by_colv () -}} )
+{% endif %}
+
+{% endfor %}
+ 
+   

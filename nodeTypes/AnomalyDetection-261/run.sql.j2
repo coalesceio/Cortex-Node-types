@@ -1,0 +1,133 @@
+{#
+    Copyright (c) 2023 Coalesce. All rights reserved.
+This script and its associated documentation are confidential and proprietary to Coalesce.
+Unauthorized reproduction, distribution, or disclosure of this material is strictly prohibited.
+Coalesce permits you to copy and modify this script for the purposes of using with Coalsce but
+does not permit copying or modification for any other purpose.  
+#}
+{# == Node Type Version        : 1  == #}
+{# == Node Type Name           : ML Anomaly Detection == #}
+{# == Node Type Description    : This node creates a Anomaly Detection table  == #}
+
+
+{# INitialize anomaly model name #}
+
+{% set source = sources[0] %}
+{% set src_node = source.dependencies[0].node %}
+{% set anomaly_name = config.mname %}
+{% set result = ref_no_link(node.location.name, node.name) %}
+
+{%- set nsVariables = namespace(squotes="") -%}
+
+
+{# anomaly table truncated #}
+
+{{ stage('Truncate Anomaly Detection table') }}
+
+TRUNCATE IF EXISTS {{ this }}
+
+{# anomaly model created #}
+
+{{ stage('Anomaly Model') }}
+{% if config.Forcecreate%}
+
+CREATE OR REPLACE SNOWFLAKE.ML.ANOMALY_DETECTION
+ {{ ref_no_link(node.location.name, anomaly_name) }}(
+    INPUT_DATA => SYSTEM$QUERY_REFERENCE('
+        SELECT
+        {%- for col in columns if not (col.forecast or col.upper_bound or col.lower_bound or col.anomaly or col.percentile or col.distance) %}
+            "{{col.name}}"{%- if not loop.last %}, {%- endif %}
+        {%- endfor %}            
+        {{ source.join }}
+        WHERE  "{{ config.tgtcol.name }}" IS NOT NULL
+    '),
+    {% if config.multiseries %}SERIES_COLNAME => '{{ config.seriescol.name }}', {% endif %}
+    TIMESTAMP_COLNAME => '{{ config.tscol.name }}',
+    TARGET_COLNAME => '{{ config.tgtcol.name }}',
+	{% if config.lcdata  %}LABEL_COLNAME => '{{ config.lcdata.name.lower() }}' {% else %} LABEL_COLNAME => '' {% endif %}
+)
+
+{% else %}
+            SHOW SNOWFLAKE.ML.ANOMALY_DETECTION LIKE '{{ anomaly_name }}' IN SCHEMA {{ result.split('.')[:2]|join('.') }}
+{% endif %}
+
+{# Anomaly data based on the model, including anomalous values, is inserted into the Anomaly table. #}
+
+{{ stage('Insert Anomaly data') }}
+BEGIN
+{% if config.uspdata %}
+    CALL {{ ref_no_link(node.location.name, anomaly_name) }}!detect_anomalies(
+        INPUT_DATA => SYSTEM$QUERY_REFERENCE('
+        SELECT 
+        {%- for col in columns if not (col.forecast or col.upper_bound or col.lower_bound or col.anomaly or col.percentile or col.distance or col.lcdata) %}
+            "{{col.name}}"{%- if not loop.last %}, {%- endif %}
+        {%- endfor %}
+        {{ sources[-1].join }}
+    '),
+    {%if config.multiseries %}SERIES_COLNAME => '{{ config.seriescol.name }}', {% endif %}
+    TIMESTAMP_COLNAME => '{{ config.tscol.name }}' ,
+    TARGET_COLNAME => '{{ config.tgtcol.name }}'
+    {% if config.cobject %},CONFIG_OBJECT => {'prediction_interval': {{ config.predictioninterval }}} {% endif %});
+
+
+    INSERT INTO {{ this }}
+    (
+        {%- for col in source.columns  %} 
+            "{{ col.name }}" {%- if not loop.last -%}, {% endif %}
+        {%- endfor %}
+    )
+    SELECT 
+        {% for col in source.columns %}
+            {%- if config.multiseries and col.id == config.seriescol.id %}"SERIES"
+            {%- elif col.id == config.tscol.id %}"TS"
+            {%- elif col.id == config.tgtcol.id %}"Y"
+            {%- elif col.forecast or col.lower_bound or col.upper_bound or col.anomaly or col.percentile or col.distance %}"{{ col.name }}"
+            {%- else %}{{ get_source_transform(col) }} AS "{{ col.name }}"
+            {%- endif %}{%- if not loop.last %}, {%- endif %}
+        {% endfor %}
+    FROM TABLE(RESULT_SCAN(-1)) RES;
+
+{% else %}
+    CALL {{ ref_no_link(node.location.name, anomaly_name) }}!detect_anomalies(
+    INPUT_DATA => SYSTEM$QUERY_REFERENCE('
+        SELECT 
+        {%- for col in columns if not (col.forecast or col.upper_bound or col.lower_bound or col.anomaly or col.percentile or col.distance) %}
+            {%- if col.name != config.lcdata.name %}
+                "{{col.name}}"{%- if not loop.last %}, {%- endif %}
+            {%- endif %}
+        {%- endfor %}
+        {{ sources[-1].join }}
+    '),
+    {%if config.multiseries %}SERIES_COLNAME => '{{ config.seriescol.name }}', {% endif %}
+    TIMESTAMP_COLNAME => '{{ config.tscol.name }}',
+    TARGET_COLNAME => '{{ config.tgtcol.name }}'{% if config.cobject %},
+    
+    CONFIG_OBJECT => {'prediction_interval': {{ config.predictioninterval }}} {% endif %}
+);
+
+
+    INSERT INTO {{ this }}
+    (
+        {%- for col in columns %}
+        {%- if col.name != config.lcdata.name %}
+            "{{col.name}}"{%- if not loop.last %}, {%- endif %}
+        {%- endif %}
+        {%- endfor %}
+    )
+    SELECT 
+    {% for col in source.columns %}
+        {%- if col.name != config.lcdata.name %}
+            {%- if config.multiseries and col.id == config.seriescol.id %}"SERIES"
+            {%- elif col.id == config.tscol.id %}"TS"
+            {%- elif col.id == config.tgtcol.id %}"Y"
+            {%- elif col.forecast or col.lower_bound or col.upper_bound or col.anomaly or col.percentile or col.distance %}"{{ col.name }}"
+            {%- else %}{{ get_source_transform(col) }} AS "{{ col.name }}"
+            {%- endif %}{%- if not loop.last %}, {%- endif %}
+        {%- endif %}
+    {% endfor %}
+FROM TABLE(RESULT_SCAN(-1)) RES;
+
+
+{% endif %}
+
+END

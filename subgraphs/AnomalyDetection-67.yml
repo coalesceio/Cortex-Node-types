@@ -1,0 +1,17 @@
+fileVersion: 1
+id: "67"
+name: Anomaly Detection
+steps:
+  - 058aceb8-4911-4964-83f5-9ca54e75af12
+  - 0b61ea6a-258f-4107-9271-825c33ae0501
+  - 29f0e6bd-7f52-4454-bd41-bd3e5a14e094
+  - 4f26afbe-2a17-49dd-86a9-b2df7b548e98
+  - 8915b6ee-9b22-4726-a936-1cf70caa4a71
+  - 89a0a39f-daca-4271-a1e7-41abc27f72ae
+  - 9aa8db0e-c16b-4da6-b6d6-b7f9011a335a
+  - 9e99ca9b-9c93-4454-85c0-c9592f7a9f99
+  - a804f266-0572-425a-8eff-f2cd91205885
+  - c3498c55-5a7b-4d15-b220-46166d532e4f
+  - c63d25b3-834d-4fe1-ab69-8b15cf377a95
+  - f1a58ce0-a9e1-4a41-aeee-44f813aee468
+type: Subgraph

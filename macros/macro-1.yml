@@ -1,0 +1,24 @@
+fileVersion: 1
+id: "1"
+macroString: |-
+  {%- macro sortorder_by_colv(return) -%}
+      {%- set nsVariables = namespace(sortcolNames="") -%}
+      {%if config.orderby %}
+          {%- for i in config.orderbycolumn.get('items') -%}
+              {%- set colName = i.sortColName.name -%}
+              {%- set colOrder = i.sortOrder -%}
+  	        {%- if loop.first -%}	      
+  		        {%- set nsVariables.sortcolNames = '"' + colName + '"' + colOrder -%}	  
+  	        {%- else -%}      
+  		        {%- set nsVariables.sortcolNames = nsVariables.sortcolNames + ',' + '"' + colName + '"' + colOrder-%}	  
+  	        {%- endif -%}
+          {%- endfor -%}	
+              {%- set nsVariables.sortcolNames = 'order by' + nsVariables.sortcolNames -%}
+   
+      {% endif %} 
+      
+      {{- nsVariables.sortcolNames -}}
+   
+  {%- endmacro -%}
+name: macro
+type: Macro

@@ -1,0 +1,77 @@
+fileVersion: 1
+id: a804f266-0572-425a-8eff-f2cd91205885
+name: CALL_HISTORY
+operation:
+  config:
+    insertStrategy: INSERT
+    postSQL: ""
+    preSQL: ""
+    testsEnabled: true
+    truncateBefore: true
+  database: ""
+  deployEnabled: true
+  description: ""
+  isMultisource: false
+  locationName: STAGE
+  materializationType: table
+  metadata:
+    appliedNodeTests: []
+    columns:
+      - appliedColumnTests: {}
+        columnReference:
+          columnCounter: d626afba-c0df-4915-b864-edd39012502f
+          stepCounter: a804f266-0572-425a-8eff-f2cd91205885
+        config: {}
+        dataType: TIMESTAMP_NTZ(9)
+        description: ""
+        hashDetails: null
+        name: DATE
+        nullable: true
+        sourceColumnReferences:
+          - columnReferences:
+              - columnCounter: 5a63f4d6-5cb8-42f2-8166-7bcb7eda78de
+                stepCounter: 0b61ea6a-258f-4107-9271-825c33ae0501
+            transform: cast(calls.ts as timestamp_ntz)
+      - acceptedValues:
+          strictMatch: true
+          values: []
+        appliedColumnTests: {}
+        columnReference:
+          columnCounter: 70fdf3d6-4725-4391-9e84-2dc2ef0a05ab
+          stepCounter: a804f266-0572-425a-8eff-f2cd91205885
+        config: {}
+        dataType: INTEGER
+        defaultValue: ""
+        description: ""
+        name: TOTAL_CALLS
+        nullable: true
+        sourceColumnReferences:
+          - columnReferences:
+              - columnCounter: "0"
+                stepCounter: "0"
+            transform: COUNT(*)
+        transform: ""
+    cteString: ""
+    enabledColumnTestIDs: []
+    sourceMapping:
+      - aliases:
+          CALLS: 0b61ea6a-258f-4107-9271-825c33ae0501
+        customSQL:
+          customSQL: ""
+        dependencies:
+          - locationName: SOURCE
+            nodeName: CALLS
+        join:
+          joinCondition: |-
+            FROM {{ ref('SOURCE', 'CALLS') }} "CALLS"
+            WHERE DATE between to_date('1/1/2023') and to_date('3/14/2023') 
+            GROUP BY DATE
+        name: CALL_HISTORY
+        noLinkRefs: []
+  name: CALL_HISTORY
+  overrideSQL: false
+  schema: ""
+  sqlType: Stage
+  type: sql
+  version: 1
+type: Node

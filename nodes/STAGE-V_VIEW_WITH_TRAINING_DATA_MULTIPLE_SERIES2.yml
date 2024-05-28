@@ -1,0 +1,126 @@
+fileVersion: 1
+id: c63d25b3-834d-4fe1-ab69-8b15cf377a95
+name: V_VIEW_WITH_TRAINING_DATA_MULTIPLE_SERIES2
+operation:
+  config:
+    insertStrategy: UNION
+    selectDistinct: false
+  database: ""
+  deployEnabled: true
+  description: ""
+  isMultisource: false
+  locationName: STAGE
+  materializationType: view
+  metadata:
+    appliedNodeTests: []
+    columns:
+      - appliedColumnTests: {}
+        columnReference:
+          columnCounter: afda25fb-7886-43dc-b87a-ad05247fd983
+          stepCounter: c63d25b3-834d-4fe1-ab69-8b15cf377a95
+        config: {}
+        dataType: NUMBER(38,0)
+        description: ""
+        hashDetails: null
+        name: STORE_ITEM
+        nullable: true
+        sourceColumnReferences:
+          - columnReferences:
+              - columnCounter: 44d7765f-2b6e-4329-8969-73eabe0a838e
+                stepCounter: 89a0a39f-daca-4271-a1e7-41abc27f72ae
+            transform: "[store_id, item]"
+      - appliedColumnTests: {}
+        columnReference:
+          columnCounter: 9d02e384-fbd4-493a-a4e1-19594c41870c
+          stepCounter: c63d25b3-834d-4fe1-ab69-8b15cf377a95
+        config: {}
+        dataType: TIMESTAMP_NTZ(9)
+        description: ""
+        hashDetails: null
+        name: DATE
+        nullable: true
+        sourceColumnReferences:
+          - columnReferences:
+              - columnCounter: 41c7d13c-6f41-47eb-b02a-3086c3d8cfed
+                stepCounter: 89a0a39f-daca-4271-a1e7-41abc27f72ae
+            transform: ""
+      - appliedColumnTests: {}
+        columnReference:
+          columnCounter: 83a7f861-8010-41c8-8a9f-ab7490279a00
+          stepCounter: c63d25b3-834d-4fe1-ab69-8b15cf377a95
+        config: {}
+        dataType: FLOAT
+        description: ""
+        hashDetails: null
+        name: SALES
+        nullable: true
+        sourceColumnReferences:
+          - columnReferences:
+              - columnCounter: 598549a6-567e-4b97-9541-2d6640d60d97
+                stepCounter: 89a0a39f-daca-4271-a1e7-41abc27f72ae
+            transform: ""
+      - appliedColumnTests: {}
+        columnReference:
+          columnCounter: 9fe8d403-84d8-4ea3-b697-88acef5c3bc3
+          stepCounter: c63d25b3-834d-4fe1-ab69-8b15cf377a95
+        config: {}
+        dataType: NUMBER(38,0)
+        description: ""
+        hashDetails: null
+        name: TEMPERATURE
+        nullable: true
+        sourceColumnReferences:
+          - columnReferences:
+              - columnCounter: 2e8b8702-6ee1-45bc-95e7-16b00ee2bcdf
+                stepCounter: 89a0a39f-daca-4271-a1e7-41abc27f72ae
+            transform: ""
+      - appliedColumnTests: {}
+        columnReference:
+          columnCounter: 0d298a52-6445-4fc4-b8d1-c8ef84b822c4
+          stepCounter: c63d25b3-834d-4fe1-ab69-8b15cf377a95
+        config: {}
+        dataType: NUMBER(38,0)
+        description: ""
+        hashDetails: null
+        name: HUMIDITY
+        nullable: true
+        sourceColumnReferences:
+          - columnReferences:
+              - columnCounter: b3fbddd0-ce4c-4e7d-8cc0-a93fdd8ee646
+                stepCounter: 89a0a39f-daca-4271-a1e7-41abc27f72ae
+            transform: ""
+      - appliedColumnTests: {}
+        columnReference:
+          columnCounter: baf7a0ec-d022-4af2-8d2f-a6c127d933ba
+          stepCounter: c63d25b3-834d-4fe1-ab69-8b15cf377a95
+        config: {}
+        dataType: VARCHAR(16777216)
+        description: ""
+        hashDetails: null
+        name: HOLIDAY
+        nullable: true
+        sourceColumnReferences:
+          - columnReferences:
+              - columnCounter: 6ed506e3-b2f8-4b9f-a958-1e33a180a8cc
+                stepCounter: 89a0a39f-daca-4271-a1e7-41abc27f72ae
+            transform: ""
+    cteString: ""
+    enabledColumnTestIDs: []
+    sourceMapping:
+      - aliases: {}
+        customSQL:
+          customSQL: ""
+        dependencies:
+          - locationName: SOURCE
+            nodeName: HISTORICAL_SALES_DATA
+        join:
+          joinCondition: FROM {{ ref('SOURCE', 'HISTORICAL_SALES_DATA') }} "HISTORICAL_SALES_DATA"
+        name: V_VIEW_WITH_TRAINING_DATA_MULTIPLE_SERIES2
+        noLinkRefs: []
+  name: V_VIEW_WITH_TRAINING_DATA_MULTIPLE_SERIES2
+  overrideSQL: false
+  schema: ""
+  sqlType: View
+  type: sql
+  version: 1
+type: Node

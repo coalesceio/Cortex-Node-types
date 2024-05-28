@@ -1,0 +1,140 @@
+fileVersion: 1
+id: 89a0a39f-daca-4271-a1e7-41abc27f72ae
+name: HISTORICAL_SALES_DATA
+operation:
+  database: ""
+  dataset: ""
+  deployEnabled: true
+  description: ""
+  locationName: SOURCE
+  metadata:
+    columns:
+      - acceptedValues:
+          strictMatch: true
+          values: []
+        appliedColumnTests: {}
+        columnReference:
+          columnCounter: 44d7765f-2b6e-4329-8969-73eabe0a838e
+          stepCounter: 89a0a39f-daca-4271-a1e7-41abc27f72ae
+        config: {}
+        dataType: NUMBER(38,0)
+        defaultValue: ""
+        description: ""
+        name: STORE_ID
+        nullable: true
+        primaryKey: false
+        uniqueKey: false
+      - acceptedValues:
+          strictMatch: true
+          values: []
+        appliedColumnTests: {}
+        columnReference:
+          columnCounter: 1a6fc92b-e751-4654-87e9-32c21814ecf2
+          stepCounter: 89a0a39f-daca-4271-a1e7-41abc27f72ae
+        config: {}
+        dataType: VARCHAR(16777216)
+        defaultValue: ""
+        description: ""
+        name: ITEM
+        nullable: true
+        primaryKey: false
+        uniqueKey: false
+      - acceptedValues:
+          strictMatch: true
+          values: []
+        appliedColumnTests: {}
+        columnReference:
+          columnCounter: 41c7d13c-6f41-47eb-b02a-3086c3d8cfed
+          stepCounter: 89a0a39f-daca-4271-a1e7-41abc27f72ae
+        config: {}
+        dataType: TIMESTAMP_NTZ(9)
+        defaultValue: ""
+        description: ""
+        name: DATE
+        nullable: true
+        primaryKey: false
+        uniqueKey: false
+      - acceptedValues:
+          strictMatch: true
+          values: []
+        appliedColumnTests: {}
+        columnReference:
+          columnCounter: 598549a6-567e-4b97-9541-2d6640d60d97
+          stepCounter: 89a0a39f-daca-4271-a1e7-41abc27f72ae
+        config: {}
+        dataType: FLOAT
+        defaultValue: ""
+        description: ""
+        name: SALES
+        nullable: true
+        primaryKey: false
+        uniqueKey: false
+      - acceptedValues:
+          strictMatch: true
+          values: []
+        appliedColumnTests: {}
+        columnReference:
+          columnCounter: 3ebc7b41-0d43-4d0b-9e86-4991c872d1a9
+          stepCounter: 89a0a39f-daca-4271-a1e7-41abc27f72ae
+        config: {}
+        dataType: BOOLEAN
+        defaultValue: ""
+        description: ""
+        name: LABEL
+        nullable: true
+        primaryKey: false
+        uniqueKey: false
+      - acceptedValues:
+          strictMatch: true
+          values: []
+        appliedColumnTests: {}
+        columnReference:
+          columnCounter: 2e8b8702-6ee1-45bc-95e7-16b00ee2bcdf
+          stepCounter: 89a0a39f-daca-4271-a1e7-41abc27f72ae
+        config: {}
+        dataType: NUMBER(38,0)
+        defaultValue: ""
+        description: ""
+        name: TEMPERATURE
+        nullable: true
+        primaryKey: false
+        uniqueKey: false
+      - acceptedValues:
+          strictMatch: true
+          values: []
+        appliedColumnTests: {}
+        columnReference:
+          columnCounter: b3fbddd0-ce4c-4e7d-8cc0-a93fdd8ee646
+          stepCounter: 89a0a39f-daca-4271-a1e7-41abc27f72ae
+        config: {}
+        dataType: NUMBER(38,0)
+        defaultValue: ""
+        description: ""
+        name: HUMIDITY
+        nullable: true
+        primaryKey: false
+        uniqueKey: false
+      - acceptedValues:
+          strictMatch: true
+          values: []
+        appliedColumnTests: {}
+        columnReference:
+          columnCounter: 6ed506e3-b2f8-4b9f-a958-1e33a180a8cc
+          stepCounter: 89a0a39f-daca-4271-a1e7-41abc27f72ae
+        config: {}
+        dataType: VARCHAR(16777216)
+        defaultValue: ""
+        description: ""
+        name: HOLIDAY
+        nullable: true
+        primaryKey: false
+        uniqueKey: false
+    join:
+      joinCondition: FROM {{ ref('SOURCE', 'HISTORICAL_SALES_DATA') }}
+  name: HISTORICAL_SALES_DATA
+  schema: ""
+  sqlType: Source
+  table: HISTORICAL_SALES_DATA
+  type: sourceInput
+  version: 1
+type: Node

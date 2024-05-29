@@ -505,3 +505,4 @@ This is executed in the below stage:
 [Macros](https://github.com/coalesceio/Cortex-Node-types/blob/main/macros/macro-1.yml)
 
 
+[<img src="https://github.com/coalesceio/Cortex-Node-types/assets/7216836/62720389-e5b2-4845-a18b-d2fa0ce1f243" alt="Git Logo" height="40">](https://github.com/coalesceio/Cortex-Node-types)

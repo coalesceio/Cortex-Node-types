@@ -290,7 +290,7 @@ This is executed in two stages:
 * **Delete Table:** Coalesce Internal table is dropped
 * **Delete Table:** Target table in Snowflake is dropped
 
-## ML Contribution Explorer
+<h2 id="ml-contribution-explorer">ML Contribution Explorer</h2>
 
 The Coalesce ML Contribution Explorer UDN is a versatile node that allows you to streamline and improve the process of root cause analysis around changes in observed metrics. Learn more about [Contribution Explorer](https://docs.snowflake.com/en/user-guide/snowflake-cortex/ml-functions/contribution-explorer).
 

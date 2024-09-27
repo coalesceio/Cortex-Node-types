@@ -1,0 +1,13 @@
+{# Classification table creation #}
+
+{{ stage('Create Classification Table') }}
+
+    CREATE OR REPLACE TABLE {{ this }}
+    (
+        {% for col in source.columns %}
+            "{{ col.name }}" 
+            {%- if col.description | length > 0 %} COMMENT '{{ col.description | escape }}'{%- endif %}
+            {%- if not loop.last -%}, {% endif %}
+        {% endfor %}
+    )
+{%- if node.description | length > 0 %} COMMENT = '{{ node.description | escape }}'{% endif %}

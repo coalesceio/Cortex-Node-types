@@ -1,3 +1,5 @@
-defaultStorageMapping: null
+defaultStorageMapping: SOURCE
 fileVersion: 1
-locations: []
+locations:
+  - SOURCE
+  - TARGET

@@ -1,6 +1,6 @@
 fileVersion: 1
-id: c63d25b3-834d-4fe1-ab69-8b15cf377a95
-name: V_VIEW_WITH_TRAINING_DATA_MULTIPLE_SERIES2
+id: 8915b6ee-9b22-4726-a936-1cf70caa4a71
+name: VIEW_WITH_TRAINING_DATA_MULTIPLE_SERIES1
 operation:
   config:
     insertStrategy: UNION
@@ -9,15 +9,15 @@ operation:
   deployEnabled: true
   description: ""
   isMultisource: false
-  locationName: STAGE
+  locationName: TARGET
   materializationType: view
   metadata:
     appliedNodeTests: []
     columns:
       - appliedColumnTests: {}
         columnReference:
-          columnCounter: afda25fb-7886-43dc-b87a-ad05247fd983
-          stepCounter: c63d25b3-834d-4fe1-ab69-8b15cf377a95
+          columnCounter: f4de8fb0-0d2c-4109-9d1e-14e7a52c511d
+          stepCounter: 8915b6ee-9b22-4726-a936-1cf70caa4a71
         config: {}
         dataType: NUMBER(38,0)
         description: ""
@@ -31,8 +31,8 @@ operation:
             transform: "[store_id, item]"
       - appliedColumnTests: {}
         columnReference:
-          columnCounter: 9d02e384-fbd4-493a-a4e1-19594c41870c
-          stepCounter: c63d25b3-834d-4fe1-ab69-8b15cf377a95
+          columnCounter: 31a30f0c-8b73-48ad-873f-7e18b077b07e
+          stepCounter: 8915b6ee-9b22-4726-a936-1cf70caa4a71
         config: {}
         dataType: TIMESTAMP_NTZ(9)
         description: ""
@@ -46,8 +46,8 @@ operation:
             transform: ""
       - appliedColumnTests: {}
         columnReference:
-          columnCounter: 83a7f861-8010-41c8-8a9f-ab7490279a00
-          stepCounter: c63d25b3-834d-4fe1-ab69-8b15cf377a95
+          columnCounter: d9d42dab-17a7-40a1-a091-3fd5c57acd77
+          stepCounter: 8915b6ee-9b22-4726-a936-1cf70caa4a71
         config: {}
         dataType: FLOAT
         description: ""
@@ -61,8 +61,23 @@ operation:
             transform: ""
       - appliedColumnTests: {}
         columnReference:
-          columnCounter: 9fe8d403-84d8-4ea3-b697-88acef5c3bc3
-          stepCounter: c63d25b3-834d-4fe1-ab69-8b15cf377a95
+          columnCounter: b65c8c47-a562-4d92-8fb7-26dc6d968121
+          stepCounter: 8915b6ee-9b22-4726-a936-1cf70caa4a71
+        config: {}
+        dataType: BOOLEAN
+        description: ""
+        hashDetails: null
+        name: LABEL
+        nullable: true
+        sourceColumnReferences:
+          - columnReferences:
+              - columnCounter: 3ebc7b41-0d43-4d0b-9e86-4991c872d1a9
+                stepCounter: 89a0a39f-daca-4271-a1e7-41abc27f72ae
+            transform: ""
+      - appliedColumnTests: {}
+        columnReference:
+          columnCounter: 45b5e406-7586-4a25-9ad7-6c99778efc49
+          stepCounter: 8915b6ee-9b22-4726-a936-1cf70caa4a71
         config: {}
         dataType: NUMBER(38,0)
         description: ""
@@ -76,8 +91,8 @@ operation:
             transform: ""
       - appliedColumnTests: {}
         columnReference:
-          columnCounter: 0d298a52-6445-4fc4-b8d1-c8ef84b822c4
-          stepCounter: c63d25b3-834d-4fe1-ab69-8b15cf377a95
+          columnCounter: ce9609c0-f5ee-4884-828b-958c6bf7c9bd
+          stepCounter: 8915b6ee-9b22-4726-a936-1cf70caa4a71
         config: {}
         dataType: NUMBER(38,0)
         description: ""
@@ -91,8 +106,8 @@ operation:
             transform: ""
       - appliedColumnTests: {}
         columnReference:
-          columnCounter: baf7a0ec-d022-4af2-8d2f-a6c127d933ba
-          stepCounter: c63d25b3-834d-4fe1-ab69-8b15cf377a95
+          columnCounter: ee21ed8b-b47c-4867-a4e1-12dd6a26fdf7
+          stepCounter: 8915b6ee-9b22-4726-a936-1cf70caa4a71
         config: {}
         dataType: VARCHAR(16777216)
         description: ""
@@ -115,9 +130,9 @@ operation:
             nodeName: HISTORICAL_SALES_DATA
         join:
           joinCondition: FROM {{ ref('SOURCE', 'HISTORICAL_SALES_DATA') }} "HISTORICAL_SALES_DATA"
-        name: V_VIEW_WITH_TRAINING_DATA_MULTIPLE_SERIES2
+        name: VIEW_WITH_TRAINING_DATA_MULTIPLE_SERIES1
         noLinkRefs: []
-  name: V_VIEW_WITH_TRAINING_DATA_MULTIPLE_SERIES2
+  name: VIEW_WITH_TRAINING_DATA_MULTIPLE_SERIES1
   overrideSQL: false
   schema: ""
   sqlType: View

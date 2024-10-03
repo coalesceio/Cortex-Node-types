@@ -181,14 +181,15 @@ operation:
             transform: ""
     enabledColumnTestIDs: []
     sourceMapping:
-      - aliases: {}
+      - aliases:
+          CALL_HISTORY: a804f266-0572-425a-8eff-f2cd91205885
         customSQL:
           customSQL: ""
         dependencies:
-          - locationName: STAGE
+          - locationName: TARGET
             nodeName: CALL_HISTORY
         join:
-          joinCondition: FROM {{ ref('STAGE', 'CALL_HISTORY') }} "CALL_HISTORY"
+          joinCondition: FROM {{ ref('TARGET', 'CALL_HISTORY') }} "CALL_HISTORY"
         name: ML_AD_CALL_HISTORY
         noLinkRefs: []
       - aliases:
@@ -196,10 +197,10 @@ operation:
         customSQL:
           customSQL: ""
         dependencies:
-          - locationName: STAGE
+          - locationName: TARGET
             nodeName: CALL_DATASET_FOR_ANALYSIS
         join:
-          joinCondition: FROM {{ ref('STAGE', 'CALL_DATASET_FOR_ANALYSIS') }} "CALL_DATASET_FOR_ANALYSIS"
+          joinCondition: FROM {{ ref('TARGET', 'CALL_DATASET_FOR_ANALYSIS') }} "CALL_DATASET_FOR_ANALYSIS"
         name: NEW_SOURCE
         noLinkRefs: []
   name: ML_AD_CALL_HISTORY_SINGLE_SERIES

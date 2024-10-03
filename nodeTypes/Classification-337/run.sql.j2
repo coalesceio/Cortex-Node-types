@@ -1,0 +1,76 @@
+{# INitialize Classification model name #}
+
+{% set source = sources[0] %}
+{% set src_node = source.dependencies[0].node %}
+{% set analysis_node = sources[1]%}
+{% set Classification_name = config.mname %}
+{% set ns = namespace(colpredict='')%}
+{% set result = ref_no_link(node.location.name, node.name) %}
+
+{%- set nsVariables = namespace(squotes="") -%}
+
+
+{# Classification table truncated #}
+
+{{ stage('Truncate Classification table') }}
+
+TRUNCATE IF EXISTS {{ this }}
+
+{# Classification model created #}
+
+{{ stage('Classification Model') }}
+{% if config.Forcecreate %}
+
+    CREATE OR REPLACE SNOWFLAKE.ML.CLASSIFICATION
+     {{ ref_no_link(node.location.name, Classification_name) }}(
+    INPUT_DATA => SYSTEM$REFERENCE('view','ANANDHIS_DEV.SOURCE_DATA.{{src_node.name}}'),
+    TARGET_COLNAME => '{{ config.tgtcol.name }}' 
+     )
+
+{% else %}
+            SHOW SNOWFLAKE.ML.CLASSIFICATION LIKE '{{ Classification_name }}' IN SCHEMA {{ result.split('.')[:2]|join('.') }}
+{% endif %}
+
+{# Classification data based on the model, including anomalous values, is inserted into the Classification table. #}
+
+{%- for col in source.columns if col.predict %}
+
+  {%set ns.colpredict = col.name %}
+{%endfor%}
+
+{{ stage('Insert Classification data') }}
+
+    INSERT INTO {{ this }}
+    (
+        {%- for col in source.columns  %} 
+             {%if col.name != config.tgtcol.name%}
+            "{{ col.name }}" 
+           {%else%}
+            "{{ col.name }}_PREDICTION" 
+           {%endif%}
+           {%- if not loop.last %}, {%- endif %}
+        {%- endfor %}
+    )
+	SELECT {%- for col in source.columns  %} 
+			{%if col.name != config.tgtcol.name%}
+              "{{col.name}}"
+			{%else%}      
+			  "{{ns.colpredict}}":class as  "{{col.name}}_PREDICTION"
+            {%endif%}
+            {%- if not loop.last %}, {%- endif %}
+        {%- endfor %}
+	FROM
+	 (SELECT 
+        {%- for col in analysis_node.columns %}        
+            {%if col.name == ns.colpredict %}
+            {{ ref_no_link(node.location.name, Classification_name) }}!predict(
+              INPUT_DATA => object_construct(*)) as "{{ns.colpredict}}"
+              {%- if not loop.last %}, {%- endif %}
+            {%elif col.name != config.tgtcol.name  %}
+                "{{col.name}}"{%- if not loop.last %}, {%- endif %}
+            {%endif%}
+        {%- endfor %}
+        {{ analysis_node.join }})
+
+
+

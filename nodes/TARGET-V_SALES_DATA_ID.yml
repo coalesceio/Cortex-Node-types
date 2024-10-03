@@ -1,6 +1,6 @@
 fileVersion: 1
-id: fbec0149-8898-4f41-b13f-87de46cf0f6c
-name: V_SALES_DATA
+id: 2473a556-61c1-4e2d-939c-a3cc28d6b0c1
+name: V_SALES_DATA_ID
 operation:
   config:
     OverrideSQLCreate: false
@@ -12,30 +12,30 @@ operation:
   deployEnabled: true
   description: ""
   isMultisource: false
-  locationName: STAGE
+  locationName: TARGET
   materializationType: view
   metadata:
     appliedNodeTests: []
     columns:
       - appliedColumnTests: {}
         columnReference:
-          columnCounter: 3f4fff27-593c-4bce-b92c-5da86be810eb
-          stepCounter: fbec0149-8898-4f41-b13f-87de46cf0f6c
+          columnCounter: b58d43fd-615d-473a-934b-f34ebab8c811
+          stepCounter: 2473a556-61c1-4e2d-939c-a3cc28d6b0c1
         config: {}
-        dataType: VARCHAR(16777216)
+        dataType: NUMBER(38,0)
         description: ""
         hashDetails: null
-        name: STORE_ITEM
+        name: STORE_ID
         nullable: true
         sourceColumnReferences:
           - columnReferences:
-              - columnCounter: 594b4edd-0632-470f-8d12-e95a4ef773b4
+              - columnCounter: 6ba29c74-6d0e-4cd4-b521-17407c7fdae6
                 stepCounter: 43751546-e7d3-4b85-bc82-3f7ae851d745
-            transform: "[\"SALES_DATA\".\"STORE_ID\",\"SALES_DATA\".\"ITEM\"]"
+            transform: ""
       - appliedColumnTests: {}
         columnReference:
-          columnCounter: fc7fc509-acbf-4c99-b766-1723cb8c7a51
-          stepCounter: fbec0149-8898-4f41-b13f-87de46cf0f6c
+          columnCounter: 5951bcdf-53bf-4652-a0d5-3ca60c7b2714
+          stepCounter: 2473a556-61c1-4e2d-939c-a3cc28d6b0c1
         config: {}
         dataType: TIMESTAMP_NTZ(9)
         description: ""
@@ -49,8 +49,8 @@ operation:
             transform: ""
       - appliedColumnTests: {}
         columnReference:
-          columnCounter: bccdb07b-f0a8-42e7-8bf9-97bd7418ad44
-          stepCounter: fbec0149-8898-4f41-b13f-87de46cf0f6c
+          columnCounter: 8def8357-88ed-4ac4-9a58-3c890af76168
+          stepCounter: 2473a556-61c1-4e2d-939c-a3cc28d6b0c1
         config: {}
         dataType: FLOAT
         description: ""
@@ -74,9 +74,9 @@ operation:
             nodeName: SALES_DATA
         join:
           joinCondition: FROM {{ ref('SOURCE', 'SALES_DATA') }} "SALES_DATA"
-        name: V_SALES_DATA
+        name: V_SALES_DATA_ID
         noLinkRefs: []
-  name: V_SALES_DATA
+  name: V_SALES_DATA_ID
   overrideSQL: false
   schema: ""
   sqlType: View

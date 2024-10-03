@@ -224,25 +224,25 @@ operation:
             transform: ""
     enabledColumnTestIDs: []
     sourceMapping:
+      - aliases:
+          VIEW_WITH_TRAINING_DATA_MULTIPLE_SERIES1: 8915b6ee-9b22-4726-a936-1cf70caa4a71
+        customSQL:
+          customSQL: ""
+        dependencies:
+          - locationName: TARGET
+            nodeName: VIEW_WITH_TRAINING_DATA_MULTIPLE_SERIES1
+        join:
+          joinCondition: FROM {{ ref('TARGET', 'VIEW_WITH_TRAINING_DATA_MULTIPLE_SERIES1') }} "VIEW_WITH_TRAINING_DATA_MULTIPLE_SERIES1"
+        name: ML_AD_VIEW_WITH_TRAINING_DATA_MULTIPLE_SERIES1
+        noLinkRefs: []
       - aliases: {}
         customSQL:
           customSQL: ""
         dependencies:
-          - locationName: STAGE
-            nodeName: VIEW_WITH_TRAINING_DATA_MULTIPLE_SERIES1
-        join:
-          joinCondition: FROM {{ ref('STAGE', 'VIEW_WITH_TRAINING_DATA_MULTIPLE_SERIES1') }} "VIEW_WITH_TRAINING_DATA_MULTIPLE_SERIES1"
-        name: ML_AD_VIEW_WITH_TRAINING_DATA_MULTIPLE_SERIES1
-        noLinkRefs: []
-      - aliases:
-          VIEW_WITH_DATA_FOR_ANALYSIS_MULTIPLE_SERIES1: f1a58ce0-a9e1-4a41-aeee-44f813aee468
-        customSQL:
-          customSQL: ""
-        dependencies:
-          - locationName: STAGE
+          - locationName: TARGET
             nodeName: VIEW_WITH_DATA_FOR_ANALYSIS_MULTIPLE_SERIES1
         join:
-          joinCondition: FROM {{ ref('STAGE', 'VIEW_WITH_DATA_FOR_ANALYSIS_MULTIPLE_SERIES1') }} "VIEW_WITH_DATA_FOR_ANALYSIS_MULTIPLE_SERIES1"
+          joinCondition: FROM {{ ref('TARGET', 'VIEW_WITH_DATA_FOR_ANALYSIS_MULTIPLE_SERIES1') }} "VIEW_WITH_DATA_FOR_ANALYSIS_MULTIPLE_SERIES1"
         name: NEW_SOURCE
         noLinkRefs: []
   name: ML_AD_VIEW_WITH_SUPERVISED_MULTISERIES

@@ -1,6 +1,6 @@
 fileVersion: 1
-id: a804f266-0572-425a-8eff-f2cd91205885
-name: CALL_HISTORY
+id: 9e99ca9b-9c93-4454-85c0-c9592f7a9f99
+name: CALL_DATASET_FOR_ANALYSIS
 operation:
   config:
     insertStrategy: INSERT
@@ -12,15 +12,15 @@ operation:
   deployEnabled: true
   description: ""
   isMultisource: false
-  locationName: STAGE
-  materializationType: table
+  locationName: TARGET
+  materializationType: view
   metadata:
     appliedNodeTests: []
     columns:
       - appliedColumnTests: {}
         columnReference:
-          columnCounter: d626afba-c0df-4915-b864-edd39012502f
-          stepCounter: a804f266-0572-425a-8eff-f2cd91205885
+          columnCounter: 1c4a54c9-5f62-4892-af4b-eeb0a52db9fd
+          stepCounter: 9e99ca9b-9c93-4454-85c0-c9592f7a9f99
         config: {}
         dataType: TIMESTAMP_NTZ(9)
         description: ""
@@ -31,14 +31,14 @@ operation:
           - columnReferences:
               - columnCounter: 5a63f4d6-5cb8-42f2-8166-7bcb7eda78de
                 stepCounter: 0b61ea6a-258f-4107-9271-825c33ae0501
-            transform: cast(calls.ts as timestamp_ntz)
+            transform: CAST(CALLS.TS AS TIMESTAMP_NTZ)
       - acceptedValues:
           strictMatch: true
           values: []
         appliedColumnTests: {}
         columnReference:
-          columnCounter: 70fdf3d6-4725-4391-9e84-2dc2ef0a05ab
-          stepCounter: a804f266-0572-425a-8eff-f2cd91205885
+          columnCounter: 283bed3e-1369-4050-a4fa-2a864bd8974f
+          stepCounter: 9e99ca9b-9c93-4454-85c0-c9592f7a9f99
         config: {}
         dataType: INTEGER
         defaultValue: ""
@@ -64,11 +64,11 @@ operation:
         join:
           joinCondition: |-
             FROM {{ ref('SOURCE', 'CALLS') }} "CALLS"
-            WHERE DATE between to_date('1/1/2023') and to_date('3/14/2023') 
+            WHERE DATE between to_date('3/15/2023') and to_date('4/14/2023') 
             GROUP BY DATE
-        name: CALL_HISTORY
+        name: CALL_DATASET_FOR_ANALYSIS
         noLinkRefs: []
-  name: CALL_HISTORY
+  name: CALL_DATASET_FOR_ANALYSIS
   overrideSQL: false
   schema: ""
   sqlType: Stage

@@ -207,10 +207,10 @@ operation:
         customSQL:
           customSQL: ""
         dependencies:
-          - locationName: STAGE
+          - locationName: TARGET
             nodeName: V_VIEW_WITH_TRAINING_DATA_MULTIPLE_SERIES2
         join:
-          joinCondition: FROM {{ ref('STAGE', 'V_VIEW_WITH_TRAINING_DATA_MULTIPLE_SERIES2') }} "V_VIEW_WITH_TRAINING_DATA_MULTIPLE_SERIES2"
+          joinCondition: FROM {{ ref('TARGET', 'V_VIEW_WITH_TRAINING_DATA_MULTIPLE_SERIES2') }} "V_VIEW_WITH_TRAINING_DATA_MULTIPLE_SERIES2"
         name: ML_AD_VIEW_WITH_TRAINING_DATA_MULTIPLE_SERIES2
         noLinkRefs: []
       - aliases:
@@ -218,10 +218,10 @@ operation:
         customSQL:
           customSQL: ""
         dependencies:
-          - locationName: STAGE
+          - locationName: TARGET
             nodeName: V_VIEW_WITH_DATA_FOR_ANALYSIS_MULTIPLE_SERIES2
         join:
-          joinCondition: FROM {{ ref('STAGE', 'V_VIEW_WITH_DATA_FOR_ANALYSIS_MULTIPLE_SERIES2') }} "V_VIEW_WITH_DATA_FOR_ANALYSIS_MULTIPLE_SERIES2"
+          joinCondition: FROM {{ ref('TARGET', 'V_VIEW_WITH_DATA_FOR_ANALYSIS_MULTIPLE_SERIES2') }} "V_VIEW_WITH_DATA_FOR_ANALYSIS_MULTIPLE_SERIES2"
         name: NEW_SOURCE
         noLinkRefs: []
   name: ML_AD_VIEW_WITH_TRAINING_DATA_MULTI_SERIES

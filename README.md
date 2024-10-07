@@ -358,7 +358,7 @@ This is executed in the below stage:
 The Classification node has two configuration groups:
 
 * [Node Properties](#classification-node-properties)
-* [Anomaly Model Input](#classification-model-input)
+* [Classification Model Input](#classification-model-input)
 
 <h4 id="classification-node-properties"> Classification Node Properties </h4>
 There are four configs within the **Node Properties** group.

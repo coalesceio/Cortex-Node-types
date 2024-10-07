@@ -1,14 +1,14 @@
 fileVersion: 1
-id: 205aa939-8790-415a-8f67-7259fa40f7ad
-name: CL__CUSTOMER_TRAINING1
+id: 17f227db-4d73-4a20-9488-8c2614591400
+name: CL__CUSTOMER_TRAINING2
 operation:
   config:
-    Forcecreate: true
-    mname: CL_CUSTOMERS1
+    Forcecreate: false
+    mname: CL_CUSTOMERS2
     mtoggle: true
     tgtcol:
-      columnCounter: cc0d2b65-5f2e-484a-8e65-a6894bcbdc22
-      stepCounter: 205aa939-8790-415a-8f67-7259fa40f7ad
+      columnCounter: c9025b29-e160-4bd3-8ee7-9ab44cff90a7
+      stepCounter: 17f227db-4d73-4a20-9488-8c2614591400
   database: ""
   deployEnabled: true
   description: ""
@@ -20,8 +20,8 @@ operation:
     columns:
       - appliedColumnTests: {}
         columnReference:
-          columnCounter: 4c05f834-8ee3-4aaf-85d6-1479f9225713
-          stepCounter: 205aa939-8790-415a-8f67-7259fa40f7ad
+          columnCounter: 0d6b1010-8073-41b4-b9d6-e99a08d59152
+          stepCounter: 17f227db-4d73-4a20-9488-8c2614591400
         config: {}
         dataType: NUMBER(6,0)
         description: ""
@@ -33,15 +33,15 @@ operation:
                 stepCounter: 376f6ff2-780c-432b-8b5c-d7c4fae7f823
             transform: ""
           - columnReferences:
-              - columnCounter: 69149984-217a-4fa4-8505-210a65e481f8
-                stepCounter: 84f06258-4d52-474a-a20a-9a80d933e5c3
+              - columnCounter: d8c446b2-19a9-4c75-8c80-79815f8a5558
+                stepCounter: 00f96518-10fc-48e7-9117-dda9cb06f794
             transform: ""
       - appliedColumnTests: {}
         columnReference:
-          columnCounter: 20f5b574-0339-45db-9c66-c449aa0a5d06
-          stepCounter: 205aa939-8790-415a-8f67-7259fa40f7ad
+          columnCounter: a28aad8b-9abb-4f2f-ac90-43fb9bfcfea9
+          stepCounter: 17f227db-4d73-4a20-9488-8c2614591400
         config: {}
-        dataType: VARCHAR(18)
+        dataType: STRING
         description: ""
         name: HOUSEHOLD_INCOME
         nullable: true
@@ -51,13 +51,13 @@ operation:
                 stepCounter: 376f6ff2-780c-432b-8b5c-d7c4fae7f823
             transform: ""
           - columnReferences:
-              - columnCounter: 02db29b1-d87e-47b8-b9ac-d980699ef05a
-                stepCounter: 84f06258-4d52-474a-a20a-9a80d933e5c3
+              - columnCounter: 73b7efc1-f2a3-4e0f-ae54-1e98bfc80f5b
+                stepCounter: 00f96518-10fc-48e7-9117-dda9cb06f794
             transform: ""
       - appliedColumnTests: {}
         columnReference:
-          columnCounter: 90fb5105-f95f-497d-a334-b843dd72ff48
-          stepCounter: 205aa939-8790-415a-8f67-7259fa40f7ad
+          columnCounter: ec1bcf57-2acc-48d7-b3b2-4edca8514f59
+          stepCounter: 17f227db-4d73-4a20-9488-8c2614591400
         config: {}
         dataType: VARCHAR(8)
         description: ""
@@ -69,13 +69,13 @@ operation:
                 stepCounter: 376f6ff2-780c-432b-8b5c-d7c4fae7f823
             transform: ""
           - columnReferences:
-              - columnCounter: 8d2ff315-13ef-4a6b-ba1f-3e4072fd0a23
-                stepCounter: 84f06258-4d52-474a-a20a-9a80d933e5c3
+              - columnCounter: 884f0de5-3eb9-4a4a-9fe0-47179053253a
+                stepCounter: 00f96518-10fc-48e7-9117-dda9cb06f794
             transform: ""
       - appliedColumnTests: {}
         columnReference:
-          columnCounter: 73459bb9-118f-4602-a023-351e3de6e18b
-          stepCounter: 205aa939-8790-415a-8f67-7259fa40f7ad
+          columnCounter: c7a68241-e4e3-49d8-ada1-3068e3e45439
+          stepCounter: 17f227db-4d73-4a20-9488-8c2614591400
         config: {}
         dataType: FLOAT
         description: ""
@@ -87,13 +87,13 @@ operation:
                 stepCounter: 376f6ff2-780c-432b-8b5c-d7c4fae7f823
             transform: ""
           - columnReferences:
-              - columnCounter: 602b3202-a00f-43fa-a846-271fef09c345
-                stepCounter: 84f06258-4d52-474a-a20a-9a80d933e5c3
+              - columnCounter: 3a2abe67-2a23-4063-9726-484284369f2c
+                stepCounter: 00f96518-10fc-48e7-9117-dda9cb06f794
             transform: ""
       - appliedColumnTests: {}
         columnReference:
-          columnCounter: cc0d2b65-5f2e-484a-8e65-a6894bcbdc22
-          stepCounter: 205aa939-8790-415a-8f67-7259fa40f7ad
+          columnCounter: c9025b29-e160-4bd3-8ee7-9ab44cff90a7
+          stepCounter: 17f227db-4d73-4a20-9488-8c2614591400
         config: {}
         dataType: VARCHAR(6)
         description: ""
@@ -104,17 +104,15 @@ operation:
               - columnCounter: 87f97008-6ed8-4d40-bb3f-704e4fe8d241
                 stepCounter: 376f6ff2-780c-432b-8b5c-d7c4fae7f823
             transform: ""
-          - columnReferences:
-              - columnCounter: dc3eec3a-e9e8-41ad-ba53-b9f4d457bae4
-                stepCounter: 84f06258-4d52-474a-a20a-9a80d933e5c3
+          - columnReferences: []
             transform: ""
       - acceptedValues:
           strictMatch: true
           values: []
         appliedColumnTests: {}
         columnReference:
-          columnCounter: 2235f81c-9ff8-40b2-b0d5-c169c5c6485b
-          stepCounter: 205aa939-8790-415a-8f67-7259fa40f7ad
+          columnCounter: 88f49b8d-6286-4f39-9811-8ed139fcd510
+          stepCounter: 17f227db-4d73-4a20-9488-8c2614591400
         config: {}
         dataType: OBJECT
         defaultValue: ""
@@ -122,6 +120,25 @@ operation:
         name: PREDICTION
         nullable: true
         predict: true
+        sourceColumnReferences:
+          - columnReferences: []
+            transform: ""
+          - columnReferences: []
+            transform: ""
+      - acceptedValues:
+          strictMatch: true
+          values: []
+        appliedColumnTests: {}
+        class: true
+        columnReference:
+          columnCounter: 7966dce9-88d0-449b-8ece-0d336ce852f4
+          stepCounter: 17f227db-4d73-4a20-9488-8c2614591400
+        config: {}
+        dataType: STRING
+        defaultValue: ""
+        description: Generated by ML Classification Model
+        name: PREDICTION_CLASS
+        nullable: true
         sourceColumnReferences:
           - columnReferences: []
             transform: ""
@@ -138,20 +155,21 @@ operation:
             nodeName: CUSTOMER_TRAINING
         join:
           joinCondition: FROM {{ ref('SOURCE', 'CUSTOMER_TRAINING') }} "CUSTOMER_TRAINING"
-        name: CL__CUSTOMER_TRAINING1
+        name: CL__CUSTOMER_TRAINING2
         noLinkRefs: []
       - aliases:
-          V_CUSTOMERS: 84f06258-4d52-474a-a20a-9a80d933e5c3
+          CUSTOMERS: 00f96518-10fc-48e7-9117-dda9cb06f794
         customSQL:
           customSQL: ""
         dependencies:
           - locationName: SOURCE
-            nodeName: V_CUSTOMERS
+            nodeName: CUSTOMERS
         join:
-          joinCondition: FROM {{ ref('SOURCE', 'V_CUSTOMERS') }} "V_CUSTOMERS"
-        name: NEW_SOURCE
+          joinCondition: |
+            FROM {{ ref('SOURCE', 'CUSTOMERS') }} "CUSTOMERS"
+        name: ANALYSIS_DATA
         noLinkRefs: []
-  name: CL__CUSTOMER_TRAINING1
+  name: CL__CUSTOMER_TRAINING2
   overrideSQL: false
   schema: ""
   sqlType: "337"

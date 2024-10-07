@@ -32,7 +32,7 @@ operation:
   deployEnabled: true
   description: ""
   isMultisource: false
-  locationName: TARGET
+  locationName: SOURCE
   materializationType: view
   metadata:
     appliedNodeTests: []

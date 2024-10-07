@@ -4,7 +4,7 @@ name: CL__CUSTOMER_TRAINING1
 operation:
   config:
     Forcecreate: true
-    mname: ""
+    mname: CL_CUSTOMERS1
     mtoggle: true
     tgtcol:
       columnCounter: cc0d2b65-5f2e-484a-8e65-a6894bcbdc22

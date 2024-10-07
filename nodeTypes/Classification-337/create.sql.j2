@@ -5,11 +5,7 @@
     CREATE OR REPLACE TABLE {{ this }}
     (
         {% for col in columns %}
-           {%if col.name != config.tgtcol.name%}
-            "{{ col.name }}" {{ col.dataType }}
-           {%else%}
-            "{{ col.name }}_PREDICTION" {{ col.dataType }}
-           {%endif%}
+           "{{ col.name }}" {{ col.dataType }}
             {%- if col.description | length > 0 %} COMMENT '{{ col.description | escape }}'{%- endif %}
             {%- if not loop.last -%}, {% endif %}
         {% endfor %}

@@ -4,6 +4,7 @@
  * [ML Anomaly Detection](#ml-anomaly-detection)
  * [Cortex functions](#llm-cortex-functions)
  * [ML Contribution Explorer](#ml-contribution-explorer)
+ * [Classification](#classification)
  * [Code](#code)
    
 <h2 id="ml-forecast"> ML Forecast </h2>
@@ -350,7 +351,73 @@ This is executed in the below stage:
 
 * Delete View
 
+<h2 id="classification"> Classification </h2>
 
+### Classification Node Configuration
+
+The Classification node has two configuration groups:
+
+* [Node Properties](#classification-node-properties)
+* [Anomaly Model Input](#classification-model-input)
+
+<h4 id="classification-node-properties"> Classification Node Properties </h4>
+There are four configs within the **Node Properties** group.
+
+* **Storage Location**: Storage Location where the Table will be created.
+* **Node Type**: Name of template used to create node objects.
+* **Description**: A description of the node's purpose.
+* **Deploy Enabled**:
+  * If TRUE the node will be deployed / redeployed when changes are detected.
+  * If FALSE the node will not be deployed or will be dropped during redeployment.
+
+<h4 id="classification-model-input"> Classification Model Input</h4>
+
+* **Model Instance Name (required):** Name of the model that needs to be created.
+* **Create Model :** True or False Toggle to determine whether a model needs to be created or if an existing one can be referred.
+  * **True** -  Allows you to forcefully create Classification model.
+  * **False** - Allows you to refer to an existing Classification model.
+* **Target Column (required):** Name of the column containing the target (dependent value) in input data.
+* **Multi Source:** Data that needs to be analyzed can be added by enabling the multi source toggle.
+  
+### Classification  Deployment
+
+#### Classification  Initial Deployment
+
+When deployed for the first time into an environment the Classification node will execute the below stage:
+
+  **Create Classification Table**
+
+This stage will execute a `CREATE OR REPLACE` statement and create a Classification Table in the target environment.
+
+#### Classification Redeployment
+
+After the Classification node has been deployed for the first time into a target environment, subsequent deployments may result in altering the Classification table.
+
+#### Altering the Classification Tables
+
+The following column or table changes that is made in isolation or all-together will result in an ALTER statement to modify the Classification table in the target environment.
+
+* Change in table name
+* Dropping existing column
+* Alter column data type
+* Adding a new column 
+
+The following stages are executed:
+
+* **Clone Table :** Creates an internal table
+* **Rename Table /Alter Column/Delete Column/Add Column/Edit table description:** Alter table statement is executed to perform the alter operation accordingly.
+* **Swap cloned Table:** Upon successful completion of all updates, the clone replaces the main table ensuring that no data is lost.
+* **Delete Table:** Drops the internal table.
+
+### Classification  Undeployment
+
+If a Classification table is deleted from a Workspace, that Workspace is committed to Git and that commit deployed to a higher level environment then the Classification Table in the target environment will be dropped.
+
+This is executed in two stages:
+
+* **Delete Table:** Coalesce Internal table is dropped.
+* **Delete Table:** Target table in Snowflake is dropped.
+  
 ## Code
 
 ### ML Forecast

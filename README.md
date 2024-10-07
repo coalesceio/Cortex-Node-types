@@ -353,6 +353,11 @@ This is executed in the below stage:
 
 <h2 id="classification"> Classification </h2>
 
+The Coalesce Classification is a versatile node that allows you to create a classification table and classifaction model to classify data 
+into different classes using patterns detected in training data using in-built snowflake ML function[CLASSIFICATION](https://docs.snowflake.com/en/sql-reference/classes/classification).
+
+Classification uses machine learning algorithms to sort data into different classes using patterns detected in training data. Binary classification (two classes) and multi-class classification (more than two classes) are supported. Common use cases of classification include customer churn prediction, credit card fraud detection, and spam detection.
+
 ### Classification Node Configuration
 
 The Classification node has two configuration groups:

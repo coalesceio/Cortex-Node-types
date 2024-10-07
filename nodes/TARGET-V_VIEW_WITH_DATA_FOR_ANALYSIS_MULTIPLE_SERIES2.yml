@@ -120,7 +120,7 @@ operation:
   name: V_VIEW_WITH_DATA_FOR_ANALYSIS_MULTIPLE_SERIES2
   overrideSQL: false
   schema: ""
-  sqlType: View
+  sqlType: BNT:::188
   type: sql
   version: 1
 type: Node

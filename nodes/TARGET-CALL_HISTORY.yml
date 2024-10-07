@@ -71,7 +71,7 @@ operation:
   name: CALL_HISTORY
   overrideSQL: false
   schema: ""
-  sqlType: Stage
+  sqlType: BNT:::204
   type: sql
   version: 1
 type: Node

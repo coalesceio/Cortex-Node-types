@@ -71,7 +71,7 @@ operation:
   name: CALL_DATASET_FOR_ANALYSIS
   overrideSQL: false
   schema: ""
-  sqlType: Stage
+  sqlType: BNT:::204
   type: sql
   version: 1
 type: Node

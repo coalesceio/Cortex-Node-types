@@ -1,22 +1,25 @@
 fileVersion: 1
-id: 058aceb8-4911-4964-83f5-9ca54e75af12
-name: ML_AD_CALL_HISTORY_SINGLE_SERIES
+id: 4f26afbe-2a17-49dd-86a9-b2df7b548e98
+name: ML_AD_VIEW_WITH_TRAINING_DATA_MULTI_SERIES
 operation:
   config:
     Forcecreate: true
-    cobject: false
-    lcdata: false
-    mname: Unsupervised_ad_Model
-    mtoggle: false
-    multiseries: false
-    predictioninterval: ex:0.80(float value)
+    cobject: true
+    lcdata: null
+    mname: MULTIPLE_SERIES2
+    mtoggle: "true"
+    multiseries: "true"
+    predictioninterval: "0.95"
+    seriescol:
+      columnCounter: 69716bc9-0627-4655-8148-fa9f0d0b6405
+      stepCounter: 4f26afbe-2a17-49dd-86a9-b2df7b548e98
     spdata: false
     tgtcol:
-      columnCounter: c535eee4-8410-40fa-9421-12c2a4111bbc
-      stepCounter: 058aceb8-4911-4964-83f5-9ca54e75af12
+      columnCounter: cab15e09-828b-466b-8cd8-9d43572ced39
+      stepCounter: 4f26afbe-2a17-49dd-86a9-b2df7b548e98
     tscol:
-      columnCounter: c5bf912f-bdd5-4443-845b-7e7c4f66ad70
-      stepCounter: 058aceb8-4911-4964-83f5-9ca54e75af12
+      columnCounter: 3bdf871a-f4d4-4ec6-af2f-6dfe5cde3aa1
+      stepCounter: 4f26afbe-2a17-49dd-86a9-b2df7b548e98
     uspdata: true
   database: ""
   deployEnabled: true
@@ -29,8 +32,27 @@ operation:
     columns:
       - appliedColumnTests: {}
         columnReference:
-          columnCounter: c5bf912f-bdd5-4443-845b-7e7c4f66ad70
-          stepCounter: 058aceb8-4911-4964-83f5-9ca54e75af12
+          columnCounter: 69716bc9-0627-4655-8148-fa9f0d0b6405
+          stepCounter: 4f26afbe-2a17-49dd-86a9-b2df7b548e98
+        config: {}
+        dataType: VARIANT
+        description: ""
+        hashDetails: null
+        name: STORE_ITEM
+        nullable: true
+        sourceColumnReferences:
+          - columnReferences:
+              - columnCounter: afda25fb-7886-43dc-b87a-ad05247fd983
+                stepCounter: c63d25b3-834d-4fe1-ab69-8b15cf377a95
+            transform: ""
+          - columnReferences:
+              - columnCounter: 191fdf86-9408-4a3d-ba5a-340f5e8af6f6
+                stepCounter: 9aa8db0e-c16b-4da6-b6d6-b7f9011a335a
+            transform: ""
+      - appliedColumnTests: {}
+        columnReference:
+          columnCounter: 3bdf871a-f4d4-4ec6-af2f-6dfe5cde3aa1
+          stepCounter: 4f26afbe-2a17-49dd-86a9-b2df7b548e98
         config: {}
         dataType: TIMESTAMP_NTZ(9)
         description: ""
@@ -39,39 +61,39 @@ operation:
         nullable: true
         sourceColumnReferences:
           - columnReferences:
-              - columnCounter: d626afba-c0df-4915-b864-edd39012502f
-                stepCounter: a804f266-0572-425a-8eff-f2cd91205885
+              - columnCounter: 9d02e384-fbd4-493a-a4e1-19594c41870c
+                stepCounter: c63d25b3-834d-4fe1-ab69-8b15cf377a95
             transform: ""
           - columnReferences:
-              - columnCounter: 1c4a54c9-5f62-4892-af4b-eeb0a52db9fd
-                stepCounter: 9e99ca9b-9c93-4454-85c0-c9592f7a9f99
+              - columnCounter: e2836ac3-9ad1-4611-95ca-4183e9cb0608
+                stepCounter: 9aa8db0e-c16b-4da6-b6d6-b7f9011a335a
             transform: ""
       - appliedColumnTests: {}
         columnReference:
-          columnCounter: c535eee4-8410-40fa-9421-12c2a4111bbc
-          stepCounter: 058aceb8-4911-4964-83f5-9ca54e75af12
+          columnCounter: cab15e09-828b-466b-8cd8-9d43572ced39
+          stepCounter: 4f26afbe-2a17-49dd-86a9-b2df7b548e98
         config: {}
-        dataType: INTEGER
+        dataType: FLOAT
         description: ""
         hashDetails: null
-        name: TOTAL_CALLS
+        name: SALES
         nullable: true
         sourceColumnReferences:
           - columnReferences:
-              - columnCounter: 70fdf3d6-4725-4391-9e84-2dc2ef0a05ab
-                stepCounter: a804f266-0572-425a-8eff-f2cd91205885
+              - columnCounter: 83a7f861-8010-41c8-8a9f-ab7490279a00
+                stepCounter: c63d25b3-834d-4fe1-ab69-8b15cf377a95
             transform: ""
           - columnReferences:
-              - columnCounter: 283bed3e-1369-4050-a4fa-2a864bd8974f
-                stepCounter: 9e99ca9b-9c93-4454-85c0-c9592f7a9f99
+              - columnCounter: 80bbef85-9ece-4071-8b4c-1041bc1fca6f
+                stepCounter: 9aa8db0e-c16b-4da6-b6d6-b7f9011a335a
             transform: ""
       - acceptedValues:
           strictMatch: true
           values: []
         appliedColumnTests: {}
         columnReference:
-          columnCounter: b64d2d3d-3d75-44b7-9c06-ed3c91818b39
-          stepCounter: 058aceb8-4911-4964-83f5-9ca54e75af12
+          columnCounter: 0667c1dc-cd9c-44ab-b18b-e1c05b3fdcc6
+          stepCounter: 4f26afbe-2a17-49dd-86a9-b2df7b548e98
         config: {}
         dataType: FLOAT
         defaultValue: ""
@@ -89,8 +111,8 @@ operation:
           values: []
         appliedColumnTests: {}
         columnReference:
-          columnCounter: de43497a-f3f0-4779-a859-f8f476ff7c62
-          stepCounter: 058aceb8-4911-4964-83f5-9ca54e75af12
+          columnCounter: dd2e6684-a45a-4a45-b033-c93a87767511
+          stepCounter: 4f26afbe-2a17-49dd-86a9-b2df7b548e98
         config: {}
         dataType: FLOAT
         defaultValue: ""
@@ -108,8 +130,8 @@ operation:
           values: []
         appliedColumnTests: {}
         columnReference:
-          columnCounter: 1faa44cf-85ca-49d2-bc8f-6d638276116a
-          stepCounter: 058aceb8-4911-4964-83f5-9ca54e75af12
+          columnCounter: 1ee14096-0ef7-42e8-9af7-d7f239ce55ef
+          stepCounter: 4f26afbe-2a17-49dd-86a9-b2df7b548e98
         config: {}
         dataType: FLOAT
         defaultValue: ""
@@ -128,8 +150,8 @@ operation:
         anomaly: true
         appliedColumnTests: {}
         columnReference:
-          columnCounter: b41ce64a-9a6a-46c7-8d9c-6b8253190cb5
-          stepCounter: 058aceb8-4911-4964-83f5-9ca54e75af12
+          columnCounter: aa10a371-b12a-4105-b12e-63e4d85e7fe2
+          stepCounter: 4f26afbe-2a17-49dd-86a9-b2df7b548e98
         config: {}
         dataType: BOOLEAN
         defaultValue: ""
@@ -146,8 +168,8 @@ operation:
           values: []
         appliedColumnTests: {}
         columnReference:
-          columnCounter: 4817efa0-b9c1-43c9-9ec8-5bb7e05d784c
-          stepCounter: 058aceb8-4911-4964-83f5-9ca54e75af12
+          columnCounter: a6d821f1-bde1-40ec-8784-334a2606e95d
+          stepCounter: 4f26afbe-2a17-49dd-86a9-b2df7b548e98
         config: {}
         dataType: FLOAT
         defaultValue: ""
@@ -165,8 +187,8 @@ operation:
           values: []
         appliedColumnTests: {}
         columnReference:
-          columnCounter: f5f5ab5b-2579-45c6-b2bc-03374075864a
-          stepCounter: 058aceb8-4911-4964-83f5-9ca54e75af12
+          columnCounter: 66b31f02-9e12-4af8-be80-eb7abd86fd63
+          stepCounter: 4f26afbe-2a17-49dd-86a9-b2df7b548e98
         config: {}
         dataType: FLOAT
         defaultValue: ""
@@ -181,29 +203,28 @@ operation:
             transform: ""
     enabledColumnTestIDs: []
     sourceMapping:
-      - aliases:
-          CALL_HISTORY: a804f266-0572-425a-8eff-f2cd91205885
+      - aliases: {}
         customSQL:
           customSQL: ""
         dependencies:
           - locationName: TARGET
-            nodeName: CALL_HISTORY
+            nodeName: V_VIEW_WITH_TRAINING_DATA_MULTIPLE_SERIES2
         join:
-          joinCondition: FROM {{ ref('TARGET', 'CALL_HISTORY') }} "CALL_HISTORY"
-        name: ML_AD_CALL_HISTORY
+          joinCondition: FROM {{ ref('TARGET', 'V_VIEW_WITH_TRAINING_DATA_MULTIPLE_SERIES2') }} "V_VIEW_WITH_TRAINING_DATA_MULTIPLE_SERIES2"
+        name: ML_AD_VIEW_WITH_TRAINING_DATA_MULTIPLE_SERIES2
         noLinkRefs: []
       - aliases:
-          CALL_DATASET_FOR_ANALYSIS: 9e99ca9b-9c93-4454-85c0-c9592f7a9f99
+          V_VIEW_WITH_DATA_FOR_ANALYSIS_MULTIPLE_SERIES2: 9aa8db0e-c16b-4da6-b6d6-b7f9011a335a
         customSQL:
           customSQL: ""
         dependencies:
           - locationName: TARGET
-            nodeName: CALL_DATASET_FOR_ANALYSIS
+            nodeName: V_VIEW_WITH_DATA_FOR_ANALYSIS_MULTIPLE_SERIES2
         join:
-          joinCondition: FROM {{ ref('TARGET', 'CALL_DATASET_FOR_ANALYSIS') }} "CALL_DATASET_FOR_ANALYSIS"
+          joinCondition: FROM {{ ref('TARGET', 'V_VIEW_WITH_DATA_FOR_ANALYSIS_MULTIPLE_SERIES2') }} "V_VIEW_WITH_DATA_FOR_ANALYSIS_MULTIPLE_SERIES2"
         name: NEW_SOURCE
         noLinkRefs: []
-  name: ML_AD_CALL_HISTORY_SINGLE_SERIES
+  name: ML_AD_VIEW_WITH_TRAINING_DATA_MULTI_SERIES
   overrideSQL: false
   schema: ""
   sqlType: "261"

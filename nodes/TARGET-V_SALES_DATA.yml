@@ -1,0 +1,85 @@
+fileVersion: 1
+id: fbec0149-8898-4f41-b13f-87de46cf0f6c
+name: V_SALES_DATA
+operation:
+  config:
+    OverrideSQLCreate: false
+    groupByAll: false
+    insertStrategy: UNION
+    secureoption: false
+    selectDistinct: false
+  database: ""
+  deployEnabled: true
+  description: ""
+  isMultisource: false
+  locationName: TARGET
+  materializationType: view
+  metadata:
+    appliedNodeTests: []
+    columns:
+      - appliedColumnTests: {}
+        columnReference:
+          columnCounter: 3f4fff27-593c-4bce-b92c-5da86be810eb
+          stepCounter: fbec0149-8898-4f41-b13f-87de46cf0f6c
+        config: {}
+        dataType: VARCHAR(16777216)
+        description: ""
+        hashDetails: null
+        name: STORE_ITEM
+        nullable: true
+        sourceColumnReferences:
+          - columnReferences:
+              - columnCounter: 594b4edd-0632-470f-8d12-e95a4ef773b4
+                stepCounter: 43751546-e7d3-4b85-bc82-3f7ae851d745
+            transform: "[\"SALES_DATA\".\"STORE_ID\",\"SALES_DATA\".\"ITEM\"]"
+      - appliedColumnTests: {}
+        columnReference:
+          columnCounter: fc7fc509-acbf-4c99-b766-1723cb8c7a51
+          stepCounter: fbec0149-8898-4f41-b13f-87de46cf0f6c
+        config: {}
+        dataType: TIMESTAMP_NTZ(9)
+        description: ""
+        hashDetails: null
+        name: DATE
+        nullable: true
+        sourceColumnReferences:
+          - columnReferences:
+              - columnCounter: a5196fb0-4ea9-4f66-9270-faf07b793dd7
+                stepCounter: 43751546-e7d3-4b85-bc82-3f7ae851d745
+            transform: ""
+      - appliedColumnTests: {}
+        columnReference:
+          columnCounter: bccdb07b-f0a8-42e7-8bf9-97bd7418ad44
+          stepCounter: fbec0149-8898-4f41-b13f-87de46cf0f6c
+        config: {}
+        dataType: FLOAT
+        description: ""
+        hashDetails: null
+        name: SALES
+        nullable: true
+        sourceColumnReferences:
+          - columnReferences:
+              - columnCounter: 6d21cdc9-a5d0-42ec-aaed-bcb78e5e1621
+                stepCounter: 43751546-e7d3-4b85-bc82-3f7ae851d745
+            transform: ""
+    cteString: ""
+    enabledColumnTestIDs: []
+    sourceMapping:
+      - aliases:
+          SALES_DATA: 43751546-e7d3-4b85-bc82-3f7ae851d745
+        customSQL:
+          customSQL: ""
+        dependencies:
+          - locationName: SOURCE
+            nodeName: SALES_DATA
+        join:
+          joinCondition: FROM {{ ref('SOURCE', 'SALES_DATA') }} "SALES_DATA"
+        name: V_SALES_DATA
+        noLinkRefs: []
+  name: V_SALES_DATA
+  overrideSQL: false
+  schema: ""
+  sqlType: BNT:::188
+  type: sql
+  version: 1
+type: Node

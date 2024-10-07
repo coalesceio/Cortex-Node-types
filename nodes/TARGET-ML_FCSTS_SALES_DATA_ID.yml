@@ -134,10 +134,10 @@ operation:
         customSQL:
           customSQL: ""
         dependencies:
-          - locationName: SOURCE
+          - locationName: TARGET
             nodeName: V_SALES_DATA_ID
         join:
-          joinCondition: FROM {{ ref('SOURCE', 'V_SALES_DATA_ID') }} "V_SALES_DATA_ID"
+          joinCondition: FROM {{ ref('TARGET', 'V_SALES_DATA_ID') }} "V_SALES_DATA_ID"
         name: ML_FCSTS_SALES_DATA_ID
         noLinkRefs: []
   name: ML_FCSTS_SALES_DATA_ID

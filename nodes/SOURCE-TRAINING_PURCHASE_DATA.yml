@@ -1,0 +1,96 @@
+fileVersion: 1
+id: 271c4aea-fc05-4b21-8ecd-f5f773b2d949
+name: TRAINING_PURCHASE_DATA
+operation:
+  database: ""
+  dataset: ""
+  deployEnabled: true
+  description: ""
+  locationName: SOURCE
+  metadata:
+    columns:
+      - acceptedValues:
+          strictMatch: true
+          values: []
+        appliedColumnTests: {}
+        columnReference:
+          columnCounter: 29a54d9c-473d-4776-8ace-752b6d6acf0f
+          stepCounter: 271c4aea-fc05-4b21-8ecd-f5f773b2d949
+        config: {}
+        dataType: VARCHAR(16777216)
+        defaultValue: ""
+        description: ""
+        name: USER_INTEREST_SCORE
+        nullable: true
+        primaryKey: false
+        sourceColumnReferences:
+          - columnReferences: []
+            transform: ""
+        transform: ""
+        uniqueKey: false
+      - acceptedValues:
+          strictMatch: true
+          values: []
+        appliedColumnTests: {}
+        columnReference:
+          columnCounter: 7dffe599-a3fa-408d-9c5c-c02669cecdc5
+          stepCounter: 271c4aea-fc05-4b21-8ecd-f5f773b2d949
+        config: {}
+        dataType: NUMBER(2,0)
+        defaultValue: ""
+        description: ""
+        name: USER_RATING
+        nullable: true
+        primaryKey: false
+        sourceColumnReferences:
+          - columnReferences: []
+            transform: ""
+        transform: ""
+        uniqueKey: false
+      - acceptedValues:
+          strictMatch: true
+          values: []
+        appliedColumnTests: {}
+        columnReference:
+          columnCounter: bd82ea66-0c2e-4556-9318-c1f6963d4a63
+          stepCounter: 271c4aea-fc05-4b21-8ecd-f5f773b2d949
+        config: {}
+        dataType: BOOLEAN
+        defaultValue: ""
+        description: ""
+        name: LABEL
+        nullable: true
+        primaryKey: false
+        sourceColumnReferences:
+          - columnReferences: []
+            transform: ""
+        transform: ""
+        uniqueKey: false
+      - acceptedValues:
+          strictMatch: true
+          values: []
+        appliedColumnTests: {}
+        columnReference:
+          columnCounter: b3bf9433-cb14-43b6-8554-d161a81e0522
+          stepCounter: 271c4aea-fc05-4b21-8ecd-f5f773b2d949
+        config: {}
+        dataType: VARCHAR(15)
+        defaultValue: ""
+        description: ""
+        name: CLASS
+        nullable: true
+        primaryKey: false
+        sourceColumnReferences:
+          - columnReferences: []
+            transform: ""
+        transform: ""
+        uniqueKey: false
+    join:
+      joinCondition: FROM {{ ref('SOURCE', 'TRAINING_PURCHASE_DATA') }}
+  name: TRAINING_PURCHASE_DATA
+  schema: ""
+  sqlType: Source
+  table: TRAINING_PURCHASE_DATA
+  type: sourceInput
+  version: 1
+type: Node

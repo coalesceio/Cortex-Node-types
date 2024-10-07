@@ -3,7 +3,7 @@
  * [ML Forecast](#ml-forecast)
  * [ML Anomaly Detection](#ml-anomaly-detection)
  * [Cortex functions](#llm-cortex-functions)
- * [ML Contribution Explorer](#ml-contribution-explorer)
+ * [TopInsights](#topinsights)
  * [Classification](#classification)
  * [Code](#code)
    
@@ -291,18 +291,18 @@ This is executed in two stages:
 * **Delete Table:** Coalesce Internal table is dropped
 * **Delete Table:** Target table in Snowflake is dropped
 
-<h2 id="ml-contribution-explorer">ML Contribution Explorer</h2>
+<h2 id="topinsights">TopInsights</h2>
 
-The Coalesce ML Contribution Explorer UDN is a versatile node that allows you to streamline and improve the process of root cause analysis around changes in observed metrics. Learn more about [Contribution Explorer](https://docs.snowflake.com/en/user-guide/snowflake-cortex/ml-functions/contribution-explorer).
+The Coalesce TopInsights UDN is a versatile node that allows you to streamline and improve the process of root cause analysis around changes in observed metrics. Learn more about [TopInsights](https://docs.snowflake.com/en/user-guide/snowflake-cortex/ml-functions/contribution-explorer).
 
 ###  ML Contribution Explorer Node Configuration
 The Contribution Explorer has two configuration groups:
 
-* [Node Properties](#ml-contribution-explorer-node-properties)
+* [Node Properties](#ml-contribution-explore-node-properties)
 * [Contribution Explorer](#ml-contribution-explorer-config)
 
 
-<h4 id="ml-contribution-explorer-node-properties">ML Contribution Explorer Node Properties </h4>
+<h4 id="ml-contribution-explorer-node-properties">Top Insights Node Properties </h4>
 
 * **Storage Location**: Storage Location where the Table will be created.
 * **Node Type**: Name of template used to create node objects.
@@ -311,7 +311,7 @@ The Contribution Explorer has two configuration groups:
   * If TRUE the node will be deployed / redeployed when changes are detected.
   * If FALSE the node will not be deployed or will be dropped during redeployment.
 
-<h4 id="ml-contribution-explorer-config">ML Contribution Explorer Configuration</h4>
+<h4 id="ml-contribution-explorer-config">Top Insights Configuration</h4>
 
 * **Create As**:Provides option to create a ‘view’,
 * **CATEGORICAL DIMENSIONS (required):**  This column denotes a categorical attributes essential for analysis.
@@ -324,9 +324,9 @@ The Contribution Explorer has two configuration groups:
     * False-Sort column and sort order drop down are invisible.
 
 
-### ML Contribution Explorer  Deployment
+### Top Insights  Deployment
 
-#### ML Contribution Explorer  Initial Deployment
+#### Top Insights  Initial Deployment
 
 When deployed for the first time into an environment the View node will execute the below stage:
 
@@ -334,7 +334,7 @@ When deployed for the first time into an environment the View node will execute 
 
 This stage will execute a `CREATE OR REPLACE` statement and create a create a View in the target environment.
 
-#### ML Contribution Explorer Redeployment
+#### Top Insights Redeployment
 
 The subsequent deployment of a View node with changes in the view definition, altering options, or renaming the view results in the deletion of the existing view and the recreation of the view.
 
@@ -343,7 +343,7 @@ The following stages are executed:
 * Delete View
 * Create View
 
-### ML Contribution Explorer Undeployment
+### Top Insights Undeployment
 
 If a View Node is removed from a Workspace, and the changes are committed to Git and deployed to a higher-level environment, the corresponding View in the target environment will be dropped.
 
@@ -443,9 +443,15 @@ This is executed in two stages:
 *  [Create Template](https://github.com/coalesceio/Cortex-Node-types/blob/main/nodeTypes/CortexFunctions-271/create.sql.j2)
 *  [Run Template](https://github.com/coalesceio/Cortex-Node-types/blob/main/nodeTypes/CortexFunctions-271/run.sql.j2)
 
-### ML Contribution Explorer
+### TopInsights
 
-*  [Node definition](https://github.com/coalesceio/Cortex-Node-types/blob/main/nodeTypes/ContributionExplorer-279/definition.yml)
-*  [Create Template](https://github.com/coalesceio/Cortex-Node-types/blob/main/nodeTypes/ContributionExplorer-279/create.sql.j2)
+*  [Node definition](https://github.com/coalesceio/Cortex-Node-types/blob/main/nodeTypes/TopInsights-279/definition.yml)
+*  [Create Template](https://github.com/coalesceio/Cortex-Node-types/blob/main/nodeTypes/TopInsights-279/create.sql.j2)
+  
+### Classification
+
+*[Node definition](https://github.com/coalesceio/Cortex-Node-types/blob/main/nodeTypes/Classification-337/definition.yml)
+*[Create Template](https://github.com/coalesceio/Cortex-Node-types/blob/main/nodeTypes/Classification-337/create.sql.j2)
+*[Run Template](https://github.com/coalesceio/Cortex-Node-types/blob/main/nodeTypes/Classification-337/run.sql.j2)
 
 [Macros](https://github.com/coalesceio/Cortex-Node-types/blob/main/macros/macro-1.yml)

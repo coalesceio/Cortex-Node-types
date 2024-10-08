@@ -3,7 +3,7 @@ id: 17f227db-4d73-4a20-9488-8c2614591400
 name: CL__CUSTOMER_TRAINING2
 operation:
   config:
-    Forcecreate: false
+    Forcecreate: true
     mname: CL_CUSTOMERS2
     mtoggle: true
     tgtcol:

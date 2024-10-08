@@ -3,7 +3,7 @@
  * [ML Forecast](#ml-forecast)
  * [ML Anomaly Detection](#ml-anomaly-detection)
  * [Cortex functions](#llm-cortex-functions)
- * [TopInsights](#topinsights)
+ * [Top Insights](#topinsights)
  * [Classification](#classification)
  * [Code](#code)
    
@@ -291,15 +291,15 @@ This is executed in two stages:
 * **Delete Table:** Coalesce Internal table is dropped
 * **Delete Table:** Target table in Snowflake is dropped
 
-<h2 id="topinsights">TopInsights</h2>
+<h2 id="topinsights">Top Insights</h2>
 
 The Coalesce TopInsights UDN is a versatile node that allows you to streamline and improve the process of root cause analysis around changes in observed metrics. Learn more about [TopInsights](https://docs.snowflake.com/en/user-guide/snowflake-cortex/ml-functions/contribution-explorer).
 
-###  ML Contribution Explorer Node Configuration
-The Contribution Explorer has two configuration groups:
+###  Top Insights Node Configuration
+The Top Insights node has two configuration groups:
 
 * [Node Properties](#ml-contribution-explore-node-properties)
-* [Contribution Explorer](#ml-contribution-explorer-config)
+* [Top Insights](#ml-contribution-explorer-config)
 
 
 <h4 id="ml-contribution-explorer-node-properties">Top Insights Node Properties </h4>
@@ -322,7 +322,6 @@ The Contribution Explorer has two configuration groups:
 * **Order By** : True/False toggle that determines whether to add “ORDER BY” to SQL Query along with the column and sort order.
     * True -Sort column and sort order drop down are visible and are required to form order by clause.
     * False-Sort column and sort order drop down are invisible.
-
 
 ### Top Insights  Deployment
 

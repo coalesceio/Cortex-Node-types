@@ -293,14 +293,13 @@ This is executed in two stages:
 
 <h2 id="topinsights">Top Insights</h2>
 
-The Coalesce TopInsights UDN is a versatile node that allows you to streamline and improve the process of root cause analysis around changes in observed metrics. Learn more about [Top Insights](https://docs.snowflake.com/en/user-guide/snowflake-cortex/ml-functions/contribution-explorer).
+The Coalesce Top Insights UDN is a versatile node that allows you to streamline and improve the process of root cause analysis around changes in observed metrics. Learn more about [Top Insights](https://docs.snowflake.com/en/user-guide/snowflake-cortex/ml-functions/contribution-explorer).
 
 ###  Top Insights Node Configuration
 The Top Insights node has two configuration groups:
 
 * [Node Properties](#ml-contribution-explore-node-properties)
 * [Top Insights](#ml-contribution-explorer-config)
-
 
 <h4 id="ml-contribution-explorer-node-properties">Top Insights Node Properties </h4>
 

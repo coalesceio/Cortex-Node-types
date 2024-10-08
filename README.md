@@ -293,7 +293,7 @@ This is executed in two stages:
 
 <h2 id="topinsights">Top Insights</h2>
 
-The Coalesce TopInsights UDN is a versatile node that allows you to streamline and improve the process of root cause analysis around changes in observed metrics. Learn more about [TopInsights](https://docs.snowflake.com/en/user-guide/snowflake-cortex/ml-functions/contribution-explorer).
+The Coalesce TopInsights UDN is a versatile node that allows you to streamline and improve the process of root cause analysis around changes in observed metrics. Learn more about [Top Insights](https://docs.snowflake.com/en/user-guide/snowflake-cortex/ml-functions/contribution-explorer).
 
 ###  Top Insights Node Configuration
 The Top Insights node has two configuration groups:
@@ -331,7 +331,7 @@ When deployed for the first time into an environment the View node will execute 
 
   **Create or replace View**
 
-This stage will execute a `CREATE OR REPLACE` statement and create a create a View in the target environment.
+This stage will execute a `CREATE OR REPLACE` statement and create a View in the target environment.
 
 #### Top Insights Redeployment
 

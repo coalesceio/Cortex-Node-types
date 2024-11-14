@@ -6,7 +6,7 @@ metadata:
   error: null
   nodeMetadataSpec: |-
     capitalized: Cortex Functions 
-    short: LLM_
+    short: LLM
     plural: llms
     tagColor: '#a332f0'
 

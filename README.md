@@ -35,7 +35,7 @@ The ML Forecast has two configuration groups:
 | **Option** | **Description** |
 |------------|----------------|
 | **Model Instance Name** | (Required) Name of the model that needs to be created |
-| **Create Model** | True/False toggle to determine model creation:<br/>- **True**: Forcefully create Forecast model<br>-- **Series Column** (required for multi-series): For multiple time series models, the name of the column defining the multiple time series in input data.<br/>- **False**: Refer to existing Forecast model |
+| **Create Model** | True/False toggle to determine model creation:<br/>- **True**: Forcefully create Forecast model<br/>-- **Series Column** (required for multi-series): For multiple time series models, the name of the column defining the multiple time series in input data.<br/>- **False**: Refer to existing Forecast model |
 | **Multi-Series Forecast** | True/False toggle for forecast type:<br/>- **True**: Create multi-series forecast model with series column, timestamp column and target column<br/>- **False**: Specify the timestamp column and target column to create single-series forecast model |
 | **Series Column** | (Required for multi-series) Column defining multiple time series in input data |
 | **Timestamp Column** | (Required) Column containing timestamps in input data |

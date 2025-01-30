@@ -1,0 +1,179 @@
+fileVersion: 1
+id: d9cdc315-b7c9-42ea-8229-fb3890334ad7
+name: V_TSLA1
+operation:
+  config:
+    OverrideSQLCreate: false
+    groupByAll: false
+    insertStrategy: UNION
+    secureoption: false
+    selectDistinct: true
+  database: ""
+  deployEnabled: true
+  description: ""
+  isMultisource: false
+  locationName: SOURCE
+  materializationType: view
+  metadata:
+    appliedNodeTests: []
+    columns:
+      - appliedColumnTests: {}
+        columnReference:
+          columnCounter: d74934fe-5ff0-480f-851d-7f6f6af84aa5
+          stepCounter: d9cdc315-b7c9-42ea-8229-fb3890334ad7
+        config: {}
+        dataType: TIMESTAMP_NTZ
+        description: ""
+        name: DATA_EXTRACT_TIMESTAMP
+        nullable: true
+        sourceColumnReferences:
+          - columnReferences:
+              - columnCounter: 099293f3-25da-4c50-b40c-25f9f9d3ea82
+                stepCounter: f199cd3d-d56e-418d-94a0-9a854cec7ea2
+            transform: ""
+      - appliedColumnTests: {}
+        columnReference:
+          columnCounter: 6ec6ec89-105e-44e4-a2aa-b3052add5a97
+          stepCounter: d9cdc315-b7c9-42ea-8229-fb3890334ad7
+        config: {}
+        dataType: DOUBLE
+        description: ""
+        name: company_name_score
+        nullable: true
+        sourceColumnReferences:
+          - columnReferences:
+              - columnCounter: 20de0705-2d2b-48a1-bfeb-06b7c7c2010d
+                stepCounter: f199cd3d-d56e-418d-94a0-9a854cec7ea2
+            transform: ""
+      - appliedColumnTests: {}
+        columnReference:
+          columnCounter: e2bba7e4-50ad-460f-af5c-29d08d3e5e1f
+          stepCounter: d9cdc315-b7c9-42ea-8229-fb3890334ad7
+        config: {}
+        dataType: STRING
+        description: ""
+        name: company_name_value
+        nullable: true
+        sourceColumnReferences:
+          - columnReferences:
+              - columnCounter: 43ad3ff4-5e33-4499-80c0-b91a7cfb4115
+                stepCounter: f199cd3d-d56e-418d-94a0-9a854cec7ea2
+            transform: ""
+      - appliedColumnTests: {}
+        columnReference:
+          columnCounter: 855eaad2-4b7e-4b3d-ab0b-d6f283ae345b
+          stepCounter: d9cdc315-b7c9-42ea-8229-fb3890334ad7
+        config: {}
+        dataType: DOUBLE
+        description: ""
+        name: retention_rate_score
+        nullable: true
+        sourceColumnReferences:
+          - columnReferences:
+              - columnCounter: a5421188-cb3e-4f4b-96dd-2221587ed701
+                stepCounter: f199cd3d-d56e-418d-94a0-9a854cec7ea2
+            transform: ""
+      - appliedColumnTests: {}
+        columnReference:
+          columnCounter: dfde000f-a6e7-467d-9fb3-9ed7cda8a7eb
+          stepCounter: d9cdc315-b7c9-42ea-8229-fb3890334ad7
+        config: {}
+        dataType: STRING
+        description: ""
+        name: retention_rate_value
+        nullable: true
+        sourceColumnReferences:
+          - columnReferences:
+              - columnCounter: 6e51c67c-0093-4dba-b41b-e8b24810ac07
+                stepCounter: f199cd3d-d56e-418d-94a0-9a854cec7ea2
+            transform: ""
+      - appliedColumnTests: {}
+        columnReference:
+          columnCounter: 07680c00-2699-44c7-b582-0b8daa8da4d7
+          stepCounter: d9cdc315-b7c9-42ea-8229-fb3890334ad7
+        config: {}
+        dataType: DOUBLE
+        description: ""
+        name: total_customers_score
+        nullable: true
+        sourceColumnReferences:
+          - columnReferences:
+              - columnCounter: 8c0963aa-d0e2-4043-98ac-52faf84519e9
+                stepCounter: f199cd3d-d56e-418d-94a0-9a854cec7ea2
+            transform: ""
+      - appliedColumnTests: {}
+        columnReference:
+          columnCounter: b91feecc-e080-43a0-9033-090db6298ad6
+          stepCounter: d9cdc315-b7c9-42ea-8229-fb3890334ad7
+        config: {}
+        dataType: STRING
+        description: ""
+        name: total_customers_value
+        nullable: true
+        sourceColumnReferences:
+          - columnReferences:
+              - columnCounter: c0e4259b-8254-4f11-a4a5-45cd56c8f29e
+                stepCounter: f199cd3d-d56e-418d-94a0-9a854cec7ea2
+            transform: ""
+      - appliedColumnTests: {}
+        columnReference:
+          columnCounter: b9625ef2-6828-4082-9953-8141d47e1fe9
+          stepCounter: d9cdc315-b7c9-42ea-8229-fb3890334ad7
+        config: {}
+        dataType: DOUBLE
+        description: ""
+        name: total_earnings_score
+        nullable: true
+        sourceColumnReferences:
+          - columnReferences:
+              - columnCounter: 03ac5471-2e00-4ac8-8350-f43ad1abe576
+                stepCounter: f199cd3d-d56e-418d-94a0-9a854cec7ea2
+            transform: ""
+      - appliedColumnTests: {}
+        columnReference:
+          columnCounter: 2881e5c5-a733-4d04-ab71-099ea5b0665f
+          stepCounter: d9cdc315-b7c9-42ea-8229-fb3890334ad7
+        config: {}
+        dataType: STRING
+        description: ""
+        name: total_earnings_value
+        nullable: true
+        sourceColumnReferences:
+          - columnReferences:
+              - columnCounter: 7c7955fc-6577-49cd-b811-b11fccfde2e6
+                stepCounter: f199cd3d-d56e-418d-94a0-9a854cec7ea2
+            transform: ""
+      - appliedColumnTests: {}
+        columnReference:
+          columnCounter: ed74ec66-3b37-4966-a962-5f8595cd32dd
+          stepCounter: d9cdc315-b7c9-42ea-8229-fb3890334ad7
+        config: {}
+        dataType: DOUBLE
+        description: ""
+        name: __documentMetadata_ocrScore
+        nullable: true
+        sourceColumnReferences:
+          - columnReferences:
+              - columnCounter: 5b47baa3-ec07-4c7e-8f02-e387ea1c331d
+                stepCounter: f199cd3d-d56e-418d-94a0-9a854cec7ea2
+            transform: ""
+    cteString: ""
+    enabledColumnTestIDs: []
+    sourceMapping:
+      - aliases: {}
+        customSQL:
+          customSQL: ""
+        dependencies:
+          - locationName: SOURCE
+            nodeName: STG_TSLA1
+        join:
+          joinCondition: FROM {{ ref('SOURCE', 'STG_TSLA1') }} "STG_TSLA1"
+        name: V_TSLA1
+        noLinkRefs: []
+  name: V_TSLA1
+  overrideSQL: false
+  schema: ""
+  sqlType: BNT:::188
+  type: sql
+  version: 1
+type: Node

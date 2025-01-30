@@ -1,0 +1,172 @@
+fileVersion: 1
+id: bee55b89-bf96-4a23-b3f4-2a8ad413075f
+name: QUOTE_ORDER_LINES
+operation:
+  config:
+    insertStrategy: UNION
+    selectDistinct: false
+  database: ""
+  deployEnabled: true
+  description: ""
+  isMultisource: false
+  locationName: DAI
+  materializationType: view
+  metadata:
+    appliedNodeTests: []
+    columns:
+      - acceptedValues:
+          strictMatch: true
+          values: []
+        appliedColumnTests: {}
+        columnReference:
+          columnCounter: eacb7a61-e77d-4e44-9289-1f2c6959d01a
+          stepCounter: bee55b89-bf96-4a23-b3f4-2a8ad413075f
+        config: {}
+        dataType: VARIANT
+        defaultValue: ""
+        description: ""
+        name: END_USER
+        nullable: true
+        primaryKey: false
+        sourceColumnReferences:
+          - columnReferences: []
+            transform: ""
+        transform: ""
+        uniqueKey: false
+      - acceptedValues:
+          strictMatch: true
+          values: []
+        appliedColumnTests: {}
+        columnReference:
+          columnCounter: 525cb58e-c183-4309-9040-49be82b65ad1
+          stepCounter: bee55b89-bf96-4a23-b3f4-2a8ad413075f
+        config: {}
+        dataType: VARCHAR(16777216)
+        defaultValue: ""
+        description: ""
+        name: DOCUMENT_NAME
+        nullable: true
+        primaryKey: false
+        sourceColumnReferences:
+          - columnReferences:
+              - columnCounter: e528cac2-5d99-454e-a584-4e0313b9dc03
+                stepCounter: ef3272c7-2bd2-42a7-908d-62339ef343f9
+            transform: ""
+        transform: ""
+        uniqueKey: false
+      - acceptedValues:
+          strictMatch: true
+          values: []
+        appliedColumnTests: {}
+        columnReference:
+          columnCounter: 2f70dcdc-a34c-464f-a151-4bf4d91f9d1d
+          stepCounter: bee55b89-bf96-4a23-b3f4-2a8ad413075f
+        config: {}
+        dataType: VARCHAR(16777216)
+        defaultValue: ""
+        description: ""
+        name: FILE_URL
+        nullable: true
+        primaryKey: false
+        sourceColumnReferences:
+          - columnReferences:
+              - columnCounter: 20e4751a-19d2-41c5-a095-590a02a5a101
+                stepCounter: ef3272c7-2bd2-42a7-908d-62339ef343f9
+            transform: ""
+        transform: ""
+        uniqueKey: false
+      - acceptedValues:
+          strictMatch: true
+          values: []
+        appliedColumnTests: {}
+        columnReference:
+          columnCounter: 1169d1b9-0046-45cf-80e2-ef788ed8f0ad
+          stepCounter: bee55b89-bf96-4a23-b3f4-2a8ad413075f
+        config: {}
+        dataType: VARCHAR(16777216)
+        defaultValue: ""
+        description: ""
+        name: DOCUMENT_KEY
+        nullable: false
+        primaryKey: false
+        sourceColumnReferences:
+          - columnReferences:
+              - columnCounter: cdbbf44c-452b-4751-9936-6e543d1dd721
+                stepCounter: ef3272c7-2bd2-42a7-908d-62339ef343f9
+            transform: ""
+        transform: ""
+        uniqueKey: false
+      - appliedColumnTests: {}
+        columnReference:
+          columnCounter: a97c197d-9a17-4c64-afd6-e1766d63c477
+          stepCounter: bee55b89-bf96-4a23-b3f4-2a8ad413075f
+        config: {}
+        dataType: VARCHAR(16777216)
+        description: ""
+        name: QUOTE_NUMBER_VALUE
+        nullable: true
+        sourceColumnReferences:
+          - columnReferences:
+              - columnCounter: dc190f9f-e73d-4143-8229-2128d1a5ffcb
+                stepCounter: ef3272c7-2bd2-42a7-908d-62339ef343f9
+            transform: ""
+      - acceptedValues:
+          strictMatch: true
+          values: []
+        appliedColumnTests: {}
+        columnReference:
+          columnCounter: db6bbcf5-c931-437d-be4e-67664318d7a6
+          stepCounter: bee55b89-bf96-4a23-b3f4-2a8ad413075f
+        config: {}
+        dataType: NUMBER(11,0)
+        defaultValue: ""
+        description: ""
+        name: ORDER_LINE
+        nullable: false
+        primaryKey: false
+        sourceColumnReferences:
+          - columnReferences:
+              - columnCounter: 63055535-485c-4e8f-b59a-cad7bdcd7414
+                stepCounter: ef3272c7-2bd2-42a7-908d-62339ef343f9
+            transform: ""
+        transform: ""
+        uniqueKey: false
+    cteString: ""
+    enabledColumnTestIDs: []
+    sourceMapping:
+      - aliases: {}
+        customSQL:
+          customSQL: |-
+            {{ stage('Override Create SQL') }}
+            	CREATE OR REPLACE VIEW {{ ref('DAI', 'QUOTE_ORDER_LINES')}} AS (
+            select b.end_user,
+                   b.document_name,
+                   b.file_url,
+                   b.document_key,
+                   b.quote_number_value,
+                   a.line as order_line
+            from (select seq4() + 1 as line from table(generator(rowcount => 20))) a
+            left outer join ( select document_key,
+                                     quote_number_value::string as quote_number_value,
+                                     file_url,
+                                     document_name,
+                                     end_user,
+                                     order_line_count_value::number as order_line_count_value
+                              from {{ ref('DAI', 'STG_ORDER_FORM_EXTRACT') }}) b
+            where a.line <= b.order_line_count_value
+            order by b.quote_number_value asc, b.document_key asc, a.line asc
+            	)
+        dependencies:
+          - locationName: DAI
+            nodeName: STG_ORDER_FORM_EXTRACT
+        join:
+          joinCondition: FROM {{ ref('DAI', 'STG_ORDER_FORM_EXTRACT') }} "STG_ORDER_FORM_EXTRACT"
+        name: QUOTE_ORDER_LINES
+        noLinkRefs: []
+  name: QUOTE_ORDER_LINES
+  overrideSQL: true
+  schema: ""
+  sqlType: View
+  type: sql
+  version: 1
+type: Node

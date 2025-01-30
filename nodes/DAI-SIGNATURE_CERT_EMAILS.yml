@@ -1,0 +1,132 @@
+fileVersion: 1
+id: 568b89f3-2491-4d3e-ba51-4293dfd976ae
+name: SIGNATURE_CERT_EMAILS
+operation:
+  config:
+    insertStrategy: INSERT
+    postSQL: ""
+    preSQL: ""
+    testsEnabled: true
+    truncateBefore: true
+  database: ""
+  deployEnabled: true
+  description: ""
+  isMultisource: false
+  locationName: DAI
+  materializationType: table
+  metadata:
+    appliedNodeTests: []
+    columns:
+      - appliedColumnTests: {}
+        columnReference:
+          columnCounter: 6593ac12-71ac-4e38-a317-7a81377bea29
+          stepCounter: 568b89f3-2491-4d3e-ba51-4293dfd976ae
+        config: {}
+        dataType: STRING
+        description: ""
+        name: DOCUMENT_KEY
+        nullable: true
+        sourceColumnReferences:
+          - columnReferences:
+              - columnCounter: cdbbf44c-452b-4751-9936-6e543d1dd721
+                stepCounter: ef3272c7-2bd2-42a7-908d-62339ef343f9
+            transform: ""
+      - appliedColumnTests: {}
+        columnReference:
+          columnCounter: 5a3862dc-c102-423c-9ac9-68c856122520
+          stepCounter: 568b89f3-2491-4d3e-ba51-4293dfd976ae
+        config: {}
+        dataType: STRING
+        description: ""
+        name: QUOTE_NUMBER_VALUE
+        nullable: true
+        sourceColumnReferences:
+          - columnReferences:
+              - columnCounter: dc190f9f-e73d-4143-8229-2128d1a5ffcb
+                stepCounter: ef3272c7-2bd2-42a7-908d-62339ef343f9
+            transform: ""
+      - appliedColumnTests: {}
+        columnReference:
+          columnCounter: 3a7b8d3f-e418-42aa-ac7e-0c8864497ddc
+          stepCounter: 568b89f3-2491-4d3e-ba51-4293dfd976ae
+        config: {}
+        dataType: VARIANT
+        description: ""
+        name: SIGNATURE_CERT_EMAILS_RAW
+        nullable: true
+        sourceColumnReferences:
+          - columnReferences:
+              - columnCounter: f6b55508-bfec-4e40-8333-9727d1c7b08f
+                stepCounter: ef3272c7-2bd2-42a7-908d-62339ef343f9
+            transform: ""
+      - appliedColumnTests: {}
+        columnReference:
+          columnCounter: dcc7f0d6-c9ce-431f-91ec-1e31bef7780c
+          stepCounter: 568b89f3-2491-4d3e-ba51-4293dfd976ae
+        config: {}
+        dataType: DOUBLE
+        description: ""
+        name: SIGNATURE_CERT_LINE
+        nullable: true
+        sourceColumnReferences:
+          - columnReferences:
+              - columnCounter: f6b55508-bfec-4e40-8333-9727d1c7b08f
+                stepCounter: ef3272c7-2bd2-42a7-908d-62339ef343f9
+            transform: "\"SIGNATURE_CERT_EMAILS\".\"INDEX\" + 1"
+      - acceptedValues:
+          strictMatch: true
+          values: []
+        appliedColumnTests: {}
+        columnReference:
+          columnCounter: e9460270-d43c-4e19-945c-6ecfc7db350b
+          stepCounter: 568b89f3-2491-4d3e-ba51-4293dfd976ae
+        config: {}
+        dataType: STRING
+        description: ""
+        name: SIGNATURE_CERT_EMAILS
+        nullable: true
+        sourceColumnReferences:
+          - columnReferences:
+              - columnCounter: f6b55508-bfec-4e40-8333-9727d1c7b08f
+                stepCounter: ef3272c7-2bd2-42a7-908d-62339ef343f9
+            transform: "\"SIGNATURE_CERT_EMAILS\".value:\"value\"::STRING"
+      - acceptedValues:
+          strictMatch: true
+          values: []
+        appliedColumnTests: {}
+        columnReference:
+          columnCounter: f8c33176-5c0a-400d-916a-9ee54ad36123
+          stepCounter: 568b89f3-2491-4d3e-ba51-4293dfd976ae
+        config: {}
+        dataType: DOUBLE
+        description: ""
+        name: SCORE
+        nullable: true
+        sourceColumnReferences:
+          - columnReferences:
+              - columnCounter: f6b55508-bfec-4e40-8333-9727d1c7b08f
+                stepCounter: ef3272c7-2bd2-42a7-908d-62339ef343f9
+            transform: "\"SIGNATURE_CERT_EMAILS\".value:\"score\"::DOUBLE"
+    cteString: ""
+    enabledColumnTestIDs: []
+    sourceMapping:
+      - aliases:
+          STG_ORDER_FORM_EXTRACT: ef3272c7-2bd2-42a7-908d-62339ef343f9
+        customSQL:
+          customSQL: ""
+        dependencies:
+          - locationName: DAI
+            nodeName: STG_ORDER_FORM_EXTRACT
+        join:
+          joinCondition: |-
+            FROM {{ ref('DAI', 'STG_ORDER_FORM_EXTRACT') }} "STG_ORDER_FORM_EXTRACT", 
+            lateral flatten(input => "SIGNATURE_CERT_EMAILS", OUTER => TRUE) "SIGNATURE_CERT_EMAILS"
+        name: SIGNATURE_CERT_EMAILS
+        noLinkRefs: []
+  name: SIGNATURE_CERT_EMAILS
+  overrideSQL: false
+  schema: ""
+  sqlType: View
+  type: sql
+  version: 1
+type: Node

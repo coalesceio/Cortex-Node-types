@@ -1,0 +1,209 @@
+fileVersion: 1
+id: 06f2c6a9-0978-49cb-9d16-74a2909edb77
+name: SIGNATURE_LINE_DETAIL
+operation:
+  config:
+    insertStrategy: UNION
+    selectDistinct: false
+  database: ""
+  deployEnabled: true
+  description: ""
+  isMultisource: false
+  locationName: DAI
+  materializationType: view
+  metadata:
+    appliedNodeTests: []
+    columns:
+      - appliedColumnTests: {}
+        columnReference:
+          columnCounter: 0a4b9cd7-5bf7-4025-b12f-dbf49ae44b4d
+          stepCounter: 06f2c6a9-0978-49cb-9d16-74a2909edb77
+        config: {}
+        dataType: VARCHAR(16777216)
+        description: ""
+        name: DOCUMENT_NAME
+        nullable: true
+        sourceColumnReferences:
+          - columnReferences:
+              - columnCounter: 6f4f0fde-5a5f-4f6e-9365-4e7ac2906dee
+                stepCounter: 93b4c2d8-717c-4b25-9e49-fd3451129b16
+            transform: ""
+      - appliedColumnTests: {}
+        columnReference:
+          columnCounter: a91ac2cc-2eee-470d-8ed0-45a3248d6073
+          stepCounter: 06f2c6a9-0978-49cb-9d16-74a2909edb77
+        config: {}
+        dataType: VARCHAR(16777216)
+        description: ""
+        name: FILE_URL
+        nullable: true
+        sourceColumnReferences:
+          - columnReferences:
+              - columnCounter: 4c5fef08-519d-4e1c-9ec7-ab57d4eb4d85
+                stepCounter: 93b4c2d8-717c-4b25-9e49-fd3451129b16
+            transform: ""
+      - appliedColumnTests: {}
+        columnReference:
+          columnCounter: 177c7c6b-017d-4c4b-bc0b-8a6581a724f8
+          stepCounter: 06f2c6a9-0978-49cb-9d16-74a2909edb77
+        config: {}
+        dataType: VARCHAR(16777216)
+        description: ""
+        name: DOCUMENT_KEY
+        nullable: true
+        sourceColumnReferences:
+          - columnReferences:
+              - columnCounter: 13a7edba-3821-405c-aa49-932048d05f42
+                stepCounter: 93b4c2d8-717c-4b25-9e49-fd3451129b16
+            transform: ""
+      - appliedColumnTests: {}
+        columnReference:
+          columnCounter: 2d4b7d39-f1bb-43d3-9675-96adc3f109c9
+          stepCounter: 06f2c6a9-0978-49cb-9d16-74a2909edb77
+        config: {}
+        dataType: VARCHAR(16777216)
+        description: ""
+        name: QUOTE_NUMBER_VALUE
+        nullable: true
+        sourceColumnReferences:
+          - columnReferences:
+              - columnCounter: 5c94c09f-89b1-4f78-8416-2f69d635ba57
+                stepCounter: 93b4c2d8-717c-4b25-9e49-fd3451129b16
+            transform: ""
+      - appliedColumnTests: {}
+        columnReference:
+          columnCounter: 29694958-d982-470b-8091-f86b3f2ee634
+          stepCounter: 06f2c6a9-0978-49cb-9d16-74a2909edb77
+        config: {}
+        dataType: NUMBER(11,0)
+        description: ""
+        name: SIGNER_LINE
+        nullable: false
+        sourceColumnReferences:
+          - columnReferences:
+              - columnCounter: 990c6223-79b2-4d07-a015-9a8c809a9225
+                stepCounter: 93b4c2d8-717c-4b25-9e49-fd3451129b16
+            transform: ""
+      - appliedColumnTests: {}
+        columnReference:
+          columnCounter: cdeacc3a-f6d0-4906-a00a-b83853fac24c
+          stepCounter: 06f2c6a9-0978-49cb-9d16-74a2909edb77
+        config: {}
+        dataType: STRING
+        description: ""
+        name: ORDER_FORM_SIGNER_COMPANY
+        nullable: true
+        sourceColumnReferences:
+          - columnReferences:
+              - columnCounter: 0a661b2c-f444-4a02-9803-1e25bf613e6e
+                stepCounter: 3305b9af-338d-4ac8-9540-b8acce6b1354
+            transform: ""
+      - appliedColumnTests: {}
+        columnReference:
+          columnCounter: c36065ca-a7f0-4386-9010-e5189a38ec67
+          stepCounter: 06f2c6a9-0978-49cb-9d16-74a2909edb77
+        config: {}
+        dataType: STRING
+        description: ""
+        name: ORDER_FORM_SIGNERS
+        nullable: true
+        sourceColumnReferences:
+          - columnReferences:
+              - columnCounter: 858a034e-69c7-4c1b-aa07-932ef1f70665
+                stepCounter: 6a2f9172-1edf-4bdd-b82d-52909ad2fab6
+            transform: ""
+      - appliedColumnTests: {}
+        columnReference:
+          columnCounter: 8a0932ef-c275-4aee-8bf9-f0450b631f41
+          stepCounter: 06f2c6a9-0978-49cb-9d16-74a2909edb77
+        config: {}
+        dataType: STRING
+        description: ""
+        name: ORDER_FORM_SIGNER_TITLES
+        nullable: true
+        sourceColumnReferences:
+          - columnReferences:
+              - columnCounter: d297e36b-6951-4464-97e9-48ef6665344e
+                stepCounter: 3670d15f-bbeb-495b-925a-ad213b0127d3
+            transform: ""
+      - appliedColumnTests: {}
+        columnReference:
+          columnCounter: 68c331b1-0d6c-4c60-a4db-5138b1eafa77
+          stepCounter: 06f2c6a9-0978-49cb-9d16-74a2909edb77
+        config: {}
+        dataType: STRING
+        description: ""
+        name: ORDER_FORM_SIGNATURES
+        nullable: true
+        sourceColumnReferences:
+          - columnReferences:
+              - columnCounter: 79d6ca3d-6550-476c-b72b-d9d7fe4f23f5
+                stepCounter: 42d29c5c-c053-44cd-acd4-11a116f56bb2
+            transform: ""
+      - appliedColumnTests: {}
+        columnReference:
+          columnCounter: 43749e6a-b24e-4b75-92e7-47e9ad9e3f53
+          stepCounter: 06f2c6a9-0978-49cb-9d16-74a2909edb77
+        config: {}
+        dataType: STRING
+        description: ""
+        name: ORDER_FORM_SIGN_DATE
+        nullable: true
+        sourceColumnReferences:
+          - columnReferences:
+              - columnCounter: b36adece-fc76-457f-87d4-1c8c3e22e639
+                stepCounter: 2d36ce73-6bdf-448a-9092-1fbb3bb093e9
+            transform: ""
+    cteString: ""
+    enabledColumnTestIDs: []
+    sourceMapping:
+      - aliases:
+          ORDER_FORM_SIGNATURES: 42d29c5c-c053-44cd-acd4-11a116f56bb2
+          ORDER_FORM_SIGNERS: 6a2f9172-1edf-4bdd-b82d-52909ad2fab6
+          ORDER_FORM_SIGNER_COMPANY: 3305b9af-338d-4ac8-9540-b8acce6b1354
+          ORDER_FORM_SIGNER_TITLES: 3670d15f-bbeb-495b-925a-ad213b0127d3
+          ORDER_FORM_SIGN_DATE: 2d36ce73-6bdf-448a-9092-1fbb3bb093e9
+          QUOTE_SIGNER_LINES: 93b4c2d8-717c-4b25-9e49-fd3451129b16
+        customSQL:
+          customSQL: ""
+        dependencies:
+          - locationName: DAI
+            nodeName: ORDER_FORM_SIGN_DATE
+          - locationName: DAI
+            nodeName: ORDER_FORM_SIGNATURES
+          - locationName: DAI
+            nodeName: ORDER_FORM_SIGNER_COMPANY
+          - locationName: DAI
+            nodeName: ORDER_FORM_SIGNER_TITLES
+          - locationName: DAI
+            nodeName: ORDER_FORM_SIGNERS
+          - locationName: DAI
+            nodeName: QUOTE_SIGNER_LINES
+        join:
+          joinCondition: |+
+            FROM {{ ref('DAI', 'QUOTE_SIGNER_LINES') }} "QUOTE_SIGNER_LINES"
+            LEFT OUTER JOIN {{ ref('DAI', 'ORDER_FORM_SIGNER_COMPANY') }} "ORDER_FORM_SIGNER_COMPANY"
+            ON "QUOTE_SIGNER_LINES"."DOCUMENT_KEY" = "ORDER_FORM_SIGNER_COMPANY"."DOCUMENT_KEY"
+            AND "QUOTE_SIGNER_LINES"."SIGNER_LINE" = "ORDER_FORM_SIGNER_COMPANY"."ORDER_FORM_SIGNER_LINE"
+            LEFT OUTER JOIN {{ ref('DAI', 'ORDER_FORM_SIGNERS') }} "ORDER_FORM_SIGNERS"
+            ON "QUOTE_SIGNER_LINES"."DOCUMENT_KEY" = "ORDER_FORM_SIGNERS"."DOCUMENT_KEY"
+            AND "QUOTE_SIGNER_LINES"."SIGNER_LINE" = "ORDER_FORM_SIGNERS"."ORDER_FORM_SIGNER_LINE"
+            LEFT OUTER JOIN {{ ref('DAI', 'ORDER_FORM_SIGNER_TITLES') }} "ORDER_FORM_SIGNER_TITLES"
+            ON "QUOTE_SIGNER_LINES"."DOCUMENT_KEY" = "ORDER_FORM_SIGNER_TITLES"."DOCUMENT_KEY"
+            AND "QUOTE_SIGNER_LINES"."SIGNER_LINE" = "ORDER_FORM_SIGNER_TITLES"."ORDER_FORM_SIGNER_LINE"
+            LEFT OUTER JOIN {{ ref('DAI', 'ORDER_FORM_SIGNATURES') }} "ORDER_FORM_SIGNATURES"
+            ON "QUOTE_SIGNER_LINES"."DOCUMENT_KEY" = "ORDER_FORM_SIGNATURES"."DOCUMENT_KEY"
+            AND "QUOTE_SIGNER_LINES"."SIGNER_LINE" = "ORDER_FORM_SIGNATURES"."ORDER_FORM_SIGNER_LINE"
+            LEFT OUTER JOIN {{ ref('DAI', 'ORDER_FORM_SIGN_DATE') }} "ORDER_FORM_SIGN_DATE"
+            ON "QUOTE_SIGNER_LINES"."DOCUMENT_KEY" = "ORDER_FORM_SIGN_DATE"."DOCUMENT_KEY"
+            AND "QUOTE_SIGNER_LINES"."SIGNER_LINE" = "ORDER_FORM_SIGN_DATE"."ORDER_FORM_SIGNER_LINE"
+
+        name: SIGNATURE_LINE_DETAIL
+        noLinkRefs: []
+  name: SIGNATURE_LINE_DETAIL
+  overrideSQL: false
+  schema: ""
+  sqlType: View
+  type: sql
+  version: 1
+type: Node

@@ -1,0 +1,92 @@
+fileVersion: 1
+id: 74c0f9b7-474c-4281-9a6c-bb75d7d0fd3b
+name: TERMS_AND_CONDITIONS_DETAIL
+operation:
+  config:
+    insertStrategy: UNION
+    selectDistinct: false
+  database: ""
+  deployEnabled: true
+  description: ""
+  isMultisource: false
+  locationName: DAI
+  materializationType: view
+  metadata:
+    appliedNodeTests: []
+    columns:
+      - appliedColumnTests: {}
+        columnReference:
+          columnCounter: a1a1c9e9-5d80-4b59-af65-0ae52ce4a799
+          stepCounter: 74c0f9b7-474c-4281-9a6c-bb75d7d0fd3b
+        config: {}
+        dataType: STRING
+        description: ""
+        name: DOCUMENT_KEY
+        nullable: true
+        sourceColumnReferences:
+          - columnReferences:
+              - columnCounter: cd38348e-6da3-4cd9-bd8e-d7de72c08de7
+                stepCounter: 34b0ca23-a6ea-42f2-a4ce-fd6d176eeeb7
+            transform: ""
+      - appliedColumnTests: {}
+        columnReference:
+          columnCounter: 6d925887-835b-44e4-8d60-673ba034b5f2
+          stepCounter: 74c0f9b7-474c-4281-9a6c-bb75d7d0fd3b
+        config: {}
+        dataType: STRING
+        description: ""
+        name: QUOTE_NUMBER_VALUE
+        nullable: true
+        sourceColumnReferences:
+          - columnReferences:
+              - columnCounter: 6aa973b1-bebe-436c-9aa6-d755d0574b93
+                stepCounter: 34b0ca23-a6ea-42f2-a4ce-fd6d176eeeb7
+            transform: ""
+      - appliedColumnTests: {}
+        columnReference:
+          columnCounter: 3d77d094-fd27-48ae-932c-576977c866cf
+          stepCounter: 74c0f9b7-474c-4281-9a6c-bb75d7d0fd3b
+        config: {}
+        dataType: VARIANT
+        description: ""
+        name: TERMS_AND_CONDITIONS_LINE
+        nullable: true
+        sourceColumnReferences:
+          - columnReferences:
+              - columnCounter: 89e48a37-87db-4de7-bc2a-36cae7ccae60
+                stepCounter: 34b0ca23-a6ea-42f2-a4ce-fd6d176eeeb7
+            transform: ""
+      - appliedColumnTests: {}
+        columnReference:
+          columnCounter: f3b4ff3d-4c5f-4355-9a47-e9ccffb2cda4
+          stepCounter: 74c0f9b7-474c-4281-9a6c-bb75d7d0fd3b
+        config: {}
+        dataType: STRING
+        description: ""
+        name: TERMS_AND_CONDITIONS
+        nullable: true
+        sourceColumnReferences:
+          - columnReferences:
+              - columnCounter: f8049a91-979e-4082-8742-f4a22efd48bf
+                stepCounter: 34b0ca23-a6ea-42f2-a4ce-fd6d176eeeb7
+            transform: ""
+    cteString: ""
+    enabledColumnTestIDs: []
+    sourceMapping:
+      - aliases: {}
+        customSQL:
+          customSQL: ""
+        dependencies:
+          - locationName: DAI
+            nodeName: TERMS_AND_CONDITIONS
+        join:
+          joinCondition: FROM {{ ref('DAI', 'TERMS_AND_CONDITIONS') }} "TERMS_AND_CONDITIONS"
+        name: TERMS_AND_CONDITIONS_DETAIL
+        noLinkRefs: []
+  name: TERMS_AND_CONDITIONS_DETAIL
+  overrideSQL: false
+  schema: ""
+  sqlType: View
+  type: sql
+  version: 1
+type: Node

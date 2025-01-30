@@ -1,0 +1,191 @@
+{#
+    Copyright (c) 2023 Coalesce. All rights reserved.
+This script and its associated documentation are confidential and proprietary to Coalesce.
+Unauthorized reproduction, distribution, or disclosure of this material is strictly prohibited.
+Coalesce permits you to copy and modify this script for the purposes of using with Coalsce but
+does not permit copying or modification for any other purpose.  
+#}
+{# == Node Type Version        : 1  == #}
+{# == Node Type Name           : Document AI == #}
+{# == Node Type Description    : This node executes Document AI extraction queries on unstructured documents == #}
+
+
+{% if config.devMode == true %}
+
+    {% set nsVariables = namespace() %}
+
+    {# Target Stream Location and Name #}
+    {% set streamTargetLocationName = node.location.name %}
+    {% set streamTargetDatabaseName = storageLocations | selectattr('name', 'equalto', streamTargetLocationName) | map(attribute='database') | first %}
+    {% set streamTargetSchemaName = storageLocations | selectattr('name', 'equalto', streamTargetLocationName) | map(attribute='schema') | first %}
+    {% set streamName = node.name + '_STREAM' %}
+    {% set fullyQualifiedStreamName = '"' + streamTargetDatabaseName + '"."' + streamTargetSchemaName + '"."' + streamName + '"' %}
+
+    {# Target Table Info #}
+    {% set targetTableDatabase = ref_no_link(node.location.name, node.name).split('.')[0] %} 
+    {% set targetTableSchema = ref_no_link(node.location.name, node.name).split('.')[1] %} 
+    {% set fullyQualifiedTargetTableName = ref_no_link(node.location.name, node.name) %}
+    {% set targetTableName = node.name %}
+	
+	# Storage Location-database and schema
+   {% set srcSchName = node.location.name %}
+   {% set db = storageLocations | selectattr('name', 'equalto', srcSchName) | map(attribute='database') | first %}
+   {% set sch = storageLocations | selectattr('name', 'equalto', srcSchName) | map(attribute='schema') | first %}
+
+   # Internal or External Stage locations
+   {% set stageStorageLocationName = config.stageStorageLocationName %}
+   {% set dbStage = storageLocations | selectattr('name', 'equalto', stageStorageLocationName) | map(attribute='database') | first %}
+   {% set schStage = storageLocations | selectattr('name', 'equalto', stageStorageLocationName) | map(attribute='schema') | first %}
+
+   # File name
+   {%if config.fileNames | length > 0 and ',' in config.fileNames  %}
+    {% set formatted_variable = config.fileNames.split(',') | map('string') | join("','") %}
+    {% set final_variable = "'" + formatted_variable + "'" %}
+    {% set fileNameSQL = 'FILES = (' + final_variable +')' %}
+
+   {%- elif config.fileNames | length > 0 %} 
+     {% set fileNameSQL = 'FILES = (' + "'"+config.fileNames + "'"+')' %}                               
+   {%- else -%}
+    {% set fileNameSQL = "" %} 
+   {% endif %}
+
+   {#Subfolder path #}
+   {%set subf = ""%}
+   {% set subfolder_value = config.subfolder | default('') %}
+   {%if config.subfolder == "" %}
+    {%set subf = "" %}
+   {%elif config.subfolder == None%}
+    {%set subf = "" %}
+   {%else%}
+    {%set subf = "WHERE RELATIVE_PATH LIKE '"+ subfolder_value +"'"%}
+   {%endif%}
+
+   # Extraction Query Storage Location
+   {% set extractionQueryStorageLocationName = config.extractionQueryStorageLocationName %}
+   {% set dbExtractionQuery = storageLocations | selectattr('name', 'equalto', extractionQueryStorageLocationName) | map(attribute='database') | first %}
+   {% set schExtractionQuery = storageLocations | selectattr('name', 'equalto', extractionQueryStorageLocationName) | map(attribute='schema') | first %}
+
+   {# Extraction Query Details #}
+   {% set extractionQueryName = config.extractionQueryName %}
+   {% set extractionQueryVersion = config.extractionQueryVersion %}
+
+
+    {% set tableColumnIds = columns | map(attribute='id') | list %}
+    {% set tableColumnNames = columns | map(attribute='name') | list %}
+
+    {# Merge partition by and order by #}
+    {%- if config.loadType == 'Merge' -%} 
+        {% set tableColumnNamesUpdate = tableColumnNames | reject('in', config.partitionBy.get('items') | map(attribute='partColName.name')) | list %}
+        
+        {% for i in config.partitionBy.get('items') %}
+            {%- if loop.first -%}
+                {% set nsVariables.partition = '"' + i.partColName.name + '"' %}
+            {% else %}
+                {% set nsVariables.partition = nsVariables.partition + ', "' + i.partColName.name + '"' %}
+            {%- endif -%}
+
+            {% set tableColumnNamesUpdate = tableColumnNames | reject('in', i.partColName.name) | list %}
+
+        {% endfor %}
+
+        {% for i in config.orderBy.get('items') %}
+            {%- if loop.first -%}
+                {% set nsVariables.orderBy = '"' + i.colName.name + '" ' + i.sortOrd %}
+            {% else %}
+                {% set nsVariables.orderBy = nsVariables.orderBy + ', "' + i.colName.name + '" ' + i.sortOrd %}
+            {%- endif -%}
+        {% endfor %}
+        {% set nsVariables.rowNumber = 'ROW_NUMBER() OVER (PARTITION BY ' + nsVariables.partition + ' ORDER BY ' + nsVariables.orderBy + ')' %}
+
+        {%- set nsVariables.tableKey = config.partitionBy.get('items') %}
+        {% set nsVariables.tableKey = nsVariables.tableKey | map(attribute='partColName.name') | list %}
+    {%- endif -%}
+
+    {# Merge partition by and order by #}
+    {%- if config.loadType == 'Merge' -%} 
+        {% set tableColumnNamesUpdate = tableColumnNames | reject('in', config.partitionBy.get('items') | map(attribute='partColName.name')) | list %}
+        
+        {% for i in config.partitionBy.get('items') %}
+            {%- if loop.first -%}
+                {% set nsVariables.partition = '"' + i.partColName.name + '"' %}
+            {% else %}
+                {% set nsVariables.partition = nsVariables.partition + ', "' + i.partColName.name + '"' %}
+            {%- endif -%}
+
+            {% set tableColumnNamesUpdate = tableColumnNames | reject('in', i.partColName.name) | list %}
+
+        {% endfor %}
+
+        {% for i in config.orderBy.get('items') %}
+            {%- if loop.first -%}
+                {% set nsVariables.orderBy = '"' + i.colName.name + '" ' + i.sortOrd %}
+            {% else %}
+                {% set nsVariables.orderBy = nsVariables.orderBy + ', "' + i.colName.name + '" ' + i.sortOrd %}
+            {%- endif -%}
+        {% endfor %}
+        {% set nsVariables.rowNumber = 'ROW_NUMBER() OVER (PARTITION BY ' + nsVariables.partition + ' ORDER BY ' + nsVariables.orderBy + ')' %}
+
+        {%- set nsVariables.tableKey = config.partitionBy.get('items') %}
+        {% set nsVariables.tableKey = nsVariables.tableKey | map(attribute='partColName.name') | list %}
+    {%- endif -%}
+
+    {{ stage('Insert or Merge Data') }}
+
+        {% if config.loadType == 'Insert' -%} 
+            INSERT INTO {{ fullyQualifiedTargetTableName }}
+			SELECT
+           {%- for col in sources[0].columns %}
+             {% if ( col.extractedData) %}
+             "{{ dbExtractionQuery }}"."{{ schExtractionQuery }}"."{{ extractionQueryName }}"!PREDICT(
+              GET_PRESIGNED_URL(@"{{ dbStage }}"."{{ schStage }}".{{ config.stageName }}, RELATIVE_PATH), {{ extractionQueryVersion }})
+             {% else %}
+              {{ get_source_transform(col) }} AS "{{ col.name }}" 
+             {%endif%}
+             {%- if not loop.last -%}, {% endif %}
+          {%- endfor %}
+          FROM {{ fullyQualifiedStreamName }}
+            {% if config.groupByAll %}GROUP BY ALL{% endif %}
+            {% else -%}
+            MERGE INTO {{ fullyQualifiedTargetTableName }} tgt USING
+            -- Select Statement Preparing Data for Merge
+           SELECT
+             {%- for col in sources[0].columns %}
+               {% if ( col.extractedData) %}
+                 "{{ dbExtractionQuery }}"."{{ schExtractionQuery }}"."{{ extractionQueryName }}"!PREDICT(
+                 GET_PRESIGNED_URL(@"{{ dbStage }}"."{{ schStage }}".{{ config.stageName }}, RELATIVE_PATH), {{ extractionQueryVersion }})
+               {% else %}
+                 {{ get_source_transform(col) }} AS "{{ col.name }}" 
+               {%endif%}
+             {%- if not loop.last -%}, {% endif %}
+            {%- endfor %}
+           FROM {{ fullyQualifiedStreamName }}
+            {% if config.groupByAll %}GROUP BY ALL{% endif %}
+            QUALIFY {{ nsVariables.rowNumber }} = 1) src
+             
+            -- Join Condition
+            ON {% for col in nsVariables.tableKey -%}
+                src."{{ col }}" = tgt."{{ col }}"
+            {% if not loop.last %} AND {% endif %}
+                {%- endfor -%}
+           
+            -- What to do if data is matched based on table key
+            WHEN MATCHED THEN UPDATE SET 
+                {%- for col in tableColumnNamesUpdate %}
+                        tgt."{{ col }}" = src."{{ col }}"
+                        {%- if not loop.last -%}, {%- endif %}
+                {%- endfor %}
+            -- What to do with new records based on table key
+            WHEN NOT MATCHED THEN INSERT 
+                (
+                {%- for col in columns -%}
+                        "{{ col.name }}"
+                        {%- if not loop.last -%}, {% endif %}
+                {% endfor %}) 
+            VALUES (
+                {%- for col in columns -%}
+                        src."{{ col.name }}"
+                        {%- if not loop.last -%}, {% endif %}
+                {% endfor %})
+            {%- endif -%}
+
+        {% endif -%}

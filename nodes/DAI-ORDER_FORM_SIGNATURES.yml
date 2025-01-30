@@ -1,0 +1,132 @@
+fileVersion: 1
+id: 42d29c5c-c053-44cd-acd4-11a116f56bb2
+name: ORDER_FORM_SIGNATURES
+operation:
+  config:
+    insertStrategy: INSERT
+    postSQL: ""
+    preSQL: ""
+    testsEnabled: true
+    truncateBefore: true
+  database: ""
+  deployEnabled: true
+  description: ""
+  isMultisource: false
+  locationName: DAI
+  materializationType: table
+  metadata:
+    appliedNodeTests: []
+    columns:
+      - appliedColumnTests: {}
+        columnReference:
+          columnCounter: d3646c01-474b-4372-95f8-d9f203259bf8
+          stepCounter: 42d29c5c-c053-44cd-acd4-11a116f56bb2
+        config: {}
+        dataType: STRING
+        description: ""
+        name: DOCUMENT_KEY
+        nullable: true
+        sourceColumnReferences:
+          - columnReferences:
+              - columnCounter: cdbbf44c-452b-4751-9936-6e543d1dd721
+                stepCounter: ef3272c7-2bd2-42a7-908d-62339ef343f9
+            transform: ""
+      - appliedColumnTests: {}
+        columnReference:
+          columnCounter: e8aafa32-9d41-4beb-8e8e-eec3dcc59805
+          stepCounter: 42d29c5c-c053-44cd-acd4-11a116f56bb2
+        config: {}
+        dataType: STRING
+        description: ""
+        name: QUOTE_NUMBER_VALUE
+        nullable: true
+        sourceColumnReferences:
+          - columnReferences:
+              - columnCounter: dc190f9f-e73d-4143-8229-2128d1a5ffcb
+                stepCounter: ef3272c7-2bd2-42a7-908d-62339ef343f9
+            transform: ""
+      - appliedColumnTests: {}
+        columnReference:
+          columnCounter: d868d9d4-997f-4b3d-b24d-bc78d57a77b3
+          stepCounter: 42d29c5c-c053-44cd-acd4-11a116f56bb2
+        config: {}
+        dataType: VARIANT
+        description: ""
+        name: ORDER_FORM_SIGNATURES_RAW
+        nullable: true
+        sourceColumnReferences:
+          - columnReferences:
+              - columnCounter: a7aa848a-3642-4eeb-848f-4fa4fce34535
+                stepCounter: ef3272c7-2bd2-42a7-908d-62339ef343f9
+            transform: ""
+      - appliedColumnTests: {}
+        columnReference:
+          columnCounter: 7665c06f-2fe6-4a91-994f-cff45addf7c1
+          stepCounter: 42d29c5c-c053-44cd-acd4-11a116f56bb2
+        config: {}
+        dataType: DOUBLE
+        description: ""
+        name: ORDER_FORM_SIGNER_LINE
+        nullable: true
+        sourceColumnReferences:
+          - columnReferences:
+              - columnCounter: a7aa848a-3642-4eeb-848f-4fa4fce34535
+                stepCounter: ef3272c7-2bd2-42a7-908d-62339ef343f9
+            transform: "\"ORDER_FORM_SIGNATURES\".\"INDEX\" + 1"
+      - acceptedValues:
+          strictMatch: true
+          values: []
+        appliedColumnTests: {}
+        columnReference:
+          columnCounter: 79d6ca3d-6550-476c-b72b-d9d7fe4f23f5
+          stepCounter: 42d29c5c-c053-44cd-acd4-11a116f56bb2
+        config: {}
+        dataType: STRING
+        description: ""
+        name: ORDER_FORM_SIGNATURES
+        nullable: true
+        sourceColumnReferences:
+          - columnReferences:
+              - columnCounter: a7aa848a-3642-4eeb-848f-4fa4fce34535
+                stepCounter: ef3272c7-2bd2-42a7-908d-62339ef343f9
+            transform: "\"ORDER_FORM_SIGNATURES\".value:\"value\"::STRING"
+      - acceptedValues:
+          strictMatch: true
+          values: []
+        appliedColumnTests: {}
+        columnReference:
+          columnCounter: da097308-8614-4319-aa12-7faa166282e0
+          stepCounter: 42d29c5c-c053-44cd-acd4-11a116f56bb2
+        config: {}
+        dataType: DOUBLE
+        description: ""
+        name: SCORE
+        nullable: true
+        sourceColumnReferences:
+          - columnReferences:
+              - columnCounter: a7aa848a-3642-4eeb-848f-4fa4fce34535
+                stepCounter: ef3272c7-2bd2-42a7-908d-62339ef343f9
+            transform: "\"ORDER_FORM_SIGNATURES\".value:\"score\"::DOUBLE"
+    cteString: ""
+    enabledColumnTestIDs: []
+    sourceMapping:
+      - aliases:
+          STG_ORDER_FORM_EXTRACT: ef3272c7-2bd2-42a7-908d-62339ef343f9
+        customSQL:
+          customSQL: ""
+        dependencies:
+          - locationName: DAI
+            nodeName: STG_ORDER_FORM_EXTRACT
+        join:
+          joinCondition: |-
+            FROM {{ ref('DAI', 'STG_ORDER_FORM_EXTRACT') }} "STG_ORDER_FORM_EXTRACT", 
+            lateral flatten(input => "ORDER_FORM_SIGNATURES", OUTER => TRUE) "ORDER_FORM_SIGNATURES"
+        name: ORDER_FORM_SIGNATURES
+        noLinkRefs: []
+  name: ORDER_FORM_SIGNATURES
+  overrideSQL: false
+  schema: ""
+  sqlType: View
+  type: sql
+  version: 1
+type: Node

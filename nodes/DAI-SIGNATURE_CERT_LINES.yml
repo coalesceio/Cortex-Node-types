@@ -1,0 +1,172 @@
+fileVersion: 1
+id: fb0ea805-3813-45e6-8f75-e545cc670e35
+name: SIGNATURE_CERT_LINES
+operation:
+  config:
+    insertStrategy: UNION
+    selectDistinct: false
+  database: ""
+  deployEnabled: true
+  description: ""
+  isMultisource: false
+  locationName: DAI
+  materializationType: view
+  metadata:
+    appliedNodeTests: []
+    columns:
+      - acceptedValues:
+          strictMatch: true
+          values: []
+        appliedColumnTests: {}
+        columnReference:
+          columnCounter: 60bd2bd7-4526-44b3-a8b0-7b606ab17ac3
+          stepCounter: fb0ea805-3813-45e6-8f75-e545cc670e35
+        config: {}
+        dataType: VARIANT
+        defaultValue: ""
+        description: ""
+        name: END_USER
+        nullable: true
+        primaryKey: false
+        sourceColumnReferences:
+          - columnReferences: []
+            transform: ""
+        transform: ""
+        uniqueKey: false
+      - appliedColumnTests: {}
+        columnReference:
+          columnCounter: 8e9b2c4a-032e-4bc0-920d-840de9690a8e
+          stepCounter: fb0ea805-3813-45e6-8f75-e545cc670e35
+        config: {}
+        dataType: VARCHAR(16777216)
+        description: ""
+        name: DOCUMENT_NAME
+        nullable: true
+        sourceColumnReferences:
+          - columnReferences:
+              - columnCounter: e528cac2-5d99-454e-a584-4e0313b9dc03
+                stepCounter: ef3272c7-2bd2-42a7-908d-62339ef343f9
+            transform: ""
+      - appliedColumnTests: {}
+        columnReference:
+          columnCounter: aafe3911-9341-4785-a215-e84f568cbde0
+          stepCounter: fb0ea805-3813-45e6-8f75-e545cc670e35
+        config: {}
+        dataType: VARCHAR(16777216)
+        description: ""
+        name: FILE_URL
+        nullable: true
+        sourceColumnReferences:
+          - columnReferences:
+              - columnCounter: 20e4751a-19d2-41c5-a095-590a02a5a101
+                stepCounter: ef3272c7-2bd2-42a7-908d-62339ef343f9
+            transform: ""
+      - appliedColumnTests: {}
+        columnReference:
+          columnCounter: 12dd830b-74ca-4741-bdf8-faeaf2ad4906
+          stepCounter: fb0ea805-3813-45e6-8f75-e545cc670e35
+        config: {}
+        dataType: VARCHAR(16777216)
+        description: ""
+        name: DOCUMENT_KEY
+        nullable: true
+        sourceColumnReferences:
+          - columnReferences:
+              - columnCounter: cdbbf44c-452b-4751-9936-6e543d1dd721
+                stepCounter: ef3272c7-2bd2-42a7-908d-62339ef343f9
+            transform: ""
+      - appliedColumnTests: {}
+        columnReference:
+          columnCounter: 134ab2e8-fd55-4cd7-b9a7-0eaca742107e
+          stepCounter: fb0ea805-3813-45e6-8f75-e545cc670e35
+        config: {}
+        dataType: VARCHAR(16777216)
+        description: ""
+        name: QUOTE_NUMBER_VALUE
+        nullable: true
+        sourceColumnReferences:
+          - columnReferences:
+              - columnCounter: dc190f9f-e73d-4143-8229-2128d1a5ffcb
+                stepCounter: ef3272c7-2bd2-42a7-908d-62339ef343f9
+            transform: ""
+      - acceptedValues:
+          strictMatch: true
+          values: []
+        appliedColumnTests: {}
+        columnReference:
+          columnCounter: 6f971ea9-248e-46eb-abf8-aa341bf3bc5f
+          stepCounter: fb0ea805-3813-45e6-8f75-e545cc670e35
+        config: {}
+        dataType: STRING
+        defaultValue: ""
+        description: ""
+        name: SIGNATURE_CERT_PROVIDER_VALUE
+        nullable: true
+        primaryKey: false
+        sourceColumnReferences:
+          - columnReferences:
+              - columnCounter: 8654a510-5da5-45fe-8edb-6b22996f4906
+                stepCounter: ef3272c7-2bd2-42a7-908d-62339ef343f9
+            transform: ""
+        transform: ""
+        uniqueKey: false
+      - acceptedValues:
+          strictMatch: true
+          values: []
+        appliedColumnTests: {}
+        columnReference:
+          columnCounter: d403ea3c-026d-483b-beb8-ba5969f81ece
+          stepCounter: fb0ea805-3813-45e6-8f75-e545cc670e35
+        config: {}
+        dataType: NUMBER(11,0)
+        defaultValue: ""
+        description: ""
+        name: SIGNATURE_CERT_LINE
+        nullable: false
+        primaryKey: false
+        sourceColumnReferences:
+          - columnReferences: []
+            transform: ""
+        transform: ""
+        uniqueKey: false
+    cteString: ""
+    enabledColumnTestIDs: []
+    sourceMapping:
+      - aliases: {}
+        customSQL:
+          customSQL: |-
+            {{ stage('Override Create SQL') }}
+            	CREATE OR REPLACE VIEW {{ ref('DAI', 'SIGNATURE_CERT_LINES')}} AS (
+            select b.end_user,
+                   b.document_name,
+                   b.file_url,
+                   b.document_key,
+                   b.quote_number_value,
+                   b.signature_cert_provider_value,
+                   a.line as signature_cert_line
+            from (select seq4() + 1 as line from table(generator(rowcount => 20))) a
+            left outer join ( select document_key,
+                                     quote_number_value::string as quote_number_value,
+                                     file_url,
+                                     document_name,
+                                     end_user,
+                                     signature_cert_provider_value,
+                                     signature_cert_signer_count_value::number as signature_cert_signer_count_value
+                              from {{ ref('DAI', 'STG_ORDER_FORM_EXTRACT') }}) b
+            where a.line <= b.signature_cert_signer_count_value
+            order by b.quote_number_value asc, b.document_key asc, a.line asc
+            	)
+        dependencies:
+          - locationName: DAI
+            nodeName: STG_ORDER_FORM_EXTRACT
+        join:
+          joinCondition: FROM {{ ref('DAI', 'STG_ORDER_FORM_EXTRACT') }} "STG_ORDER_FORM_EXTRACT"
+        name: SIGNATURE_CERT_LINES
+        noLinkRefs: []
+  name: SIGNATURE_CERT_LINES
+  overrideSQL: true
+  schema: ""
+  sqlType: View
+  type: sql
+  version: 1
+type: Node

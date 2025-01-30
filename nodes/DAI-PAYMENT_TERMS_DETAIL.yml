@@ -1,0 +1,92 @@
+fileVersion: 1
+id: 62524107-d942-49ae-b0c6-f7ee74c029ec
+name: PAYMENT_TERMS_DETAIL
+operation:
+  config:
+    insertStrategy: UNION
+    selectDistinct: false
+  database: ""
+  deployEnabled: true
+  description: ""
+  isMultisource: false
+  locationName: DAI
+  materializationType: view
+  metadata:
+    appliedNodeTests: []
+    columns:
+      - appliedColumnTests: {}
+        columnReference:
+          columnCounter: 48a6e465-71d9-4f99-8154-0c3d14522014
+          stepCounter: 62524107-d942-49ae-b0c6-f7ee74c029ec
+        config: {}
+        dataType: STRING
+        description: ""
+        name: DOCUMENT_KEY
+        nullable: true
+        sourceColumnReferences:
+          - columnReferences:
+              - columnCounter: 06af1c87-6308-45f0-a9b3-b678f48603c6
+                stepCounter: 39f53558-9cd3-4225-aa5e-f2d8e8f9a5cc
+            transform: ""
+      - appliedColumnTests: {}
+        columnReference:
+          columnCounter: e91e0ff4-6cb9-4763-ae62-334cdfeb02e7
+          stepCounter: 62524107-d942-49ae-b0c6-f7ee74c029ec
+        config: {}
+        dataType: STRING
+        description: ""
+        name: QUOTE_NUMBER_VALUE
+        nullable: true
+        sourceColumnReferences:
+          - columnReferences:
+              - columnCounter: 0e3f6d46-11ca-4511-91c1-77b8167f73c7
+                stepCounter: 39f53558-9cd3-4225-aa5e-f2d8e8f9a5cc
+            transform: ""
+      - appliedColumnTests: {}
+        columnReference:
+          columnCounter: 677ce86c-693a-405d-8727-3296642e7964
+          stepCounter: 62524107-d942-49ae-b0c6-f7ee74c029ec
+        config: {}
+        dataType: DOUBLE
+        description: ""
+        name: PAYMENT_TERMS_LINE
+        nullable: true
+        sourceColumnReferences:
+          - columnReferences:
+              - columnCounter: 6780d18b-fff1-4b4e-b35c-dffdec03d64f
+                stepCounter: 39f53558-9cd3-4225-aa5e-f2d8e8f9a5cc
+            transform: ""
+      - appliedColumnTests: {}
+        columnReference:
+          columnCounter: 4422ce41-d1ca-465a-baf9-1056ce8bc25d
+          stepCounter: 62524107-d942-49ae-b0c6-f7ee74c029ec
+        config: {}
+        dataType: STRING
+        description: ""
+        name: PAYMENT_TERMS
+        nullable: true
+        sourceColumnReferences:
+          - columnReferences:
+              - columnCounter: f30c4665-13e9-42d9-a124-c92745001f25
+                stepCounter: 39f53558-9cd3-4225-aa5e-f2d8e8f9a5cc
+            transform: ""
+    cteString: ""
+    enabledColumnTestIDs: []
+    sourceMapping:
+      - aliases: {}
+        customSQL:
+          customSQL: ""
+        dependencies:
+          - locationName: DAI
+            nodeName: PAYMENT_TERMS
+        join:
+          joinCondition: FROM {{ ref('DAI', 'PAYMENT_TERMS') }} "PAYMENT_TERMS"
+        name: PAYMENT_TERMS_DETAIL
+        noLinkRefs: []
+  name: PAYMENT_TERMS_DETAIL
+  overrideSQL: false
+  schema: ""
+  sqlType: View
+  type: sql
+  version: 1
+type: Node

@@ -1,7 +1,5 @@
 fileVersion: 1
 id: "66"
 name: Cortex Function
-steps:
-  - 67ce0c0d-1d5c-4da3-a8cb-5044f9746046
-  - ef2610a5-7082-41c2-bdeb-bf1641c5ecb2
+steps: []
 type: Subgraph

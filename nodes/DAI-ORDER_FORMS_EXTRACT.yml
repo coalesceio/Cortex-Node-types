@@ -1,0 +1,145 @@
+fileVersion: 1
+id: 7895b2d1-5e14-4942-94e8-8955ddb81b67
+name: ORDER_FORMS_EXTRACT
+operation:
+  config:
+    extractionQueryName: SALES_ORDER_FORMS
+    extractionQueryStorageLocationName: DAI
+    extractionQueryVersion: "4"
+    fileNames: ""
+    postSQL: null
+    preSQL: null
+    stageName: DEMO_DOCUMENTS
+    stageStorageLocationName: DAI
+    subfolder: ""
+    truncateBefore: true
+  database: ""
+  deployEnabled: true
+  description: ""
+  isMultisource: false
+  locationName: DAI
+  materializationType: table
+  metadata:
+    appliedNodeTests: []
+    columns:
+      - acceptedValues:
+          strictMatch: true
+          values: []
+        appliedColumnTests: {}
+        columnReference:
+          columnCounter: 81546461-69b0-41b2-9fc8-b9f75c784f7a
+          stepCounter: 7895b2d1-5e14-4942-94e8-8955ddb81b67
+        config: {}
+        dataType: string
+        defaultValue: ""
+        description: ""
+        fileName: true
+        name: FILENAME
+        nullable: true
+        sourceColumnReferences:
+          - columnReferences: []
+            transform: RELATIVE_PATH
+      - acceptedValues:
+          strictMatch: true
+          values: []
+        appliedColumnTests: {}
+        columnReference:
+          columnCounter: f1bc717b-37a4-47b1-8882-664fda7e5d9c
+          stepCounter: 7895b2d1-5e14-4942-94e8-8955ddb81b67
+        config: {}
+        dataType: string
+        defaultValue: ""
+        description: ""
+        name: FILE_URL
+        nullable: true
+        presignedURL: true
+        sourceColumnReferences:
+          - columnReferences: []
+            transform: FILE_URL
+      - acceptedValues:
+          strictMatch: true
+          values: []
+        appliedColumnTests: {}
+        columnReference:
+          columnCounter: 8dc5e622-70bf-4f02-ac2b-2e734f5dd1db
+          stepCounter: 7895b2d1-5e14-4942-94e8-8955ddb81b67
+        config: {}
+        dataType: TIMESTAMP_NTZ
+        defaultValue: ""
+        description: ""
+        fileLastModified: true
+        name: FILE_LAST_MODIFIED
+        nullable: true
+        sourceColumnReferences:
+          - columnReferences: []
+            transform: TO_TIMESTAMP_NTZ(LAST_MODIFIED)
+      - acceptedValues:
+          strictMatch: true
+          values: []
+        appliedColumnTests: {}
+        columnReference:
+          columnCounter: cb413e3c-e312-4abc-ae47-42c4df41e27b
+          stepCounter: 7895b2d1-5e14-4942-94e8-8955ddb81b67
+        config: {}
+        dataType: NUMBER
+        defaultValue: ""
+        description: ""
+        name: SIZE
+        nullable: true
+        size: true
+        sourceColumnReferences:
+          - columnReferences: []
+            transform: SIZE
+      - acceptedValues:
+          strictMatch: true
+          values: []
+        appliedColumnTests: {}
+        columnReference:
+          columnCounter: 306dc337-fe49-44d5-abe8-ef36b102f7e0
+          stepCounter: 7895b2d1-5e14-4942-94e8-8955ddb81b67
+        config: {}
+        dataType: VARIANT
+        defaultValue: ""
+        description: ""
+        extractedData: true
+        name: EXTRACTED_DATA
+        nullable: true
+        sourceColumnReferences:
+          - columnReferences: []
+            transform: ""
+      - acceptedValues:
+          strictMatch: true
+          values: []
+        appliedColumnTests: {}
+        columnReference:
+          columnCounter: b8ccbdab-8caf-4d5b-aff3-62cf0903fb7f
+          stepCounter: 7895b2d1-5e14-4942-94e8-8955ddb81b67
+        config: {}
+        dataType: TIMESTAMP_NTZ
+        defaultValue: ""
+        description: ""
+        name: DATA_EXTRACT_TIMESTAMP
+        nullable: true
+        sourceColumnReferences:
+          - columnReferences:
+              - columnCounter: "0"
+                stepCounter: "0"
+            transform: CURRENT_TIMESTAMP::TIMESTAMP_NTZ
+    cteString: ""
+    enabledColumnTestIDs: []
+    sourceMapping:
+      - aliases: {}
+        customSQL:
+          customSQL: ""
+        dependencies: []
+        join:
+          joinCondition: ""
+        name: ORDER_FORMS_EXTRACT
+        noLinkRefs: []
+  name: ORDER_FORMS_EXTRACT
+  overrideSQL: false
+  schema: ""
+  sqlType: "423"
+  type: sql
+  version: 1
+type: Node

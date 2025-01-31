@@ -1,6 +1,9 @@
 fileVersion: 1
 id: "273"
 mappingDefinitions:
+  DAI:
+    database: ""
+    schema: ""
   SOURCE:
     database: ANANDHIS_DEV
     schema: SOURCE_DATA

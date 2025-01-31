@@ -1,0 +1,298 @@
+fileVersion: 1
+id: 06452d52-da7d-488c-bd54-e4c49fe7b442
+name: ORDER_LINE_DETAIL1
+operation:
+  config:
+    insertStrategy: INSERT
+    postSQL: ""
+    preSQL: ""
+    selectDistinct: false
+    testsEnabled: true
+    truncateBefore: true
+  database: ""
+  deployEnabled: true
+  description: ""
+  isMultisource: false
+  locationName: DAI
+  materializationType: view
+  metadata:
+    appliedNodeTests:
+      - continueOnFailure: true
+        description: ""
+        name: Test
+        runOrder: After
+        templateString: test({{this}},ref_no_link())
+    columns:
+      - appliedColumnTests: {}
+        columnReference:
+          columnCounter: 8b688037-75ef-4eea-85f0-2d5c86945ec7
+          stepCounter: 06452d52-da7d-488c-bd54-e4c49fe7b442
+        config: {}
+        dataType: VARCHAR(16777216)
+        description: ""
+        name: DOCUMENT_KEY
+        nullable: false
+        sourceColumnReferences:
+          - columnReferences:
+              - columnCounter: 1169d1b9-0046-45cf-80e2-ef788ed8f0ad
+                stepCounter: bee55b89-bf96-4a23-b3f4-2a8ad413075f
+            transform: ""
+      - appliedColumnTests: {}
+        columnReference:
+          columnCounter: a77d5c6b-a9d5-434e-9878-136808801976
+          stepCounter: 06452d52-da7d-488c-bd54-e4c49fe7b442
+        config: {}
+        dataType: VARCHAR(16777216)
+        description: ""
+        name: FILE_URL
+        nullable: true
+        sourceColumnReferences:
+          - columnReferences:
+              - columnCounter: 2f70dcdc-a34c-464f-a151-4bf4d91f9d1d
+                stepCounter: bee55b89-bf96-4a23-b3f4-2a8ad413075f
+            transform: ""
+      - appliedColumnTests: {}
+        columnReference:
+          columnCounter: 79101f3f-c46e-442c-b149-f1c1344317f3
+          stepCounter: 06452d52-da7d-488c-bd54-e4c49fe7b442
+        config: {}
+        dataType: VARCHAR(16777216)
+        description: ""
+        name: DOCUMENT_NAME
+        nullable: true
+        sourceColumnReferences:
+          - columnReferences:
+              - columnCounter: 525cb58e-c183-4309-9040-49be82b65ad1
+                stepCounter: bee55b89-bf96-4a23-b3f4-2a8ad413075f
+            transform: ""
+      - appliedColumnTests: {}
+        columnReference:
+          columnCounter: 5cdb78ef-335f-4e36-8fc8-b21bf6eb7744
+          stepCounter: 06452d52-da7d-488c-bd54-e4c49fe7b442
+        config: {}
+        dataType: STRING
+        description: ""
+        name: QUOTE_NUMBER_VALUE
+        nullable: true
+        sourceColumnReferences:
+          - columnReferences:
+              - columnCounter: a97c197d-9a17-4c64-afd6-e1766d63c477
+                stepCounter: bee55b89-bf96-4a23-b3f4-2a8ad413075f
+            transform: ""
+      - appliedColumnTests: {}
+        columnReference:
+          columnCounter: e337ffc2-45e5-41c0-bf1a-8d492023745a
+          stepCounter: 06452d52-da7d-488c-bd54-e4c49fe7b442
+        config: {}
+        dataType: VARIANT
+        description: ""
+        name: ORDER_LINE
+        nullable: true
+        sourceColumnReferences:
+          - columnReferences:
+              - columnCounter: db6bbcf5-c931-437d-be4e-67664318d7a6
+                stepCounter: bee55b89-bf96-4a23-b3f4-2a8ad413075f
+            transform: ""
+      - appliedColumnTests: {}
+        columnReference:
+          columnCounter: cd4dfc72-fd08-4f94-b02a-d6f27a225332
+          stepCounter: 06452d52-da7d-488c-bd54-e4c49fe7b442
+        config: {}
+        dataType: STRING
+        description: ""
+        name: ORDER_LINE_NAME
+        nullable: true
+        sourceColumnReferences:
+          - columnReferences:
+              - columnCounter: ed7d3229-20ad-4377-88f6-da29ea402514
+                stepCounter: 2487f02b-77a8-4e08-8940-1cb19befa78d
+            transform: ""
+      - appliedColumnTests: {}
+        columnReference:
+          columnCounter: 79a0cd9d-b8af-43e2-906c-91d2ba19f765
+          stepCounter: 06452d52-da7d-488c-bd54-e4c49fe7b442
+        config: {}
+        dataType: NUMBER
+        description: ""
+        name: ORDER_LINE_LICENSE_USERS
+        nullable: true
+        sourceColumnReferences:
+          - columnReferences:
+              - columnCounter: 04c12999-73db-47f2-9554-36ee2a5d1469
+                stepCounter: f97c99cc-8c0c-4d1d-b2f4-11e706ab79f7
+            transform: ""
+      - appliedColumnTests: {}
+        columnReference:
+          columnCounter: 3e11be8d-bb9f-43bd-a7f4-f40b8c2aa6bd
+          stepCounter: 06452d52-da7d-488c-bd54-e4c49fe7b442
+        config: {}
+        dataType: STRING
+        description: ""
+        name: ORDER_LINE_LICENSE_TERM
+        nullable: true
+        sourceColumnReferences:
+          - columnReferences:
+              - columnCounter: 40440963-e7c5-4d48-8757-6267a57b7a56
+                stepCounter: e2519d05-937f-4d12-b733-a6038ba287f2
+            transform: ""
+      - appliedColumnTests: {}
+        columnReference:
+          columnCounter: 412222b9-8dc8-4741-b553-fc713973e7b4
+          stepCounter: 06452d52-da7d-488c-bd54-e4c49fe7b442
+        config: {}
+        dataType: STRING
+        description: ""
+        name: ORDER_LINE_PRICE
+        nullable: true
+        sourceColumnReferences:
+          - columnReferences:
+              - columnCounter: 60cdd8ff-f7e7-491c-b968-2791c8e60ad5
+                stepCounter: d05ffec5-18f0-4831-a588-53e64da10fef
+            transform: ""
+      - appliedColumnTests: {}
+        columnReference:
+          columnCounter: 28410ec1-6e67-45cf-9219-56d4ad2c82e1
+          stepCounter: 06452d52-da7d-488c-bd54-e4c49fe7b442
+        config: {}
+        dataType: STRING
+        description: ""
+        name: ORDER_LINE_QUANTITY
+        nullable: true
+        sourceColumnReferences:
+          - columnReferences:
+              - columnCounter: f804b378-c60c-4e33-aaca-36df4570ad46
+                stepCounter: b022fc13-dad4-467e-9657-a0b108e0b360
+            transform: ""
+      - appliedColumnTests: {}
+        columnReference:
+          columnCounter: f474bd97-71a4-4c60-86dd-6dc3942eb9a6
+          stepCounter: 06452d52-da7d-488c-bd54-e4c49fe7b442
+        config: {}
+        dataType: STRING
+        description: ""
+        name: ORDER_LINE_DISCOUNT
+        nullable: true
+        sourceColumnReferences:
+          - columnReferences:
+              - columnCounter: 1f31303b-32ce-46f8-aab1-a2b8b44e4046
+                stepCounter: b0306e9f-b754-4acf-9725-6c0fdd1f1cbc
+            transform: ""
+      - appliedColumnTests: {}
+        columnReference:
+          columnCounter: b2833f62-1db4-4a17-ae30-a2ccc771f0a3
+          stepCounter: 06452d52-da7d-488c-bd54-e4c49fe7b442
+        config: {}
+        dataType: STRING
+        description: ""
+        name: ORDER_LINE_SUBTOTAL
+        nullable: true
+        sourceColumnReferences:
+          - columnReferences:
+              - columnCounter: ff46f54d-340c-4dcc-a122-acf334c744f7
+                stepCounter: f7f837bb-0803-4d94-bb89-63641d49b19d
+            transform: ""
+      - appliedColumnTests: {}
+        columnReference:
+          columnCounter: 296fb0e7-9e69-4731-aaf6-1ef1e0d5040e
+          stepCounter: 06452d52-da7d-488c-bd54-e4c49fe7b442
+        config: {}
+        dataType: STRING
+        description: ""
+        name: ORDER_LINE_TYPE
+        nullable: true
+        sourceColumnReferences:
+          - columnReferences:
+              - columnCounter: 2b647e0c-6ef4-41bc-bd5e-db344d481677
+                stepCounter: 448ad537-499c-4b73-9e65-068c09f0d4c7
+            transform: ""
+      - appliedColumnTests: {}
+        columnReference:
+          columnCounter: d6425102-d666-436a-8eb6-d82091a06369
+          stepCounter: 06452d52-da7d-488c-bd54-e4c49fe7b442
+        config: {}
+        dataType: STRING
+        description: ""
+        name: ORDER_LINE_DETAILS
+        nullable: true
+        sourceColumnReferences:
+          - columnReferences:
+              - columnCounter: 508af453-638f-42ac-8c58-f4272a42abdf
+                stepCounter: be62aed1-32d1-4606-b239-0820d57a1429
+            transform: ""
+    cteString: ""
+    enabledColumnTestIDs: []
+    sourceMapping:
+      - aliases:
+          ORDER_LINE_DETAILS1: be62aed1-32d1-4606-b239-0820d57a1429
+          ORDER_LINE_DISCOUNT1: b0306e9f-b754-4acf-9725-6c0fdd1f1cbc
+          ORDER_LINE_LICENSE_TERM1: e2519d05-937f-4d12-b733-a6038ba287f2
+          ORDER_LINE_LICENSE_USERS1: f97c99cc-8c0c-4d1d-b2f4-11e706ab79f7
+          ORDER_LINE_NAME1: 2487f02b-77a8-4e08-8940-1cb19befa78d
+          ORDER_LINE_PRICE1: d05ffec5-18f0-4831-a588-53e64da10fef
+          ORDER_LINE_QUANTITY1: b022fc13-dad4-467e-9657-a0b108e0b360
+          ORDER_LINE_SUBTOTAL1: f7f837bb-0803-4d94-bb89-63641d49b19d
+          ORDER_LINE_TYPE1: 448ad537-499c-4b73-9e65-068c09f0d4c7
+          QUOTE_ORDER_LINES1: bee55b89-bf96-4a23-b3f4-2a8ad413075f
+        customSQL:
+          customSQL: ""
+        dependencies:
+          - locationName: DAI
+            nodeName: ORDER_LINE_DETAILS1
+          - locationName: DAI
+            nodeName: ORDER_LINE_DISCOUNT1
+          - locationName: DAI
+            nodeName: ORDER_LINE_LICENSE_TERM1
+          - locationName: DAI
+            nodeName: ORDER_LINE_LICENSE_USERS1
+          - locationName: DAI
+            nodeName: ORDER_LINE_NAME1
+          - locationName: DAI
+            nodeName: ORDER_LINE_PRICE1
+          - locationName: DAI
+            nodeName: ORDER_LINE_QUANTITY1
+          - locationName: DAI
+            nodeName: ORDER_LINE_SUBTOTAL1
+          - locationName: DAI
+            nodeName: ORDER_LINE_TYPE1
+          - locationName: DAI
+            nodeName: QUOTE_ORDER_LINES1
+        join:
+          joinCondition: |
+            FROM {{ ref('DAI', 'QUOTE_ORDER_LINES1') }} "QUOTE_ORDER_LINES1"
+            LEFT OUTER JOIN {{ ref('DAI', 'ORDER_LINE_NAME1') }} "ORDER_LINE_NAME1"
+            ON "QUOTE_ORDER_LINES"."DOCUMENT_KEY" = "ORDER_LINE_NAME1"."DOCUMENT_KEY"
+            AND "QUOTE_ORDER_LINES"."ORDER_LINE" = "ORDER_LINE_NAME1"."ORDER_LINE"
+            LEFT OUTER JOIN {{ ref('DAI', 'ORDER_LINE_LICENSE_USERS1') }} "ORDER_LINE_LICENSE_USERS1"
+            ON "QUOTE_ORDER_LINES"."DOCUMENT_KEY" = "ORDER_LINE_LICENSE_USERS1"."DOCUMENT_KEY"
+            AND "QUOTE_ORDER_LINES"."ORDER_LINE" = "ORDER_LINE_LICENSE_USERS1"."ORDER_LINE"
+            LEFT OUTER JOIN {{ ref('DAI', 'ORDER_LINE_LICENSE_TERM1') }} "ORDER_LINE_LICENSE_TERM1"
+            ON "QUOTE_ORDER_LINES"."DOCUMENT_KEY" = "ORDER_LINE_LICENSE_TERM1"."DOCUMENT_KEY"
+            AND "QUOTE_ORDER_LINES"."ORDER_LINE" = "ORDER_LINE_LICENSE_TERM1"."ORDER_LINE"
+            LEFT OUTER JOIN {{ ref('DAI', 'ORDER_LINE_PRICE1') }} "ORDER_LINE_PRICE1"
+            ON "QUOTE_ORDER_LINES"."DOCUMENT_KEY" = "ORDER_LINE_PRICE1"."DOCUMENT_KEY"
+            AND "QUOTE_ORDER_LINES"."ORDER_LINE" = "ORDER_LINE_PRICE1"."ORDER_LINE"
+            LEFT OUTER JOIN {{ ref('DAI', 'ORDER_LINE_QUANTITY1') }} "ORDER_LINE_QUANTITY1"
+            ON "QUOTE_ORDER_LINES"."DOCUMENT_KEY" = "ORDER_LINE_QUANTITY1"."DOCUMENT_KEY"
+            AND "QUOTE_ORDER_LINES"."ORDER_LINE" = "ORDER_LINE_QUANTITY1"."ORDER_LINE"
+            LEFT OUTER JOIN {{ ref('DAI', 'ORDER_LINE_DISCOUNT1') }} "ORDER_LINE_DISCOUNT1"
+            ON "QUOTE_ORDER_LINES"."DOCUMENT_KEY" = "ORDER_LINE_DISCOUNT1"."DOCUMENT_KEY"
+            AND "QUOTE_ORDER_LINES"."ORDER_LINE" = "ORDER_LINE_DISCOUNT1"."ORDER_LINE"
+            LEFT OUTER JOIN {{ ref('DAI', 'ORDER_LINE_SUBTOTAL1') }} "ORDER_LINE_SUBTOTAL1"
+            ON "QUOTE_ORDER_LINES"."DOCUMENT_KEY" = "ORDER_LINE_SUBTOTAL1"."DOCUMENT_KEY"
+            AND "QUOTE_ORDER_LINES"."ORDER_LINE" = "ORDER_LINE_SUBTOTAL1"."ORDER_LINE"
+            LEFT OUTER JOIN {{ ref('DAI', 'ORDER_LINE_TYPE1') }} "ORDER_LINE_TYPE1"
+            ON "QUOTE_ORDER_LINES"."DOCUMENT_KEY" = "ORDER_LINE_TYPE1"."DOCUMENT_KEY"
+            AND "QUOTE_ORDER_LINES"."ORDER_LINE" = "ORDER_LINE_TYPE1"."ORDER_LINE"
+            LEFT OUTER JOIN {{ ref('DAI', 'ORDER_LINE_DETAILS1') }} "ORDER_LINE_DETAILS1"
+            ON "QUOTE_ORDER_LINES"."DOCUMENT_KEY" = "ORDER_LINE_DETAILS1"."DOCUMENT_KEY"
+            AND "QUOTE_ORDER_LINES"."ORDER_LINE" = "ORDER_LINE_DETAILS1"."ORDER_LINE"
+            WHERE "ORDER_LINE_NAME1"."ORDER_LINE_NAME" is not null
+        name: ORDER_LINE_DETAIL1
+        noLinkRefs: []
+  name: ORDER_LINE_DETAIL1
+  overrideSQL: false
+  schema: ""
+  sqlType: View
+  type: sql
+  version: 1
+type: Node

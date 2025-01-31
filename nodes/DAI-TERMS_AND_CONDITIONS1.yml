@@ -1,0 +1,132 @@
+fileVersion: 1
+id: 34b0ca23-a6ea-42f2-a4ce-fd6d176eeeb7
+name: TERMS_AND_CONDITIONS1
+operation:
+  config:
+    insertStrategy: INSERT
+    postSQL: ""
+    preSQL: ""
+    testsEnabled: true
+    truncateBefore: true
+  database: ""
+  deployEnabled: true
+  description: ""
+  isMultisource: false
+  locationName: DAI
+  materializationType: table
+  metadata:
+    appliedNodeTests: []
+    columns:
+      - appliedColumnTests: {}
+        columnReference:
+          columnCounter: cd38348e-6da3-4cd9-bd8e-d7de72c08de7
+          stepCounter: 34b0ca23-a6ea-42f2-a4ce-fd6d176eeeb7
+        config: {}
+        dataType: STRING
+        description: ""
+        name: DOCUMENT_KEY
+        nullable: true
+        sourceColumnReferences:
+          - columnReferences:
+              - columnCounter: cdbbf44c-452b-4751-9936-6e543d1dd721
+                stepCounter: ef3272c7-2bd2-42a7-908d-62339ef343f9
+            transform: ""
+      - appliedColumnTests: {}
+        columnReference:
+          columnCounter: 6aa973b1-bebe-436c-9aa6-d755d0574b93
+          stepCounter: 34b0ca23-a6ea-42f2-a4ce-fd6d176eeeb7
+        config: {}
+        dataType: STRING
+        description: ""
+        name: QUOTE_NUMBER_VALUE
+        nullable: true
+        sourceColumnReferences:
+          - columnReferences:
+              - columnCounter: dc190f9f-e73d-4143-8229-2128d1a5ffcb
+                stepCounter: ef3272c7-2bd2-42a7-908d-62339ef343f9
+            transform: ""
+      - appliedColumnTests: {}
+        columnReference:
+          columnCounter: 48fa9439-e13f-4bb2-b0fd-91608798775e
+          stepCounter: 34b0ca23-a6ea-42f2-a4ce-fd6d176eeeb7
+        config: {}
+        dataType: VARIANT
+        description: ""
+        name: TERMS_AND_CONDITIONS_RAW
+        nullable: true
+        sourceColumnReferences:
+          - columnReferences:
+              - columnCounter: cdca025c-6686-4c3a-a5a7-26d91be13760
+                stepCounter: ef3272c7-2bd2-42a7-908d-62339ef343f9
+            transform: ""
+      - appliedColumnTests: {}
+        columnReference:
+          columnCounter: 89e48a37-87db-4de7-bc2a-36cae7ccae60
+          stepCounter: 34b0ca23-a6ea-42f2-a4ce-fd6d176eeeb7
+        config: {}
+        dataType: VARIANT
+        description: ""
+        name: TERMS_AND_CONDITIONS_LINE
+        nullable: true
+        sourceColumnReferences:
+          - columnReferences:
+              - columnCounter: cdca025c-6686-4c3a-a5a7-26d91be13760
+                stepCounter: ef3272c7-2bd2-42a7-908d-62339ef343f9
+            transform: "\"TERMS_AND_CONDITIONS\".\"INDEX\" + 1"
+      - acceptedValues:
+          strictMatch: true
+          values: []
+        appliedColumnTests: {}
+        columnReference:
+          columnCounter: f8049a91-979e-4082-8742-f4a22efd48bf
+          stepCounter: 34b0ca23-a6ea-42f2-a4ce-fd6d176eeeb7
+        config: {}
+        dataType: STRING
+        description: ""
+        name: TERMS_AND_CONDITIONS
+        nullable: true
+        sourceColumnReferences:
+          - columnReferences:
+              - columnCounter: cdca025c-6686-4c3a-a5a7-26d91be13760
+                stepCounter: ef3272c7-2bd2-42a7-908d-62339ef343f9
+            transform: "\"TERMS_AND_CONDITIONS\".value:\"value\"::STRING"
+      - acceptedValues:
+          strictMatch: true
+          values: []
+        appliedColumnTests: {}
+        columnReference:
+          columnCounter: a8d07d03-2c7c-4072-bee2-8ce3334d4652
+          stepCounter: 34b0ca23-a6ea-42f2-a4ce-fd6d176eeeb7
+        config: {}
+        dataType: DOUBLE
+        description: ""
+        name: SCORE
+        nullable: true
+        sourceColumnReferences:
+          - columnReferences:
+              - columnCounter: cdca025c-6686-4c3a-a5a7-26d91be13760
+                stepCounter: ef3272c7-2bd2-42a7-908d-62339ef343f9
+            transform: "\"TERMS_AND_CONDITIONS\".value:\"score\"::DOUBLE"
+    cteString: ""
+    enabledColumnTestIDs: []
+    sourceMapping:
+      - aliases:
+          STG_ORDER_FORM_EXTRACT1: ef3272c7-2bd2-42a7-908d-62339ef343f9
+        customSQL:
+          customSQL: ""
+        dependencies:
+          - locationName: DAI
+            nodeName: STG_ORDER_FORM_EXTRACT1
+        join:
+          joinCondition: |-
+            FROM {{ ref('DAI', 'STG_ORDER_FORM_EXTRACT1') }} "STG_ORDER_FORM_EXTRACT1", 
+            lateral flatten(input => "TERMS_AND_CONDITIONS1", OUTER => TRUE) "TERMS_AND_CONDITIONS1"
+        name: TERMS_AND_CONDITIONS1
+        noLinkRefs: []
+  name: TERMS_AND_CONDITIONS1
+  overrideSQL: false
+  schema: ""
+  sqlType: View
+  type: sql
+  version: 1
+type: Node

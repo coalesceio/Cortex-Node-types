@@ -1,0 +1,132 @@
+fileVersion: 1
+id: b94082ab-cf5c-446e-96d4-d984d1369ccc
+name: SIGNATURE_CERT_SENT1
+operation:
+  config:
+    insertStrategy: INSERT
+    postSQL: ""
+    preSQL: ""
+    testsEnabled: true
+    truncateBefore: true
+  database: ""
+  deployEnabled: true
+  description: ""
+  isMultisource: false
+  locationName: DAI
+  materializationType: table
+  metadata:
+    appliedNodeTests: []
+    columns:
+      - appliedColumnTests: {}
+        columnReference:
+          columnCounter: cb67f66a-7b78-4aad-85d1-083e05f075fe
+          stepCounter: b94082ab-cf5c-446e-96d4-d984d1369ccc
+        config: {}
+        dataType: STRING
+        description: ""
+        name: DOCUMENT_KEY
+        nullable: true
+        sourceColumnReferences:
+          - columnReferences:
+              - columnCounter: cdbbf44c-452b-4751-9936-6e543d1dd721
+                stepCounter: ef3272c7-2bd2-42a7-908d-62339ef343f9
+            transform: ""
+      - appliedColumnTests: {}
+        columnReference:
+          columnCounter: 06e2f174-3d8b-4a92-b5b8-94c2d691e56c
+          stepCounter: b94082ab-cf5c-446e-96d4-d984d1369ccc
+        config: {}
+        dataType: STRING
+        description: ""
+        name: QUOTE_NUMBER_VALUE
+        nullable: true
+        sourceColumnReferences:
+          - columnReferences:
+              - columnCounter: dc190f9f-e73d-4143-8229-2128d1a5ffcb
+                stepCounter: ef3272c7-2bd2-42a7-908d-62339ef343f9
+            transform: ""
+      - appliedColumnTests: {}
+        columnReference:
+          columnCounter: 402c74ce-5980-4a07-8515-bf0333ca1c22
+          stepCounter: b94082ab-cf5c-446e-96d4-d984d1369ccc
+        config: {}
+        dataType: VARIANT
+        description: ""
+        name: SIGNATURE_CERT_SENT_RAW
+        nullable: true
+        sourceColumnReferences:
+          - columnReferences:
+              - columnCounter: f085e9a9-e77b-40d4-bf8d-7d0935ae627d
+                stepCounter: ef3272c7-2bd2-42a7-908d-62339ef343f9
+            transform: ""
+      - appliedColumnTests: {}
+        columnReference:
+          columnCounter: b27d3127-2a52-49b6-9abb-bd03006c9b1e
+          stepCounter: b94082ab-cf5c-446e-96d4-d984d1369ccc
+        config: {}
+        dataType: DOUBLE
+        description: ""
+        name: SIGNATURE_CERT_LINE
+        nullable: true
+        sourceColumnReferences:
+          - columnReferences:
+              - columnCounter: f085e9a9-e77b-40d4-bf8d-7d0935ae627d
+                stepCounter: ef3272c7-2bd2-42a7-908d-62339ef343f9
+            transform: "\"SIGNATURE_CERT_SENT\".\"INDEX\" + 1"
+      - acceptedValues:
+          strictMatch: true
+          values: []
+        appliedColumnTests: {}
+        columnReference:
+          columnCounter: e8f703fa-d19f-4b2b-a756-68ddb5f4c323
+          stepCounter: b94082ab-cf5c-446e-96d4-d984d1369ccc
+        config: {}
+        dataType: STRING
+        description: ""
+        name: SIGNATURE_CERT_SENT
+        nullable: true
+        sourceColumnReferences:
+          - columnReferences:
+              - columnCounter: f085e9a9-e77b-40d4-bf8d-7d0935ae627d
+                stepCounter: ef3272c7-2bd2-42a7-908d-62339ef343f9
+            transform: "\"SIGNATURE_CERT_SENT\".value:\"value\"::STRING"
+      - acceptedValues:
+          strictMatch: true
+          values: []
+        appliedColumnTests: {}
+        columnReference:
+          columnCounter: bcd3cdaa-cf93-4287-929f-96807a15906b
+          stepCounter: b94082ab-cf5c-446e-96d4-d984d1369ccc
+        config: {}
+        dataType: DOUBLE
+        description: ""
+        name: SCORE
+        nullable: true
+        sourceColumnReferences:
+          - columnReferences:
+              - columnCounter: f085e9a9-e77b-40d4-bf8d-7d0935ae627d
+                stepCounter: ef3272c7-2bd2-42a7-908d-62339ef343f9
+            transform: "\"SIGNATURE_CERT_SENT\".value:\"score\"::DOUBLE"
+    cteString: ""
+    enabledColumnTestIDs: []
+    sourceMapping:
+      - aliases:
+          STG_ORDER_FORM_EXTRACT1: ef3272c7-2bd2-42a7-908d-62339ef343f9
+        customSQL:
+          customSQL: ""
+        dependencies:
+          - locationName: DAI
+            nodeName: STG_ORDER_FORM_EXTRACT1
+        join:
+          joinCondition: |-
+            FROM {{ ref('DAI', 'STG_ORDER_FORM_EXTRACT1') }} "STG_ORDER_FORM_EXTRACT1", 
+            lateral flatten(input => "SIGNATURE_CERT_SENT1", OUTER => TRUE) "SIGNATURE_CERT_SENT1"
+        name: SIGNATURE_CERT_SENT1
+        noLinkRefs: []
+  name: SIGNATURE_CERT_SENT1
+  overrideSQL: false
+  schema: ""
+  sqlType: View
+  type: sql
+  version: 1
+type: Node

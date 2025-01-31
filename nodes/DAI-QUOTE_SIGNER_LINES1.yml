@@ -1,0 +1,152 @@
+fileVersion: 1
+id: 93b4c2d8-717c-4b25-9e49-fd3451129b16
+name: QUOTE_SIGNER_LINES1
+operation:
+  config:
+    insertStrategy: UNION
+    selectDistinct: false
+  database: ""
+  deployEnabled: true
+  description: ""
+  isMultisource: false
+  locationName: DAI
+  materializationType: view
+  metadata:
+    appliedNodeTests: []
+    columns:
+      - acceptedValues:
+          strictMatch: true
+          values: []
+        appliedColumnTests: {}
+        columnReference:
+          columnCounter: ff16e1fa-36ee-48e8-9310-cfc3adfe589d
+          stepCounter: 93b4c2d8-717c-4b25-9e49-fd3451129b16
+        config: {}
+        dataType: VARIANT
+        defaultValue: ""
+        description: ""
+        name: END_USER
+        nullable: true
+        primaryKey: false
+        sourceColumnReferences:
+          - columnReferences: []
+            transform: ""
+        transform: ""
+        uniqueKey: false
+      - appliedColumnTests: {}
+        columnReference:
+          columnCounter: 6f4f0fde-5a5f-4f6e-9365-4e7ac2906dee
+          stepCounter: 93b4c2d8-717c-4b25-9e49-fd3451129b16
+        config: {}
+        dataType: VARCHAR(16777216)
+        description: ""
+        name: DOCUMENT_NAME
+        nullable: true
+        sourceColumnReferences:
+          - columnReferences:
+              - columnCounter: e528cac2-5d99-454e-a584-4e0313b9dc03
+                stepCounter: ef3272c7-2bd2-42a7-908d-62339ef343f9
+            transform: ""
+      - appliedColumnTests: {}
+        columnReference:
+          columnCounter: 4c5fef08-519d-4e1c-9ec7-ab57d4eb4d85
+          stepCounter: 93b4c2d8-717c-4b25-9e49-fd3451129b16
+        config: {}
+        dataType: VARCHAR(16777216)
+        description: ""
+        name: FILE_URL
+        nullable: true
+        sourceColumnReferences:
+          - columnReferences:
+              - columnCounter: 20e4751a-19d2-41c5-a095-590a02a5a101
+                stepCounter: ef3272c7-2bd2-42a7-908d-62339ef343f9
+            transform: ""
+      - appliedColumnTests: {}
+        columnReference:
+          columnCounter: 13a7edba-3821-405c-aa49-932048d05f42
+          stepCounter: 93b4c2d8-717c-4b25-9e49-fd3451129b16
+        config: {}
+        dataType: VARCHAR(16777216)
+        description: ""
+        name: DOCUMENT_KEY
+        nullable: true
+        sourceColumnReferences:
+          - columnReferences:
+              - columnCounter: cdbbf44c-452b-4751-9936-6e543d1dd721
+                stepCounter: ef3272c7-2bd2-42a7-908d-62339ef343f9
+            transform: ""
+      - appliedColumnTests: {}
+        columnReference:
+          columnCounter: 5c94c09f-89b1-4f78-8416-2f69d635ba57
+          stepCounter: 93b4c2d8-717c-4b25-9e49-fd3451129b16
+        config: {}
+        dataType: VARCHAR(16777216)
+        description: ""
+        name: QUOTE_NUMBER_VALUE
+        nullable: true
+        sourceColumnReferences:
+          - columnReferences:
+              - columnCounter: dc190f9f-e73d-4143-8229-2128d1a5ffcb
+                stepCounter: ef3272c7-2bd2-42a7-908d-62339ef343f9
+            transform: ""
+      - acceptedValues:
+          strictMatch: true
+          values: []
+        appliedColumnTests: {}
+        columnReference:
+          columnCounter: 990c6223-79b2-4d07-a015-9a8c809a9225
+          stepCounter: 93b4c2d8-717c-4b25-9e49-fd3451129b16
+        config: {}
+        dataType: NUMBER(11,0)
+        defaultValue: ""
+        description: ""
+        name: SIGNER_LINE
+        nullable: false
+        primaryKey: false
+        sourceColumnReferences:
+          - columnReferences:
+              - columnCounter: 63055535-485c-4e8f-b59a-cad7bdcd7414
+                stepCounter: ef3272c7-2bd2-42a7-908d-62339ef343f9
+            transform: ""
+        transform: ""
+        uniqueKey: false
+    cteString: ""
+    enabledColumnTestIDs: []
+    sourceMapping:
+      - aliases:
+          STG_ORDER_FORM_EXTRACT1: ef3272c7-2bd2-42a7-908d-62339ef343f9
+        customSQL:
+          customSQL: |-
+            {{ stage('Override Create SQL') }}
+            	CREATE OR REPLACE VIEW {{ ref('DAI', 'QUOTE_SIGNER_LINES')}} AS (
+            select b.end_user,
+                   b.document_name,
+                   b.file_url,
+                   b.document_key,
+                   b.quote_number_value,
+                   a.line as signer_line
+            from (select seq4() + 1 as line from table(generator(rowcount => 20))) a
+            left outer join ( select document_key,
+                                     quote_number_value::string as quote_number_value,
+                                     file_url,
+                                     document_name,
+                                     end_user,
+                                     order_form_signer_count_value::number as order_form_signer_count_value
+                              from {{ ref('DAI', 'STG_ORDER_FORM_EXTRACT') }}) b
+            where a.line <= b.order_form_signer_count_value
+            order by b.quote_number_value asc, b.document_key asc, a.line asc
+            	)
+        dependencies:
+          - locationName: DAI
+            nodeName: STG_ORDER_FORM_EXTRACT1
+        join:
+          joinCondition: FROM {{ ref('DAI', 'STG_ORDER_FORM_EXTRACT1') }} "STG_ORDER_FORM_EXTRACT1"
+        name: QUOTE_SIGNER_LINES1
+        noLinkRefs: []
+  name: QUOTE_SIGNER_LINES1
+  overrideSQL: true
+  schema: ""
+  sqlType: View
+  type: sql
+  version: 1
+type: Node

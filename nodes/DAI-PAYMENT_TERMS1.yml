@@ -1,0 +1,132 @@
+fileVersion: 1
+id: 39f53558-9cd3-4225-aa5e-f2d8e8f9a5cc
+name: PAYMENT_TERMS1
+operation:
+  config:
+    insertStrategy: INSERT
+    postSQL: ""
+    preSQL: ""
+    testsEnabled: true
+    truncateBefore: true
+  database: ""
+  deployEnabled: true
+  description: ""
+  isMultisource: false
+  locationName: DAI
+  materializationType: table
+  metadata:
+    appliedNodeTests: []
+    columns:
+      - appliedColumnTests: {}
+        columnReference:
+          columnCounter: 06af1c87-6308-45f0-a9b3-b678f48603c6
+          stepCounter: 39f53558-9cd3-4225-aa5e-f2d8e8f9a5cc
+        config: {}
+        dataType: STRING
+        description: ""
+        name: DOCUMENT_KEY
+        nullable: true
+        sourceColumnReferences:
+          - columnReferences:
+              - columnCounter: cdbbf44c-452b-4751-9936-6e543d1dd721
+                stepCounter: ef3272c7-2bd2-42a7-908d-62339ef343f9
+            transform: ""
+      - appliedColumnTests: {}
+        columnReference:
+          columnCounter: 0e3f6d46-11ca-4511-91c1-77b8167f73c7
+          stepCounter: 39f53558-9cd3-4225-aa5e-f2d8e8f9a5cc
+        config: {}
+        dataType: STRING
+        description: ""
+        name: QUOTE_NUMBER_VALUE
+        nullable: true
+        sourceColumnReferences:
+          - columnReferences:
+              - columnCounter: dc190f9f-e73d-4143-8229-2128d1a5ffcb
+                stepCounter: ef3272c7-2bd2-42a7-908d-62339ef343f9
+            transform: ""
+      - appliedColumnTests: {}
+        columnReference:
+          columnCounter: aa3499d2-b54f-48ae-9fcf-1f9b620ef539
+          stepCounter: 39f53558-9cd3-4225-aa5e-f2d8e8f9a5cc
+        config: {}
+        dataType: VARIANT
+        description: ""
+        name: ORDER_LINE_DETAILS_RAW
+        nullable: true
+        sourceColumnReferences:
+          - columnReferences:
+              - columnCounter: 30c79f30-dc1d-4f85-b58c-22089e0905eb
+                stepCounter: ef3272c7-2bd2-42a7-908d-62339ef343f9
+            transform: ""
+      - appliedColumnTests: {}
+        columnReference:
+          columnCounter: 6780d18b-fff1-4b4e-b35c-dffdec03d64f
+          stepCounter: 39f53558-9cd3-4225-aa5e-f2d8e8f9a5cc
+        config: {}
+        dataType: DOUBLE
+        description: ""
+        name: PAYMENT_TERMS_LINE
+        nullable: true
+        sourceColumnReferences:
+          - columnReferences:
+              - columnCounter: 30c79f30-dc1d-4f85-b58c-22089e0905eb
+                stepCounter: ef3272c7-2bd2-42a7-908d-62339ef343f9
+            transform: "\"PAYMENT_TERMS\".\"INDEX\" + 1"
+      - acceptedValues:
+          strictMatch: true
+          values: []
+        appliedColumnTests: {}
+        columnReference:
+          columnCounter: f30c4665-13e9-42d9-a124-c92745001f25
+          stepCounter: 39f53558-9cd3-4225-aa5e-f2d8e8f9a5cc
+        config: {}
+        dataType: STRING
+        description: ""
+        name: PAYMENT_TERMS
+        nullable: true
+        sourceColumnReferences:
+          - columnReferences:
+              - columnCounter: 30c79f30-dc1d-4f85-b58c-22089e0905eb
+                stepCounter: ef3272c7-2bd2-42a7-908d-62339ef343f9
+            transform: "\"PAYMENT_TERMS\".value:\"value\"::STRING"
+      - acceptedValues:
+          strictMatch: true
+          values: []
+        appliedColumnTests: {}
+        columnReference:
+          columnCounter: a4ee228b-5b3b-428e-a057-af6924fe9ae8
+          stepCounter: 39f53558-9cd3-4225-aa5e-f2d8e8f9a5cc
+        config: {}
+        dataType: DOUBLE
+        description: ""
+        name: SCORE
+        nullable: true
+        sourceColumnReferences:
+          - columnReferences:
+              - columnCounter: 30c79f30-dc1d-4f85-b58c-22089e0905eb
+                stepCounter: ef3272c7-2bd2-42a7-908d-62339ef343f9
+            transform: "\"PAYMENT_TERMS\".value:\"score\"::DOUBLE"
+    cteString: ""
+    enabledColumnTestIDs: []
+    sourceMapping:
+      - aliases:
+          STG_ORDER_FORM_EXTRACT1: ef3272c7-2bd2-42a7-908d-62339ef343f9
+        customSQL:
+          customSQL: ""
+        dependencies:
+          - locationName: DAI
+            nodeName: STG_ORDER_FORM_EXTRACT1
+        join:
+          joinCondition: |-
+            FROM {{ ref('DAI', 'STG_ORDER_FORM_EXTRACT1') }} "STG_ORDER_FORM_EXTRACT1", 
+            lateral flatten(input => "PAYMENT_TERMS1", OUTER => TRUE) "PAYMENT_TERMS1"
+        name: PAYMENT_TERMS1
+        noLinkRefs: []
+  name: PAYMENT_TERMS1
+  overrideSQL: false
+  schema: ""
+  sqlType: View
+  type: sql
+  version: 1
+type: Node

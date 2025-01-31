@@ -494,9 +494,9 @@ select 1 = 0
             INSERT INTO {{ fullyQualifiedTargetTableName }}
             SELECT
            {%- for col in desiredState.sources[0].columns %}
-              {% if ( col.extractedData) %}
+              {% if col.extractedData== true or col.name == 'EXTRACTED_DATA' %}
                   "{{ dbExtractionQuery }}"."{{ schExtractionQuery }}"."{{ extractionQueryName }}"!PREDICT(
-                  GET_PRESIGNED_URL(@"{{ dbStage }}"."{{ schStage }}".{{ desiredState.config.stageName }}, RELATIVE_PATH), {{ extractionQueryVersion }})
+                  GET_PRESIGNED_URL(@"{{ dbStage }}"."{{ schStage }}".{{ desiredState.config.stageName }}, RELATIVE_PATH), {{ extractionQueryVersion }}) AS "{{ col.name }}"
               {% else %}
                  {{ get_source_transform(col) }} AS "{{ col.name }}" 
               {%endif%}
@@ -508,10 +508,11 @@ select 1 = 0
             MERGE INTO {{ fullyQualifiedTargetTableName }} tgt USING
             -- Select Statement Preparing Data for Merge
             (SELECT
-           {%- for col in sources[0].columns %}
-              {% if ( col.extractedData) %}
+           {%- for col in desiredState.sources[0].columns %}
+        
+              {% if ( col.extractedData) == true or col.name == 'EXTRACTED_DATA'%}
                   "{{ dbExtractionQuery }}"."{{ schExtractionQuery }}"."{{ extractionQueryName }}"!PREDICT(
-                  GET_PRESIGNED_URL(@"{{ dbStage }}"."{{ schStage }}".{{ desiredState.config.stageName }}, RELATIVE_PATH), {{ extractionQueryVersion }})
+                  GET_PRESIGNED_URL(@"{{ dbStage }}"."{{ schStage }}".{{ desiredState.config.stageName }}, RELATIVE_PATH), {{ extractionQueryVersion }})AS "{{ col.name }}"
               {% else %}
                  {{ get_source_transform(col) }} AS "{{ col.name }}" 
               {%endif%}

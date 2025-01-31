@@ -148,11 +148,11 @@ does not permit copying or modification for any other purpose.
             {% else -%}
             MERGE INTO {{ fullyQualifiedTargetTableName }} tgt USING
             -- Select Statement Preparing Data for Merge
-           SELECT
+           (SELECT
              {%- for col in sources[0].columns %}
                {% if ( col.extractedData) %}
                  "{{ dbExtractionQuery }}"."{{ schExtractionQuery }}"."{{ extractionQueryName }}"!PREDICT(
-                 GET_PRESIGNED_URL(@"{{ dbStage }}"."{{ schStage }}".{{ config.stageName }}, RELATIVE_PATH), {{ extractionQueryVersion }})
+                 GET_PRESIGNED_URL(@"{{ dbStage }}"."{{ schStage }}".{{ config.stageName }}, RELATIVE_PATH), {{ extractionQueryVersion }})AS "{{col.name}}"
                {% else %}
                  {{ get_source_transform(col) }} AS "{{ col.name }}" 
                {%endif%}

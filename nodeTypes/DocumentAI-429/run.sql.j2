@@ -74,7 +74,7 @@ does not permit copying or modification for any other purpose.
     {% set tableColumnNames = columns | map(attribute='name') | list %}
 
     
-    {{ stage('Insert or Merge Data') }}
+    {{ stage('Insert Data') }}
 
         
             INSERT INTO {{ fullyQualifiedTargetTableName }}

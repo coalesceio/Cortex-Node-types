@@ -365,19 +365,6 @@ select 1 = 0
    {% set dbStage = desiredState.storageLocations | selectattr('name', 'equalto', stageStorageLocationName) | map(attribute='database') | first %}
    {% set schStage = desiredState.storageLocations | selectattr('name', 'equalto', stageStorageLocationName) | map(attribute='schema') | first %}
 
-
-   {# File name#}
-   {%if desiredState.config.fileNames | length > 0 and ',' in desiredState.config.fileNames  %}
-    {% set formatted_variable = desiredState.config.fileNames.split(',') | map('string') | join("','") %}
-    {% set final_variable = "'" + formatted_variable + "'" %}
-    {% set fileNameSQL = 'FILES = (' + final_variable +')' %}
-
-   {%- elif desiredState.config.fileNames | length > 0 %} 
-     {% set fileNameSQL = 'FILES = (' + "'"+desiredState.config.fileNames + "'"+')' %}                               
-   {%- else -%}
-    {% set fileNameSQL = "" %} 
-   {% endif %}
-
    {#Subfolder path #}
    {%set subf = ""%}
    {% set subfolder_value = desiredState.config.subfolder | default('') %}

@@ -5,7 +5,7 @@
 * [LLM Cortex Functions](#llm-cortex-functions)
 * [Top Insights](#top-insights)
 * [Classification](#classification)
-* [Document AI](#documentai)
+* [Document AI](#document-ai)
 ---
 
 ## ML Forecast

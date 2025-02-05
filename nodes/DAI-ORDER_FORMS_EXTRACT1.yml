@@ -3,7 +3,7 @@ id: 7895b2d1-5e14-4942-94e8-8955ddb81b67
 name: ORDER_FORMS_EXTRACT1
 operation:
   config:
-    devMode: true
+    devMode: false
     extractionQueryName: SALES_ORDER_FORMS
     extractionQueryStorageLocationName: DAI
     extractionQueryVersion: "4"

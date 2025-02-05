@@ -120,7 +120,6 @@ metadata:
         default: Warehouse Task
         options:
           - Warehouse Task
-          - Serverless Task
         
     # Checks whether source streams have data before executing a task #
 
@@ -137,20 +136,6 @@ metadata:
         default: '<WAREHOUSE_NAME>'
         isRequired: false
         enableIf: "{% if config.schedulingMode == 'Warehouse Task' %} true {% else %} false {% endif %}"
-
-      - displayName: Select initial serverless Warehouse size
-        attributeName: serverlessSize
-        type: dropdownSelector
-        default: 'MEDIUM'
-        options:
-          - XSMALL
-          - SMALL
-          - MEDIUM
-          - LARGE
-          - XLARGE
-          - XXLARGE
-        isRequired: false
-        enableIf: "{% if config.schedulingMode == 'Serverless Task' %} true {% else %} false {% endif %}"
 
     # Way to schedule the task to run #
 

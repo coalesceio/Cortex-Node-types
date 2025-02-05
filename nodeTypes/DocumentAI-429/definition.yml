@@ -1,0 +1,209 @@
+fileVersion: 1
+id: "429"
+isDisabled: false
+metadata:
+  defaultStorageLocation: null
+  error: null
+  nodeMetadataSpec: |
+    capitalized: Document AI Stage
+    short: 'DOC'
+    tagColor: '#bd6db7'
+    isDisabled: false
+    plural: Doc AI
+
+    deployStrategy: advanced
+
+    config:
+    - groupName: General Options
+      items:
+      - displayName: Development Mode
+        attributeName: devMode
+        type: toggleButton
+        isRequired: true
+        default: true
+
+      - type: materializationSelector
+        default: table
+        options:
+        - table
+        - transient table
+        isRequired: true 
+      
+      - displayName: Truncate Before
+        attributeName: truncateBefore
+        type: toggleButton
+        default: false
+        enableIf: "{%if config.inferschema %} false {%else%} true {%endif%}"
+
+    - groupName: Stream Options
+      items:
+      - displayName: Source Object
+        attributeName: sourceType
+        type: dropdownSelector
+        default: Directory Table
+        options:
+          - Directory Table
+        isRequired: true
+
+      - displayName: Redeployment Behavior
+        attributeName: redeploymentBehavior
+        type: dropdownSelector
+        default: Create At Existing Stream
+        options:
+          - Create or Replace
+          - Create If Not Exists
+          - Create At Existing Stream
+        isRequired: true
+
+
+    - groupName: Source Data
+      items:
+
+      - displayName: Storage Location
+        attributeName: stageStorageLocationName
+        type: textBox
+        default: ''
+        isRequired: true
+
+      - displayName: Stage Name
+        attributeName: stageName
+        type: textBox
+        default: ''
+        isRequired: true
+
+      - displayName: Path or subfolder 
+        attributeName: subfolder
+        type: textBox
+        default: 'Enter folder name in stage if applicable-folder/subfolder'
+        isRequired: false
+
+        
+    - groupName: Extraction Query
+      items:
+
+      - displayName: Coalesce Storage Location of Extraction Query
+        attributeName: extractionQueryStorageLocationName
+        type: textBox
+        default: 'Enter Storage Location name'
+        enableIf: "true"
+        isRequired: true
+
+      - displayName: Extraction Query Name
+        attributeName: extractionQueryName
+        type: textBox
+        default: 'Enter Extraction Query name'
+        enableIf: "true"
+        isRequired: true
+
+      - displayName: Extraction Query Version
+        attributeName: extractionQueryVersion
+        type: textBox
+        default: 'Enter Extraction Query version'
+        enableIf: "true"
+        isRequired: true
+
+      - displayName: Pre-SQL
+        attributeName: preSQL
+        type: textBox
+        syntax: sql
+        isRequired: false
+        enableIf: "{% if node.materializationType == 'view' %} false {% else %} true {% endif %}"
+
+      - displayName: Post-SQL
+        attributeName: postSQL
+        type: textBox
+        syntax: sql
+        isRequired: false
+        enableIf: "{% if node.materializationType == 'view' %} false {% else %} true {% endif %}"
+    - groupName: Scheduling Options
+
+    # Schedule mode-Specifies whether a warehouse or serverless compute is used to run the task #
+
+      enableIf: "{% if config.devMode == true %} false {% else %} true {% endif %}" 
+      items:
+      - displayName: Scheduling Mode
+        attributeName: schedulingMode
+        type: dropdownSelector
+        default: Warehouse Task
+        options:
+          - Warehouse Task
+        
+    # Checks whether source streams have data before executing a task #
+
+      - displayName: When Source Stream has Data Flag
+        attributeName: flagSrcStream
+        type: toggleButton
+        default: true
+
+    # Warehouse name  you want the task to run #
+
+      - displayName: Select Warehouse on which to run task
+        attributeName: whName
+        type: textBox
+        default: '<WAREHOUSE_NAME>'
+        isRequired: false
+        enableIf: "{% if config.schedulingMode == 'Warehouse Task' %} true {% else %} false {% endif %}"
+
+    # Way to schedule the task to run #
+
+      - displayName: Task Schedule
+        attributeName: schedulePeriodOption
+        type: dropdownSelector
+        default: Predecessor
+        options:
+          - Minutes
+          - CRON
+
+      - displayName: Enter task schedule using minutes
+        attributeName: schedulePeriod
+        type: textBox
+        default: '60'
+        isRequired: false
+        enableIf: "{% if config.schedulePeriodOption == 'Minutes' %} true {% else %} false {% endif %}"
+
+      - displayName: Enter task schedule using CRON
+        attributeName: scheduleCRON
+        type: textBox
+        default: '5 0-23 * * * America/Los_Angeles'
+        isRequired: false
+        enableIf: "{% if config.schedulePeriodOption == 'CRON' %} true {% else %} false {% endif %}"
+
+       
+    systemColumns:
+    - displayName: FILENAME
+      transform: "REGEXP_SUBSTR(RELATIVE_PATH, '[^/]+$')"
+      dataType: STRING
+      placement: beginning
+      attributeName: fileName
+
+    - displayName: FILE_URL
+      transform: 'FILE_URL'
+      dataType: STRING
+      placement: beginning
+      attributeName: presignedURL
+
+    - displayName: FILE_LAST_MODIFIED
+      transform: 'TO_TIMESTAMP_NTZ(LAST_MODIFIED)'
+      dataType: TIMESTAMP_NTZ
+      placement: beginning
+      attributeName: fileLastModified
+
+    - displayName: SIZE
+      transform: 'SIZE'
+      dataType: NUMBER
+      placement: beginning
+      attributeName: size
+
+    - displayName: EXTRACTED_DATA
+      transform: ''
+      dataType: VARIANT
+      placement: beginning
+      attributeName: extractedData
+
+    - displayName: DATA_EXTRACT_TIMESTAMP
+      transform: 'CURRENT_TIMESTAMP::TIMESTAMP_NTZ'
+      dataType: TIMESTAMP_NTZ
+      placement: beginning
+      attributeName: fileLastModified
+name: Document AI
+type: NodeType

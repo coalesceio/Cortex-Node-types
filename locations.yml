@@ -1,5 +1,6 @@
 defaultStorageMapping: SOURCE
 fileVersion: 1
 locations:
+  - DOCUMENT_SOURCE
   - SOURCE
   - TARGET

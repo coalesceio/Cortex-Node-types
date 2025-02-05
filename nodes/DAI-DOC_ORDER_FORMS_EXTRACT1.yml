@@ -1,0 +1,153 @@
+fileVersion: 1
+id: ab05949e-5fb9-4eb5-ad35-5dee4a268915
+name: DOC_ORDER_FORMS_EXTRACT1
+operation:
+  config:
+    devMode: true
+    extractionQueryName: SALES_ORDER_FORMS
+    extractionQueryStorageLocationName: DAI
+    extractionQueryVersion: "4"
+    fileNames: ""
+    flagSrcStream: true
+    postSQL: null
+    preSQL: null
+    redeploymentBehavior: Create or Replace
+    schedulePeriod: "120"
+    schedulePeriodOption: Minutes
+    schedulingMode: Warehouse Task
+    sourceType: Directory Table
+    stageName: DEMO_DOCUMENTS
+    stageStorageLocationName: DAI
+    subfolder: subfolder
+    truncateBefore: true
+    whName: FIVETRAN_WAREHOUSE
+  database: ""
+  deployEnabled: true
+  description: Document AI sample document
+  isMultisource: false
+  locationName: DAI
+  materializationType: table
+  metadata:
+    appliedNodeTests: []
+    columns:
+      - acceptedValues:
+          strictMatch: true
+          values: []
+        appliedColumnTests: {}
+        columnReference:
+          columnCounter: 203fd77a-1191-48ba-be76-b854c73e9b45
+          stepCounter: ab05949e-5fb9-4eb5-ad35-5dee4a268915
+        config: {}
+        dataType: string
+        defaultValue: ""
+        description: ""
+        fileName: true
+        name: FILENAME
+        nullable: true
+        sourceColumnReferences:
+          - columnReferences: []
+            transform: RELATIVE_PATH
+      - acceptedValues:
+          strictMatch: true
+          values: []
+        appliedColumnTests: {}
+        columnReference:
+          columnCounter: 2ef5062c-8c21-4ae1-9ff0-b5f6c106727b
+          stepCounter: ab05949e-5fb9-4eb5-ad35-5dee4a268915
+        config: {}
+        dataType: string
+        defaultValue: ""
+        description: ""
+        name: FILE_URL
+        nullable: true
+        presignedURL: true
+        sourceColumnReferences:
+          - columnReferences: []
+            transform: FILE_URL
+      - acceptedValues:
+          strictMatch: true
+          values: []
+        appliedColumnTests: {}
+        columnReference:
+          columnCounter: fee8de3c-6fc6-4845-ac28-2f2126e92fd5
+          stepCounter: ab05949e-5fb9-4eb5-ad35-5dee4a268915
+        config: {}
+        dataType: TIMESTAMP_NTZ
+        defaultValue: ""
+        description: ""
+        fileLastModified: true
+        name: FILE_LAST_MODIFIED
+        nullable: true
+        sourceColumnReferences:
+          - columnReferences: []
+            transform: TO_TIMESTAMP_NTZ(LAST_MODIFIED)
+      - acceptedValues:
+          strictMatch: true
+          values: []
+        appliedColumnTests: {}
+        columnReference:
+          columnCounter: 6df978ca-30f1-4de5-9086-1b2a1d178685
+          stepCounter: ab05949e-5fb9-4eb5-ad35-5dee4a268915
+        config: {}
+        dataType: NUMBER
+        defaultValue: ""
+        description: ""
+        name: SIZE
+        nullable: true
+        size: true
+        sourceColumnReferences:
+          - columnReferences: []
+            transform: SIZE
+      - acceptedValues:
+          strictMatch: true
+          values: []
+        appliedColumnTests: {}
+        columnReference:
+          columnCounter: bb948389-9588-45a4-8b79-93f145e0d128
+          stepCounter: ab05949e-5fb9-4eb5-ad35-5dee4a268915
+        config: {}
+        dataType: VARIANT
+        defaultValue: ""
+        description: ""
+        extractedData: true
+        name: EXTRACTED_DATA
+        nullable: true
+        sourceColumnReferences:
+          - columnReferences: []
+            transform: ""
+      - acceptedValues:
+          strictMatch: true
+          values: []
+        appliedColumnTests: {}
+        columnReference:
+          columnCounter: f9946e7a-a391-4a2b-a9f9-7b9b1f2952dd
+          stepCounter: ab05949e-5fb9-4eb5-ad35-5dee4a268915
+        config: {}
+        dataType: TIMESTAMP_NTZ
+        defaultValue: ""
+        description: ""
+        name: DATA_EXTRACT_TIMESTAMP
+        nullable: true
+        sourceColumnReferences:
+          - columnReferences:
+              - columnCounter: "0"
+                stepCounter: "0"
+            transform: CURRENT_TIMESTAMP::TIMESTAMP_NTZ
+    cteString: ""
+    enabledColumnTestIDs: []
+    sourceMapping:
+      - aliases: {}
+        customSQL:
+          customSQL: ""
+        dependencies: []
+        join:
+          joinCondition: ""
+        name: DOC_ORDER_FORMS_EXTRACT1
+        noLinkRefs: []
+  name: DOC_ORDER_FORMS_EXTRACT1
+  overrideSQL: false
+  schema: ""
+  sqlType: "429"
+  type: sql
+  version: 1
+type: Node

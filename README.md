@@ -510,15 +510,15 @@ The Document AI node has the following configuration groups:
 
 The DocumentAI node includes an environment parameter that allows you to specify a different warehouse used to run a task in different environments.
 
-The parameter name is `targetTaskWarehouse` with default value `COMPUTE_WH`.
+The parameter name is `targetTaskWarehouse` with default value `DEV ENVIRONMENT`.
 
 ```json
 {
-    "targetTaskWarehouse": "COMPUTE_WH"
+    "targetTaskWarehouse": "DEV ENVIRONMENT"
 }
 ```
 
-When set to any value other than `COMPUTE_WH` the node will attempt to create the task using a Snowflake warehouse with the specified value.
+When set to any value other than DEV ENVIRONMENT` the node will attempt to create the task using a Snowflake warehouse with the specified value.
 
 For example, with the below setting for the parameter in a QA environment, the task will execute using a warehouse named `SNOWFLAKE_DOCUMENT_AI_WH`.
 
@@ -613,5 +613,11 @@ When node is deleted, the following stages execute:
 * [Node definition](https://github.com/coalesceio/Cortex-Node-types/blob/main/nodeTypes/Classification-337/definition.yml)
 * [Create Template](https://github.com/coalesceio/Cortex-Node-types/blob/main/nodeTypes/Classification-337/create.sql.j2)
 * [Run Template](https://github.com/coalesceio/Cortex-Node-types/blob/main/nodeTypes/Classification-337/run.sql.j2)
+
+### Document AI Code
+
+* [Node definition](https://github.com/coalesceio/Cortex-Node-types/blob/main/nodeTypes/DocumentAI-429/definition.yml)
+* [Create Template](https://github.com/coalesceio/Cortex-Node-types/blob/main/nodeTypes/DocumentAI-429/create.sql.j2)
+* [Run Template](https://github.com/coalesceio/Cortex-Node-types/blob/main/nodeTypes/DocumentAI-429/run.sql.j2)
 
 [Macros](https://github.com/coalesceio/Cortex-Node-types/blob/main/macros/macro-1.yml)

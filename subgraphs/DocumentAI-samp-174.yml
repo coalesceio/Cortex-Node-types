@@ -4,6 +4,4 @@ name: DocumentAI-samp
 steps:
   - 1b6e9f8a-12b0-43e8-8a89-a544f26f0a7c
   - c165e04f-118a-44ed-b8e6-40269e6c47ad
-  - d9cdc315-b7c9-42ea-8229-fb3890334ad7
-  - f199cd3d-d56e-418d-94a0-9a854cec7ea2
 type: Subgraph

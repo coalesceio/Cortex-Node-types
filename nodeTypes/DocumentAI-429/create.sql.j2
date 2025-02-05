@@ -37,7 +37,7 @@ does not permit copying or modification for any other purpose.
 {% if desiredState or desiredState == currentState %}
 
     {% if currentState == undefined or desiredState.config.redeploymentBehavior == 'Create or Replace' %}
-        {{ stage('Create Stream', true, "sql", "alter") }}
+        {{ stage('Create Stream', true, "sql", "create") }}
         CREATE OR REPLACE STREAM {{fullyQualifiedStreamName}}
             ON {{ streamType }} {{ refLink }}
 
@@ -93,7 +93,7 @@ select 1 = 0
 
                 {# Change in materialization type #}
 
-                {{ stage('Drop ' + currentState.node.materializationType + ' ' + ref_no_link(currentState.node.location.name, currentState.node.name), true, "sql", "create") }}
+                {{ stage('Drop ' + currentState.node.materializationType + ' ' + ref_no_link(currentState.node.location.name, currentState.node.name), true, "sql", "drop") }}
 
                  {% if currentState.node.materializationType == 'view' %} 
                       DROP {{currentState.node.materializationType}} IF EXISTS {{ ref_no_link(currentState.node.location.name, currentState.node.name) }}
@@ -427,7 +427,7 @@ select 1 = 0
             {% set tableColumnIds = desiredState.columns | map(attribute='id') | list %}
             {% set tableColumnNames = desiredState.columns | map(attribute='name') | list %}    
 
-            {{ stage('Create Task', true, "sql", "alter") }}
+            {{ stage('Create Task', true, "sql", "create") }}
             CREATE OR REPLACE TASK 
                 {{ fullyQualifiedTaskName }} 
                 {{ taskType}} 

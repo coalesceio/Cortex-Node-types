@@ -1,6 +1,5 @@
 fileVersion: 1
 id: "174"
 name: DocumentAI-samp
-steps:
-  - c165e04f-118a-44ed-b8e6-40269e6c47ad
+steps: []
 type: Subgraph

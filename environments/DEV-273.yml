@@ -2,8 +2,8 @@ fileVersion: 1
 id: "273"
 mappingDefinitions:
   SOURCE:
-    database: ANANDHIS_DEV
-    schema: SOURCE_DATA
+    database: SNOWFLAKE_DOCUMENT_AI_DB
+    schema: SNOWFLAKE_DOCUMENT_AI_SCHEMA
   TARGET:
     database: ANANDHIS_DEV
     schema: TARGET_QA

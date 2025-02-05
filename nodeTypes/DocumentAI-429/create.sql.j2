@@ -159,7 +159,7 @@ select 1 = 0
                     {% set currentSchema = currentState.storageLocations | selectattr('name', 'equalto', currenttargetlocation) | map(attribute='schema') | first %}
                   {% set currentDatabaseSchema = currentDatabase + '.' + currentSchema %}
                 
-                  ## Desired mappings
+                  {# Desired mappings #}
                   {% set desiredDatabase = desiredState.storageLocations | selectattr('name', 'equalto', desiredtargetlocation) | map(attribute='database') | first %}
                   {% set desiredSchema = desiredState.storageLocations | selectattr('name', 'equalto', desiredtargetlocation) | map(attribute='schema') | first %}
             
@@ -350,12 +350,7 @@ select 1 = 0
 
     
         {% if desiredState.config.devMode == false %}
-            {%- if desiredState.config.schedulePeriodOption == 'Predecessor' -%} 
-                {%- set fullyQualifiedRootTaskName = targetTableDatabase + '.' + targetTableSchema + '."' + desiredState.config.rootTask + '"' -%} 
-                {{ stage('Suspend Root Task', true, "sql", "alter") }}
-                ALTER TASK {{ fullyQualifiedRootTaskName }} SUSPEND
-            {%- endif -%}
-
+            
             {# Set Namespace Variables #}
             {% set nsVariables = namespace(taskWhenRun="") %}
             {% set nsVariables = namespace(poll="WHEN ") %}
@@ -369,19 +364,6 @@ select 1 = 0
    {% set stageStorageLocationName = desiredState.config.stageStorageLocationName %}
    {% set dbStage = desiredState.storageLocations | selectattr('name', 'equalto', stageStorageLocationName) | map(attribute='database') | first %}
    {% set schStage = desiredState.storageLocations | selectattr('name', 'equalto', stageStorageLocationName) | map(attribute='schema') | first %}
-
-
-   {# File name#}
-   {%if desiredState.config.fileNames | length > 0 and ',' in desiredState.config.fileNames  %}
-    {% set formatted_variable = desiredState.config.fileNames.split(',') | map('string') | join("','") %}
-    {% set final_variable = "'" + formatted_variable + "'" %}
-    {% set fileNameSQL = 'FILES = (' + final_variable +')' %}
-
-   {%- elif desiredState.config.fileNames | length > 0 %} 
-     {% set fileNameSQL = 'FILES = (' + "'"+desiredState.config.fileNames + "'"+')' %}                               
-   {%- else -%}
-    {% set fileNameSQL = "" %} 
-   {% endif %}
 
    {#Subfolder path #}
    {%set subf = ""%}
@@ -405,11 +387,11 @@ select 1 = 0
    {% set extractionQueryVersion = desiredState.config.extractionQueryVersion %}
 
 
-    {% set tableColumnIds = columns | map(attribute='id') | list %}
-    {% set tableColumnNames = columns | map(attribute='name') | list %}
+         {% set tableColumnIds = columns | map(attribute='id') | list %}
+         {% set tableColumnNames = columns | map(attribute='name') | list %}
 
 
-    {% set targetTableName = desiredState.node.name %}
+             {% set targetTableName = desiredState.node.name %}
 
             {# Task Info #}
             {% set taskName = desiredState.node.name + '_TASK'  %}
@@ -431,17 +413,7 @@ select 1 = 0
             {%- if desiredState.config.schedulePeriodOption == 'Minutes' -%} 
                 {%- set nsVariables.taskWhenRun = 'SCHEDULE = ' + "'" + desiredState.config.schedulePeriod + ' MINUTE' + "'" -%} 
             {% elif desiredState.config.schedulePeriodOption == 'CRON' %}
-                {%- set nsVariables.taskWhenRun = 'SCHEDULE = ' + "'" + 'USING CRON ' + desiredState.config.scheduleCRON + "'" %}
-            {%- else -%}
-                {%- set nsVariables.taskWhenRun = 'AFTER ' -%}
-                {%- set predecessorTasks = (desiredState.config.predTask).split(",") -%}
-
-                {%- for p in predecessorTasks -%}
-                    {%- set nsVariables.taskWhenRun = nsVariables.taskWhenRun + targetTableDatabase + '.' + targetTableSchema + '.' + p -%}
-                    {%- if not loop.last -%} 
-                        {%- set nsVariables.taskWhenRun = nsVariables.taskWhenRun + ',' -%}
-                    {%- endif %}
-                {% endfor %}    
+                {%- set nsVariables.taskWhenRun = 'SCHEDULE = ' + "'" + 'USING CRON ' + desiredState.config.scheduleCRON + "'" %}    
             {%- endif -%}
 
             {# When Stream has data logic #}
@@ -453,35 +425,7 @@ select 1 = 0
             {% endif -%}
 
             {% set tableColumnIds = desiredState.columns | map(attribute='id') | list %}
-            {% set tableColumnNames = desiredState.columns | map(attribute='name') | list %}
-
-            {# Merge partition by and order by #}
-            {%- if desiredState.config.loadType == 'Merge' -%} 
-                {% set tableColumnNamesUpdate = tableColumnNames | reject('in', desiredState.config.partitionBy.get('items') | map(attribute='partColName.name')) | list %}
-                
-                {% for i in desiredState.config.partitionBy.get('items') %}
-                    {%- if loop.first -%}
-                        {% set nsVariables.partition = '"' + i.partColName.name + '"' %}
-                    {% else %}
-                        {% set nsVariables.partition = nsVariables.partition + ', "' + i.partColName.name + '"' %}
-                    {%- endif -%}
-
-                    {% set tableColumnNamesUpdate = tableColumnNames | reject('in', i.partColName.name) | list %}
-
-                {% endfor %}
-
-                {% for i in desiredState.config.orderBy.get('items') %}
-                    {%- if loop.first -%}
-                        {% set nsVariables.orderBy = '"' + i.colName.name + '" ' + i.sortOrd %}
-                    {% else %}
-                        {% set nsVariables.orderBy = nsVariables.orderBy + ', "' + i.colName.name + '" ' + i.sortOrd %}
-                    {%- endif -%}
-                {% endfor %}
-                {% set nsVariables.rowNumber = 'ROW_NUMBER() OVER (PARTITION BY ' + nsVariables.partition + ' ORDER BY ' + nsVariables.orderBy + ')' %}
-
-                {%- set nsVariables.tableKey = desiredState.config.partitionBy.get('items') %}
-                {% set nsVariables.tableKey = nsVariables.tableKey | map(attribute='partColName.name') | list %}
-            {%- endif -%}
+            {% set tableColumnNames = desiredState.columns | map(attribute='name') | list %}    
 
             {{ stage('Create Task', true, "sql", "alter") }}
             CREATE OR REPLACE TASK 
@@ -490,7 +434,6 @@ select 1 = 0
                 {{ nsVariables.taskWhenRun }} 
                 {% if nsVariables.poll != 'WHEN ' %} {{ nsVariables.poll }} {% endif %}
             AS 
-        {% if desiredState.config.loadType == 'Insert' -%} 
             INSERT INTO {{ fullyQualifiedTargetTableName }}
             SELECT
            {%- for col in desiredState.sources[0].columns %}
@@ -504,55 +447,13 @@ select 1 = 0
             {%- endfor %}           
             FROM {{ fullyQualifiedStreamName }}
             {% if desiredState.config.groupByAll %}GROUP BY ALL{% endif %}
-            {% else -%}
-            MERGE INTO {{ fullyQualifiedTargetTableName }} tgt USING
-            -- Select Statement Preparing Data for Merge
-            (SELECT
-           {%- for col in desiredState.sources[0].columns %}
-        
-              {% if ( col.extractedData) == true or col.name == 'EXTRACTED_DATA'%}
-                  "{{ dbExtractionQuery }}"."{{ schExtractionQuery }}"."{{ extractionQueryName }}"!PREDICT(
-                  GET_PRESIGNED_URL(@"{{ dbStage }}"."{{ schStage }}".{{ desiredState.config.stageName }}, RELATIVE_PATH), {{ extractionQueryVersion }})AS "{{ col.name }}"
-              {% else %}
-                 {{ get_source_transform(col) }} AS "{{ col.name }}" 
-              {%endif%}
-              {%- if not loop.last -%}, {% endif %}
-            {%- endfor %}           
-            FROM {{ fullyQualifiedStreamName }}
-            {% if desiredState.config.groupByAll %}GROUP BY ALL{% endif %}
-            QUALIFY {{ nsVariables.rowNumber }} = 1) src
-            
-            -- Join Condition
-            ON {% for col in nsVariables.tableKey -%}
-                src."{{ col }}" = tgt."{{ col }}"
-            {% if not loop.last %} AND {% endif %}
-                {%- endfor -%}
-            
-            -- What to do if data is matched based on table key
-            WHEN MATCHED THEN UPDATE SET 
-                {%- for col in tableColumnNamesUpdate %}
-                        tgt."{{ col }}" = src."{{ col }}"
-                        {%- if not loop.last -%}, {%- endif %}
-                {%- endfor %}
-            -- What to do with new records based on table key
-            WHEN NOT MATCHED THEN INSERT 
-                (
-                {%- for col in desiredState.columns -%}
-                        "{{ col.name }}"
-                        {%- if not loop.last -%}, {% endif %}
-                {% endfor %}) 
-            VALUES (
-                {%- for col in desiredState.columns -%}
-                        src."{{ col.name }}"
-                        {%- if not loop.last -%}, {% endif %}
-                {% endfor %})
-            {%- endif -%}
 
-            {%- if desiredState.config.schedulePeriodOption != 'Predecessor' -%} 
+        {%- if desiredState.config.schedulePeriodOption != 'Predecessor' -%} 
                 {{ stage('Resume Task', true, "sql", "alter") }}
                 ALTER TASK {{ fullyQualifiedTaskName }} RESUME;
             {%- endif -%}
-
+    
+            
         {% else %}
             {{ stage('Development Mode - No Task.') }}
             select 1 = 0
@@ -574,15 +475,9 @@ select 1 = 0
         {% set taskName = currentState.node.name + '_TASK'  %}
         {%- set fullyQualifiedTaskName = targetTableDatabase + '.' + targetTableSchema + '."' + taskName + '"' -%} 
 
-        {%- if currentState.config.schedulePeriodOption == 'Predecessor' -%} 
-        {{ stage('Suspend Root Task', true, "sql", "drop") }}
-            ALTER TASK IF EXISTS {{ fullyQualifiedRootTaskName }} SUSPEND
         {{ stage('Drop Current Task', true, "sql", "drop") }}
             DROP TASK IF EXISTS {{ fullyQualifiedTaskName }} 
-        {%- else -%}
-        {{ stage('Drop Current Task', true, "sql", "drop") }}
-            DROP TASK IF EXISTS {{ fullyQualifiedTaskName }} 
-        {%- endif -%}
+
     {%- endif -%}
 
 {%- else -%}

@@ -1,24 +1,41 @@
 fileVersion: 1
-id: 7895b2d1-5e14-4942-94e8-8955ddb81b67
-name: ORDER_FORMS_EXTRACT
+id: 5ab5e61a-c5d1-4a25-8570-93e9fe76efb9
+name: DOC_TESLA_EX
 operation:
   config:
-    extractionQueryName: SALES_ORDER_FORMS
-    extractionQueryStorageLocationName: DAI
-    extractionQueryVersion: "4"
-    fileNames: ""
-    postSQL: null
-    preSQL: null
-    stageName: DEMO_DOCUMENTS
-    stageStorageLocationName: DAI
-    subfolder: ""
+    devMode: false
+    extractionQueryName: SF_QUARTER_REPORT
+    extractionQueryStorageLocationName: SOURCE
+    extractionQueryVersion: "1"
+    flagSrcStream: true
+    loadType: Insert
+    orderBy:
+      items:
+        - {}
+    partitionBy:
+      items:
+        - {}
+    postSQL: ""
+    preSQL: ""
+    predTask: DATA_TRANSFORMATION_ROOT_TASK
+    redeploymentBehavior: Create At Existing Stream
+    rootTask: DATA_TRANSFORMATION_ROOT_TASK
+    scheduleCRON: 5 0-23 * * * America/Los_Angeles
+    schedulePeriod: "60"
+    schedulePeriodOption: Minutes
+    schedulingMode: Warehouse Task
+    serverlessSize: MEDIUM
+    sourceType: Directory Table
+    stageName: DEMO_DOC_AI_STAGE
+    stageStorageLocationName: SOURCE
     truncateBefore: true
+    whName: SNOWFLAKE_DOCUMENT_AI_WH
   database: ""
   deployEnabled: true
   description: ""
   isMultisource: false
-  locationName: DAI
-  materializationType: table
+  locationName: TARGET
+  materializationType: transient table
   metadata:
     appliedNodeTests: []
     columns:
@@ -27,10 +44,10 @@ operation:
           values: []
         appliedColumnTests: {}
         columnReference:
-          columnCounter: 81546461-69b0-41b2-9fc8-b9f75c784f7a
-          stepCounter: 7895b2d1-5e14-4942-94e8-8955ddb81b67
+          columnCounter: aef7b38e-889b-4423-9c87-33db839ac206
+          stepCounter: 5ab5e61a-c5d1-4a25-8570-93e9fe76efb9
         config: {}
-        dataType: string
+        dataType: STRING
         defaultValue: ""
         description: ""
         fileName: true
@@ -38,16 +55,16 @@ operation:
         nullable: true
         sourceColumnReferences:
           - columnReferences: []
-            transform: RELATIVE_PATH
+            transform: REGEXP_SUBSTR(RELATIVE_PATH, '[^/]+$')
       - acceptedValues:
           strictMatch: true
           values: []
         appliedColumnTests: {}
         columnReference:
-          columnCounter: f1bc717b-37a4-47b1-8882-664fda7e5d9c
-          stepCounter: 7895b2d1-5e14-4942-94e8-8955ddb81b67
+          columnCounter: 620c5384-8086-45ad-84b1-74d2dbccad24
+          stepCounter: 5ab5e61a-c5d1-4a25-8570-93e9fe76efb9
         config: {}
-        dataType: string
+        dataType: STRING
         defaultValue: ""
         description: ""
         name: FILE_URL
@@ -61,8 +78,8 @@ operation:
           values: []
         appliedColumnTests: {}
         columnReference:
-          columnCounter: 8dc5e622-70bf-4f02-ac2b-2e734f5dd1db
-          stepCounter: 7895b2d1-5e14-4942-94e8-8955ddb81b67
+          columnCounter: 5e0598c4-f264-4e58-a0e5-b45cac928479
+          stepCounter: 5ab5e61a-c5d1-4a25-8570-93e9fe76efb9
         config: {}
         dataType: TIMESTAMP_NTZ
         defaultValue: ""
@@ -78,8 +95,8 @@ operation:
           values: []
         appliedColumnTests: {}
         columnReference:
-          columnCounter: cb413e3c-e312-4abc-ae47-42c4df41e27b
-          stepCounter: 7895b2d1-5e14-4942-94e8-8955ddb81b67
+          columnCounter: 486f00f7-03bf-4e49-bed3-ccfc7b3c2078
+          stepCounter: 5ab5e61a-c5d1-4a25-8570-93e9fe76efb9
         config: {}
         dataType: NUMBER
         defaultValue: ""
@@ -95,8 +112,8 @@ operation:
           values: []
         appliedColumnTests: {}
         columnReference:
-          columnCounter: 306dc337-fe49-44d5-abe8-ef36b102f7e0
-          stepCounter: 7895b2d1-5e14-4942-94e8-8955ddb81b67
+          columnCounter: 13b8e7f1-1807-42a2-bf15-3bfa5116980a
+          stepCounter: 5ab5e61a-c5d1-4a25-8570-93e9fe76efb9
         config: {}
         dataType: VARIANT
         defaultValue: ""
@@ -112,18 +129,17 @@ operation:
           values: []
         appliedColumnTests: {}
         columnReference:
-          columnCounter: b8ccbdab-8caf-4d5b-aff3-62cf0903fb7f
-          stepCounter: 7895b2d1-5e14-4942-94e8-8955ddb81b67
+          columnCounter: 168a6eaf-bfa7-4667-a372-a046b530382c
+          stepCounter: 5ab5e61a-c5d1-4a25-8570-93e9fe76efb9
         config: {}
         dataType: TIMESTAMP_NTZ
         defaultValue: ""
         description: ""
+        fileLastModified: true
         name: DATA_EXTRACT_TIMESTAMP
         nullable: true
         sourceColumnReferences:
-          - columnReferences:
-              - columnCounter: "0"
-                stepCounter: "0"
+          - columnReferences: []
             transform: CURRENT_TIMESTAMP::TIMESTAMP_NTZ
     cteString: ""
     enabledColumnTestIDs: []
@@ -134,12 +150,12 @@ operation:
         dependencies: []
         join:
           joinCondition: ""
-        name: ORDER_FORMS_EXTRACT
+        name: DOC_TESLA_EX
         noLinkRefs: []
-  name: ORDER_FORMS_EXTRACT
+  name: DOC_TESLA_EX
   overrideSQL: false
   schema: ""
-  sqlType: "423"
+  sqlType: "429"
   type: sql
   version: 1
 type: Node

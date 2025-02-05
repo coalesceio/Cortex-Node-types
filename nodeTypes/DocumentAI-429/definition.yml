@@ -108,51 +108,6 @@ metadata:
         syntax: sql
         isRequired: false
         enableIf: "{% if node.materializationType == 'view' %} false {% else %} true {% endif %}"
-    - groupName: Target Loading Options
-      items:
-      - displayName: Load Type
-        attributeName: loadType
-        type: dropdownSelector
-        default: Insert
-        options:
-          - Insert
-          - Merge
-        isRequired: true
-
-      - type: tabular 
-        displayName: 'Table Key(s)'
-        attributeName: partitionBy
-        columns:
-      
-        -  type: columnDropdownSelector
-           displayName: Column Name
-           attributeName: partColName
-           isRequired: false
-            
-        isRequired: false
-        enableIf: "{% if config.loadType == 'Merge' %} true {% else %} false {% endif %}"
-
-      - type: tabular
-        displayName: 'Record Date / Timestamp'
-        attributeName: orderBy
-        columns:
-      
-        -  type: columnDropdownSelector
-           displayName: Column Name
-           attributeName: colName
-           isRequired: false
-        
-        -  type: dropdownSelector
-           displayName: Sort Order
-           attributeName: sortOrd
-           default: desc
-           options:
-           - desc
-           - asc
-           isRequired: false
-        
-        isRequired: false
-        enableIf: "{% if config.loadType == 'Merge' %} true {% else %} false {% endif %}"
     - groupName: Scheduling Options
 
     # Schedule mode-Specifies whether a warehouse or serverless compute is used to run the task #
@@ -206,7 +161,6 @@ metadata:
         options:
           - Minutes
           - CRON
-          - Predecessor
 
       - displayName: Enter task schedule using minutes
         attributeName: schedulePeriod
@@ -222,19 +176,6 @@ metadata:
         isRequired: false
         enableIf: "{% if config.schedulePeriodOption == 'CRON' %} true {% else %} false {% endif %}"
 
-      - displayName: Enter predecessor task(s) separated by a comma
-        attributeName: predTask
-        type: textBox
-        default: 'DATA_TRANSFORMATION_ROOT_TASK'
-        isRequired: false
-        enableIf: "{% if config.schedulePeriodOption == 'Predecessor' %} true {% else %} false {% endif %}"
-
-      - displayName: Enter root task name
-        attributeName: rootTask
-        type: textBox
-        default: 'DATA_TRANSFORMATION_ROOT_TASK'
-        isRequired: false
-        enableIf: "{% if config.schedulePeriodOption == 'Predecessor' %} true {% else %} false {% endif %}"
        
     systemColumns:
     - displayName: FILENAME

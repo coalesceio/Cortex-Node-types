@@ -73,65 +73,10 @@ does not permit copying or modification for any other purpose.
     {% set tableColumnIds = columns | map(attribute='id') | list %}
     {% set tableColumnNames = columns | map(attribute='name') | list %}
 
-    {# Merge partition by and order by #}
-    {%- if config.loadType == 'Merge' -%} 
-        {% set tableColumnNamesUpdate = tableColumnNames | reject('in', config.partitionBy.get('items') | map(attribute='partColName.name')) | list %}
+    
+    {{ stage('Insert Data') }}
+
         
-        {% for i in config.partitionBy.get('items') %}
-            {%- if loop.first -%}
-                {% set nsVariables.partition = '"' + i.partColName.name + '"' %}
-            {% else %}
-                {% set nsVariables.partition = nsVariables.partition + ', "' + i.partColName.name + '"' %}
-            {%- endif -%}
-
-            {% set tableColumnNamesUpdate = tableColumnNames | reject('in', i.partColName.name) | list %}
-
-        {% endfor %}
-
-        {% for i in config.orderBy.get('items') %}
-            {%- if loop.first -%}
-                {% set nsVariables.orderBy = '"' + i.colName.name + '" ' + i.sortOrd %}
-            {% else %}
-                {% set nsVariables.orderBy = nsVariables.orderBy + ', "' + i.colName.name + '" ' + i.sortOrd %}
-            {%- endif -%}
-        {% endfor %}
-        {% set nsVariables.rowNumber = 'ROW_NUMBER() OVER (PARTITION BY ' + nsVariables.partition + ' ORDER BY ' + nsVariables.orderBy + ')' %}
-
-        {%- set nsVariables.tableKey = config.partitionBy.get('items') %}
-        {% set nsVariables.tableKey = nsVariables.tableKey | map(attribute='partColName.name') | list %}
-    {%- endif -%}
-
-    {# Merge partition by and order by #}
-    {%- if config.loadType == 'Merge' -%} 
-        {% set tableColumnNamesUpdate = tableColumnNames | reject('in', config.partitionBy.get('items') | map(attribute='partColName.name')) | list %}
-        
-        {% for i in config.partitionBy.get('items') %}
-            {%- if loop.first -%}
-                {% set nsVariables.partition = '"' + i.partColName.name + '"' %}
-            {% else %}
-                {% set nsVariables.partition = nsVariables.partition + ', "' + i.partColName.name + '"' %}
-            {%- endif -%}
-
-            {% set tableColumnNamesUpdate = tableColumnNames | reject('in', i.partColName.name) | list %}
-
-        {% endfor %}
-
-        {% for i in config.orderBy.get('items') %}
-            {%- if loop.first -%}
-                {% set nsVariables.orderBy = '"' + i.colName.name + '" ' + i.sortOrd %}
-            {% else %}
-                {% set nsVariables.orderBy = nsVariables.orderBy + ', "' + i.colName.name + '" ' + i.sortOrd %}
-            {%- endif -%}
-        {% endfor %}
-        {% set nsVariables.rowNumber = 'ROW_NUMBER() OVER (PARTITION BY ' + nsVariables.partition + ' ORDER BY ' + nsVariables.orderBy + ')' %}
-
-        {%- set nsVariables.tableKey = config.partitionBy.get('items') %}
-        {% set nsVariables.tableKey = nsVariables.tableKey | map(attribute='partColName.name') | list %}
-    {%- endif -%}
-
-    {{ stage('Insert or Merge Data') }}
-
-        {% if config.loadType == 'Insert' -%} 
             INSERT INTO {{ fullyQualifiedTargetTableName }}
 			SELECT
            {%- for col in sources[0].columns %}
@@ -145,47 +90,5 @@ does not permit copying or modification for any other purpose.
           {%- endfor %}
           FROM {{ fullyQualifiedStreamName }}
             {% if config.groupByAll %}GROUP BY ALL{% endif %}
-            {% else -%}
-            MERGE INTO {{ fullyQualifiedTargetTableName }} tgt USING
-            -- Select Statement Preparing Data for Merge
-           (SELECT
-             {%- for col in sources[0].columns %}
-               {% if ( col.extractedData) %}
-                 "{{ dbExtractionQuery }}"."{{ schExtractionQuery }}"."{{ extractionQueryName }}"!PREDICT(
-                 GET_PRESIGNED_URL(@"{{ dbStage }}"."{{ schStage }}".{{ config.stageName }}, RELATIVE_PATH), {{ extractionQueryVersion }})AS "{{col.name}}"
-               {% else %}
-                 {{ get_source_transform(col) }} AS "{{ col.name }}" 
-               {%endif%}
-             {%- if not loop.last -%}, {% endif %}
-            {%- endfor %}
-           FROM {{ fullyQualifiedStreamName }}
-            {% if config.groupByAll %}GROUP BY ALL{% endif %}
-            QUALIFY {{ nsVariables.rowNumber }} = 1) src
-             
-            -- Join Condition
-            ON {% for col in nsVariables.tableKey -%}
-                src."{{ col }}" = tgt."{{ col }}"
-            {% if not loop.last %} AND {% endif %}
-                {%- endfor -%}
-           
-            -- What to do if data is matched based on table key
-            WHEN MATCHED THEN UPDATE SET 
-                {%- for col in tableColumnNamesUpdate %}
-                        tgt."{{ col }}" = src."{{ col }}"
-                        {%- if not loop.last -%}, {%- endif %}
-                {%- endfor %}
-            -- What to do with new records based on table key
-            WHEN NOT MATCHED THEN INSERT 
-                (
-                {%- for col in columns -%}
-                        "{{ col.name }}"
-                        {%- if not loop.last -%}, {% endif %}
-                {% endfor %}) 
-            VALUES (
-                {%- for col in columns -%}
-                        src."{{ col.name }}"
-                        {%- if not loop.last -%}, {% endif %}
-                {% endfor %})
-            {%- endif -%}
-
-        {% endif -%}
+            
+{% endif -%}

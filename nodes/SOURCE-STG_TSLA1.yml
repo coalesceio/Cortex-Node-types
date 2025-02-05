@@ -262,11 +262,11 @@ operation:
         customSQL:
           customSQL: ""
         dependencies:
-          - locationName: SOURCE
+          - locationName: TARGET
             nodeName: DOC_TSLA1
         join:
           joinCondition: |-
-            FROM {{ ref('SOURCE', 'DOC_TSLA1') }} "DOC_TSLA1", 
+            FROM {{ ref('TARGET', 'DOC_TSLA1') }} "DOC_TSLA1", 
             lateral flatten(input => "EXTRACTED_DATA":"company_name", OUTER => TRUE) "EXTRACTED_DATA_company_name", 
             lateral flatten(input => "EXTRACTED_DATA":"retention_rate", OUTER => TRUE) "EXTRACTED_DATA_retention_rate", 
             lateral flatten(input => "EXTRACTED_DATA":"total_customers", OUTER => TRUE) "EXTRACTED_DATA_total_customers", 

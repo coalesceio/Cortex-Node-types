@@ -1,30 +1,41 @@
 fileVersion: 1
-id: 1b6e9f8a-12b0-43e8-8a89-a544f26f0a7c
-name: DOC_TSLA1
+id: c165e04f-118a-44ed-b8e6-40269e6c47ad
+name: DOC_TESLA
 operation:
   config:
-    devMode: true
+    devMode: false
     extractionQueryName: SF_QUARTER_REPORT
     extractionQueryStorageLocationName: SOURCE
     extractionQueryVersion: "1"
-    flagSrcStream: false
+    flagSrcStream: true
     loadType: Insert
+    orderBy:
+      items:
+        - {}
+    partitionBy:
+      items:
+        - {}
     postSQL: ""
     preSQL: ""
+    predTask: DATA_TRANSFORMATION_ROOT_TASK
     redeploymentBehavior: Create At Existing Stream
-    schedulePeriodOption: null
-    schedulingMode: null
+    rootTask: DATA_TRANSFORMATION_ROOT_TASK
+    scheduleCRON: 5 0-23 * * * America/Los_Angeles
+    schedulePeriod: "60"
+    schedulePeriodOption: Minutes
+    schedulingMode: Serverless Task
+    serverlessSize: MEDIUM
     sourceType: Directory Table
     stageName: DEMO_DOC_AI_STAGE
     stageStorageLocationName: SOURCE
-    storageLocation: SOURCE
-    truncateBefore: false
+    truncateBefore: true
+    whName: <WAREHOUSE_NAME>
   database: ""
   deployEnabled: true
   description: ""
   isMultisource: false
-  locationName: SOURCE
-  materializationType: table
+  locationName: TARGET
+  materializationType: transient table
   metadata:
     appliedNodeTests: []
     columns:
@@ -33,8 +44,8 @@ operation:
           values: []
         appliedColumnTests: {}
         columnReference:
-          columnCounter: b530e15a-403b-4c16-b7a2-2b40d463d6f3
-          stepCounter: 1b6e9f8a-12b0-43e8-8a89-a544f26f0a7c
+          columnCounter: 71fa3f17-1d60-465f-b2b7-83bd8fabacd1
+          stepCounter: c165e04f-118a-44ed-b8e6-40269e6c47ad
         config: {}
         dataType: STRING
         defaultValue: ""
@@ -50,8 +61,8 @@ operation:
           values: []
         appliedColumnTests: {}
         columnReference:
-          columnCounter: 71c357aa-e9ec-49d5-a617-973fdfd5481c
-          stepCounter: 1b6e9f8a-12b0-43e8-8a89-a544f26f0a7c
+          columnCounter: f46e361b-4cf0-4088-b0eb-d75421e28c38
+          stepCounter: c165e04f-118a-44ed-b8e6-40269e6c47ad
         config: {}
         dataType: STRING
         defaultValue: ""
@@ -67,8 +78,8 @@ operation:
           values: []
         appliedColumnTests: {}
         columnReference:
-          columnCounter: faf05022-06e6-478b-83b2-6236043f4060
-          stepCounter: 1b6e9f8a-12b0-43e8-8a89-a544f26f0a7c
+          columnCounter: 07b78a33-ef46-40d4-a2d0-abde500dc9d4
+          stepCounter: c165e04f-118a-44ed-b8e6-40269e6c47ad
         config: {}
         dataType: TIMESTAMP_NTZ
         defaultValue: ""
@@ -84,8 +95,8 @@ operation:
           values: []
         appliedColumnTests: {}
         columnReference:
-          columnCounter: 508fe6ec-4fdb-4a6a-8080-b9458ed04472
-          stepCounter: 1b6e9f8a-12b0-43e8-8a89-a544f26f0a7c
+          columnCounter: d8c7d1d8-0088-4623-adea-5fc535d502eb
+          stepCounter: c165e04f-118a-44ed-b8e6-40269e6c47ad
         config: {}
         dataType: NUMBER
         defaultValue: ""
@@ -101,8 +112,8 @@ operation:
           values: []
         appliedColumnTests: {}
         columnReference:
-          columnCounter: 833385e5-eab5-4402-9492-7ef2a5c5eea6
-          stepCounter: 1b6e9f8a-12b0-43e8-8a89-a544f26f0a7c
+          columnCounter: 46213f7c-6f72-4005-92b2-27e62411614e
+          stepCounter: c165e04f-118a-44ed-b8e6-40269e6c47ad
         config: {}
         dataType: VARIANT
         defaultValue: ""
@@ -118,8 +129,8 @@ operation:
           values: []
         appliedColumnTests: {}
         columnReference:
-          columnCounter: 5fa26edf-d841-4755-9a7b-af2d1ad7b87b
-          stepCounter: 1b6e9f8a-12b0-43e8-8a89-a544f26f0a7c
+          columnCounter: 41699c76-df42-4cde-9258-592c27106c0c
+          stepCounter: c165e04f-118a-44ed-b8e6-40269e6c47ad
         config: {}
         dataType: TIMESTAMP_NTZ
         defaultValue: ""
@@ -139,9 +150,9 @@ operation:
         dependencies: []
         join:
           joinCondition: ""
-        name: DOC_TSLA1
+        name: DOC_TESLA
         noLinkRefs: []
-  name: DOC_TSLA1
+  name: DOC_TESLA
   overrideSQL: false
   schema: ""
   sqlType: "429"

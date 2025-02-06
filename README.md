@@ -486,7 +486,7 @@ The Document AI node has the following configuration groups:
 | **Option** | **Description** |
 |------------|----------------|
 | **Coalesce Storage Location of Extraction Query** | The Storage location Name in Coalesce |
-| **Extraction Query Name** | The identifier or name of the query that specifies of data extraction<br/>(Located in AI & ML- Document AI in Snowflake) |
+| **Extraction Query Name** | The identifier or name of the query that specifies information for data extraction<br/>(Located in AI & ML- Document AI in Snowflake) |
 | **Extraction Query Version** | The specific iteration of the query, helping to track updates or changes<br/>(Build Version in AI & ML- Document AI in Snowflake)|
 | **Pre-SQL** | SQL to execute before data insert operation |
 | **Post-SQL** | SQL to execute after data insert operation |

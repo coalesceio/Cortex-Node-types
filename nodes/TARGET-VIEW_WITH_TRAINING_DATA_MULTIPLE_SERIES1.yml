@@ -135,7 +135,7 @@ operation:
   name: VIEW_WITH_TRAINING_DATA_MULTIPLE_SERIES1
   overrideSQL: false
   schema: ""
-  sqlType: BNT:::188
+  sqlType: Stage
   type: sql
   version: 1
 type: Node

@@ -79,7 +79,7 @@ operation:
   name: V_SALES_DATA
   overrideSQL: false
   schema: ""
-  sqlType: BNT:::188
+  sqlType: Stage
   type: sql
   version: 1
 type: Node

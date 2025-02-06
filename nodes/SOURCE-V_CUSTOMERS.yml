@@ -4,7 +4,11 @@ name: V_CUSTOMERS
 operation:
   config:
     insertStrategy: UNION
+    postSQL: null
+    preSQL: null
     selectDistinct: false
+    testsEnabled: false
+    truncateBefore: false
   database: ""
   deployEnabled: true
   description: ""
@@ -148,7 +152,7 @@ operation:
   name: V_CUSTOMERS
   overrideSQL: false
   schema: ""
-  sqlType: BNT:::188
+  sqlType: Stage
   type: sql
   version: 1
 type: Node

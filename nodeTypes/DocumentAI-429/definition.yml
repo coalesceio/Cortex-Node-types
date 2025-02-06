@@ -59,7 +59,7 @@ metadata:
     - groupName: Source Data
       items:
 
-      - displayName: Storage Location
+      - displayName: Coalesce Storage Location of Stage
         attributeName: stageStorageLocationName
         type: textBox
         default: ''

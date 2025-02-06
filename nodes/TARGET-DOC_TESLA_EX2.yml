@@ -28,7 +28,7 @@ operation:
     sourceType: Directory Table
     stageName: DEMO_DOC_AI_STAGE
     stageStorageLocationName: DOCUMENT_SOURCE
-    subfolder: null
+    subfolder: ""
     truncateBefore: true
     whName: SNOWFLAKE_DOCUMENT_AI_WH
   database: ""
@@ -150,7 +150,9 @@ operation:
           customSQL: ""
         dependencies: []
         join:
-          joinCondition: ""
+          joinCondition: |-
+            where file_url like '%s%'
+            order by file_url
         name: DOC_TESLA_EX2
         noLinkRefs: []
   name: DOC_TESLA_EX2

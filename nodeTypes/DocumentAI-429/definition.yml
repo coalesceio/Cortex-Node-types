@@ -102,19 +102,6 @@ metadata:
         enableIf: "true"
         isRequired: true
 
-      - displayName: Pre-SQL
-        attributeName: preSQL
-        type: textBox
-        syntax: sql
-        isRequired: false
-        enableIf: "{% if node.materializationType == 'view' %} false {% else %} true {% endif %}"
-
-      - displayName: Post-SQL
-        attributeName: postSQL
-        type: textBox
-        syntax: sql
-        isRequired: false
-        enableIf: "{% if node.materializationType == 'view' %} false {% else %} true {% endif %}"
     - groupName: Scheduling Options
 
     # Schedule mode-Specifies whether a warehouse or serverless compute is used to run the task #

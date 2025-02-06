@@ -433,7 +433,7 @@ This is executed in two stages:
 
 ## Document AI
 
-The Coalesce Document AI UDN is a node that allows you to develop and deploy a stream,table, create task and Resume task. Also, provides option to create a target table to insert data from source with a task on top of it.
+The Coalesce Document AI UDN is a node that allows you to develop and deploy a processing pipeline using the already prepared Document AI model build, streams, and tasks. The pipeline will extract information from new inspection documents stored in an internal stage.
 
 Document AI is an advanced AI model to extract data from documents. It can read both text and images, like logos or signatures, and is perfect for processing documents like invoices or financial statements automatically.
 More information about Document AI can be found in the official [Snowflake's Introduction to Document AI](https://docs.snowflake.com/en/user-guide/snowflake-cortex/document-ai/overview).

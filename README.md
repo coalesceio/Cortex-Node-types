@@ -479,14 +479,14 @@ The Document AI node has the following configuration groups:
 
 | **Option** | **Description** |
 |------------|----------------|
-| **Storage Location** | The Storage location Name in Coalesce |
+| **Colaesce Storage Location of stage** | The Storage location Name in Coalesce where the stage is located |
 | **Stage Name** | The Stage name created in Snowflake |
 
 #### Document AI Extraction Query
 
 | **Option** | **Description** |
 |------------|----------------|
-| **Coalesce Storage Location of Extraction Query** | The Storage location Name in Coalesce |
+| **Coalesce Storage Location of Extraction Query** | The Storage location Name in Coalesce where the extraction query of DOcumentAI model is located |
 | **Extraction Query Name** | The identifier or name of the query that specifies information for data extraction<br/>(Located in AI & ML- Document AI in Snowflake) |
 | **Extraction Query Version** | The specific iteration of the query, helping to track updates or changes<br/>(Build Version in AI & ML- Document AI in Snowflake)|
 

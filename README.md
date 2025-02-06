@@ -439,6 +439,11 @@ The Coalesce Document AI UDN is a node that allows you to develop and deploy a p
 Document AI is an advanced AI model to extract data from documents. It can read both text and images, like logos or signatures, and is perfect for processing documents like invoices or financial statements automatically.
 More information about Document AI can be found in the official [Snowflake's Introduction to Document AI](https://docs.snowflake.com/en/user-guide/snowflake-cortex/document-ai/overview).
 
+### Prerequisite for DocumentAI node type
+
+* Set up the required objects(database,schema) and privileges to create table,task,stream
+* Prepare and publish a DocumentAI model in Snowflake using DocumentAI interface
+
 ### Document AI Node Configuration
 
 The Document AI node has the following configuration groups:
@@ -502,6 +507,18 @@ The Document AI node has the following configuration groups:
 | **Enter task schedule using minutes**| Visible when Task Schedule is set to Minutes.<br/> Enter a whole number from 1 to 11520 which represents the number of minutes between task runs |
 | **Enter task schedule using CRON**| For more reference visit [Cron expressions](https://docs.coalesce.io/docs/reference/cron-reference/) |
 
+### DocumentAI - System Columns
+
+The set of columns which has source data and file metadata information.
+
+| **System Column**        | **Description** |
+|--------------------------|------------------|
+|**FILENAME**               | Name of the staged documents extracted|
+| **FILE_URL**              | The location url of the document|
+| **FILE_LAST_MODIFIED**    | The last modified timestamp of the staged documents|
+| **SIZE**                  | The size of the document extracted|
+| **EXTRACTED_DATA**        | The data extracted from documents|
+| **DATA_EXTRACT_TIMESTAMP**| The load timestamp of document extraction|
 
 ### Document AI Deployment
 

@@ -6,6 +6,7 @@
 * [Top Insights](#top-insights)
 * [Classification](#classification)
 * [Document AI](#document-ai)
+* [Code](#code)
 ---
 
 ## ML Forecast

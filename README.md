@@ -450,8 +450,8 @@ More information about Document AI can be found in the official [Snowflake's Int
 * Provide the information of the Document AI model build under config section of the node added for Document AI node type.Also provide task related information as well
 * The node creates a pipeline to process documents
 * The data is available in the target table only after uploading new documents to the internal stage specified in config.
-* If the node is created with 'Development mode-OFF',no task is created and data can instantly loaded into target from documents using run option once the files are uploaded.
-* If the node is created with 'Development mode-ON',task is created to process the uploaded files 
+* If the node is created with 'Development mode-ON',no task is created and data can instantly loaded into target from documents using run option once the files are uploaded.
+* If the node is created with 'Development mode-OFF',task is created to process the uploaded files 
 
 ### Document AI Node Configuration
 

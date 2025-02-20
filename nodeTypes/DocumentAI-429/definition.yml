@@ -78,10 +78,10 @@ metadata:
         isRequired: false
 
         
-    - groupName: DocumentAI model
+    - groupName: DocumentAI model build
       items:
 
-      - displayName: Coalesce Storage Location of DocumentAI model
+      - displayName: Coalesce Storage Location of DocumentAI model 
         attributeName: extractionQueryStorageLocationName
         type: textBox
         default: 'Enter Storage Location name'
@@ -95,10 +95,10 @@ metadata:
         enableIf: "true"
         isRequired: true
 
-      - displayName: DocumentAI model Version
+      - displayName: DocumentAI model build Version
         attributeName: extractionQueryVersion
         type: textBox
-        default: 'Enter  DocumentAI model version'
+        default: 'Enter  DocumentAI model build version'
         enableIf: "true"
         isRequired: true
 

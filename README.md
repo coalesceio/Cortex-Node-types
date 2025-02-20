@@ -487,13 +487,13 @@ The Document AI node has the following configuration groups:
 | **Colaesce Storage Location of stage** | The Storage location Name in Coalesce where the stage is located |
 | **Stage Name** | The Stage name created in Snowflake |
 
-#### Document AI Extraction Query
+#### Document AI Model build
 
 | **Option** | **Description** |
 |------------|----------------|
-| **Coalesce Storage Location of Extraction Query** | The Storage location Name in Coalesce where the extraction query of DOcumentAI model is located |
-| **Extraction Query Name** | The identifier or name of the query that specifies information for data extraction<br/>(Located in AI & ML- Document AI in Snowflake) |
-| **Extraction Query Version** | The specific iteration of the query, helping to track updates or changes<br/>(Build Version in AI & ML- Document AI in Snowflake)|
+| **Coalesce Storage Location of DocumentAI model** | The Storage location Name in Coalesce where the extraction query of DOcumentAI model is located |
+| **DocumentAI model Name** | The identifier or name of the a [model build](https://docs.snowflake.com/en/user-guide/snowflake-cortex/document-ai/prepare-model-build) for extracting information <br/>(Located in AI & ML- Document AI in Snowflake) |
+| **DocumentAI model build Version** | The specific [version of the DocumentAI model](https://docs.snowflake.com/en/user-guide/snowflake-cortex/document-ai/overview#document-ai-model-version-history), helping to track updates or changes<br/>(Build Version in AI & ML- Document AI in Snowflake)|
 
 #### Document AI Scheduling Options
 

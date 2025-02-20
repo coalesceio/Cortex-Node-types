@@ -2,8 +2,8 @@ fileVersion: 1
 id: "273"
 mappingDefinitions:
   DOCUMENT_SOURCE:
-    database: ""
-    schema: ""
+    database: SNOWFLAKE_DOCUMENT_AI_DB
+    schema: SNOWFLAKE_DOCUMENT_AI_SCHEMA
   SOURCE:
     database: ANANDHIS_DEV
     schema: SOURCE_DATA

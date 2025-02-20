@@ -25,7 +25,7 @@ operation:
   deployEnabled: true
   description: ""
   isMultisource: false
-  locationName: DAI
+  locationName: DOCUMENT_SOURCE
   materializationType: table
   metadata:
     appliedNodeTests: []

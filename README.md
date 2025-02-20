@@ -442,7 +442,7 @@ More information about Document AI can be found in the official [Snowflake's Int
 ### Prerequisite for DocumentAI node type
 
 * Set up the required objects(database,schema) and privileges to create table,task,stream
-* Prepare and publish a DocumentAI model in Snowflake using DocumentAI interface
+* Prepare and publish a [DocumentAI model](https://docs.snowflake.com/en/user-guide/snowflake-cortex/document-ai/tutorials/create-processing-pipelines#prepare-a-document-ai-model-build) in Snowflake using DocumentAI interface
 
 ### Usage of DocumentAI node type
 * Set up the required objects and privileges

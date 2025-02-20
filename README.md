@@ -444,6 +444,15 @@ More information about Document AI can be found in the official [Snowflake's Int
 * Set up the required objects(database,schema) and privileges to create table,task,stream
 * Prepare and publish a DocumentAI model in Snowflake using DocumentAI interface
 
+### Usage of DocumentAI node type
+* Set up the required objects and privileges
+* Prepare and publish a Document AI model build in Snowflake using DocumentAI interface
+* Provide the information of the Document AI model build under config section of the node added for Document AI node type.Also provide task related information as well
+* The node creates a pipeline to process documents
+* The data is available in the target table only after uploading new documents to the internal stage specified in config.
+* If the node is created with 'Development mode-OFF',no task is created and data can instantly loaded into target from documents using run option once the files are uploaded.
+* If the node is created with 'Development mode-ON',task is created to process the uploaded files 
+
 ### Document AI Node Configuration
 
 The Document AI node has the following configuration groups:
@@ -452,7 +461,7 @@ The Document AI node has the following configuration groups:
 * [General Options](#Document-AI-general-options)
 * [Stream Options](#Document-AI-stream-options)
 * [Source Data](#Document-AI-Source-Data)
-* [Extraction Query](#Document-AI-Extraction-Query)
+* [Document AI Model build](#Document-AI-Model-build)
 * [Scheduling Options](#Document-AI-scheduling-options)
 
 

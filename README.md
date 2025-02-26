@@ -606,6 +606,10 @@ When node is deleted, the following stages execute:
 | **Drop Table** | Drop the table |
 | **Drop Current Task** | Drop the task |
 
+### Redeployment with no changes 
+
+If the nodes are redeployed with no changes compared to previous deployment,then no stages are executed
+
 ---
 
 ## Code

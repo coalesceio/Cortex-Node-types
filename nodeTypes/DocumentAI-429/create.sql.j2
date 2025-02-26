@@ -71,17 +71,9 @@ does not permit copying or modification for any other purpose.
     {{ stage('Drop Stream', true, "sql", "drop") }}
     DROP STREAM IF EXISTS {{ fullyQualifiedStreamName }}
 
-{%- else -%}
-
-    {{ stage('Unknown state.  Nothing to do.') }}
-    select 1 = 0
-
 {% endif %}
 
 {% if desiredState == currentState %}
-
-{{ stage('Nothing to do.') }}
-select 1 = 0
 
 {# Create Stream first #}
 {% elif desiredState %}
@@ -220,7 +212,7 @@ select 1 = 0
                         {%- if not addDesCol.nullable %} NOT NULL
                             {%- if addDesCol.defaultValue | length > 0 %} DEFAULT {{ addDesCol.defaultValue }}{% endif %}
                         {% endif %}
-                        {%- if addDesCol.description | length > 0 %} COMMENT '{{ addDescol.description | escape }}'{% endif %}
+                        {%- if addDesCol.description | length > 0 %} COMMENT '{{ addDesCol.description | escape }}'{% endif %}
                 {% endif %}
             {% endfor %}
 
@@ -333,20 +325,10 @@ select 1 = 0
 
     {% endif %}
 
-{%- else -%}
-
-{{ stage('Nothing to do.') }}
-select 1 = 0
-
 {% endif %}
 
 {# Create Task Third #}
-{% if desiredState == currentState %}
-
-    {{ stage('No task edits.') }}
-    select 1 = 0
-
-{% elif desiredState %}
+{% if desiredState %}
 
     
         {% if desiredState.config.devMode == false %}
@@ -488,11 +470,6 @@ select 1 = 0
             DROP TASK IF EXISTS {{ fullyQualifiedTaskName }} 
 
     {%- endif -%}
-
-{%- else -%}
-
-    {{ stage('Nothing to do.') }}
-    select 1 = 0
 
 {% endif %}
 

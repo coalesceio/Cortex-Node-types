@@ -34,7 +34,7 @@ does not permit copying or modification for any other purpose.
 {% endif %}
 
 {# Create Stream first #}
-{% if desiredState or desiredState == currentState %}
+{% if desiredState and desiredState != currentState %}
 
     {% if currentState == undefined or desiredState.config.redeploymentBehavior == 'Create or Replace' %}
         {{ stage('Create Stream', true, "sql", "create") }}
@@ -52,10 +52,6 @@ does not permit copying or modification for any other purpose.
         CREATE OR REPLACE STREAM {{ fullyQualifiedStreamName }}
             ON {{ streamType }} {{ refLink }}
 
-
-    {% else %}
-        {{ stage('Unknown state.', true, "sql", "alter") }}
-        select 1 = 0
     {% endif %}
 
 
@@ -73,10 +69,7 @@ does not permit copying or modification for any other purpose.
 
 {% endif %}
 
-{% if desiredState == currentState %}
-
-{# Create Stream first #}
-{% elif desiredState %}
+{% if desiredState %}
 
     
     {% if desiredState.node.materializationType == 'table' or desiredState.node.materializationType == 'transient table'  %}     
@@ -328,8 +321,7 @@ does not permit copying or modification for any other purpose.
 {% endif %}
 
 {# Create Task Third #}
-{% if desiredState %}
-
+{% if desiredState and desiredState != currentState %}
     
         {% if desiredState.config.devMode == false %}
             

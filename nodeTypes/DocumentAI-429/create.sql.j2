@@ -16,7 +16,7 @@ does not permit copying or modification for any other purpose.
 	{% set stageStorageLocation =  desiredState.config.stageStorageLocationName | string %}
 	{% set stageNameVar =  desiredState.config.stageName | string %}
     {% set refLink = "{{ ref_no_link('" + stageStorageLocation + "', '" + stageNameVar +"') }}" %}
-
+     
 	
     {# Target Stream Location and Name #}
     {% set streamTargetLocationName = desiredState.node.location.name %}

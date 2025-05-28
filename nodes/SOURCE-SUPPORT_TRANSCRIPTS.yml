@@ -1,9 +1,8 @@
 fileVersion: 1
-id: c0aac815-8c90-4927-9648-4b61754c6ce1
-name: PREDICTION_PURCHASE_DATA
+id: a57e105b-5b29-4373-88a6-d88ab98eb714
+name: SUPPORT_TRANSCRIPTS
 operation:
   database: ""
-  dataset: ""
   deployEnabled: true
   description: ""
   locationName: SOURCE
@@ -14,13 +13,13 @@ operation:
           values: []
         appliedColumnTests: {}
         columnReference:
-          columnCounter: 4d34fe4a-a7d4-46e3-9fba-404cde5d2e56
-          stepCounter: c0aac815-8c90-4927-9648-4b61754c6ce1
+          columnCounter: 7e870485-28d1-4b00-bf4e-33aaf628013d
+          stepCounter: a57e105b-5b29-4373-88a6-d88ab98eb714
         config: {}
         dataType: VARCHAR(16777216)
         defaultValue: ""
         description: ""
-        name: USER_INTEREST_SCORE
+        name: TRANSCRIPT_TEXT
         nullable: true
         primaryKey: false
         sourceColumnReferences:
@@ -33,13 +32,13 @@ operation:
           values: []
         appliedColumnTests: {}
         columnReference:
-          columnCounter: 65552ed2-da0a-4ecf-9c27-c950819af05e
-          stepCounter: c0aac815-8c90-4927-9648-4b61754c6ce1
+          columnCounter: 6ba20426-5d66-4cb7-b2c4-62859101d6f6
+          stepCounter: a57e105b-5b29-4373-88a6-d88ab98eb714
         config: {}
-        dataType: NUMBER(2,0)
+        dataType: VARCHAR(16777216)
         defaultValue: ""
         description: ""
-        name: USER_RATING
+        name: REGION
         nullable: true
         primaryKey: false
         sourceColumnReferences:
@@ -47,12 +46,28 @@ operation:
             transform: ""
         transform: ""
         uniqueKey: false
-    join:
-      joinCondition: FROM {{ ref('SOURCE', 'PREDICTION_PURCHASE_DATA') }}
-  name: PREDICTION_PURCHASE_DATA
+      - acceptedValues:
+          strictMatch: true
+          values: []
+        appliedColumnTests: {}
+        columnReference:
+          columnCounter: 0bfe0480-78c1-4ef7-ab5d-2948105f8a2f
+          stepCounter: a57e105b-5b29-4373-88a6-d88ab98eb714
+        config: {}
+        dataType: VARCHAR(16777216)
+        defaultValue: ""
+        description: ""
+        name: AGENT_ID
+        nullable: true
+        primaryKey: false
+        sourceColumnReferences:
+          - columnReferences: []
+            transform: ""
+        transform: ""
+        uniqueKey: false
+  name: SUPPORT_TRANSCRIPTS
   schema: ""
   sqlType: Source
-  table: PREDICTION_PURCHASE_DATA
   type: sourceInput
   version: 1
 type: Node

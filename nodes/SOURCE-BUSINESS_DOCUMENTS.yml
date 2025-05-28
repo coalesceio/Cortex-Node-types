@@ -1,9 +1,8 @@
 fileVersion: 1
-id: 00f96518-10fc-48e7-9117-dda9cb06f794
-name: CUSTOMERS
+id: e119674e-ba9d-423a-9ae7-6cd84a50324e
+name: BUSINESS_DOCUMENTS
 operation:
   database: ""
-  dataset: ""
   deployEnabled: true
   description: ""
   locationName: SOURCE
@@ -14,13 +13,13 @@ operation:
           values: []
         appliedColumnTests: {}
         columnReference:
-          columnCounter: 2ddb7301-7e23-4319-9ff8-d5b776c3f537
-          stepCounter: 00f96518-10fc-48e7-9117-dda9cb06f794
+          columnCounter: a1bd3ee0-de12-49b4-a4c8-af7842f93559
+          stepCounter: e119674e-ba9d-423a-9ae7-6cd84a50324e
         config: {}
         dataType: VARCHAR(16777216)
         defaultValue: ""
         description: ""
-        name: EMAIL
+        name: DOCUMENT_CONTENTS
         nullable: true
         primaryKey: false
         sourceColumnReferences:
@@ -33,13 +32,13 @@ operation:
           values: []
         appliedColumnTests: {}
         columnReference:
-          columnCounter: 02aed876-8f9b-4794-a5ad-e0ef2856e497
-          stepCounter: 00f96518-10fc-48e7-9117-dda9cb06f794
+          columnCounter: 74adb0b2-9519-44e5-937d-0704967abbc8
+          stepCounter: e119674e-ba9d-423a-9ae7-6cd84a50324e
         config: {}
         dataType: TIMESTAMP_NTZ(9)
         defaultValue: ""
         description: ""
-        name: JOIN_DATE
+        name: LAST_MODIFIED_TIMESTAMP
         nullable: true
         primaryKey: false
         sourceColumnReferences:
@@ -52,13 +51,13 @@ operation:
           values: []
         appliedColumnTests: {}
         columnReference:
-          columnCounter: d8c446b2-19a9-4c75-8c80-79815f8a5558
-          stepCounter: 00f96518-10fc-48e7-9117-dda9cb06f794
+          columnCounter: 47ef48be-7c90-4c77-ac2a-a51e8fda3fb6
+          stepCounter: e119674e-ba9d-423a-9ae7-6cd84a50324e
         config: {}
-        dataType: NUMBER(6,0)
+        dataType: TIMESTAMP_NTZ(9)
         defaultValue: ""
         description: ""
-        name: AGE_BAND
+        name: CREATED_TIMESTAMP
         nullable: true
         primaryKey: false
         sourceColumnReferences:
@@ -71,13 +70,13 @@ operation:
           values: []
         appliedColumnTests: {}
         columnReference:
-          columnCounter: 73b7efc1-f2a3-4e0f-ae54-1e98bfc80f5b
-          stepCounter: 00f96518-10fc-48e7-9117-dda9cb06f794
+          columnCounter: 686bf47c-2f57-4970-9b9c-1a16add0f3f8
+          stepCounter: e119674e-ba9d-423a-9ae7-6cd84a50324e
         config: {}
-        dataType: VARCHAR(18)
+        dataType: NUMBER(38,0)
         defaultValue: ""
         description: ""
-        name: HOUSEHOLD_INCOME
+        name: LIKES
         nullable: true
         primaryKey: false
         sourceColumnReferences:
@@ -90,13 +89,13 @@ operation:
           values: []
         appliedColumnTests: {}
         columnReference:
-          columnCounter: 884f0de5-3eb9-4a4a-9fe0-47179053253a
-          stepCounter: 00f96518-10fc-48e7-9117-dda9cb06f794
+          columnCounter: 99fc4dda-6b9a-4201-ade9-58d1463bbf5f
+          stepCounter: e119674e-ba9d-423a-9ae7-6cd84a50324e
         config: {}
-        dataType: VARCHAR(8)
+        dataType: NUMBER(38,0)
         defaultValue: ""
         description: ""
-        name: MARITAL_STATUS
+        name: COMMENTS
         nullable: true
         primaryKey: false
         sourceColumnReferences:
@@ -104,50 +103,9 @@ operation:
             transform: ""
         transform: ""
         uniqueKey: false
-      - acceptedValues:
-          strictMatch: true
-          values: []
-        appliedColumnTests: {}
-        columnReference:
-          columnCounter: 3a2abe67-2a23-4063-9726-484284369f2c
-          stepCounter: 00f96518-10fc-48e7-9117-dda9cb06f794
-        config: {}
-        dataType: FLOAT
-        defaultValue: ""
-        description: ""
-        name: HOUSEHOLD_SIZE
-        nullable: true
-        primaryKey: false
-        sourceColumnReferences:
-          - columnReferences: []
-            transform: ""
-        transform: ""
-        uniqueKey: false
-      - acceptedValues:
-          strictMatch: true
-          values: []
-        appliedColumnTests: {}
-        columnReference:
-          columnCounter: 55ab67b4-70bd-429d-86f1-01034d6d3c1e
-          stepCounter: 00f96518-10fc-48e7-9117-dda9cb06f794
-        config: {}
-        dataType: FLOAT
-        defaultValue: ""
-        description: ""
-        name: TOTAL_ORDER_VALUE
-        nullable: true
-        primaryKey: false
-        sourceColumnReferences:
-          - columnReferences: []
-            transform: ""
-        transform: ""
-        uniqueKey: false
-    join:
-      joinCondition: FROM {{ ref('SOURCE', 'CUSTOMERS') }}
-  name: CUSTOMERS
+  name: BUSINESS_DOCUMENTS
   schema: ""
   sqlType: Source
-  table: CUSTOMERS
   type: sourceInput
   version: 1
 type: Node

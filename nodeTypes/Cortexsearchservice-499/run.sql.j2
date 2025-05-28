@@ -1,0 +1,29 @@
+{#Dynamic Table Name#}
+        {% set targetDynamicTableDatabase = ref_no_link(node.location.name, node.name).split('.')[0] %} 
+        {% set targetDynamicTableSchema = ref_no_link(node.location.name,node.name).split('.')[1] %} 
+        {% set fullyQualifiedTargetDynamicTableName = ref_no_link(node.location.name, node.name) %}
+
+{{ stage(' Search Service preview', true, "sql", "create") }}
+        
+CREATE OR REPLACE VIEW {{ fullyQualifiedTargetDynamicTableName }}
+AS
+SELECT
+    index,
+    value['DOCUMENT_CONTENTS']::string as DOCUMENT_CONTENTS,
+    value['LIKES']::int as LIKES,
+    value['COMMENTS']::int as COMMENTS,
+FROM TABLE(FLATTEN(PARSE_JSON(SNOWFLAKE.CORTEX.SEARCH_PREVIEW(
+    '"ANANDHIS_DEV"."SOURCE_DATA"."CSS_BUSINESS_DOCUMENTS"',
+    '{
+      "query": "technology",
+      "columns": ["DOCUMENT_CONTENTS", "LIKES", "COMMENTS"],
+      "scoring_config": {
+        "functions": {
+          "numeric_boosts": [
+            {"column": "comments", "weight": 2},
+            {"column": "likes", "weight": 1}
+          ]
+        }
+      }
+    }'
+))['results'] ))

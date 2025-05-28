@@ -1,0 +1,124 @@
+fileVersion: 1
+id: c2371b97-71c5-4984-915d-6391a08e273a
+name: CSS_BUSINESS_DOCUMENTS
+operation:
+  config:
+    attrcol:
+      columnCounter: ba7ff918-182c-4d43-9e05-5be905dde5e7
+      stepCounter: c2371b97-71c5-4984-915d-6391a08e273a
+    embmodel: snowflake-arctic-embed-m-v1.5
+    initialize: ON_SCHEDULE
+    lagSpecification:
+      items:
+        - lagPeriod: Hours
+          lagValue: "60"
+    pfilcol:
+      columnCounter: ba7ff918-182c-4d43-9e05-5be905dde5e7
+      stepCounter: c2371b97-71c5-4984-915d-6391a08e273a
+    psearchcol:
+      columnCounter: 78847bd7-eabf-4c50-88ef-1adc78fdd13c
+      stepCounter: c2371b97-71c5-4984-915d-6391a08e273a
+    query1: technology
+    searchcol:
+      columnCounter: 78847bd7-eabf-4c50-88ef-1adc78fdd13c
+      stepCounter: c2371b97-71c5-4984-915d-6391a08e273a
+    warehouseName: dev_wh_xs
+  database: ""
+  deployEnabled: true
+  description: ""
+  isMultisource: false
+  locationName: SOURCE
+  materializationType: table
+  metadata:
+    appliedNodeTests: []
+    columns:
+      - appliedColumnTests: {}
+        columnReference:
+          columnCounter: 78847bd7-eabf-4c50-88ef-1adc78fdd13c
+          stepCounter: c2371b97-71c5-4984-915d-6391a08e273a
+        config: {}
+        dataType: VARCHAR(16777216)
+        description: ""
+        name: DOCUMENT_CONTENTS
+        nullable: true
+        sourceColumnReferences:
+          - columnReferences:
+              - columnCounter: a1bd3ee0-de12-49b4-a4c8-af7842f93559
+                stepCounter: e119674e-ba9d-423a-9ae7-6cd84a50324e
+            transform: ""
+      - appliedColumnTests: {}
+        columnReference:
+          columnCounter: fdac7ab4-eb79-4f39-a402-6c8f01941a37
+          stepCounter: c2371b97-71c5-4984-915d-6391a08e273a
+        config: {}
+        dataType: TIMESTAMP_NTZ(9)
+        description: ""
+        name: LAST_MODIFIED_TIMESTAMP
+        nullable: true
+        sourceColumnReferences:
+          - columnReferences:
+              - columnCounter: 74adb0b2-9519-44e5-937d-0704967abbc8
+                stepCounter: e119674e-ba9d-423a-9ae7-6cd84a50324e
+            transform: ""
+      - appliedColumnTests: {}
+        columnReference:
+          columnCounter: df4f1e61-1052-47ad-a4f9-a921bb2c7b23
+          stepCounter: c2371b97-71c5-4984-915d-6391a08e273a
+        config: {}
+        dataType: TIMESTAMP_NTZ(9)
+        description: ""
+        name: CREATED_TIMESTAMP
+        nullable: true
+        sourceColumnReferences:
+          - columnReferences:
+              - columnCounter: 47ef48be-7c90-4c77-ac2a-a51e8fda3fb6
+                stepCounter: e119674e-ba9d-423a-9ae7-6cd84a50324e
+            transform: ""
+      - appliedColumnTests: {}
+        columnReference:
+          columnCounter: ba7ff918-182c-4d43-9e05-5be905dde5e7
+          stepCounter: c2371b97-71c5-4984-915d-6391a08e273a
+        config: {}
+        dataType: NUMBER(38,0)
+        description: ""
+        name: LIKES
+        nullable: true
+        sourceColumnReferences:
+          - columnReferences:
+              - columnCounter: 686bf47c-2f57-4970-9b9c-1a16add0f3f8
+                stepCounter: e119674e-ba9d-423a-9ae7-6cd84a50324e
+            transform: ""
+      - appliedColumnTests: {}
+        columnReference:
+          columnCounter: aa6ee73e-07d4-4b6a-8366-54d560b413ea
+          stepCounter: c2371b97-71c5-4984-915d-6391a08e273a
+        config: {}
+        dataType: NUMBER(38,0)
+        description: ""
+        name: COMMENTS
+        nullable: true
+        sourceColumnReferences:
+          - columnReferences:
+              - columnCounter: 99fc4dda-6b9a-4201-ade9-58d1463bbf5f
+                stepCounter: e119674e-ba9d-423a-9ae7-6cd84a50324e
+            transform: ""
+    cteString: ""
+    enabledColumnTestIDs: []
+    sourceMapping:
+      - aliases: {}
+        customSQL:
+          customSQL: ""
+        dependencies:
+          - locationName: SOURCE
+            nodeName: BUSINESS_DOCUMENTS
+        join:
+          joinCondition: FROM {{ ref('SOURCE', 'BUSINESS_DOCUMENTS') }} "BUSINESS_DOCUMENTS"
+        name: CSS_BUSINESS_DOCUMENTS
+        noLinkRefs: []
+  name: CSS_BUSINESS_DOCUMENTS
+  overrideSQL: false
+  schema: ""
+  sqlType: "499"
+  type: sql
+  version: 1
+type: Node

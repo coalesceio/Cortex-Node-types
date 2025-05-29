@@ -1,27 +1,60 @@
-{#Dynamic Table Name#}
-        {% set targetDynamicTableDatabase = ref_no_link(node.location.name, node.name).split('.')[0] %} 
-        {% set targetDynamicTableSchema = ref_no_link(node.location.name,node.name).split('.')[1] %} 
-        {% set fullyQualifiedTargetDynamicTableName = ref_no_link(node.location.name, node.name) %}
+{#Cortex Search Service#}
+        {% set CSSDatabase = ref_no_link(node.location.name, node.name).split('.')[0] %} 
+        {% set CSSSchema = ref_no_link(node.location.name,node.name).split('.')[1] %} 
+        {% set fullyQualifiedTargeCSSTableName = ref_no_link(node.location.name, node.name) %}
+
+{#Namespace variables#}
+
+{%- set nsVariables = namespace(numb="") %}
+
+{#Cortex Search Service target view#}
+
+{% if config.allcol == false%}
+  {% set tcolumns = config.colpreview.get('items') | map(attribute='columnName.name')| list %}
+  {% set columnmod = tcolumns | map('string') | join('","') %}
+{%else%}
+  {% set allcol = columns| map(attribute='name')| list%}
+  {% set columnmod = allcol | map('string') | join('","') %}
+{%endif%}
+				
+{#Numeric boosts#}
+
+{%if config.numboost%}
+     {% set column, weightage = config.numericboost.get('items') | map(attribute='colname.name') | list, config.numericboost.get('items') | map(attribute='wage') | list %}
+
+     {%for ncol in column %}
+    
+    {%%endfor%}
+{%endif%}
 
 {{ stage(' Search Service preview', true, "sql", "create") }}
-        
-CREATE OR REPLACE VIEW {{ fullyQualifiedTargetDynamicTableName }}
+
+CREATE OR REPLACE VIEW {{ fullyQualifiedTargeCSSTableName }}
 AS
 SELECT
-    index,
-    value['DOCUMENT_CONTENTS']::string as DOCUMENT_CONTENTS,
-    value['LIKES']::int as LIKES,
-    value['COMMENTS']::int as COMMENTS,
+   index,
+{%if config.allcol %}
+   {%- for col in sources[0].columns  %} 
+			value['{{col.name}}']::{{col.dataType}} as {{col.name}}
+            {%- if not loop.last %}, {%- endif %}
+    {%- endfor %}
+{%else %}
+      
+      {%- for col in sources[0].columns  %} 
+      {%if col.name in tcolumns%}
+			value['{{col.name}}']::{{col.dataType}} as {{col.name}}
+            {%- if not loop.last %}, {%- endif %}
+{%endif%}
+    {%- endfor %}
+{%endif%}
 FROM TABLE(FLATTEN(PARSE_JSON(SNOWFLAKE.CORTEX.SEARCH_PREVIEW(
-    '"ANANDHIS_DEV"."SOURCE_DATA"."CSS_BUSINESS_DOCUMENTS"',
+    '{{ fullyQualifiedTargeCSSTableName }}',
     '{
-      "query": "technology",
-      "columns": ["DOCUMENT_CONTENTS", "LIKES", "COMMENTS"],
+      "query": "{{config.query1}}",
+      "columns": ["{{columnmod}}"] ,
       "scoring_config": {
         "functions": {
           "numeric_boosts": [
-            {"column": "comments", "weight": 2},
-            {"column": "likes", "weight": 1}
           ]
         }
       }

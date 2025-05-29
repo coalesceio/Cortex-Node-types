@@ -102,15 +102,69 @@ metadata:
       - groupName: Preview search Options
         items:
 
-        - type: columnDropdownSelector
-          displayName: Search column
-          attributeName: psearchcol
+        - type: toggleButton
+          displayName: All Columns in the preview 
+          attributeName: allcol
+          isRequired: false
+       
+        - type: tabular
+          displayName: 'Columns in Target View'
+          enableIf: "{%- if config.allcol -%} false {%- else -%} true {%- endif -%}"
+          attributeName: colpreview
+          columns:
+
+          -  type: columnDropdownSelector
+             displayName: Column Name
+             attributeName: columnName
+             isRequired: false
+      
+          isRequired: false
+        
+        - type: toggleButton
+          displayName: Apply numeric boost to Search Service
+          attributeName: numboost
           isRequired: false
 
-        - type: columnDropdownSelector
-          displayName: Filter column
-          attributeName: pfilcol
+        - type: tabular
+          displayName: 'Numeric boosts'
+          attributeName: numericboost
+          enableIf: "{%- if config.numboost -%} false {%- else -%} true {%- endif -%}"
+          columns:
+
+          -  type: columnDropdownSelector
+             displayName: Column Name
+             attributeName: colname
+             isRequired: false
+      
+          -  type: textBox
+             displayName: Weightage
+             attributeName: wage
+             isRequired: false
+      
           isRequired: false
+
+        - type: toggleButton
+          displayName: Apply time decay to Search Service
+          attributeName: timdec
+          isRequired: false
+
+        - type: tabular
+          displayName: 'Time decays'
+          attributeName: timedecay
+          enableIf: "{%- if config.timdec -%} false {%- else -%} true {%- endif -%}"
+          columns:
+
+          -  type: columnDropdownSelector
+             displayName: Column Name
+             attributeName: tcolname
+             isRequired: false
+      
+          -  type: textBox
+             displayName: Weightage
+             attributeName: twage
+             isRequired: false
+      
+          isRequired: false  
         
         - type: textBox
           displayName: Query

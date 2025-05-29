@@ -1,28 +1,33 @@
 fileVersion: 1
-id: c2371b97-71c5-4984-915d-6391a08e273a
-name: CSS_BUSINESS_DOCUMENTS
+id: 1567ea17-cf4b-4463-8cb2-7bc46295926b
+name: CSS_BUSINESS_DOCUMENTS1
 operation:
   config:
     allcol: true
     attrcol:
-      columnCounter: ba7ff918-182c-4d43-9e05-5be905dde5e7
-      stepCounter: c2371b97-71c5-4984-915d-6391a08e273a
+      columnCounter: ca40c343-083f-4077-814c-c496c0b0e203
+      stepCounter: 1567ea17-cf4b-4463-8cb2-7bc46295926b
+    colpreview:
+      items:
+        - {}
     embmodel: snowflake-arctic-embed-m-v1.5
-    initialize: ON_SCHEDULE
+    initialize: ON_CREATE
     lagSpecification:
       items:
-        - lagPeriod: Hours
-          lagValue: "60"
-    pfilcol:
-      columnCounter: ba7ff918-182c-4d43-9e05-5be905dde5e7
-      stepCounter: c2371b97-71c5-4984-915d-6391a08e273a
-    psearchcol:
-      columnCounter: 78847bd7-eabf-4c50-88ef-1adc78fdd13c
-      stepCounter: c2371b97-71c5-4984-915d-6391a08e273a
-    query1: technology
+        - lagPeriod: Minutes
+          lagValue: "600"
+    numericboost:
+      items:
+        - colname: null
+          wage: null
+    query1: ""
     searchcol:
-      columnCounter: 78847bd7-eabf-4c50-88ef-1adc78fdd13c
-      stepCounter: c2371b97-71c5-4984-915d-6391a08e273a
+      columnCounter: e57d1bfe-866d-4e92-b36b-4a155beb9c9c
+      stepCounter: 1567ea17-cf4b-4463-8cb2-7bc46295926b
+    timedecay:
+      items:
+        - tcolname: null
+          twage: null
     warehouseName: dev_wh_xs
   database: ""
   deployEnabled: true
@@ -35,8 +40,8 @@ operation:
     columns:
       - appliedColumnTests: {}
         columnReference:
-          columnCounter: 78847bd7-eabf-4c50-88ef-1adc78fdd13c
-          stepCounter: c2371b97-71c5-4984-915d-6391a08e273a
+          columnCounter: e57d1bfe-866d-4e92-b36b-4a155beb9c9c
+          stepCounter: 1567ea17-cf4b-4463-8cb2-7bc46295926b
         config: {}
         dataType: VARCHAR(16777216)
         description: ""
@@ -49,8 +54,8 @@ operation:
             transform: ""
       - appliedColumnTests: {}
         columnReference:
-          columnCounter: fdac7ab4-eb79-4f39-a402-6c8f01941a37
-          stepCounter: c2371b97-71c5-4984-915d-6391a08e273a
+          columnCounter: a30d14ce-9cdd-4b04-a969-20b7a9b7452b
+          stepCounter: 1567ea17-cf4b-4463-8cb2-7bc46295926b
         config: {}
         dataType: TIMESTAMP_NTZ(9)
         description: ""
@@ -63,8 +68,8 @@ operation:
             transform: ""
       - appliedColumnTests: {}
         columnReference:
-          columnCounter: df4f1e61-1052-47ad-a4f9-a921bb2c7b23
-          stepCounter: c2371b97-71c5-4984-915d-6391a08e273a
+          columnCounter: 2ffed1ab-89ba-46a1-8b72-43a8a0fb2550
+          stepCounter: 1567ea17-cf4b-4463-8cb2-7bc46295926b
         config: {}
         dataType: TIMESTAMP_NTZ(9)
         description: ""
@@ -77,8 +82,8 @@ operation:
             transform: ""
       - appliedColumnTests: {}
         columnReference:
-          columnCounter: ba7ff918-182c-4d43-9e05-5be905dde5e7
-          stepCounter: c2371b97-71c5-4984-915d-6391a08e273a
+          columnCounter: ca40c343-083f-4077-814c-c496c0b0e203
+          stepCounter: 1567ea17-cf4b-4463-8cb2-7bc46295926b
         config: {}
         dataType: NUMBER(38,0)
         description: ""
@@ -91,8 +96,8 @@ operation:
             transform: ""
       - appliedColumnTests: {}
         columnReference:
-          columnCounter: aa6ee73e-07d4-4b6a-8366-54d560b413ea
-          stepCounter: c2371b97-71c5-4984-915d-6391a08e273a
+          columnCounter: e77ac5e3-afa2-4c31-8f37-ef63ef036163
+          stepCounter: 1567ea17-cf4b-4463-8cb2-7bc46295926b
         config: {}
         dataType: NUMBER(38,0)
         description: ""
@@ -114,9 +119,9 @@ operation:
             nodeName: BUSINESS_DOCUMENTS
         join:
           joinCondition: FROM {{ ref('SOURCE', 'BUSINESS_DOCUMENTS') }} "BUSINESS_DOCUMENTS"
-        name: CSS_BUSINESS_DOCUMENTS
+        name: CSS_BUSINESS_DOCUMENTS1
         noLinkRefs: []
-  name: CSS_BUSINESS_DOCUMENTS
+  name: CSS_BUSINESS_DOCUMENTS1
   overrideSQL: false
   schema: ""
   sqlType: "499"

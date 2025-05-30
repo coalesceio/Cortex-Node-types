@@ -16,14 +16,22 @@ operation:
       items:
         - lagPeriod: Minutes
           lagValue: "600"
+    numboost: true
     numericboost:
       items:
-        - colname: null
-          wage: null
-    query1: ""
+        - colname:
+            columnCounter: e77ac5e3-afa2-4c31-8f37-ef63ef036163
+            stepCounter: 1567ea17-cf4b-4463-8cb2-7bc46295926b
+          wage: "2"
+        - colname:
+            columnCounter: ca40c343-083f-4077-814c-c496c0b0e203
+            stepCounter: 1567ea17-cf4b-4463-8cb2-7bc46295926b
+          wage: "1"
+    query1: technology
     searchcol:
       columnCounter: e57d1bfe-866d-4e92-b36b-4a155beb9c9c
       stepCounter: 1567ea17-cf4b-4463-8cb2-7bc46295926b
+    timdec: false
     timedecay:
       items:
         - tcolname: null

@@ -16,14 +16,17 @@ metadata:
     config:
       - groupName: General Options
         items: 
+        
+        - type: toggleButton
+          displayName: 'Create Cortex Service'
+          attributeName: createcortex
 
-        - type: materializationSelector
-          default: table
-          options:
-          - table
-          isRequired: true
+        - type: toggleButton
+          displayName: 'Preview/Query the Cortex Service'
+          attributeName: querycortex
 
-      - groupName: Cortex serach Options
+      - groupName: Cortex search schedule Options
+        enableIf: "{%- if config.createcortex -%} true {%- else -%} false {%- endif -%}"
         items:     
          
         - type: label
@@ -66,7 +69,8 @@ metadata:
              
           isRequired: false
           
-      - groupName: Cortex serach Advanced Options
+      - groupName: Cortex search Advanced Options
+        enableIf: "{%- if config.createcortex -%} true {%- else -%} false {%- endif -%}"
         items:
 
         - type: dropdownSelector   
@@ -94,12 +98,21 @@ metadata:
           attributeName: searchcol
           isRequired: false
           
-        - type: columnDropdownSelector
-          displayName: Attribute column
+        
+        - type: tabular
+          displayName: 'Attribute Columns'
           attributeName: attrcol
+          columns:
+
+          -  type: columnDropdownSelector
+             displayName: Column Name
+             attributeName: acolname
+             isRequired: false
+
           isRequired: false
         
       - groupName: Preview search Options
+        enableIf: "{%- if config.querycortex -%} true {%- else -%} false {%- endif -%}"
         items:
 
         - type: toggleButton
@@ -119,6 +132,56 @@ metadata:
              isRequired: false
       
           isRequired: false
+
+        - type: toggleButton
+          displayName: Filter
+          attributeName: filtoggle
+          isRequired: false
+
+        - type: toggleButton
+          displayName: Multiple Filter conditions
+          attributName: mulfilcon
+          enableIf: "{%- if config.filtoggle -%} true {%- else -%} false {%- endif -%}"
+
+        - type: dropdownSelector
+          displayName: Logical operator
+          attributeName: lopt
+          default: "and"
+          options:
+            - and
+            - or
+            - not
+          isRequired: false
+          enableIf: "{%- if config.mulfilcon -%} true {%- else -%} false {%- endif -%}"
+
+        - type: tabular
+          displayName: 'Filtering criteria'
+          attributeName: filcrit
+          enableIf: "{%- if config.filtoggle -%} true {%- else -%} false {%- endif -%}"
+          columns:
+
+          - type: columnDropdownSelector
+            displayName: Column Name
+            attributeName: filcolname
+            isRequired: false
+          
+          - type: dropdownSelector
+            displayName: Matching operator
+            attributeName: mopt
+            default: "eq"
+            options:
+            - eq
+            - gte
+            - lte
+            - contains
+            isRequired: false
+          
+          - type: textBox
+            displayName: Filter Value
+            attributeName: filcolval
+            isRequired: false
+      
+          isRequired: false
         
         - type: toggleButton
           displayName: Apply numeric boost to Search Service
@@ -128,7 +191,7 @@ metadata:
         - type: tabular
           displayName: 'Numeric boosts'
           attributeName: numericboost
-          enableIf: "{%- if config.numboost -%} false {%- else -%} true {%- endif -%}"
+          enableIf: "{%- if config.numboost -%} true {%- else -%} false {%- endif -%}"
           columns:
 
           -  type: columnDropdownSelector
@@ -151,7 +214,7 @@ metadata:
         - type: tabular
           displayName: 'Time decays'
           attributeName: timedecay
-          enableIf: "{%- if config.timdec -%} false {%- else -%} true {%- endif -%}"
+          enableIf: "{%- if config.timdec -%} true {%- else -%} false {%- endif -%}"
           columns:
 
           -  type: columnDropdownSelector
@@ -163,6 +226,12 @@ metadata:
              displayName: Weightage
              attributeName: twage
              isRequired: false
+
+          -  type: textBox
+             displayName: Limit hours      
+             attributeName: lhours
+             isRequired: false
+      
       
           isRequired: false  
         
@@ -171,7 +240,16 @@ metadata:
           attributeName: query1
           isRequired: false
         
-        
+     
+      - groupName: Hidden Config
+        enableIf: "false"
+        items:
+        - displayName: Type
+          type: materializationSelector
+          default: view
+          options:
+          - view
+          isRequired: false   
         
 
 

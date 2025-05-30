@@ -9,8 +9,13 @@ operation:
       stepCounter: 930c8ffd-b8fd-4015-a4b0-93bb29b8a129
     colpreview:
       items:
-        - {}
-    embmodel: snowflake-arctic-embed-m-v1.5
+        - columnName:
+            columnCounter: 8953568b-27af-4f1a-a9df-82163b91297c
+            stepCounter: 930c8ffd-b8fd-4015-a4b0-93bb29b8a129
+        - columnName:
+            columnCounter: 2a25950c-9633-455c-8ffe-619a319b6818
+            stepCounter: 930c8ffd-b8fd-4015-a4b0-93bb29b8a129
+    embmodel: voyage-multilingual-2
     initialize: ON_CREATE
     lagSpecification:
       items:
@@ -21,7 +26,7 @@ operation:
       items:
         - colname: null
           wage: null
-    query1: ""
+    query1: TOTAL
     searchcol:
       columnCounter: 2a25950c-9633-455c-8ffe-619a319b6818
       stepCounter: 930c8ffd-b8fd-4015-a4b0-93bb29b8a129

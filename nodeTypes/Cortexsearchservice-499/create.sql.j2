@@ -12,7 +12,7 @@
 
 {#Create Cortex search service #}
 
-{% if desiredState  %}
+{% if desiredState and desiredState.createcortex%}
 
    {# Identify all config changes that would cause a CREATE instead of ALTER#}
    {% if currentState != undefined %} 
@@ -73,42 +73,7 @@
         
         {# Node#}
         {% set nodeNameTest = currentState.node.name == desiredState.node.name %}
-        {% set nodeMaterializationType = currentState.node.materializationType == desiredState.node.materializationType %}
         
-       
-        {# Column description changes and other column level changes #}
-            {% for alterCurCol in currentState.columns %}        
-                {% if alterCurCol.id in desiredState.columns | map(attribute="id") %}
-                     {% set currentColumnName = currentState.columns | selectattr('id', "equalto", alterCurCol.id) | map(attribute='name') | first %}
-                    {% set currentDescription = currentState.columns | selectattr('id', "equalto", alterCurCol.id) | map(attribute='description') | first %}
-                    {% set currentDatatype = currentState.columns | selectattr('id', "equalto", alterCurCol.id) | map(attribute='dataType') | first %}
-                    {% set currentNullable = currentState.columns | selectattr('id', "equalto", alterCurCol.id) | map(attribute='nullable') | first %}
-                    {% set currentDefaultValue = currentState.columns | selectattr('id', "equalto", alterCurCol.id) | map(attribute='defaultValue') | first %}
-                    
-                    {% set desiredColumnName = desiredState.columns | selectattr('id', "equalto", alterCurCol.id) | map(attribute='name') | first %}
-                    {% set desiredDescription = desiredState.columns | selectattr('id', "equalto", alterCurCol.id) | map(attribute='description') | first %}
-                    {% set desiredDatatype = desiredState.columns | selectattr('id', "equalto", alterCurCol.id) | map(attribute='dataType') | first %}
-                    {% set desiredNullable = desiredState.columns | selectattr('id', "equalto", alterCurCol.id) | map(attribute='nullable') | first %}
-                    {% set desiredDefaultValue = desiredState.columns | selectattr('id', "equalto", alterCurCol.id) | map(attribute='defaultValue') | first %}
-                        
-
-                   {% set datatypeTest = currentDatatype == desiredDatatype %}
-                   {% set nullableTest = currentNullable == desiredNullable %}
-                   {% set defaultValueTest = currentDefaultValue == desiredDefaultValue %}
-                   {% set descriptionTest = currentDescription == desiredDescription %}
-                   {% set columnnameTest = currentColumnName == desiredColumnName %}
-
-                    {% if (descriptionTest == false) %}
-                        {% set nsVariables.descolchanges = nsVariables.descolchanges + 1 %}
-                    {%endif%}														
-                    {%if (datatypeTest == false or defaultValueTest == false or columnnameTest == false )%}
-                    {% set nsVariables.othercolchanges = nsVariables.othercolchanges + 1 %}
-                    {% endif %}
-
-                {%endif%}    
-            {% endfor %}
-
-
         {#If any of the above are false then a CREATE must be run#}
         
         {% if 
@@ -179,20 +144,39 @@
             {% set CSSComment = "COMMENT = " + "'" + desiredState.node.description |escape + "'" %}
         {% endif %}
 
+        {#Attribute columns#}
+        {%- if desiredState.config.attrcol.get('items') | length >0 %}
+            {%set attrcol = desiredState.config.attrcol.get('items') | map(attribute='acolname.name')| list %}
+        {%endif%}
+
+        {#Source query colummns#}
+        
+       {% if desiredState.config.allcol == false%}
+          {% set tcolumns = desiredState.config.colpreview.get('items') | map(attribute='columnName.name')| list %}
+          {% set columnmod = tcolumns | map('string') | join('","') %}
+        {%else%}
+          {% set allcol = desiredState.columns| map(attribute='name')| list%}
+          {% set columnmod = allcol | map('string') | join('","') %}
+       {%endif%}
+
         {{ stage('Create Search Service '+ '{{ desiredState.node.materializationType }}', true, "sql", "create") }}
             CREATE OR REPLACE CORTEX SEARCH SERVICE {{ fullyQualifiedTargetCSSName }}
             ON {{desiredState.config.searchcol.name}}
-            ATTRIBUTES {{desiredState.config.attrcol.name}}
+            ATTRIBUTES {{attrcol|map("string")|join(',')}}
             TARGET_LAG = '{{ CSSLagSpecification }}'
             WAREHOUSE = {{CSSWarehouse}}
            {# INITIALIZE = {{CSSinitialize}} #}
             {{ CSSComment  }}
         AS 
         (SELECT 
-        {% for source in desiredState.sources %}
-            
+        {% for source in desiredState.sources %}          
             {% for col in source.columns %}
-                {{ get_source_transform(col) }} AS "{{ col.name }}"
+            
+                {%if col.transform != ""%}
+                      {{col.transform}} AS {{col.name}}
+                {%else%}
+                      "{{col.name}}" AS {{col.name}}
+                {%endif%}
                 {%- if not loop.last -%}, {% endif %}
             {% endfor %}
 

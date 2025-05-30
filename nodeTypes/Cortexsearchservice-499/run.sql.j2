@@ -5,7 +5,7 @@
 
 {#Namespace variables#}
 
-{%- set nsVariables = namespace(numb="") %}
+{%- set ns = namespace(numb="",timdec="",filcrit="") %}
 
 {#Cortex Search Service target view#}
 
@@ -23,9 +23,39 @@
      {% set column, weightage = config.numericboost.get('items') | map(attribute='colname.name') | list, config.numericboost.get('items') | map(attribute='wage') | list %}
 
      {%for ncol in column %}
-    
-    {%%endfor%}
+         {%set ns.numb = ns.numb + '{"column":"'+ ncol +'"'+ ',"weight":"' + weightage[loop.index0] + '"}' %}
+         {%if  not loop.last%} {%set ns.numb = ns.numb + ','%}{%endif%}
+    {%endfor%}
 {%endif%}
+
+{#Timedecay#}
+{%if config.timdec%}
+    {% set column, weightage,lhours = config.timedecay.get('items') | map(attribute='tcolname.name') | list, config.timedecay.get('items') | map(attribute='twage') | list,config.timedecay.get('items') | map(attribute='lhours') | list %}
+
+    {%for ncol in column %}
+         {%set ns.timdec = ns.timdec + '{"column":"'+ ncol +'"'+ ',"weight":"' + weightage[loop.index0] + '","limit_hours":"'+ lhours[loop.index0]+'",now":"2024-04-23T00:00:00.000-08:00"}' %}
+         {%if  not loop.last%} {%set ns.numb = ns.numb + ','%}{%endif%}
+    {%endfor%}       
+
+{%endif%}
+
+{#Filter#}
+{%if config.filcrit%}
+     {% set column, mopt,val = config.filcrit.get('items') | map(attribute='filcolname.name') | list, config.filcrit.get('items') | map(attribute='mopt') | list,config.filcrit.get('items') | map(attribute='filcolval')|list %}
+     
+     {%if mulfilcon %}
+         {%set ns.filcrit = ns.filcrit + '"@' + lopt[loop.index0] + '":['  %}
+     {%endif%}
+     {%for ncol in column %}
+         {%set ns.filcrit = ns.filcrit + '"@'+ mopt[loop.index0] + '": {"'+ ncol +'":"' + val[loop.index0] + '"}' %}
+         {%if  not loop.last%} {%set ns.filcrit = ns.filcrit + ','%}{%endif%}
+    {%endfor%}
+    {%if mulfilcon %}
+         {%set ns.filcrit = ns.filcrit + ']'  %}
+     {%endif%}
+{%endif%}
+
+
 
 {{ stage(' Search Service preview', true, "sql", "create") }}
 
@@ -54,8 +84,9 @@ FROM TABLE(FLATTEN(PARSE_JSON(SNOWFLAKE.CORTEX.SEARCH_PREVIEW(
       "columns": ["{{columnmod}}"] ,
       "scoring_config": {
         "functions": {
-          "numeric_boosts": [
-          ]
+          "numeric_boosts": [{{ns.numb}}],
+          "time_decays":[{{ns.timdec}}],
+          "filter":{ {{ns.filcrit}} }
         }
       }
     }'

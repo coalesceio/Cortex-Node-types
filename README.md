@@ -627,6 +627,50 @@ The Cortex Search service node has the following configuration groups:
 * [Cortex search Advanced Options](#cortex-search-advanced-options)
 * [Preview search Options](#preview-search-options)
 
+#### Cortex Search service Node Properties
+
+| **Property** | **Description** |
+|-------------|-----------------|
+| **Storage Location** | Storage Location where the stream,table,task will be created |
+| **Node Type** | Name of template used to create node objects |
+| **Deploy Enabled** | If TRUE the node will be deployed / redeployed when changes are detected<br/>If FALSE the node will not be deployed or will be dropped during redeployment |
+
+#### Cortex Search service General Options
+
+| **Option** | **Description** |
+|------------|----------------|
+| **Create Cortex Service** | True / False toggle that determines whether to create a cortex search service <br/>**True** -  SQL executes as Create action to create cortex search service <br/>**False** - No cortex search service created |
+| **Preview/Query the Cortex Service** | True / False toggle that determines whether to query the cortex search service created <br/>**True** -  SQL executes as run action to create view with the results of querying the cortex search service <br/>**False** - No view is created with the query results of cortex search service |
+
+#### Cortex search schedule Options
+
+| **Option** | **Description** |
+|------------|----------------|
+| **Warehouse** | (Required) Name of warehouse used to refresh the Dynamic Table |
+| **Lag Specification** |(Required) Specifies the maximum amount of time that the Cortex Search service content should lag behind updates to the base tables specified in the source query.Set refresh schedule with:<br/>- **Time Value**: Frequency of the refresh<br/>- **Time Period**: Seconds/Minutes/Hours/Days |
+| **Initialize** | (Required) Initial refresh behavior:<br/>- **ON_CREATE**: Refresh synchronously at creation<br/>- **ON_SCHEDULE**: Refresh at next scheduled time |
+
+#### Cortex search Advanced Options
+
+| **Option** | **Description** |
+|------------|----------------|
+| **Embedding model** | (Required)Parameter that specifies the embedding model to use in the Cortex Search Service. |
+| **Search column** |(Required) Specifies the text column in the base table that you wish to search on. This column must be a text value. |
+| **Attribute Columns** | (Required)Specifies comma-separated list of columns in the base table that you wish to filter on when issuing queries to the service.|
+
+#### Preview search options
+
+| **Option** | **Description** |
+|------------|----------------|
+| **Use existing Cortex Search Service** |It allows to use an existing Cortes search service with same source information  |
+| **All Columns in the preview** |It allows all columns part of search service to be part of target view|
+| **Columns in Target View**|It allows to choose only specific columns to be part of target view.If the above toggle is true,this option is ddisabled|
+| **Filter**|Cortex Search supports filtering on the ATTRIBUTES columns specified|
+| **Multiple filter conditions**|Allows you to add multiple filter criteria|
+| **Apply numeric boost to Search Service**|Numeric boosts are applied as weighted averages to the returned fields, while decays leverage a log-smoothed function to demote less recent values.|
+| **Apply time decay to Search Service**|Date or time metadata that boosts more recent results. The influence of recency signals decays over time.|
+| **Query**|It searches query against the created cortex seacrh service|
+
 ---
 
 ## Code

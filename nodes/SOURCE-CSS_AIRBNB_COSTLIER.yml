@@ -1,0 +1,187 @@
+fileVersion: 1
+id: d71066f1-525e-4359-a47e-1bea6f31a0fa
+name: CSS_AIRBNB_COSTLIER
+operation:
+  config:
+    allcol: true
+    attrcol:
+      items:
+        - acolname:
+            columnCounter: e2ec2390-b853-45ae-8fee-86b9079d2dab
+            stepCounter: d71066f1-525e-4359-a47e-1bea6f31a0fa
+        - acolname:
+            columnCounter: f669ab01-2768-45c8-a067-dc500ed577b5
+            stepCounter: d71066f1-525e-4359-a47e-1bea6f31a0fa
+    colpreview:
+      items:
+        - {}
+    createcortex: true
+    embmodel: snowflake-arctic-embed-m-v1.5
+    excss: false
+    filcrit:
+      items:
+        - {}
+    filtoggle: false
+    initialize: ON_CREATE
+    lagSpecification:
+      items:
+        - lagPeriod: Minutes
+          lagValue: 60
+    locCSS: null
+    lopt: and
+    namCSS: null
+    numboost: false
+    numericboost:
+      items:
+        - {}
+    query1: ""
+    querycortex: true
+    searchcol:
+      columnCounter: 4ef99327-f1d5-45ad-a4a0-99f837cd5eaf
+      stepCounter: d71066f1-525e-4359-a47e-1bea6f31a0fa
+    timdec: false
+    timedecay:
+      items:
+        - {}
+    warehouseName: dev_wh_xs
+  database: ""
+  deployEnabled: true
+  description: ""
+  isMultisource: false
+  locationName: SOURCE
+  materializationType: view
+  metadata:
+    appliedNodeTests: []
+    columns:
+      - appliedColumnTests: {}
+        columnReference:
+          columnCounter: a16899e0-ae6d-4111-a16c-0aabddd9f73b
+          stepCounter: d71066f1-525e-4359-a47e-1bea6f31a0fa
+        config: {}
+        dataType: VARCHAR(16777216)
+        description: ""
+        name: cancellation_policy
+        nullable: true
+        sourceColumnReferences:
+          - columnReferences:
+              - columnCounter: 2572220c-724b-4160-876c-8ade33b1f3da
+                stepCounter: cc62fd4e-1cc2-4652-ba7b-47670f52feba
+            transform: ""
+      - appliedColumnTests: {}
+        columnReference:
+          columnCounter: f669ab01-2768-45c8-a067-dc500ed577b5
+          stepCounter: d71066f1-525e-4359-a47e-1bea6f31a0fa
+        config: {}
+        dataType: ARRAY
+        description: ""
+        name: amenities
+        nullable: true
+        sourceColumnReferences:
+          - columnReferences:
+              - columnCounter: b75bac01-ffc5-4ac7-99c3-e625749d7558
+                stepCounter: cc62fd4e-1cc2-4652-ba7b-47670f52feba
+            transform: ""
+      - appliedColumnTests: {}
+        columnReference:
+          columnCounter: e2d1baf4-445a-4404-9833-2b0f21895eba
+          stepCounter: d71066f1-525e-4359-a47e-1bea6f31a0fa
+        config: {}
+        dataType: VARCHAR(16777216)
+        description: ""
+        name: description
+        nullable: true
+        sourceColumnReferences:
+          - columnReferences:
+              - columnCounter: 3b339d73-f151-4db0-b3c8-51ab76af4f0d
+                stepCounter: cc62fd4e-1cc2-4652-ba7b-47670f52feba
+            transform: ""
+      - appliedColumnTests: {}
+        columnReference:
+          columnCounter: 972f5a27-ff01-4109-a42f-8efce4dcee26
+          stepCounter: d71066f1-525e-4359-a47e-1bea6f31a0fa
+        config: {}
+        dataType: NUMBER(5,0)
+        description: ""
+        name: price
+        nullable: true
+        sourceColumnReferences:
+          - columnReferences:
+              - columnCounter: 314d6cf3-2107-4f20-b304-9fd7a6e51cad
+                stepCounter: cc62fd4e-1cc2-4652-ba7b-47670f52feba
+            transform: ""
+      - appliedColumnTests: {}
+        columnReference:
+          columnCounter: e2ec2390-b853-45ae-8fee-86b9079d2dab
+          stepCounter: d71066f1-525e-4359-a47e-1bea6f31a0fa
+        config: {}
+        dataType: VARCHAR(16777216)
+        description: ""
+        name: room_type
+        nullable: true
+        sourceColumnReferences:
+          - columnReferences:
+              - columnCounter: d38a26ae-4606-4584-a866-901c6119af26
+                stepCounter: cc62fd4e-1cc2-4652-ba7b-47670f52feba
+            transform: ""
+      - appliedColumnTests: {}
+        columnReference:
+          columnCounter: cf2ab657-892b-49a6-9e75-7ec8338230b3
+          stepCounter: d71066f1-525e-4359-a47e-1bea6f31a0fa
+        config: {}
+        dataType: VARCHAR(16777216)
+        description: ""
+        name: summary
+        nullable: true
+        sourceColumnReferences:
+          - columnReferences:
+              - columnCounter: 25654d3b-46fb-4843-8cd2-2975276ec33b
+                stepCounter: cc62fd4e-1cc2-4652-ba7b-47670f52feba
+            transform: ""
+      - appliedColumnTests: {}
+        columnReference:
+          columnCounter: 17d5b9d6-b617-4186-a9ce-c8d9736a43f0
+          stepCounter: d71066f1-525e-4359-a47e-1bea6f31a0fa
+        config: {}
+        dataType: VARCHAR(16777216)
+        description: ""
+        name: space
+        nullable: true
+        sourceColumnReferences:
+          - columnReferences:
+              - columnCounter: 2769cb8b-4e54-404e-97f8-6ba0854f88c2
+                stepCounter: cc62fd4e-1cc2-4652-ba7b-47670f52feba
+            transform: ""
+      - appliedColumnTests: {}
+        columnReference:
+          columnCounter: 4ef99327-f1d5-45ad-a4a0-99f837cd5eaf
+          stepCounter: d71066f1-525e-4359-a47e-1bea6f31a0fa
+        config: {}
+        dataType: STRING
+        description: ""
+        name: listing_text
+        nullable: true
+        sourceColumnReferences:
+          - columnReferences:
+              - columnCounter: a6146e3c-d36c-47d8-b0b0-fb6d93f012e0
+                stepCounter: cc62fd4e-1cc2-4652-ba7b-47670f52feba
+            transform: ""
+    cteString: ""
+    enabledColumnTestIDs: []
+    sourceMapping:
+      - aliases: {}
+        customSQL:
+          customSQL: ""
+        dependencies:
+          - locationName: SOURCE
+            nodeName: STG_AIRBNB_JSON
+        join:
+          joinCondition: FROM {{ ref('SOURCE', 'STG_AIRBNB_JSON') }} "STG_AIRBNB_JSON"
+        name: CSS_AIRBNB_COSTLIER
+        noLinkRefs: []
+  name: CSS_AIRBNB_COSTLIER
+  overrideSQL: false
+  schema: ""
+  sqlType: "499"
+  type: sql
+  version: 1
+type: Node

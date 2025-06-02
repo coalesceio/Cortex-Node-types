@@ -3,7 +3,6 @@ id: 00f96518-10fc-48e7-9117-dda9cb06f794
 name: CUSTOMERS
 operation:
   database: ""
-  dataset: ""
   deployEnabled: true
   description: ""
   locationName: SOURCE
@@ -142,12 +141,9 @@ operation:
             transform: ""
         transform: ""
         uniqueKey: false
-    join:
-      joinCondition: FROM {{ ref('SOURCE', 'CUSTOMERS') }}
   name: CUSTOMERS
   schema: ""
   sqlType: Source
-  table: CUSTOMERS
   type: sourceInput
   version: 1
 type: Node

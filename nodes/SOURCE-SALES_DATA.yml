@@ -3,7 +3,6 @@ id: 43751546-e7d3-4b85-bc82-3f7ae851d745
 name: SALES_DATA
 operation:
   database: ""
-  dataset: ""
   deployEnabled: true
   description: ""
   locationName: SOURCE
@@ -114,12 +113,9 @@ operation:
         nullable: true
         primaryKey: false
         uniqueKey: false
-    join:
-      joinCondition: FROM {{ ref('SAMPLE_SOURCE', 'SALES_DATA') }}
   name: SALES_DATA
   schema: ""
   sqlType: Source
-  table: SALES_DATA
   type: sourceInput
   version: 1
 type: Node

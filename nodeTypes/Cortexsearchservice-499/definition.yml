@@ -1,0 +1,278 @@
+fileVersion: 1
+id: "499"
+isDisabled: false
+metadata:
+  defaultStorageLocation: null
+  error: null
+  nodeMetadataSpec: |-
+    capitalized: Cortex search
+    short: CSS
+    tagColor: "#F6FF3C"
+    isDisabled: true
+    plural: Dynamic Tables
+
+    deployStrategy: advanced
+
+    config:
+      - groupName: General Options
+        items: 
+        
+        - type: toggleButton
+          displayName: 'Create Cortex Service'
+          attributeName: createcortex
+
+        - type: toggleButton
+          displayName: 'Preview/Query the Cortex Service'
+          attributeName: querycortex
+
+      - groupName: Cortex search schedule Options
+        enableIf: "{%- if config.createcortex -%} true {%- else -%} false {%- endif -%}"
+        items:     
+         
+        - type: label
+          attributeName: note2
+          displayName: 
+                       "NOTE:
+                       \n
+                       Ensure the parameter targetWarehouse is added in Workspace and 
+                       deployment environment  for successful creation of dynamic table.  
+                       Refer documentation for more info"
+          enableIf: "{%- if parameters == {} or parameters.targetWarehouse == '' -%} true {%- else -%} false {%- endif -%}"
+
+        - displayName: Warehouse used for Cortex serach service
+          attributeName: warehouseName
+          type: textBox
+          default: dev_wh_xs
+          isRequired: true
+
+        - type: tabular
+          displayName: 'Lag Specification'
+          attributeName: lagSpecification
+          columns:
+      
+          -  type: textBox
+             displayName: Time Value
+             attributeName: lagValue
+             default: 60
+             isRequired: false
+             
+          -  type: dropdownSelector
+             displayName: Time Period
+             attributeName: lagPeriod
+             default: "Minutes"
+             options:
+             - Seconds
+             - Minutes
+             - Hours
+             - Days
+             isRequired: false
+             
+          isRequired: false
+          
+      - groupName: Cortex search Advanced Options
+        enableIf: "{%- if config.createcortex -%} true {%- else -%} false {%- endif -%}"
+        items:
+
+        - type: dropdownSelector   
+          displayName: Initialize
+          attributeName: initialize
+          default: "ON_CREATE"
+          options:
+          - ON_CREATE
+          - ON_SCHEDULE 
+          isRequired: true
+       
+       
+        - type: dropdownSelector   
+          displayName: Embedding model
+          attributeName: embmodel
+          default: "snowflake-arctic-embed-m-v1.5"
+          options:
+          - snowflake-arctic-embed-m-v1.5
+          - snowflake-arctic-embed-l-v2.0
+          - voyage-multilingual-2 
+          isRequired: false
+
+        - type: columnDropdownSelector
+          displayName: Search column
+          attributeName: searchcol
+          isRequired: false
+          
+        
+        - type: tabular
+          displayName: 'Attribute Columns'
+          attributeName: attrcol
+          columns:
+
+          -  type: columnDropdownSelector
+             displayName: Column Name
+             attributeName: acolname
+             isRequired: false
+
+          isRequired: false
+        
+      - groupName: Preview search Options
+        enableIf: "{%- if config.querycortex -%} true {%- else -%} false {%- endif -%}"
+        items:
+
+        - type: toggleButton
+          displayName:  Use existing Cortex Search Service
+          attributeName: excss
+
+        - type: textBox
+          displayName: Coalesce storage location of CSS
+          enableIf: "{%- if config.excss -%} true {%- else -%} false {%- endif -%}"
+          attributeName: locCSS
+        
+        - type: textBox
+          displayName: Name of Cortex Search Service
+          enableIf: "{%- if config.excss -%} true {%- else -%} false {%- endif -%}"
+          attributeName: namCSS
+
+        - type: toggleButton
+          displayName: All Columns in the preview 
+          attributeName: allcol
+          isRequired: false
+       
+        - type: tabular
+          displayName: 'Columns in Target View'
+          enableIf: "{%- if config.allcol -%} false {%- else -%} true {%- endif -%}"
+          attributeName: colpreview
+          columns:
+
+          -  type: columnDropdownSelector
+             displayName: Column Name
+             attributeName: columnName
+             isRequired: false
+      
+          isRequired: false
+
+        - type: toggleButton
+          displayName: Filter
+          attributeName: filtoggle
+          isRequired: false
+
+        - type: toggleButton
+          displayName: Multiple Filter conditions
+          attributName: mulfilcon
+          enableIf: "{%- if config.filtoggle -%} true {%- else -%} false {%- endif -%}"
+
+        - type: dropdownSelector
+          displayName: Logical operator
+          attributeName: lopt
+          default: "and"
+          options:
+          - and
+          - or
+          - not
+          enableIf: "{%- if config.mulfilcon -%} true {%- else -%} false {%- endif -%}"
+
+        - type: tabular
+          displayName: 'Filtering criteria'
+          attributeName: filcrit
+          enableIf: "{%- if config.filtoggle -%} true {%- else -%} false {%- endif -%}"
+          columns:
+
+          - type: columnDropdownSelector
+            displayName: Column Name
+            attributeName: filcolname
+            isRequired: false
+          
+          - type: dropdownSelector
+            displayName: Matching operator
+            attributeName: mopt
+            default: "eq"
+            options:
+            - eq
+            - gte
+            - lte
+            - contains
+            isRequired: false
+          
+          - type: textBox
+            displayName: Filter Value
+            attributeName: filcolval
+            isRequired: false
+      
+          isRequired: false
+        
+        - type: toggleButton
+          displayName: Apply numeric boost to Search Service
+          attributeName: numboost
+          isRequired: false
+
+        - type: tabular
+          displayName: 'Numeric boosts'
+          attributeName: numericboost
+          enableIf: "{%- if config.numboost -%} true {%- else -%} false {%- endif -%}"
+          columns:
+
+          -  type: columnDropdownSelector
+             displayName: Column Name
+             attributeName: colname
+             isRequired: false
+      
+          -  type: textBox
+             displayName: Weightage
+             attributeName: wage
+             isRequired: false
+      
+          isRequired: false
+
+        - type: toggleButton
+          displayName: Apply time decay to Search Service
+          attributeName: timdec
+          isRequired: false
+
+        - type: tabular
+          displayName: 'Time decays'
+          attributeName: timedecay
+          enableIf: "{%- if config.timdec -%} true {%- else -%} false {%- endif -%}"
+          columns:
+
+          -  type: columnDropdownSelector
+             displayName: Column Name
+             attributeName: tcolname
+             isRequired: false
+      
+          -  type: textBox
+             displayName: Weightage
+             attributeName: twage
+             isRequired: false
+
+          -  type: textBox
+             displayName: Limit hours      
+             attributeName: lhours
+             isRequired: false
+          
+          -  type: textBox
+             displayName: Refrence timestamp(timestamp from which decay is caluculated)
+             attributeName: reftstmp
+             isRequired: false
+      
+          isRequired: false  
+        
+        - type: textBox
+          displayName: Query
+          attributeName: query1
+          isRequired: false
+        
+     
+      - groupName: Hidden Config
+        enableIf: "false"
+        items:
+        - displayName: Type
+          type: materializationSelector
+          default: view
+          options:
+          - view
+          isRequired: false   
+        
+
+
+        
+
+
+        
+name: Cortex search service
+type: NodeType

@@ -3,7 +3,6 @@ id: c20e632f-7f19-42ad-866a-2c7dcfb3e446
 name: CHURN_TBL_TRAIN
 operation:
   database: ""
-  dataset: ""
   deployEnabled: true
   description: ""
   locationName: SOURCE
@@ -408,12 +407,9 @@ operation:
             transform: ""
         transform: ""
         uniqueKey: false
-    join:
-      joinCondition: FROM {{ ref('SOURCE', 'CHURN_TBL_TRAIN') }}
   name: CHURN_TBL_TRAIN
   schema: ""
   sqlType: Source
-  table: CHURN_TBL_TRAIN
   type: sourceInput
   version: 1
 type: Node

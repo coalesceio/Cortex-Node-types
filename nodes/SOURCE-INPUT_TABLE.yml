@@ -3,7 +3,6 @@ id: deb65676-39aa-492d-96d6-5bfec1fd920d
 name: INPUT_TABLE
 operation:
   database: ""
-  dataset: ""
   deployEnabled: true
   description: ""
   locationName: SOURCE
@@ -69,12 +68,9 @@ operation:
         nullable: true
         primaryKey: false
         uniqueKey: false
-    join:
-      joinCondition: FROM {{ ref('SOURCE', 'INPUT_TABLE') }}
   name: INPUT_TABLE
   schema: ""
   sqlType: Source
-  table: INPUT_TABLE
   type: sourceInput
   version: 1
 type: Node

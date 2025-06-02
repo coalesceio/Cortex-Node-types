@@ -3,7 +3,6 @@ id: c54a2568-9439-41d3-a148-8aee0036f1c1
 name: CHURN_TBL_TEST
 operation:
   database: ""
-  dataset: ""
   deployEnabled: true
   description: ""
   locationName: SOURCE
@@ -408,12 +407,9 @@ operation:
             transform: ""
         transform: ""
         uniqueKey: false
-    join:
-      joinCondition: FROM {{ ref('SOURCE', 'CHURN_TBL_TEST') }}
   name: CHURN_TBL_TEST
   schema: ""
   sqlType: Source
-  table: CHURN_TBL_TEST
   type: sourceInput
   version: 1
 type: Node

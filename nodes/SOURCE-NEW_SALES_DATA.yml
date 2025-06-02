@@ -3,7 +3,6 @@ id: c3498c55-5a7b-4d15-b220-46166d532e4f
 name: NEW_SALES_DATA
 operation:
   database: ""
-  dataset: ""
   deployEnabled: true
   description: ""
   locationName: SOURCE
@@ -114,12 +113,9 @@ operation:
         nullable: true
         primaryKey: false
         uniqueKey: false
-    join:
-      joinCondition: FROM {{ ref('SOURCE', 'NEW_SALES_DATA') }}
   name: NEW_SALES_DATA
   schema: ""
   sqlType: Source
-  table: NEW_SALES_DATA
   type: sourceInput
   version: 1
 type: Node

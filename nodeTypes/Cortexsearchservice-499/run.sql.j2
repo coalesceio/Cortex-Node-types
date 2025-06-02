@@ -1,0 +1,107 @@
+{#Cortex Search Service#}
+{%if config.excss %}
+      {% set CSSDatabase = storageLocations | selectattr('name', 'equalto',config.locCSS) | map(attribute='database') | first %} 
+      {% set CSSSchema = storageLocations | selectattr('name', 'equalto',config.locCSS) | map(attribute='database') | first %} 
+      {% set fullyQualifiedTargeCSSName = ref_no_link(config.locCSS, config.namCSS) %}  
+{%else%}
+      {% set fullyQualifiedTargeCSSName = ref_no_link(node.location.name, node.name) %}
+{%endif%}
+
+
+        {% set CSSDatabase = ref_no_link(node.location.name, node.name).split('.')[0] %} 
+        {% set CSSSchema = ref_no_link(node.location.name,node.name).split('.')[1] %} 
+        {% set fullyQualifiedTargeCSSTableName = ref_no_link(node.location.name, node.name) %}
+
+{#Namespace variables#}
+
+{%- set ns = namespace(numb="",timdec="",filcrit="") %}
+
+{#Cortex Search Service target view#}
+
+{% if config.allcol == false%}
+  {% set tcolumns = config.colpreview.get('items') | map(attribute='columnName.name')| list %}
+  {% set columnmod = tcolumns | map('string') | join('","') %}
+{%else%}
+  {% set allcol = columns| map(attribute='name')| list%}
+  {% set columnmod = allcol | map('string') | join('","') %}
+{%endif%}
+				
+{#Numeric boosts#}
+
+{%if config.numboost%}
+     {% set column, weightage = config.numericboost.get('items') | map(attribute='colname.name') | list, config.numericboost.get('items') | map(attribute='wage') | list %}
+
+     {%for ncol in column %}
+         {%set ns.numb = ns.numb + '{"column":"'+ ncol +'"'+ ',"weight":"' + weightage[loop.index0] + '"}' %}
+         {%if  not loop.last%} {%set ns.numb = ns.numb + ','%}{%endif%}
+    {%endfor%}
+{%endif%}
+
+{#Timedecay#}
+{%if config.timdec%}
+    {% set column, weightage,lhours,reft = config.timedecay.get('items') | map(attribute='tcolname.name') | list, config.timedecay.get('items') | map(attribute='twage') | list,config.timedecay.get('items') | map(attribute='lhours') | list,config.timedecay.get('items') | map(attribute='reftstmp')|list %}
+
+    {%for ncol in column %}
+         {%set ns.timdec = ns.timdec + '{"column":"'+ ncol +'"'+ ',"weight":"' + weightage[loop.index0] + '","limit_hours":"'+ lhours[loop.index0]+'"' %}
+          {%if reft[loop.index0]!="" %}
+         {%set ns.timdec = ns.timdec +',"now":"'+ reft[loop.index0]+'"}'%}
+         {%else%}
+         {%set ns.timdec = ns.timdec + '}'%}
+         {%endif%}
+         {%if  not loop.last%} {%set ns.numb = ns.numb + ','%}{%endif%}
+    {%endfor%}       
+
+{%endif%}
+
+{#Filter#}
+{%if config.filtoggle%}
+     {% set column, mopt,val = config.filcrit.get('items') | map(attribute='filcolname.name') | list, config.filcrit.get('items') | map(attribute='mopt') | list,config.filcrit.get('items') | map(attribute='filcolval')|list %}
+     
+     {%if mulfilcon %}
+         {%set ns.filcrit = ns.filcrit + '"@' + lopt[loop.index0] + '":['  %}
+     {%endif%}
+     {%for ncol in column %}
+         {%set ns.filcrit = ns.filcrit + '"@'+ mopt[loop.index0] + '": {"'+ ncol +'":"' + val[loop.index0] + '"}' %}
+         {%if  not loop.last%} {%set ns.filcrit = ns.filcrit + ','%}{%endif%}
+    {%endfor%}
+    {%if mulfilcon %}
+         {%set ns.filcrit = ns.filcrit + ']'  %}
+     {%endif%}
+{%endif%}
+
+
+
+{{ stage(' Search Service preview', true, "sql", "create") }}
+
+CREATE OR REPLACE VIEW {{ fullyQualifiedTargeCSSTableName }}
+AS
+SELECT
+   index,
+{%if config.allcol %}
+   {%- for col in sources[0].columns  %} 
+			value['{{col.name}}']::{{col.dataType}} as {{col.name}}
+            {%- if not loop.last %}, {%- endif %}
+    {%- endfor %}
+{%else %}
+      
+      {%- for col in sources[0].columns  %} 
+      {%if col.name in tcolumns%}
+			value['{{col.name}}']::{{col.dataType}} as {{col.name}}
+            {%- if not loop.last %}, {%- endif %}
+{%endif%}
+    {%- endfor %}
+{%endif%}
+FROM TABLE(FLATTEN(PARSE_JSON(SNOWFLAKE.CORTEX.SEARCH_PREVIEW(
+    '{{ fullyQualifiedTargeCSSName }}',
+    '{
+      "query": "{{config.query1}}",
+      "columns": ["{{columnmod}}"] ,
+      "scoring_config": {
+        "functions": {
+          "numeric_boosts": [{{ns.numb}}],
+          "time_decays":[{{ns.timdec}}],
+          "filter":{ {{ns.filcrit}} }
+        }
+      }
+    }'
+))['results'] ))

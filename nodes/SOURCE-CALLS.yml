@@ -3,7 +3,6 @@ id: 0b61ea6a-258f-4107-9271-825c33ae0501
 name: CALLS
 operation:
   database: ""
-  dataset: ""
   deployEnabled: true
   description: ""
   locationName: SOURCE
@@ -99,12 +98,9 @@ operation:
         nullable: true
         primaryKey: false
         uniqueKey: false
-    join:
-      joinCondition: FROM {{ ref('SOURCE', 'CALLS') }}
   name: CALLS
   schema: ""
   sqlType: Source
-  table: CALLS
   type: sourceInput
   version: 1
 type: Node

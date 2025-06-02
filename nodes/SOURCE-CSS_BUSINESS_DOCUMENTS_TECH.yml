@@ -1,0 +1,156 @@
+fileVersion: 1
+id: f6f57c98-6731-423a-b577-2918fe91a0b3
+name: CSS_BUSINESS_DOCUMENTS_TECH
+operation:
+  config:
+    allcol: true
+    attrcol:
+      items:
+        - acolname:
+            columnCounter: 9097d3c3-1c67-4c48-a591-bacbf213c52b
+            stepCounter: f6f57c98-6731-423a-b577-2918fe91a0b3
+        - acolname:
+            columnCounter: b29917e8-5aa2-41d4-8cbe-c3c28850c9a3
+            stepCounter: f6f57c98-6731-423a-b577-2918fe91a0b3
+    colpreview:
+      items:
+        - {}
+    createcortex: true
+    embmodel: snowflake-arctic-embed-m-v1.5
+    excss: false
+    filcrit:
+      items:
+        - filcolname: null
+          filcolval: null
+          mopt: eq
+    filtoggle: false
+    initialize: ON_CREATE
+    lagSpecification:
+      items:
+        - lagPeriod: Hours
+          lagValue: "600"
+    locCSS: ""
+    lopt: and
+    namCSS: ""
+    numboost: true
+    numericboost:
+      items:
+        - colname:
+            columnCounter: 9097d3c3-1c67-4c48-a591-bacbf213c52b
+            stepCounter: f6f57c98-6731-423a-b577-2918fe91a0b3
+          wage: "1"
+    query1: technology
+    querycortex: true
+    searchcol:
+      columnCounter: 97ec9496-cace-4850-ba96-810d75d1d1f1
+      stepCounter: f6f57c98-6731-423a-b577-2918fe91a0b3
+    timdec: true
+    timedecay:
+      items:
+        - lhours: "240"
+          reftstmp: "2025-02-19T14:30:45.123-08:00"
+          tcolname:
+            columnCounter: ac254ae9-9a44-46fb-9335-fbbe963c40a4
+            stepCounter: f6f57c98-6731-423a-b577-2918fe91a0b3
+          twage: "1"
+    undefined: false
+    warehouseName: dev_wh_xs
+  database: ""
+  deployEnabled: true
+  description: ""
+  isMultisource: false
+  locationName: SOURCE
+  materializationType: view
+  metadata:
+    appliedNodeTests: []
+    columns:
+      - appliedColumnTests: {}
+        columnReference:
+          columnCounter: 97ec9496-cace-4850-ba96-810d75d1d1f1
+          stepCounter: f6f57c98-6731-423a-b577-2918fe91a0b3
+        config: {}
+        dataType: VARCHAR(16777216)
+        description: ""
+        name: DOCUMENT_CONTENTS
+        nullable: true
+        sourceColumnReferences:
+          - columnReferences:
+              - columnCounter: a1bd3ee0-de12-49b4-a4c8-af7842f93559
+                stepCounter: e119674e-ba9d-423a-9ae7-6cd84a50324e
+            transform: ""
+      - appliedColumnTests: {}
+        columnReference:
+          columnCounter: ac254ae9-9a44-46fb-9335-fbbe963c40a4
+          stepCounter: f6f57c98-6731-423a-b577-2918fe91a0b3
+        config: {}
+        dataType: TIMESTAMP_NTZ(9)
+        description: ""
+        name: LAST_MODIFIED_TIMESTAMP
+        nullable: true
+        sourceColumnReferences:
+          - columnReferences:
+              - columnCounter: 74adb0b2-9519-44e5-937d-0704967abbc8
+                stepCounter: e119674e-ba9d-423a-9ae7-6cd84a50324e
+            transform: ""
+      - appliedColumnTests: {}
+        columnReference:
+          columnCounter: 36d46638-716d-4910-b2f5-431f89e792c4
+          stepCounter: f6f57c98-6731-423a-b577-2918fe91a0b3
+        config: {}
+        dataType: TIMESTAMP_NTZ(9)
+        description: ""
+        name: CREATED_TIMESTAMP
+        nullable: true
+        sourceColumnReferences:
+          - columnReferences:
+              - columnCounter: 47ef48be-7c90-4c77-ac2a-a51e8fda3fb6
+                stepCounter: e119674e-ba9d-423a-9ae7-6cd84a50324e
+            transform: ""
+      - appliedColumnTests: {}
+        columnReference:
+          columnCounter: 9097d3c3-1c67-4c48-a591-bacbf213c52b
+          stepCounter: f6f57c98-6731-423a-b577-2918fe91a0b3
+        config: {}
+        dataType: NUMBER(38,0)
+        description: ""
+        name: LIKES
+        nullable: true
+        sourceColumnReferences:
+          - columnReferences:
+              - columnCounter: 686bf47c-2f57-4970-9b9c-1a16add0f3f8
+                stepCounter: e119674e-ba9d-423a-9ae7-6cd84a50324e
+            transform: ""
+      - appliedColumnTests: {}
+        columnReference:
+          columnCounter: b29917e8-5aa2-41d4-8cbe-c3c28850c9a3
+          stepCounter: f6f57c98-6731-423a-b577-2918fe91a0b3
+        config: {}
+        dataType: NUMBER(38,0)
+        description: ""
+        name: COMMENTS
+        nullable: true
+        sourceColumnReferences:
+          - columnReferences:
+              - columnCounter: 99fc4dda-6b9a-4201-ade9-58d1463bbf5f
+                stepCounter: e119674e-ba9d-423a-9ae7-6cd84a50324e
+            transform: ""
+    cteString: ""
+    enabledColumnTestIDs: []
+    sourceMapping:
+      - aliases: {}
+        customSQL:
+          customSQL: ""
+        dependencies:
+          - locationName: SOURCE
+            nodeName: BUSINESS_DOCUMENTS
+        join:
+          joinCondition: FROM {{ ref('SOURCE', 'BUSINESS_DOCUMENTS') }} "BUSINESS_DOCUMENTS"
+        name: CSS_BUSINESS_DOCUMENTS_TECH
+        noLinkRefs: []
+  name: CSS_BUSINESS_DOCUMENTS_TECH
+  overrideSQL: false
+  schema: ""
+  sqlType: "499"
+  type: sql
+  version: 1
+type: Node

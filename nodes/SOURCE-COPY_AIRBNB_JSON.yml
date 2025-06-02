@@ -1,0 +1,928 @@
+fileVersion: 1
+id: 71639e04-f959-475b-aeeb-91bbb1d0835a
+name: COPY_AIRBNB_JSON
+operation:
+  database: ""
+  deployEnabled: true
+  description: ""
+  locationName: SOURCE
+  metadata:
+    columns:
+      - acceptedValues:
+          strictMatch: true
+          values: []
+        appliedColumnTests: {}
+        columnReference:
+          columnCounter: a5ff1f74-b0f3-451e-9aa7-c42ede641fa7
+          stepCounter: 71639e04-f959-475b-aeeb-91bbb1d0835a
+        config: {}
+        dataType: NUMBER(8,0)
+        defaultValue: ""
+        description: ""
+        name: _id
+        nullable: true
+        primaryKey: false
+        sourceColumnReferences:
+          - columnReferences: []
+            transform: ""
+        transform: ""
+        uniqueKey: false
+      - acceptedValues:
+          strictMatch: true
+          values: []
+        appliedColumnTests: {}
+        columnReference:
+          columnCounter: bc708be4-6b28-4722-9c02-136c347efc42
+          stepCounter: 71639e04-f959-475b-aeeb-91bbb1d0835a
+        config: {}
+        dataType: VARCHAR(16777216)
+        defaultValue: ""
+        description: ""
+        name: access
+        nullable: true
+        primaryKey: false
+        sourceColumnReferences:
+          - columnReferences: []
+            transform: ""
+        transform: ""
+        uniqueKey: false
+      - acceptedValues:
+          strictMatch: true
+          values: []
+        appliedColumnTests: {}
+        columnReference:
+          columnCounter: f046bb62-08f1-43d5-aef9-d488e2226522
+          stepCounter: 71639e04-f959-475b-aeeb-91bbb1d0835a
+        config: {}
+        dataType: NUMBER(2,0)
+        defaultValue: ""
+        description: ""
+        name: accommodates
+        nullable: true
+        primaryKey: false
+        sourceColumnReferences:
+          - columnReferences: []
+            transform: ""
+        transform: ""
+        uniqueKey: false
+      - acceptedValues:
+          strictMatch: true
+          values: []
+        appliedColumnTests: {}
+        columnReference:
+          columnCounter: 7a8ea040-b1bd-46bc-a090-a332ae968254
+          stepCounter: 71639e04-f959-475b-aeeb-91bbb1d0835a
+        config: {}
+        dataType: OBJECT
+        defaultValue: ""
+        description: ""
+        name: address
+        nullable: true
+        primaryKey: false
+        sourceColumnReferences:
+          - columnReferences: []
+            transform: ""
+        transform: ""
+        uniqueKey: false
+      - acceptedValues:
+          strictMatch: true
+          values: []
+        appliedColumnTests: {}
+        columnReference:
+          columnCounter: c36d6f25-9080-40b9-a1a7-c00e2aab9fad
+          stepCounter: 71639e04-f959-475b-aeeb-91bbb1d0835a
+        config: {}
+        dataType: ARRAY
+        defaultValue: ""
+        description: ""
+        name: amenities
+        nullable: true
+        primaryKey: false
+        sourceColumnReferences:
+          - columnReferences: []
+            transform: ""
+        transform: ""
+        uniqueKey: false
+      - acceptedValues:
+          strictMatch: true
+          values: []
+        appliedColumnTests: {}
+        columnReference:
+          columnCounter: 35cf8262-3111-42d5-88ee-30a23e38abe7
+          stepCounter: 71639e04-f959-475b-aeeb-91bbb1d0835a
+        config: {}
+        dataType: OBJECT
+        defaultValue: ""
+        description: ""
+        name: availability
+        nullable: true
+        primaryKey: false
+        sourceColumnReferences:
+          - columnReferences: []
+            transform: ""
+        transform: ""
+        uniqueKey: false
+      - acceptedValues:
+          strictMatch: true
+          values: []
+        appliedColumnTests: {}
+        columnReference:
+          columnCounter: f96739a2-7b11-444e-b830-0cb1d611bfc3
+          stepCounter: 71639e04-f959-475b-aeeb-91bbb1d0835a
+        config: {}
+        dataType: NUMBER(3,1)
+        defaultValue: ""
+        description: ""
+        name: bathrooms
+        nullable: true
+        primaryKey: false
+        sourceColumnReferences:
+          - columnReferences: []
+            transform: ""
+        transform: ""
+        uniqueKey: false
+      - acceptedValues:
+          strictMatch: true
+          values: []
+        appliedColumnTests: {}
+        columnReference:
+          columnCounter: 88e23210-6098-47be-8b13-41ca0142d62e
+          stepCounter: 71639e04-f959-475b-aeeb-91bbb1d0835a
+        config: {}
+        dataType: VARCHAR(16777216)
+        defaultValue: ""
+        description: ""
+        name: bed_type
+        nullable: true
+        primaryKey: false
+        sourceColumnReferences:
+          - columnReferences: []
+            transform: ""
+        transform: ""
+        uniqueKey: false
+      - acceptedValues:
+          strictMatch: true
+          values: []
+        appliedColumnTests: {}
+        columnReference:
+          columnCounter: 77e46e7c-762f-449d-b2f8-a51e3828c61b
+          stepCounter: 71639e04-f959-475b-aeeb-91bbb1d0835a
+        config: {}
+        dataType: NUMBER(3,1)
+        defaultValue: ""
+        description: ""
+        name: bedrooms
+        nullable: true
+        primaryKey: false
+        sourceColumnReferences:
+          - columnReferences: []
+            transform: ""
+        transform: ""
+        uniqueKey: false
+      - acceptedValues:
+          strictMatch: true
+          values: []
+        appliedColumnTests: {}
+        columnReference:
+          columnCounter: f774c404-0b8c-4424-ab32-410caab51054
+          stepCounter: 71639e04-f959-475b-aeeb-91bbb1d0835a
+        config: {}
+        dataType: NUMBER(3,1)
+        defaultValue: ""
+        description: ""
+        name: beds
+        nullable: true
+        primaryKey: false
+        sourceColumnReferences:
+          - columnReferences: []
+            transform: ""
+        transform: ""
+        uniqueKey: false
+      - acceptedValues:
+          strictMatch: true
+          values: []
+        appliedColumnTests: {}
+        columnReference:
+          columnCounter: 4a87a758-987a-45d4-98b1-2f7f6193e93d
+          stepCounter: 71639e04-f959-475b-aeeb-91bbb1d0835a
+        config: {}
+        dataType: TIMESTAMP_NTZ(9)
+        defaultValue: ""
+        description: ""
+        name: calendar_last_scraped
+        nullable: true
+        primaryKey: false
+        sourceColumnReferences:
+          - columnReferences: []
+            transform: ""
+        transform: ""
+        uniqueKey: false
+      - acceptedValues:
+          strictMatch: true
+          values: []
+        appliedColumnTests: {}
+        columnReference:
+          columnCounter: 2cda2927-068d-43c4-b0e2-850c60bfd580
+          stepCounter: 71639e04-f959-475b-aeeb-91bbb1d0835a
+        config: {}
+        dataType: VARCHAR(16777216)
+        defaultValue: ""
+        description: ""
+        name: cancellation_policy
+        nullable: true
+        primaryKey: false
+        sourceColumnReferences:
+          - columnReferences: []
+            transform: ""
+        transform: ""
+        uniqueKey: false
+      - acceptedValues:
+          strictMatch: true
+          values: []
+        appliedColumnTests: {}
+        columnReference:
+          columnCounter: 2ea9a175-424c-4d17-a8b8-6f51c618a99d
+          stepCounter: 71639e04-f959-475b-aeeb-91bbb1d0835a
+        config: {}
+        dataType: NUMBER(5,1)
+        defaultValue: ""
+        description: ""
+        name: cleaning_fee
+        nullable: true
+        primaryKey: false
+        sourceColumnReferences:
+          - columnReferences: []
+            transform: ""
+        transform: ""
+        uniqueKey: false
+      - acceptedValues:
+          strictMatch: true
+          values: []
+        appliedColumnTests: {}
+        columnReference:
+          columnCounter: a6aec7b5-4d0a-409f-bcbb-8edf405ac61a
+          stepCounter: 71639e04-f959-475b-aeeb-91bbb1d0835a
+        config: {}
+        dataType: VARCHAR(16777216)
+        defaultValue: ""
+        description: ""
+        name: description
+        nullable: true
+        primaryKey: false
+        sourceColumnReferences:
+          - columnReferences: []
+            transform: ""
+        transform: ""
+        uniqueKey: false
+      - acceptedValues:
+          strictMatch: true
+          values: []
+        appliedColumnTests: {}
+        columnReference:
+          columnCounter: 713c825e-c9ae-4807-bd68-408a61bc1360
+          stepCounter: 71639e04-f959-475b-aeeb-91bbb1d0835a
+        config: {}
+        dataType: NUMBER(4,0)
+        defaultValue: ""
+        description: ""
+        name: extra_people
+        nullable: true
+        primaryKey: false
+        sourceColumnReferences:
+          - columnReferences: []
+            transform: ""
+        transform: ""
+        uniqueKey: false
+      - acceptedValues:
+          strictMatch: true
+          values: []
+        appliedColumnTests: {}
+        columnReference:
+          columnCounter: 2e25cfba-17bd-4677-8e43-5f007317f6ca
+          stepCounter: 71639e04-f959-475b-aeeb-91bbb1d0835a
+        config: {}
+        dataType: TIMESTAMP_NTZ(9)
+        defaultValue: ""
+        description: ""
+        name: first_review
+        nullable: true
+        primaryKey: false
+        sourceColumnReferences:
+          - columnReferences: []
+            transform: ""
+        transform: ""
+        uniqueKey: false
+      - acceptedValues:
+          strictMatch: true
+          values: []
+        appliedColumnTests: {}
+        columnReference:
+          columnCounter: cc570e83-7722-4fa4-8eb2-12d8ba9c18c1
+          stepCounter: 71639e04-f959-475b-aeeb-91bbb1d0835a
+        config: {}
+        dataType: NUMBER(2,0)
+        defaultValue: ""
+        description: ""
+        name: guests_included
+        nullable: true
+        primaryKey: false
+        sourceColumnReferences:
+          - columnReferences: []
+            transform: ""
+        transform: ""
+        uniqueKey: false
+      - acceptedValues:
+          strictMatch: true
+          values: []
+        appliedColumnTests: {}
+        columnReference:
+          columnCounter: e55c6041-9702-4013-a08e-0995a850142e
+          stepCounter: 71639e04-f959-475b-aeeb-91bbb1d0835a
+        config: {}
+        dataType: OBJECT
+        defaultValue: ""
+        description: ""
+        name: host
+        nullable: true
+        primaryKey: false
+        sourceColumnReferences:
+          - columnReferences: []
+            transform: ""
+        transform: ""
+        uniqueKey: false
+      - acceptedValues:
+          strictMatch: true
+          values: []
+        appliedColumnTests: {}
+        columnReference:
+          columnCounter: 04315cbb-2b4f-4b43-89e2-cfad98aac153
+          stepCounter: 71639e04-f959-475b-aeeb-91bbb1d0835a
+        config: {}
+        dataType: VARCHAR(16777216)
+        defaultValue: ""
+        description: ""
+        name: house_rules
+        nullable: true
+        primaryKey: false
+        sourceColumnReferences:
+          - columnReferences: []
+            transform: ""
+        transform: ""
+        uniqueKey: false
+      - acceptedValues:
+          strictMatch: true
+          values: []
+        appliedColumnTests: {}
+        columnReference:
+          columnCounter: ddf3e542-17de-4e95-8e3f-060a57858d4b
+          stepCounter: 71639e04-f959-475b-aeeb-91bbb1d0835a
+        config: {}
+        dataType: ARRAY
+        defaultValue: ""
+        description: ""
+        name: image_embeddings
+        nullable: true
+        primaryKey: false
+        sourceColumnReferences:
+          - columnReferences: []
+            transform: ""
+        transform: ""
+        uniqueKey: false
+      - acceptedValues:
+          strictMatch: true
+          values: []
+        appliedColumnTests: {}
+        columnReference:
+          columnCounter: 28ec50aa-bbc9-40a3-b0f4-735a84757f86
+          stepCounter: 71639e04-f959-475b-aeeb-91bbb1d0835a
+        config: {}
+        dataType: OBJECT
+        defaultValue: ""
+        description: ""
+        name: images
+        nullable: true
+        primaryKey: false
+        sourceColumnReferences:
+          - columnReferences: []
+            transform: ""
+        transform: ""
+        uniqueKey: false
+      - acceptedValues:
+          strictMatch: true
+          values: []
+        appliedColumnTests: {}
+        columnReference:
+          columnCounter: e8877e8b-284c-4a63-afe5-17b1d1bb37cf
+          stepCounter: 71639e04-f959-475b-aeeb-91bbb1d0835a
+        config: {}
+        dataType: VARCHAR(16777216)
+        defaultValue: ""
+        description: ""
+        name: interaction
+        nullable: true
+        primaryKey: false
+        sourceColumnReferences:
+          - columnReferences: []
+            transform: ""
+        transform: ""
+        uniqueKey: false
+      - acceptedValues:
+          strictMatch: true
+          values: []
+        appliedColumnTests: {}
+        columnReference:
+          columnCounter: 41f04fd7-533b-46ff-9fe1-c70ff5e6942b
+          stepCounter: 71639e04-f959-475b-aeeb-91bbb1d0835a
+        config: {}
+        dataType: TIMESTAMP_NTZ(9)
+        defaultValue: ""
+        description: ""
+        name: last_review
+        nullable: true
+        primaryKey: false
+        sourceColumnReferences:
+          - columnReferences: []
+            transform: ""
+        transform: ""
+        uniqueKey: false
+      - acceptedValues:
+          strictMatch: true
+          values: []
+        appliedColumnTests: {}
+        columnReference:
+          columnCounter: 9c8e46ed-7f20-4fdb-8a2c-2ab0e8784a01
+          stepCounter: 71639e04-f959-475b-aeeb-91bbb1d0835a
+        config: {}
+        dataType: TIMESTAMP_NTZ(9)
+        defaultValue: ""
+        description: ""
+        name: last_scraped
+        nullable: true
+        primaryKey: false
+        sourceColumnReferences:
+          - columnReferences: []
+            transform: ""
+        transform: ""
+        uniqueKey: false
+      - acceptedValues:
+          strictMatch: true
+          values: []
+        appliedColumnTests: {}
+        columnReference:
+          columnCounter: 62ac9045-3e0a-416d-ac7e-fbf37e8e8daa
+          stepCounter: 71639e04-f959-475b-aeeb-91bbb1d0835a
+        config: {}
+        dataType: VARCHAR(16777216)
+        defaultValue: ""
+        description: ""
+        name: listing_url
+        nullable: true
+        primaryKey: false
+        sourceColumnReferences:
+          - columnReferences: []
+            transform: ""
+        transform: ""
+        uniqueKey: false
+      - acceptedValues:
+          strictMatch: true
+          values: []
+        appliedColumnTests: {}
+        columnReference:
+          columnCounter: 551722ef-af58-4d03-8355-ef473b756053
+          stepCounter: 71639e04-f959-475b-aeeb-91bbb1d0835a
+        config: {}
+        dataType: NUMBER(10,0)
+        defaultValue: ""
+        description: ""
+        name: maximum_nights
+        nullable: true
+        primaryKey: false
+        sourceColumnReferences:
+          - columnReferences: []
+            transform: ""
+        transform: ""
+        uniqueKey: false
+      - acceptedValues:
+          strictMatch: true
+          values: []
+        appliedColumnTests: {}
+        columnReference:
+          columnCounter: 9c648c73-b710-4277-b58c-41583212a0f6
+          stepCounter: 71639e04-f959-475b-aeeb-91bbb1d0835a
+        config: {}
+        dataType: NUMBER(4,0)
+        defaultValue: ""
+        description: ""
+        name: minimum_nights
+        nullable: true
+        primaryKey: false
+        sourceColumnReferences:
+          - columnReferences: []
+            transform: ""
+        transform: ""
+        uniqueKey: false
+      - acceptedValues:
+          strictMatch: true
+          values: []
+        appliedColumnTests: {}
+        columnReference:
+          columnCounter: b8c82094-75ea-4157-aed7-3664133e9660
+          stepCounter: 71639e04-f959-475b-aeeb-91bbb1d0835a
+        config: {}
+        dataType: NUMBER(7,1)
+        defaultValue: ""
+        description: ""
+        name: monthly_price
+        nullable: true
+        primaryKey: false
+        sourceColumnReferences:
+          - columnReferences: []
+            transform: ""
+        transform: ""
+        uniqueKey: false
+      - acceptedValues:
+          strictMatch: true
+          values: []
+        appliedColumnTests: {}
+        columnReference:
+          columnCounter: 7db57bbf-9075-4cef-8fd7-969be1675b75
+          stepCounter: 71639e04-f959-475b-aeeb-91bbb1d0835a
+        config: {}
+        dataType: VARCHAR(16777216)
+        defaultValue: ""
+        description: ""
+        name: name
+        nullable: true
+        primaryKey: false
+        sourceColumnReferences:
+          - columnReferences: []
+            transform: ""
+        transform: ""
+        uniqueKey: false
+      - acceptedValues:
+          strictMatch: true
+          values: []
+        appliedColumnTests: {}
+        columnReference:
+          columnCounter: 165c9276-f48f-4e30-aed0-c1a163063850
+          stepCounter: 71639e04-f959-475b-aeeb-91bbb1d0835a
+        config: {}
+        dataType: VARCHAR(16777216)
+        defaultValue: ""
+        description: ""
+        name: neighborhood_overview
+        nullable: true
+        primaryKey: false
+        sourceColumnReferences:
+          - columnReferences: []
+            transform: ""
+        transform: ""
+        uniqueKey: false
+      - acceptedValues:
+          strictMatch: true
+          values: []
+        appliedColumnTests: {}
+        columnReference:
+          columnCounter: d8c56c15-ab52-4269-abd7-856fa0cd8738
+          stepCounter: 71639e04-f959-475b-aeeb-91bbb1d0835a
+        config: {}
+        dataType: VARCHAR(16777216)
+        defaultValue: ""
+        description: ""
+        name: notes
+        nullable: true
+        primaryKey: false
+        sourceColumnReferences:
+          - columnReferences: []
+            transform: ""
+        transform: ""
+        uniqueKey: false
+      - acceptedValues:
+          strictMatch: true
+          values: []
+        appliedColumnTests: {}
+        columnReference:
+          columnCounter: b083381b-cde5-4d12-8cb6-331dc38eaf13
+          stepCounter: 71639e04-f959-475b-aeeb-91bbb1d0835a
+        config: {}
+        dataType: NUMBER(3,0)
+        defaultValue: ""
+        description: ""
+        name: number_of_reviews
+        nullable: true
+        primaryKey: false
+        sourceColumnReferences:
+          - columnReferences: []
+            transform: ""
+        transform: ""
+        uniqueKey: false
+      - acceptedValues:
+          strictMatch: true
+          values: []
+        appliedColumnTests: {}
+        columnReference:
+          columnCounter: 15dbfa2a-138e-400c-a604-d2bc3cf21c95
+          stepCounter: 71639e04-f959-475b-aeeb-91bbb1d0835a
+        config: {}
+        dataType: NUMBER(5,0)
+        defaultValue: ""
+        description: ""
+        name: price
+        nullable: true
+        primaryKey: false
+        sourceColumnReferences:
+          - columnReferences: []
+            transform: ""
+        transform: ""
+        uniqueKey: false
+      - acceptedValues:
+          strictMatch: true
+          values: []
+        appliedColumnTests: {}
+        columnReference:
+          columnCounter: 9400bc47-b0ca-4387-8363-4fdea3cee1f2
+          stepCounter: 71639e04-f959-475b-aeeb-91bbb1d0835a
+        config: {}
+        dataType: VARCHAR(16777216)
+        defaultValue: ""
+        description: ""
+        name: property_type
+        nullable: true
+        primaryKey: false
+        sourceColumnReferences:
+          - columnReferences: []
+            transform: ""
+        transform: ""
+        uniqueKey: false
+      - acceptedValues:
+          strictMatch: true
+          values: []
+        appliedColumnTests: {}
+        columnReference:
+          columnCounter: 6fa7fc3f-dad2-40cb-b99b-53e936850fb9
+          stepCounter: 71639e04-f959-475b-aeeb-91bbb1d0835a
+        config: {}
+        dataType: OBJECT
+        defaultValue: ""
+        description: ""
+        name: review_scores
+        nullable: true
+        primaryKey: false
+        sourceColumnReferences:
+          - columnReferences: []
+            transform: ""
+        transform: ""
+        uniqueKey: false
+      - acceptedValues:
+          strictMatch: true
+          values: []
+        appliedColumnTests: {}
+        columnReference:
+          columnCounter: 95663c89-d8bb-4b81-8ec8-e027beadd875
+          stepCounter: 71639e04-f959-475b-aeeb-91bbb1d0835a
+        config: {}
+        dataType: ARRAY
+        defaultValue: ""
+        description: ""
+        name: reviews
+        nullable: true
+        primaryKey: false
+        sourceColumnReferences:
+          - columnReferences: []
+            transform: ""
+        transform: ""
+        uniqueKey: false
+      - acceptedValues:
+          strictMatch: true
+          values: []
+        appliedColumnTests: {}
+        columnReference:
+          columnCounter: e7811642-862f-482b-bf17-23cb67c41e3f
+          stepCounter: 71639e04-f959-475b-aeeb-91bbb1d0835a
+        config: {}
+        dataType: VARCHAR(16777216)
+        defaultValue: ""
+        description: ""
+        name: room_type
+        nullable: true
+        primaryKey: false
+        sourceColumnReferences:
+          - columnReferences: []
+            transform: ""
+        transform: ""
+        uniqueKey: false
+      - acceptedValues:
+          strictMatch: true
+          values: []
+        appliedColumnTests: {}
+        columnReference:
+          columnCounter: 809bce93-365c-4c30-bcf9-ec57519ea0b5
+          stepCounter: 71639e04-f959-475b-aeeb-91bbb1d0835a
+        config: {}
+        dataType: NUMBER(6,1)
+        defaultValue: ""
+        description: ""
+        name: security_deposit
+        nullable: true
+        primaryKey: false
+        sourceColumnReferences:
+          - columnReferences: []
+            transform: ""
+        transform: ""
+        uniqueKey: false
+      - acceptedValues:
+          strictMatch: true
+          values: []
+        appliedColumnTests: {}
+        columnReference:
+          columnCounter: 9fa3ca3d-dc0c-448a-a0d2-2d070b53dac5
+          stepCounter: 71639e04-f959-475b-aeeb-91bbb1d0835a
+        config: {}
+        dataType: VARCHAR(16777216)
+        defaultValue: ""
+        description: ""
+        name: space
+        nullable: true
+        primaryKey: false
+        sourceColumnReferences:
+          - columnReferences: []
+            transform: ""
+        transform: ""
+        uniqueKey: false
+      - acceptedValues:
+          strictMatch: true
+          values: []
+        appliedColumnTests: {}
+        columnReference:
+          columnCounter: ef78999e-6432-46bc-b545-50790f845440
+          stepCounter: 71639e04-f959-475b-aeeb-91bbb1d0835a
+        config: {}
+        dataType: VARCHAR(16777216)
+        defaultValue: ""
+        description: ""
+        name: summary
+        nullable: true
+        primaryKey: false
+        sourceColumnReferences:
+          - columnReferences: []
+            transform: ""
+        transform: ""
+        uniqueKey: false
+      - acceptedValues:
+          strictMatch: true
+          values: []
+        appliedColumnTests: {}
+        columnReference:
+          columnCounter: b7963797-c4f1-444b-8869-d963f4205ebe
+          stepCounter: 71639e04-f959-475b-aeeb-91bbb1d0835a
+        config: {}
+        dataType: ARRAY
+        defaultValue: ""
+        description: ""
+        name: text_embeddings
+        nullable: true
+        primaryKey: false
+        sourceColumnReferences:
+          - columnReferences: []
+            transform: ""
+        transform: ""
+        uniqueKey: false
+      - acceptedValues:
+          strictMatch: true
+          values: []
+        appliedColumnTests: {}
+        columnReference:
+          columnCounter: 28589e2e-e835-42bc-8813-edb1b9a0bb19
+          stepCounter: 71639e04-f959-475b-aeeb-91bbb1d0835a
+        config: {}
+        dataType: VARCHAR(16777216)
+        defaultValue: ""
+        description: ""
+        name: transit
+        nullable: true
+        primaryKey: false
+        sourceColumnReferences:
+          - columnReferences: []
+            transform: ""
+        transform: ""
+        uniqueKey: false
+      - acceptedValues:
+          strictMatch: true
+          values: []
+        appliedColumnTests: {}
+        columnReference:
+          columnCounter: 6f1068ad-e56d-483b-9cde-8c698a43a456
+          stepCounter: 71639e04-f959-475b-aeeb-91bbb1d0835a
+        config: {}
+        dataType: NUMBER(6,1)
+        defaultValue: ""
+        description: ""
+        name: weekly_price
+        nullable: true
+        primaryKey: false
+        sourceColumnReferences:
+          - columnReferences: []
+            transform: ""
+        transform: ""
+        uniqueKey: false
+      - acceptedValues:
+          strictMatch: true
+          values: []
+        appliedColumnTests: {}
+        columnReference:
+          columnCounter: 1b0a089f-8293-4fbe-b1e5-a216bfeb9199
+          stepCounter: 71639e04-f959-475b-aeeb-91bbb1d0835a
+        config: {}
+        dataType: VARCHAR(16777216)
+        defaultValue: ""
+        description: ""
+        name: FILENAME
+        nullable: true
+        primaryKey: false
+        sourceColumnReferences:
+          - columnReferences: []
+            transform: ""
+        transform: ""
+        uniqueKey: false
+      - acceptedValues:
+          strictMatch: true
+          values: []
+        appliedColumnTests: {}
+        columnReference:
+          columnCounter: 7ab210f0-44ff-494b-81d8-2c6406c96607
+          stepCounter: 71639e04-f959-475b-aeeb-91bbb1d0835a
+        config: {}
+        dataType: NUMBER(38,0)
+        defaultValue: ""
+        description: ""
+        name: FILE_ROW_NUMBER
+        nullable: true
+        primaryKey: false
+        sourceColumnReferences:
+          - columnReferences: []
+            transform: ""
+        transform: ""
+        uniqueKey: false
+      - acceptedValues:
+          strictMatch: true
+          values: []
+        appliedColumnTests: {}
+        columnReference:
+          columnCounter: b13b415e-8c56-424a-a14c-05f53f1eaee6
+          stepCounter: 71639e04-f959-475b-aeeb-91bbb1d0835a
+        config: {}
+        dataType: TIMESTAMP_NTZ(9)
+        defaultValue: ""
+        description: ""
+        name: FILE_LAST_MODIFIED
+        nullable: true
+        primaryKey: false
+        sourceColumnReferences:
+          - columnReferences: []
+            transform: ""
+        transform: ""
+        uniqueKey: false
+      - acceptedValues:
+          strictMatch: true
+          values: []
+        appliedColumnTests: {}
+        columnReference:
+          columnCounter: ba4568c0-d866-4b12-b3b7-7d554170ca53
+          stepCounter: 71639e04-f959-475b-aeeb-91bbb1d0835a
+        config: {}
+        dataType: TIMESTAMP_NTZ(9)
+        defaultValue: ""
+        description: ""
+        name: LOAD_TIMESTAMP
+        nullable: true
+        primaryKey: false
+        sourceColumnReferences:
+          - columnReferences: []
+            transform: ""
+        transform: ""
+        uniqueKey: false
+      - acceptedValues:
+          strictMatch: true
+          values: []
+        appliedColumnTests: {}
+        columnReference:
+          columnCounter: caefb783-cd10-4c2b-a566-4e695ff629aa
+          stepCounter: 71639e04-f959-475b-aeeb-91bbb1d0835a
+        config: {}
+        dataType: TIMESTAMP_NTZ(9)
+        defaultValue: ""
+        description: ""
+        name: SCAN_TIME
+        nullable: true
+        primaryKey: false
+        sourceColumnReferences:
+          - columnReferences: []
+            transform: ""
+        transform: ""
+        uniqueKey: false
+  name: COPY_AIRBNB_JSON
+  schema: ""
+  sqlType: Source
+  type: sourceInput
+  version: 1
+type: Node

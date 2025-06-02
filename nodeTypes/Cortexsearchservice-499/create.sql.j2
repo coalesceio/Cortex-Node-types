@@ -1,0 +1,287 @@
+{%if desiredState and currentState != desiredState%}
+     {%if desiredState.parameters == {} or  'searchServiceWarehouse' not in desiredState.parameters or desiredState.parameters.searchServiceWarehouse == ''%}
+
+         {{stage('WARNING')}}
+         
+         /*Add parameter searchServiceWarehouse in workspace settings and deployment environment for successful execution of node.
+         The default value for the parameter is 'DEV ENVIRONMENT'.
+         Refer to documentation for more info */
+
+      {%endif%}
+  {%endif%}
+
+{#Create Cortex search service #}
+
+{% if desiredState  %}
+
+   {# Identify all config changes that would cause a CREATE instead of ALTER#}
+   {% if currentState != undefined %} 
+        {# General metadata #}
+        
+        {% set sourcesTest = currentState.sources | count == desiredState.sources | count %}
+       
+	     {# Desired Namespace Variables #}
+
+        {% set nsVariables = namespace(nsDesiredDepStorageLocations="",nsDesiredSourceStorageLocations="",
+        nsDesiredTargetStorageLocations="",
+        nsDesiredUsedStorageLocations="",
+        storageLocationTest= true,
+        descolchanges = 0,
+        othercolchanges = 0, joinTest = True ) %}
+		
+        {% for src in desiredState.sources %}
+            {% if  currentState.sources[loop.index0].join != src.join %}
+                {% set nsVariables.joinTest = false %}  {# Set joinTest to false if changes are detected #}
+            {% endif %}
+            {% endfor %}
+     
+    
+        {# Test to see if the transform in a column has changed #}
+        {# Desired Namespace Variables Transform #}
+        {% set desiredTransformArray = desiredState.sources | map(attribute='columns') | first | map(attribute='transform') | list -%}
+
+        {# Test to see if the transform in a column has changed #}
+        {# Current Namespace Variables Transform #}
+        {% set currentTransformArray = currentState.sources | map(attribute='columns') | first | map(attribute='transform') | list -%}
+
+        {% set columnsTransformTest = currentTransformArray == desiredTransformArray %}
+
+            {# Change Node Name or Change Storage Location #}
+            {# Storage Location Tests #}
+            {# Test  #}
+            {%if currentState.storageLocations|length == 0%}          
+              {% set currentDatabase = currentState.storageLocations | selectattr('name', 'equalto', currentState.node.location.name) | map(attribute='database') | string %}
+              {% set currentSchema = currentState.storageLocations | selectattr('name', 'equalto', currentState.node.location.name) | map(attribute='schema') | string %}
+               {% set currentDatabaseSchema = currentDatabase + '.' + currentSchema %}
+               
+            {%else %}   
+            {# Current target node mappings #}
+            {% set currentDatabase = currentState.storageLocations | selectattr('name', 'equalto', currentState.node.location.name) | map(attribute='database') | first %}
+            {% set currentSchema = currentState.storageLocations | selectattr('name', 'equalto', currentState.node.location.name) | map(attribute='schema') | first %}
+            {% set currentDatabaseSchema = currentDatabase + '.' + currentSchema %}  
+			{% endif %}		 
+        
+            {# Desired target node mappings #}
+            {% set desiredDatabase = desiredState.storageLocations | selectattr('name', 'equalto', desiredState.node.location.name) | map(attribute='database') | first %}
+            {% set desiredSchema = desiredState.storageLocations | selectattr('name', 'equalto', desiredState.node.location.name) | map(attribute='schema') | first %}
+            {% set desiredDatabaseSchema = desiredDatabase + '.' + desiredSchema %}           
+            
+             {% if currentDatabaseSchema != desiredDatabaseSchema %}
+                {% set nsVariables.storageLocationTest = false %}
+             {% endif %}
+
+        
+        {# Node#}
+        {% set nodeNameTest = currentState.node.name == desiredState.node.name %}
+
+        {# Initialize test #}
+        {% set initialtest = currentState.config.initialize == desiredState.config.initialize %}
+
+        {# Embedding model test #}
+        {% set embmodtest = currentState.config.embmodel == desiredState.config.embmodel %}
+
+        {#Search columns#}
+        {%set searchcoltest = desiredState.config.searchcol.name == currentState.config.searchcol.name%}
+
+        {#Attribute columns#}
+        {%set desiredattrcolarray = desiredState.config.attrcol.get('items') | map(attribute='acolname.name')| list %}
+        {%set currentattrcolarray = currentState.config.attrcol.get('items') | map(attribute='acolname.name')| list %}
+        {%set attrcoltest = desiredattrcolarray == currentattrcolarray %}
+
+        {#If any of the above are false then a CREATE must be run#}
+        
+        {% if 
+            nsVariables.othercolchanges > 0 or
+            sourcesTest == false or
+            nsVariables.joinTest == false or
+            columnsTransformTest == false or
+            attrcoltest ==false or
+            embmodtest == false or
+            searchcoltest == false or
+            initialtest == false or
+            (currentState.storageLocations | length ==0)  %}    
+
+            {% set createTest = true %}
+        {% else %}
+            {% set createTest = false %}
+        {% endif %}      
+
+    {% endif %}
+
+        {# Identify config changes that would only result in ALTER #}
+    {% if createTest == false %}
+        {% if desiredState.parameters.searchServiceWarehouse == 'DEV ENVIRONMENT' %}
+            {% set warehouseTest = currentState.config.warehouseName == desiredState.config.warehouseName %}
+        {% else %}
+            {% set warehouseTest = currentState.parameters.searchServiceWarehouse == desiredState.parameters.searchServiceWarehouse %}
+        {% endif %}
+        {% set lagSpecificationTest = currentState.config.lagSpecification == desiredState.config.lagSpecification %}
+        {% set nodeCommentTest = currentState.node.description == desiredState.node.description %}
+
+        {% if 
+            warehouseTest == false or
+            lagSpecificationTest == false or
+            nodeCommentTest == false 
+             %}    
+
+            {% set alterOnlyTest = true %}
+        {% else %}
+            {% set alterOnlyTest = false %}
+        {% endif %}
+
+    {% endif %}
+
+    {% if (currentState == undefined or createTest == true ) and desiredState.config.createcortex == true %}      
+
+
+        {#Cortex search service Name#}
+        {% set targetCSSDatabase = ref_no_link(desiredState.node.location.name, desiredState.node.name).split('.')[0] %} 
+        {% set targetCSSSchema = ref_no_link(desiredState.node.location.name, desiredState.node.name).split('.')[1] %} 
+        {% set fullyQualifiedTargetCSSName = ref_no_link(desiredState.node.location.name, desiredState.node.name) %}
+         
+        {#Initialize option#}
+        {% set CSSinitialize = desiredState.config.initialize %}
+
+        {#Warehouse#}
+        {# Can be updated during deployment via a parameter to account for different warehouse names in different deployments#}
+        {% if desiredState.parameters.searchServiceWarehouse == 'DEV ENVIRONMENT' %}
+            {% set CSSWarehouse = desiredState.config.warehouseName %}
+        {% else %}
+            {% set CSSWarehouse = desiredState.parameters.searchServiceWarehouse %}
+        {% endif %}
+
+        {#Downstream Option or Lag Specification#}
+
+            {% set CSSLagValue = desiredState.config.lagSpecification.get('items') | map(attribute='lagValue') | first %}
+            {% set CSSLagValuePeriod = desiredState.config.lagSpecification.get('items') | map(attribute='lagPeriod') | first %}
+            {% set CSSLagSpecification = CSSLagValue ~ ' ' ~ CSSLagValuePeriod %}
+        
+        {#Node description#}
+        {%- if desiredState.node.description !=""  %} 
+            {% set CSSComment = "COMMENT = " + "'" + desiredState.node.description |escape + "'" %}
+        {% endif %}
+         
+        {#Attribute columns#}
+        {%- if desiredState.config.attrcol.get('items') | length >0 %}
+            {%set attrcol = desiredState.config.attrcol.get('items') | map(attribute='acolname.name')| list %}
+        {%endif%}
+
+        {#Source query colummns#}
+        {{ stage('Create Cortex Search Service', true, "sql", "create") }}
+            CREATE OR REPLACE CORTEX SEARCH SERVICE {{ fullyQualifiedTargetCSSName }}
+            ON {{desiredState.config.searchcol.name}}
+            ATTRIBUTES {{attrcol|map("string")|join(',')}}
+            TARGET_LAG = '{{ CSSLagSpecification }}'
+            WAREHOUSE = {{CSSWarehouse}}
+           {# INITIALIZE = {{CSSinitialize}} #}
+            {{ CSSComment  }}
+        AS 
+        (SELECT 
+        {% for source in desiredState.sources %}          
+            {% for col in source.columns %}
+            
+                {%if col.transform != ""%}
+                      {{col.transform}} AS {{col.name}}
+                {%else%}
+                      "{{col.name}}" AS {{col.name}}
+                {%endif%}
+                {%- if not loop.last -%}, {% endif %}
+            {% endfor %}
+
+            {{ source.join }}
+        {% endfor %})
+        
+
+    {% elif (currentState != undefined and desiredState != undefined) and (alterOnlyTest == true) %}
+
+        {#Cortex search service Name#}
+        {% set targetCSSDatabase = ref_no_link(desiredState.node.location.name, desiredState.node.name).split('.')[0] %} 
+        {% set targetCSSSchema = ref_no_link(desiredState.node.location.name, desiredState.node.name).split('.')[1] %} 
+        {% set fullyQualifiedTargetCSSName = ref_no_link(desiredState.node.location.name, desiredState.node.name) %}
+
+     
+        {# Desired Warehouse #}
+        {% if desiredState.parameters.searchServiceWarehouse == 'DEV ENVIRONMENT' %}
+            {% set desiredCSSWarehouse = desiredState.config.warehouseName %}
+        {% else %}
+            {% set desiredCSSWarehouse = desiredState.parameters.searchServiceWarehouse %}
+        {% endif %}
+
+
+        {#Desired Downstream Option or Lag Specification#}
+        {% if desiredState.config.downstreamOption == true %}
+            {% set desiredCSSLagSpecification = 'DOWNSTREAM' %}
+        {% else %}
+            {% set desiredCSSLagValue = desiredState.config.lagSpecification.get('items') | map(attribute='lagValue') | first %}
+            {% set desiredCSSLagValuePeriod = desiredState.config.lagSpecification.get('items') | map(attribute='lagPeriod') | first %}
+
+            {% set desiredCSSLagSpecification = desiredCSSLagValue ~ ' ' ~ desiredCSSLagValuePeriod %}
+        {% endif %}
+
+
+        {# Current Warehouse#}
+        {% if currentState.parameters.searchServiceWarehouse == 'DEV ENVIRONMENT' %}
+            {% set currentCSSWarehouse = currentState.config.warehouseName %}
+        {% else %}
+            {% set currentCSSWarehouse = currentState.parameters.searchServiceWarehouse %}
+        {% endif %}
+
+        {# Current Downstream Option or Lag Specification#}
+        {% if currentState.config.downstreamOption == true %}
+            {% set currentCSSLagSpecification = 'DOWNSTREAM' %}
+        {% else %}
+            {% set currentCSSLagValue = currentState.config.lagSpecification.get('items') | map(attribute='lagValue') | first %}
+            {% set currentCSSLagValuePeriod = currentState.config.lagSpecification.get('items') | map(attribute='lagPeriod') | first %}
+
+            {% set currentCSSLagSpecification = currentCSSLagValue ~ ' ' ~ currentCSSLagValuePeriod %}
+        {% endif %}
+
+
+        {# ALTER for Warehouse if necessary #}
+        {% set CSSWarehouse = '' %}
+        {% if desiredCSSWarehouse != currentCSSWarehouse %}
+            {% set CSSWarehouse = 'WAREHOUSE = ' + desiredCSSWarehouse %}
+        {% endif %}
+
+        {# Alter for Target lag if necessary #}
+        {% set CSSLagSpecification = '' %}
+        {% if desiredCSSLagSpecification != currentCSSLagSpecification %}
+            {% if desiredCSSLagSpecification == 'DOWNSTREAM' %}
+                {% set CSSLagSpecification = 'TARGET_LAG = DOWNSTREAM' %}
+            {% else %}
+                {% set CSSLagSpecification = 'TARGET_LAG = ' + '\'' + desiredCSSLagSpecification + '\'' %}
+            {% endif %}
+        {% endif %}
+
+        {%- if desiredState.node.description != "" %} 
+            {% set CSSComment = "COMMENT = " + "'" + desiredState.node.description |escape + "'" %}
+        {% endif %}
+
+            {% if  warehouseTest == false or lagSpecificationTest == false or downstreamOptionTest == false or nodeCommentTest == false %}
+                
+                {{ stage('Alter Cortex Search Service', true, "sql", "alter") }}
+				
+				ALTER CORTEX SEARCH SERVICE {{fullyQualifiedTargetCSSName }} SET
+                 {{ CSSWarehouse }}
+                 {{ CSSLagSpecification }}
+                 {{ CSSComment}}
+        
+              
+            {%endif%}
+        
+              {{ stage('Refresh Cortex Search Service', true, "sql", "alter") }}
+               ALTER CORTEX SEARCH SERVICE {{fullyQualifiedTargetCSSName }} REFRESH
+
+    {%endif%}
+    
+{% elif currentState != undefined and desiredState == undefined %}
+
+    {# Dynamic Table Name#}
+    {% set targetCSSDatabase = ref_no_link(currentState.node.location.name, currentState.node.name).split('.')[0] %} 
+    {% set targetCSSSchema = ref_no_link(currentState.node.location.name, currentState.node.name).split('.')[1] %} 
+    {% set fullyQualifiedTargetCSSName = ref_no_link(currentState.node.location.name, currentState.node.name) %}
+
+    {{ stage('Drop Cortex Search Service', true, "sql", "drop") }}
+    DROP CORTEX SEARCH SERVICE IF EXISTS {{ fullyQualifiedTargetCSSName }}			  
+
+{%endif%}

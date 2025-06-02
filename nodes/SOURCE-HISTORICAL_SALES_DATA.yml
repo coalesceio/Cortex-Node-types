@@ -3,7 +3,6 @@ id: 89a0a39f-daca-4271-a1e7-41abc27f72ae
 name: HISTORICAL_SALES_DATA
 operation:
   database: ""
-  dataset: ""
   deployEnabled: true
   description: ""
   locationName: SOURCE
@@ -129,12 +128,9 @@ operation:
         nullable: true
         primaryKey: false
         uniqueKey: false
-    join:
-      joinCondition: FROM {{ ref('SOURCE', 'HISTORICAL_SALES_DATA') }}
   name: HISTORICAL_SALES_DATA
   schema: ""
   sqlType: Source
-  table: HISTORICAL_SALES_DATA
   type: sourceInput
   version: 1
 type: Node

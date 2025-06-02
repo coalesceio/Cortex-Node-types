@@ -1,6 +1,6 @@
 fileVersion: 1
-id: ef2610a5-7082-41c2-bdeb-bf1641c5ecb2
-name: PRODUCTFEEDBACK_
+id: 94d1ada0-8dab-4def-8c64-0ea2ec39a6ea
+name: PRODUCT_CATALOG
 operation:
   database: ""
   deployEnabled: true
@@ -13,77 +13,97 @@ operation:
           values: []
         appliedColumnTests: {}
         columnReference:
-          columnCounter: 31ac139f-1327-4f0a-b2b0-70dcedd49f9a
-          stepCounter: ef2610a5-7082-41c2-bdeb-bf1641c5ecb2
+          columnCounter: d3424c82-3b4a-4764-b484-84849ced6d7e
+          stepCounter: 94d1ada0-8dab-4def-8c64-0ea2ec39a6ea
         config: {}
-        dataType: VARCHAR(50)
+        dataType: NUMBER(38,0)
         defaultValue: ""
         description: ""
-        name: USER_NAME
+        name: PRODUCT_ID
         nullable: true
         primaryKey: false
+        sourceColumnReferences:
+          - columnReferences: []
+            transform: ""
+        transform: ""
         uniqueKey: false
       - acceptedValues:
           strictMatch: true
           values: []
         appliedColumnTests: {}
         columnReference:
-          columnCounter: 9004620d-f32e-4245-84f4-b5e464ed9db7
-          stepCounter: ef2610a5-7082-41c2-bdeb-bf1641c5ecb2
+          columnCounter: 0ce09eea-7fcf-4ae3-9cb3-a079428332cc
+          stepCounter: 94d1ada0-8dab-4def-8c64-0ea2ec39a6ea
         config: {}
         dataType: VARCHAR(16777216)
         defaultValue: ""
         description: ""
-        name: REVIEW_CONTENT
+        name: PRODUCT_NAME
         nullable: true
         primaryKey: false
+        sourceColumnReferences:
+          - columnReferences: []
+            transform: ""
+        transform: ""
         uniqueKey: false
       - acceptedValues:
           strictMatch: true
           values: []
         appliedColumnTests: {}
         columnReference:
-          columnCounter: 5941568f-4226-41a3-a2ce-7c3717c59ec9
-          stepCounter: ef2610a5-7082-41c2-bdeb-bf1641c5ecb2
+          columnCounter: f8b30f73-9f29-484c-a1c5-76b39b485d12
+          stepCounter: 94d1ada0-8dab-4def-8c64-0ea2ec39a6ea
         config: {}
-        dataType: VARCHAR(255)
+        dataType: VARCHAR(16777216)
         defaultValue: ""
         description: ""
-        name: REVIEW_CONTENT_JAPSTRING
+        name: CATEGORY
         nullable: true
         primaryKey: false
+        sourceColumnReferences:
+          - columnReferences: []
+            transform: ""
+        transform: ""
         uniqueKey: false
       - acceptedValues:
           strictMatch: true
           values: []
         appliedColumnTests: {}
         columnReference:
-          columnCounter: 65ee3733-183b-478c-9723-6b33f8367c38
-          stepCounter: ef2610a5-7082-41c2-bdeb-bf1641c5ecb2
+          columnCounter: 53196837-cbed-404e-9482-a0c0626ee202
+          stepCounter: 94d1ada0-8dab-4def-8c64-0ea2ec39a6ea
         config: {}
-        dataType: VARCHAR(255)
+        dataType: VARCHAR(16777216)
         defaultValue: ""
         description: ""
-        name: REVIEW_CONTENT_RUSSIANSTRING
+        name: DESCRIPTION
         nullable: true
         primaryKey: false
+        sourceColumnReferences:
+          - columnReferences: []
+            transform: ""
+        transform: ""
         uniqueKey: false
       - acceptedValues:
           strictMatch: true
           values: []
         appliedColumnTests: {}
         columnReference:
-          columnCounter: fc433247-1ada-4122-afb0-f6f404d18185
-          stepCounter: ef2610a5-7082-41c2-bdeb-bf1641c5ecb2
+          columnCounter: 78fc9903-5e93-4745-8fe3-120fd6fd487f
+          stepCounter: 94d1ada0-8dab-4def-8c64-0ea2ec39a6ea
         config: {}
-        dataType: VARCHAR(255)
+        dataType: FLOAT
         defaultValue: ""
         description: ""
-        name: STATEMENTS
+        name: PRICE
         nullable: true
         primaryKey: false
+        sourceColumnReferences:
+          - columnReferences: []
+            transform: ""
+        transform: ""
         uniqueKey: false
-  name: PRODUCTFEEDBACK_
+  name: PRODUCT_CATALOG
   schema: ""
   sqlType: Source
   type: sourceInput

@@ -15,6 +15,7 @@ operation:
     colpreview:
       items:
         - columnName: null
+    createcortex: true
     embmodel: snowflake-arctic-embed-m-v1.5
     filcrit:
       items:
@@ -34,6 +35,7 @@ operation:
       items:
         - {}
     query1: Less costlier
+    querycortex: true
     searchcol:
       columnCounter: 3f10cd41-6c32-410d-a804-d3a9bb1e6768
       stepCounter: f5c13cd7-c48c-4db7-b419-cadafbc04f3f

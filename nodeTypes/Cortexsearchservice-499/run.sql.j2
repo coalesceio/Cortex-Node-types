@@ -1,4 +1,13 @@
 {#Cortex Search Service#}
+{%if config.excss %}
+      {% set CSSDatabase = storageLocations | selectattr('name', 'equalto',config.locCSS) | map(attribute='database') | first %} 
+      {% set CSSSchema = storageLocations | selectattr('name', 'equalto',config.locCSS) | map(attribute='database') | first %} 
+      {% set fullyQualifiedTargeCSSName = ref_no_link(config.locCSS, config.namCSS) %}  
+{%else%}
+      {% set fullyQualifiedTargeCSSName = ref_no_link(node.location.name, node.name) %}
+{%endif%}
+
+
         {% set CSSDatabase = ref_no_link(node.location.name, node.name).split('.')[0] %} 
         {% set CSSSchema = ref_no_link(node.location.name,node.name).split('.')[1] %} 
         {% set fullyQualifiedTargeCSSTableName = ref_no_link(node.location.name, node.name) %}
@@ -30,17 +39,22 @@
 
 {#Timedecay#}
 {%if config.timdec%}
-    {% set column, weightage,lhours = config.timedecay.get('items') | map(attribute='tcolname.name') | list, config.timedecay.get('items') | map(attribute='twage') | list,config.timedecay.get('items') | map(attribute='lhours') | list %}
+    {% set column, weightage,lhours,reft = config.timedecay.get('items') | map(attribute='tcolname.name') | list, config.timedecay.get('items') | map(attribute='twage') | list,config.timedecay.get('items') | map(attribute='lhours') | list,config.timedecay.get('items') | map(attribute='reftstmp')|list %}
 
     {%for ncol in column %}
-         {%set ns.timdec = ns.timdec + '{"column":"'+ ncol +'"'+ ',"weight":"' + weightage[loop.index0] + '","limit_hours":"'+ lhours[loop.index0]+'",now":"2024-04-23T00:00:00.000-08:00"}' %}
+         {%set ns.timdec = ns.timdec + '{"column":"'+ ncol +'"'+ ',"weight":"' + weightage[loop.index0] + '","limit_hours":"'+ lhours[loop.index0]+'"' %}
+          {%if reft[loop.index0]!="" %}
+         {%set ns.timdec = ns.timdec +',"now":"'+ reft[loop.index0]+'"}'%}
+         {%else%}
+         {%set ns.timdec = ns.timdec + '}'%}
+         {%endif%}
          {%if  not loop.last%} {%set ns.numb = ns.numb + ','%}{%endif%}
     {%endfor%}       
 
 {%endif%}
 
 {#Filter#}
-{%if config.filcrit%}
+{%if config.filtoggle%}
      {% set column, mopt,val = config.filcrit.get('items') | map(attribute='filcolname.name') | list, config.filcrit.get('items') | map(attribute='mopt') | list,config.filcrit.get('items') | map(attribute='filcolval')|list %}
      
      {%if mulfilcon %}
@@ -78,7 +92,7 @@ SELECT
     {%- endfor %}
 {%endif%}
 FROM TABLE(FLATTEN(PARSE_JSON(SNOWFLAKE.CORTEX.SEARCH_PREVIEW(
-    '{{ fullyQualifiedTargeCSSTableName }}',
+    '{{ fullyQualifiedTargeCSSName }}',
     '{
       "query": "{{config.query1}}",
       "columns": ["{{columnmod}}"] ,

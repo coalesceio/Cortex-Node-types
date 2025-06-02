@@ -1,74 +1,62 @@
 fileVersion: 1
-id: 7c08dffc-53e6-43de-a2b0-1a153ad8e592
-name: CSS_AIRBNB_JSON2
+id: d71066f1-525e-4359-a47e-1bea6f31a0fa
+name: CSS_AIRBNB_COSTLIER
 operation:
   config:
-    allcol: false
+    allcol: true
     attrcol:
       items:
         - acolname:
-            columnCounter: 3d3072d5-2dd0-423b-b9da-9d0290c26161
-            stepCounter: 7c08dffc-53e6-43de-a2b0-1a153ad8e592
+            columnCounter: e2ec2390-b853-45ae-8fee-86b9079d2dab
+            stepCounter: d71066f1-525e-4359-a47e-1bea6f31a0fa
         - acolname:
-            columnCounter: 97731cdb-dbba-458e-8c7c-f9adda5475eb
-            stepCounter: 7c08dffc-53e6-43de-a2b0-1a153ad8e592
+            columnCounter: f669ab01-2768-45c8-a067-dc500ed577b5
+            stepCounter: d71066f1-525e-4359-a47e-1bea6f31a0fa
     colpreview:
       items:
-        - columnName:
-            columnCounter: 3d3072d5-2dd0-423b-b9da-9d0290c26161
-            stepCounter: 7c08dffc-53e6-43de-a2b0-1a153ad8e592
-        - columnName:
-            columnCounter: 97731cdb-dbba-458e-8c7c-f9adda5475eb
-            stepCounter: 7c08dffc-53e6-43de-a2b0-1a153ad8e592
-        - columnName:
-            columnCounter: 9e2382c0-31e6-4d8f-887c-74a86566c708
-            stepCounter: 7c08dffc-53e6-43de-a2b0-1a153ad8e592
-    createcortex: false
+        - {}
+    createcortex: true
     embmodel: snowflake-arctic-embed-m-v1.5
+    excss: false
     filcrit:
       items:
-        - filcolname:
-            columnCounter: 97731cdb-dbba-458e-8c7c-f9adda5475eb
-            stepCounter: 7c08dffc-53e6-43de-a2b0-1a153ad8e592
-          filcolval: Private room
-          mopt: eq
-    filtoggle: true
+        - {}
+    filtoggle: false
     initialize: ON_CREATE
     lagSpecification:
       items:
-        - lagPeriod: Hours
-          lagValue: "600"
-    numboost: true
+        - lagPeriod: Minutes
+          lagValue: 60
+    locCSS: null
+    lopt: and
+    namCSS: null
+    numboost: false
     numericboost:
       items:
-        - colname:
-            columnCounter: cba3efb3-2d0c-45e2-88d7-1248df0ae006
-            stepCounter: 7c08dffc-53e6-43de-a2b0-1a153ad8e592
-          wage: "1"
-    query1: Cheaper in North America
+        - {}
+    query1: ""
     querycortex: true
     searchcol:
-      columnCounter: 4e585993-a39d-432e-8dec-b0cc486a3dc2
-      stepCounter: 7c08dffc-53e6-43de-a2b0-1a153ad8e592
+      columnCounter: 4ef99327-f1d5-45ad-a4a0-99f837cd5eaf
+      stepCounter: d71066f1-525e-4359-a47e-1bea6f31a0fa
     timdec: false
     timedecay:
       items:
         - {}
-    undefined: true
     warehouseName: dev_wh_xs
   database: ""
   deployEnabled: true
   description: ""
   isMultisource: false
   locationName: SOURCE
-  materializationType: table
+  materializationType: view
   metadata:
     appliedNodeTests: []
     columns:
       - appliedColumnTests: {}
         columnReference:
-          columnCounter: 1c8537d3-790b-4a81-9bd4-35952bc9301b
-          stepCounter: 7c08dffc-53e6-43de-a2b0-1a153ad8e592
+          columnCounter: a16899e0-ae6d-4111-a16c-0aabddd9f73b
+          stepCounter: d71066f1-525e-4359-a47e-1bea6f31a0fa
         config: {}
         dataType: VARCHAR(16777216)
         description: ""
@@ -81,8 +69,8 @@ operation:
             transform: ""
       - appliedColumnTests: {}
         columnReference:
-          columnCounter: 3d3072d5-2dd0-423b-b9da-9d0290c26161
-          stepCounter: 7c08dffc-53e6-43de-a2b0-1a153ad8e592
+          columnCounter: f669ab01-2768-45c8-a067-dc500ed577b5
+          stepCounter: d71066f1-525e-4359-a47e-1bea6f31a0fa
         config: {}
         dataType: ARRAY
         description: ""
@@ -95,8 +83,8 @@ operation:
             transform: ""
       - appliedColumnTests: {}
         columnReference:
-          columnCounter: 9e2382c0-31e6-4d8f-887c-74a86566c708
-          stepCounter: 7c08dffc-53e6-43de-a2b0-1a153ad8e592
+          columnCounter: e2d1baf4-445a-4404-9833-2b0f21895eba
+          stepCounter: d71066f1-525e-4359-a47e-1bea6f31a0fa
         config: {}
         dataType: VARCHAR(16777216)
         description: ""
@@ -109,8 +97,8 @@ operation:
             transform: ""
       - appliedColumnTests: {}
         columnReference:
-          columnCounter: cba3efb3-2d0c-45e2-88d7-1248df0ae006
-          stepCounter: 7c08dffc-53e6-43de-a2b0-1a153ad8e592
+          columnCounter: 972f5a27-ff01-4109-a42f-8efce4dcee26
+          stepCounter: d71066f1-525e-4359-a47e-1bea6f31a0fa
         config: {}
         dataType: NUMBER(5,0)
         description: ""
@@ -123,8 +111,8 @@ operation:
             transform: ""
       - appliedColumnTests: {}
         columnReference:
-          columnCounter: 97731cdb-dbba-458e-8c7c-f9adda5475eb
-          stepCounter: 7c08dffc-53e6-43de-a2b0-1a153ad8e592
+          columnCounter: e2ec2390-b853-45ae-8fee-86b9079d2dab
+          stepCounter: d71066f1-525e-4359-a47e-1bea6f31a0fa
         config: {}
         dataType: VARCHAR(16777216)
         description: ""
@@ -137,8 +125,8 @@ operation:
             transform: ""
       - appliedColumnTests: {}
         columnReference:
-          columnCounter: 64d3bc04-3755-4917-aaf4-58f313ef5298
-          stepCounter: 7c08dffc-53e6-43de-a2b0-1a153ad8e592
+          columnCounter: cf2ab657-892b-49a6-9e75-7ec8338230b3
+          stepCounter: d71066f1-525e-4359-a47e-1bea6f31a0fa
         config: {}
         dataType: VARCHAR(16777216)
         description: ""
@@ -151,8 +139,8 @@ operation:
             transform: ""
       - appliedColumnTests: {}
         columnReference:
-          columnCounter: 7012247a-08f1-4672-a474-570e48cd45e8
-          stepCounter: 7c08dffc-53e6-43de-a2b0-1a153ad8e592
+          columnCounter: 17d5b9d6-b617-4186-a9ce-c8d9736a43f0
+          stepCounter: d71066f1-525e-4359-a47e-1bea6f31a0fa
         config: {}
         dataType: VARCHAR(16777216)
         description: ""
@@ -165,8 +153,8 @@ operation:
             transform: ""
       - appliedColumnTests: {}
         columnReference:
-          columnCounter: 4e585993-a39d-432e-8dec-b0cc486a3dc2
-          stepCounter: 7c08dffc-53e6-43de-a2b0-1a153ad8e592
+          columnCounter: 4ef99327-f1d5-45ad-a4a0-99f837cd5eaf
+          stepCounter: d71066f1-525e-4359-a47e-1bea6f31a0fa
         config: {}
         dataType: STRING
         description: ""
@@ -188,9 +176,9 @@ operation:
             nodeName: STG_AIRBNB_JSON
         join:
           joinCondition: FROM {{ ref('SOURCE', 'STG_AIRBNB_JSON') }} "STG_AIRBNB_JSON"
-        name: CSS_AIRBNB_JSON2
+        name: CSS_AIRBNB_COSTLIER
         noLinkRefs: []
-  name: CSS_AIRBNB_JSON2
+  name: CSS_AIRBNB_COSTLIER
   overrideSQL: false
   schema: ""
   sqlType: "499"

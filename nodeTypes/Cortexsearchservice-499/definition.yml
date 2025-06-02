@@ -116,6 +116,20 @@ metadata:
         items:
 
         - type: toggleButton
+          displayName:  Use existing Cortex Search Service
+          attributeName: excss
+
+        - type: textBox
+          displayName: Coalesce storage location of CSS
+          enableIf: "{%- if config.excss -%} true {%- else -%} false {%- endif -%}"
+          attributeName: locCSS
+        
+        - type: textBox
+          displayName: Name of Cortex Search Service
+          enableIf: "{%- if config.excss -%} true {%- else -%} false {%- endif -%}"
+          attributeName: namCSS
+
+        - type: toggleButton
           displayName: All Columns in the preview 
           attributeName: allcol
           isRequired: false
@@ -148,10 +162,9 @@ metadata:
           attributeName: lopt
           default: "and"
           options:
-            - and
-            - or
-            - not
-          isRequired: false
+          - and
+          - or
+          - not
           enableIf: "{%- if config.mulfilcon -%} true {%- else -%} false {%- endif -%}"
 
         - type: tabular
@@ -231,7 +244,11 @@ metadata:
              displayName: Limit hours      
              attributeName: lhours
              isRequired: false
-      
+          
+          -  type: textBox
+             displayName: Refrence timestamp(timestamp from which decay is caluculated)
+             attributeName: reftstmp
+             isRequired: false
       
           isRequired: false  
         

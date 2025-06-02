@@ -1,42 +1,73 @@
 fileVersion: 1
-id: c2371b97-71c5-4984-915d-6391a08e273a
-name: CSS_BUSINESS_DOCUMENTS
+id: f6f57c98-6731-423a-b577-2918fe91a0b3
+name: CSS_BUSINESS_DOCUMENTS_TECH
 operation:
   config:
     allcol: true
     attrcol:
-      columnCounter: ba7ff918-182c-4d43-9e05-5be905dde5e7
-      stepCounter: c2371b97-71c5-4984-915d-6391a08e273a
+      items:
+        - acolname:
+            columnCounter: 9097d3c3-1c67-4c48-a591-bacbf213c52b
+            stepCounter: f6f57c98-6731-423a-b577-2918fe91a0b3
+        - acolname:
+            columnCounter: b29917e8-5aa2-41d4-8cbe-c3c28850c9a3
+            stepCounter: f6f57c98-6731-423a-b577-2918fe91a0b3
+    colpreview:
+      items:
+        - {}
+    createcortex: true
     embmodel: snowflake-arctic-embed-m-v1.5
-    initialize: ON_SCHEDULE
+    excss: false
+    filcrit:
+      items:
+        - filcolname: null
+          filcolval: null
+          mopt: eq
+    filtoggle: false
+    initialize: ON_CREATE
     lagSpecification:
       items:
         - lagPeriod: Hours
-          lagValue: "60"
-    pfilcol:
-      columnCounter: ba7ff918-182c-4d43-9e05-5be905dde5e7
-      stepCounter: c2371b97-71c5-4984-915d-6391a08e273a
-    psearchcol:
-      columnCounter: 78847bd7-eabf-4c50-88ef-1adc78fdd13c
-      stepCounter: c2371b97-71c5-4984-915d-6391a08e273a
+          lagValue: "600"
+    locCSS: ""
+    lopt: and
+    namCSS: ""
+    numboost: true
+    numericboost:
+      items:
+        - colname:
+            columnCounter: 9097d3c3-1c67-4c48-a591-bacbf213c52b
+            stepCounter: f6f57c98-6731-423a-b577-2918fe91a0b3
+          wage: "1"
     query1: technology
+    querycortex: true
     searchcol:
-      columnCounter: 78847bd7-eabf-4c50-88ef-1adc78fdd13c
-      stepCounter: c2371b97-71c5-4984-915d-6391a08e273a
+      columnCounter: 97ec9496-cace-4850-ba96-810d75d1d1f1
+      stepCounter: f6f57c98-6731-423a-b577-2918fe91a0b3
+    timdec: true
+    timedecay:
+      items:
+        - lhours: "240"
+          reftstmp: "2025-02-19T14:30:45.123-08:00"
+          tcolname:
+            columnCounter: ac254ae9-9a44-46fb-9335-fbbe963c40a4
+            stepCounter: f6f57c98-6731-423a-b577-2918fe91a0b3
+          twage: "1"
+    undefined: false
     warehouseName: dev_wh_xs
   database: ""
   deployEnabled: true
   description: ""
   isMultisource: false
   locationName: SOURCE
-  materializationType: table
+  materializationType: view
   metadata:
     appliedNodeTests: []
     columns:
       - appliedColumnTests: {}
         columnReference:
-          columnCounter: 78847bd7-eabf-4c50-88ef-1adc78fdd13c
-          stepCounter: c2371b97-71c5-4984-915d-6391a08e273a
+          columnCounter: 97ec9496-cace-4850-ba96-810d75d1d1f1
+          stepCounter: f6f57c98-6731-423a-b577-2918fe91a0b3
         config: {}
         dataType: VARCHAR(16777216)
         description: ""
@@ -49,8 +80,8 @@ operation:
             transform: ""
       - appliedColumnTests: {}
         columnReference:
-          columnCounter: fdac7ab4-eb79-4f39-a402-6c8f01941a37
-          stepCounter: c2371b97-71c5-4984-915d-6391a08e273a
+          columnCounter: ac254ae9-9a44-46fb-9335-fbbe963c40a4
+          stepCounter: f6f57c98-6731-423a-b577-2918fe91a0b3
         config: {}
         dataType: TIMESTAMP_NTZ(9)
         description: ""
@@ -63,8 +94,8 @@ operation:
             transform: ""
       - appliedColumnTests: {}
         columnReference:
-          columnCounter: df4f1e61-1052-47ad-a4f9-a921bb2c7b23
-          stepCounter: c2371b97-71c5-4984-915d-6391a08e273a
+          columnCounter: 36d46638-716d-4910-b2f5-431f89e792c4
+          stepCounter: f6f57c98-6731-423a-b577-2918fe91a0b3
         config: {}
         dataType: TIMESTAMP_NTZ(9)
         description: ""
@@ -77,8 +108,8 @@ operation:
             transform: ""
       - appliedColumnTests: {}
         columnReference:
-          columnCounter: ba7ff918-182c-4d43-9e05-5be905dde5e7
-          stepCounter: c2371b97-71c5-4984-915d-6391a08e273a
+          columnCounter: 9097d3c3-1c67-4c48-a591-bacbf213c52b
+          stepCounter: f6f57c98-6731-423a-b577-2918fe91a0b3
         config: {}
         dataType: NUMBER(38,0)
         description: ""
@@ -91,8 +122,8 @@ operation:
             transform: ""
       - appliedColumnTests: {}
         columnReference:
-          columnCounter: aa6ee73e-07d4-4b6a-8366-54d560b413ea
-          stepCounter: c2371b97-71c5-4984-915d-6391a08e273a
+          columnCounter: b29917e8-5aa2-41d4-8cbe-c3c28850c9a3
+          stepCounter: f6f57c98-6731-423a-b577-2918fe91a0b3
         config: {}
         dataType: NUMBER(38,0)
         description: ""
@@ -114,9 +145,9 @@ operation:
             nodeName: BUSINESS_DOCUMENTS
         join:
           joinCondition: FROM {{ ref('SOURCE', 'BUSINESS_DOCUMENTS') }} "BUSINESS_DOCUMENTS"
-        name: CSS_BUSINESS_DOCUMENTS
+        name: CSS_BUSINESS_DOCUMENTS_TECH
         noLinkRefs: []
-  name: CSS_BUSINESS_DOCUMENTS
+  name: CSS_BUSINESS_DOCUMENTS_TECH
   overrideSQL: false
   schema: ""
   sqlType: "499"

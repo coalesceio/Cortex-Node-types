@@ -6,6 +6,7 @@
 * [Top Insights](#top-insights)
 * [Classification](#classification)
 * [Document AI](#document-ai)
+* [Cortex Search Service](#cortex-search-service)
 * [Code](#code)
 ---
 
@@ -609,6 +610,9 @@ When node is deleted, the following stages execute:
 | **Drop Stream** | Removes the stream |
 | **Drop Table** | Drop the table |
 | **Drop Current Task** | Drop the task |
+
+## Cortex Search Service
+
 
 ---
 

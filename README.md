@@ -613,6 +613,19 @@ When node is deleted, the following stages execute:
 
 ## Cortex Search Service
 
+The Cortex Search UDN enables low-latency, high-quality “fuzzy” search over your Snowflake data. Cortex Search powers a broad array of search experiences for Snowflake users including Retrieval Augmented Generation (RAG) applications leveraging Large Language Models (LLMs).
+
+[Cortex Search](https://docs.snowflake.com/en/user-guide/snowflake-cortex/cortex-search/cortex-search-overview) gets you up and running with a hybrid (vector and keyword) search engine on your text data in minutes, without having to worry about embedding, infrastructure maintenance, search quality parameter tuning, or ongoing index refreshes.
+
+### Cortex Search Service Node Configuration
+
+The Cortex Search service node has the following configuration groups:
+
+* [Node Properties](#stream-and-insert-or-merge-node-properties)
+* [General Options](#cortex-search-service-general-options)
+* [Cortex search schedule Options](#cortex-search-schedule-options)
+* [Cortex search Advanced Options](#cortex-search-advanced-options)
+* [Preview search Options](#preview-search-options)
 
 ---
 

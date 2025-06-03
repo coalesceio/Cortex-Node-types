@@ -20,7 +20,7 @@ operation:
             stepCounter: 272f9f4e-665e-442f-bd04-095bf6173430
           filcolval: Private room
           mopt: eq
-    filtoggle: true
+    filtoggle: false
     initialize: ON_CREATE
     lagSpecification:
       items:
@@ -32,7 +32,7 @@ operation:
     numericboost:
       items:
         - {}
-    query1: safety
+    query1: safe
     querycortex: true
     timdec: false
     timedecay:

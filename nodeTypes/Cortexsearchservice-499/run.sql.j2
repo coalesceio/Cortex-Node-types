@@ -1,3 +1,15 @@
+{#
+    Copyright (c) 2023 Coalesce. All rights reserved.
+This script and its associated documentation are confidential and proprietary to Coalesce.
+Unauthorized reproduction, distribution, or disclosure of this material is strictly prohibited.
+Coalesce permits you to copy and modify this script for the purposes of using with Coalsce but
+does not permit copying or modification for any other purpose.  
+#}
+{# == Node Type Version        : 1  == #}
+{# == Node Type Name           : Cortex Search Service == #}
+{# == Node Type Description    : This node creates a target view with the search results of Cortex Search Service  == #}
+
+{%if config.querycortex %}
 {#Cortex Search Service#}
 {%if config.excss %}
       {% set CSSDatabase = storageLocations | selectattr('name', 'equalto',config.locCSS) | map(attribute='database') | first %} 
@@ -104,3 +116,4 @@ FROM TABLE(FLATTEN(PARSE_JSON(SNOWFLAKE.CORTEX.SEARCH_PREVIEW(
       }
     }'
 ))['results'] ))
+{%endif%}

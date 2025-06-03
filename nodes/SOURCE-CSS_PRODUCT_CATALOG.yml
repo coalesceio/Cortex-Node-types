@@ -21,7 +21,7 @@ operation:
         - columnName:
             columnCounter: 9744c83b-82c7-41a1-95fe-0e4f4298f1b9
             stepCounter: 8ad46fa2-0480-48c7-b2a6-c31641a662f8
-    createcortex: false
+    createcortex: true
     embmodel: snowflake-arctic-embed-m-v1.5
     initialize: ON_CREATE
     lagSpecification:

@@ -1,3 +1,14 @@
+{#
+    Copyright (c) 2023 Coalesce. All rights reserved.
+This script and its associated documentation are confidential and proprietary to Coalesce.
+Unauthorized reproduction, distribution, or disclosure of this material is strictly prohibited.
+Coalesce permits you to copy and modify this script for the purposes of using with Coalsce but
+does not permit copying or modification for any other purpose.  
+#}
+{# == Node Type Version        : 1  == #}
+{# == Node Type Name           : Cortex Search Service == #}
+{# == Node Type Description    : This node creates a Cortex Search Service in snowflake  == #}
+
 {%if desiredState and currentState != desiredState%}
      {%if desiredState.parameters == {} or  'searchServiceWarehouse' not in desiredState.parameters or desiredState.parameters.searchServiceWarehouse == ''%}
 

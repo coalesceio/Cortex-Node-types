@@ -26,20 +26,21 @@ operation:
         - columnName:
             columnCounter: 6abf7a8c-dddf-4fef-a9d2-6abb5fcadf81
             stepCounter: d44be52d-7253-403d-9182-0124b40078ec
-    createcortex: false
+    createcortex: true
     embmodel: snowflake-arctic-embed-m-v1.5
+    excss: false
     filtoggle: false
     initialize: ON_CREATE
     lagSpecification:
       items:
         - lagPeriod: Hours
-          lagValue: "600"
+          lagValue: "6000"
     numboost: false
     numericboost:
       items:
         - {}
     query1: Cost effective apartment
-    querycortex: false
+    querycortex: true
     searchcol:
       columnCounter: 6abf7a8c-dddf-4fef-a9d2-6abb5fcadf81
       stepCounter: d44be52d-7253-403d-9182-0124b40078ec

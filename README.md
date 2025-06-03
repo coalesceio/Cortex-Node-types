@@ -617,6 +617,14 @@ The Cortex Search UDN enables low-latency, high-quality “fuzzy” search over 
 
 [Cortex Search](https://docs.snowflake.com/en/user-guide/snowflake-cortex/cortex-search/cortex-search-overview) gets you up and running with a hybrid (vector and keyword) search engine on your text data in minutes, without having to worry about embedding, infrastructure maintenance, search quality parameter tuning, or ongoing index refreshes.
 
+### Usage of Cortex Search Service node type
+* Set up the required objects and privileges
+* To create Cortex Search Service,keep 'Create Cortex Search Service' toggle ON.Provide schedule and advanced options.Hit create button and CSS is created
+* To preview/query the Cortex Search Service,keep 'Preview Cortex Search Service' toggle ON.Provide the necessary configs.Hit run button and a target view with the search results
+* You can create a Cortex Search Service once on a source data and use the same to create multiple target views
+* 
+![cssmultiple](https://github.com/user-attachments/assets/51b99f16-059a-440d-8a58-c6aed82ad2a1)
+
 ### Cortex Search Service Node Configuration
 
 The Cortex Search service node has the following configuration groups:
@@ -626,6 +634,8 @@ The Cortex Search service node has the following configuration groups:
 * [Cortex search schedule Options](#cortex-search-schedule-options)
 * [Cortex search Advanced Options](#cortex-search-advanced-options)
 * [Preview search Options](#preview-search-options)
+
+![cssnodeconfig](https://github.com/user-attachments/assets/123b80e6-4697-4824-b1ec-34d6925f5f33)
 
 #### Cortex Search service Node Properties
 
@@ -642,6 +652,8 @@ The Cortex Search service node has the following configuration groups:
 | **Create Cortex Service** | True / False toggle that determines whether to create a cortex search service <br/>**True** -  SQL executes as Create action to create cortex search service <br/>**False** - No cortex search service created |
 | **Preview/Query the Cortex Service** | True / False toggle that determines whether to query the cortex search service created <br/>**True** -  SQL executes as run action to create view with the results of querying the cortex search service <br/>**False** - No view is created with the query results of cortex search service |
 
+![cssgeneral](https://github.com/user-attachments/assets/1c051a9d-4c7f-4ef9-8415-d31ae035c9c8)
+
 #### Cortex search schedule Options
 
 | **Option** | **Description** |
@@ -650,6 +662,8 @@ The Cortex Search service node has the following configuration groups:
 | **Lag Specification** |(Required) Specifies the maximum amount of time that the Cortex Search service content should lag behind updates to the base tables specified in the source query.Set refresh schedule with:<br/>- **Time Value**: Frequency of the refresh<br/>- **Time Period**: Seconds/Minutes/Hours/Days |
 | **Initialize** | (Required) Initial refresh behavior:<br/>- **ON_CREATE**: Refresh synchronously at creation<br/>- **ON_SCHEDULE**: Refresh at next scheduled time |
 
+![cssschedule](https://github.com/user-attachments/assets/ba0e3bc5-633a-4db4-9b08-b3ffc4cc2e4a)
+
 #### Cortex search Advanced Options
 
 | **Option** | **Description** |
@@ -657,6 +671,8 @@ The Cortex Search service node has the following configuration groups:
 | **Embedding model** | (Required)Parameter that specifies the embedding model to use in the Cortex Search Service. |
 | **Search column** |(Required) Specifies the text column in the base table that you wish to search on. This column must be a text value. |
 | **Attribute Columns** | (Required)Specifies comma-separated list of columns in the base table that you wish to filter on when issuing queries to the service.|
+
+![cssadvanced](https://github.com/user-attachments/assets/571dce34-2aee-49ac-95b6-382f51acf705)
 
 #### Preview search options
 
@@ -670,6 +686,66 @@ The Cortex Search service node has the following configuration groups:
 | **Apply numeric boost to Search Service**|Numeric boosts are applied as weighted averages to the returned fields, while decays leverage a log-smoothed function to demote less recent values.|
 | **Apply time decay to Search Service**|Date or time metadata that boosts more recent results. The influence of recency signals decays over time.|
 | **Query**|It searches query against the created cortex seacrh service|
+
+![previewsearch](https://github.com/user-attachments/assets/454bcd06-cffe-4341-9774-93390227b9a3)
+
+#### Cortex Search Service Deployment Parameters
+
+The Cortex Search Service node includes an environment parameter that allows you to specify a different warehouse used to run a task in different environments.
+
+The parameter name is `searchServiceWarehouse` with default value `DEV ENVIRONMENT`.
+
+```json
+{
+    "searchServiceWarehouse": "DEV ENVIRONMENT"
+}
+```
+
+When set to any value other than DEV ENVIRONMENT` the node will attempt to create the task using a Snowflake warehouse with the specified value.
+
+For example, with the below setting for the parameter in a QA environment, the task will execute using a warehouse named `COMPUTE_WH`.
+
+```json
+{
+    "searchServiceWarehouse": "COMPUTE_WH"
+}
+```
+#### Cortex Search Service Redeployment
+
+After initial deployment, subsequent deployments may alter or recreate the Cortex Search Service.
+
+#### Altering the Cortex Search Service
+
+The following config changes trigger ALTER statements:
+
+1. Warehouse name
+2. Description of Cortex Search Service
+3. Lag specification
+
+These execute the two stages:
+
+| **Stage** | **Description** |
+|-----------|----------------|
+| **Alter Cortex Search Service** | Alters Cortex Search service |
+| **Refresh Cortex Search Service** | Refreshes Cortex Search Service |
+
+Other column or table level changes like data type change, column name change, column addition/deletion or config level changes result in a `CREATE` statement.
+
+### Redeployment with no changes 
+
+If the nodes are redeployed with no changes compared to previous deployment,then no stages are executed
+
+### Cortex Search Service Undeployment
+
+A Cortex Search Service will be dropped if all of these are true:
+
+* The  Node is deleted from a Workspace.
+* The Workspace is committed to Git.
+* The Workspace committed to Git is deployed to a higher level environment.
+
+| **Stage** | **Description** |
+|-----------|----------------|
+| **Drop Create Search Service** | Removes table from target environment |
 
 ---
 
@@ -709,5 +785,11 @@ The Cortex Search service node has the following configuration groups:
 * [Node definition](https://github.com/coalesceio/Cortex-Node-types/blob/main/nodeTypes/DocumentAI-429/definition.yml)
 * [Create Template](https://github.com/coalesceio/Cortex-Node-types/blob/main/nodeTypes/DocumentAI-429/create.sql.j2)
 * [Run Template](https://github.com/coalesceio/Cortex-Node-types/blob/main/nodeTypes/DocumentAI-429/run.sql.j2)
+
+### Cortex Search Service
+
+*[Node_definition](https://github.com/coalesceio/Cortex-Node-types/blob/main/nodeTypes/Cortexsearchservice-499/definition.yml)
+*[Create_Template](https://github.com/coalesceio/Cortex-Node-types/blob/main/nodeTypes/Cortexsearchservice-499/create.sql.j2)
+*[Run_Template](https://github.com/coalesceio/Cortex-Node-types/blob/main/nodeTypes/Cortexsearchservice-499/run.sql.j2)
 
 [Macros](https://github.com/coalesceio/Cortex-Node-types/blob/main/macros/macro-1.yml)

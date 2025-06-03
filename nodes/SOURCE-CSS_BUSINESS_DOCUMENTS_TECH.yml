@@ -129,25 +129,6 @@ operation:
               - columnCounter: 99fc4dda-6b9a-4201-ade9-58d1463bbf5f
                 stepCounter: e119674e-ba9d-423a-9ae7-6cd84a50324e
             transform: ""
-      - acceptedValues:
-          strictMatch: true
-          values: []
-        appliedColumnTests: {}
-        columnReference:
-          columnCounter: 5c89f079-f0f5-41c1-abf1-412534103e43
-          stepCounter: f6f57c98-6731-423a-b577-2918fe91a0b3
-        config: {}
-        dataType: NUMBER(38,0)
-        defaultValue: ""
-        description: ""
-        name: INDEX
-        nullable: true
-        primaryKey: false
-        sourceColumnReferences:
-          - columnReferences: []
-            transform: ""
-        transform: ""
-        uniqueKey: false
     cteString: ""
     enabledColumnTestIDs: []
     sourceMapping:

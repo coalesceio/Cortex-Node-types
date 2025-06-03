@@ -12,6 +12,7 @@ metadata:
     plural: Dynamic Tables
 
     deployStrategy: advanced
+    isColumnResyncEnabled: true
 
     config:
       - groupName: General Options
@@ -257,7 +258,18 @@ metadata:
           attributeName: query1
           isRequired: false
         
-     
+      - groupName: Hidden Config
+        enableIf: "false"
+        items:
+        - displayName: Type
+          type: materializationSelector
+          default: view
+          options:
+          - view
+          isRequired: false   
+        
+
+
       
         
 

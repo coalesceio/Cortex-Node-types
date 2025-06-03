@@ -103,20 +103,6 @@ operation:
             transform: ""
       - appliedColumnTests: {}
         columnReference:
-          columnCounter: 36d46638-716d-4910-b2f5-431f89e792c4
-          stepCounter: f6f57c98-6731-423a-b577-2918fe91a0b3
-        config: {}
-        dataType: TIMESTAMP_NTZ(9)
-        description: ""
-        name: CREATED_TIMESTAMP
-        nullable: true
-        sourceColumnReferences:
-          - columnReferences:
-              - columnCounter: 47ef48be-7c90-4c77-ac2a-a51e8fda3fb6
-                stepCounter: e119674e-ba9d-423a-9ae7-6cd84a50324e
-            transform: ""
-      - appliedColumnTests: {}
-        columnReference:
           columnCounter: 9097d3c3-1c67-4c48-a591-bacbf213c52b
           stepCounter: f6f57c98-6731-423a-b577-2918fe91a0b3
         config: {}
@@ -143,6 +129,25 @@ operation:
               - columnCounter: 99fc4dda-6b9a-4201-ade9-58d1463bbf5f
                 stepCounter: e119674e-ba9d-423a-9ae7-6cd84a50324e
             transform: ""
+      - acceptedValues:
+          strictMatch: true
+          values: []
+        appliedColumnTests: {}
+        columnReference:
+          columnCounter: 5c89f079-f0f5-41c1-abf1-412534103e43
+          stepCounter: f6f57c98-6731-423a-b577-2918fe91a0b3
+        config: {}
+        dataType: NUMBER(38,0)
+        defaultValue: ""
+        description: ""
+        name: INDEX
+        nullable: true
+        primaryKey: false
+        sourceColumnReferences:
+          - columnReferences: []
+            transform: ""
+        transform: ""
+        uniqueKey: false
     cteString: ""
     enabledColumnTestIDs: []
     sourceMapping:

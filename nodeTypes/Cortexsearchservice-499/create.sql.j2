@@ -173,7 +173,8 @@
             ATTRIBUTES {{attrcol|map("string")|join(',')}}
             TARGET_LAG = '{{ CSSLagSpecification }}'
             WAREHOUSE = {{CSSWarehouse}}
-           {# INITIALIZE = {{CSSinitialize}} #}
+            INITIALIZE = {{CSSinitialize}}
+            EMBEDDING_MODEL = '{{desiredState.config.embmodel}}'
             {{ CSSComment  }}
         AS 
         (SELECT 

@@ -25,6 +25,7 @@ operation:
             stepCounter: 7c08dffc-53e6-43de-a2b0-1a153ad8e592
     createcortex: false
     embmodel: snowflake-arctic-embed-m-v1.5
+    excss: false
     filcrit:
       items:
         - filcolname:

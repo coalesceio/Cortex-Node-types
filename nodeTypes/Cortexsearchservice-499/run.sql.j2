@@ -76,7 +76,6 @@
 CREATE OR REPLACE VIEW {{ fullyQualifiedTargeCSSTableName }}
 AS
 SELECT
-   index,
 {%if config.allcol %}
    {%- for col in sources[0].columns  %} 
 			value['{{col.name}}']::{{col.dataType}} as {{col.name}}

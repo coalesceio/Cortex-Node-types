@@ -3,7 +3,7 @@ id: f6f57c98-6731-423a-b577-2918fe91a0b3
 name: CSS_BUSINESS_DOCUMENTS_TECH
 operation:
   config:
-    allcol: true
+    allcol: false
     attrcol:
       items:
         - acolname:
@@ -14,15 +14,24 @@ operation:
             stepCounter: f6f57c98-6731-423a-b577-2918fe91a0b3
     colpreview:
       items:
-        - {}
+        - columnName:
+            columnCounter: 97ec9496-cace-4850-ba96-810d75d1d1f1
+            stepCounter: f6f57c98-6731-423a-b577-2918fe91a0b3
+        - columnName:
+            columnCounter: ac254ae9-9a44-46fb-9335-fbbe963c40a4
+            stepCounter: f6f57c98-6731-423a-b577-2918fe91a0b3
+        - columnName:
+            columnCounter: 9097d3c3-1c67-4c48-a591-bacbf213c52b
+            stepCounter: f6f57c98-6731-423a-b577-2918fe91a0b3
+        - columnName:
+            columnCounter: b29917e8-5aa2-41d4-8cbe-c3c28850c9a3
+            stepCounter: f6f57c98-6731-423a-b577-2918fe91a0b3
     createcortex: true
     embmodel: snowflake-arctic-embed-m-v1.5
     excss: false
     filcrit:
       items:
-        - filcolname: null
-          filcolval: null
-          mopt: eq
+        - {}
     filtoggle: false
     initialize: ON_CREATE
     lagSpecification:

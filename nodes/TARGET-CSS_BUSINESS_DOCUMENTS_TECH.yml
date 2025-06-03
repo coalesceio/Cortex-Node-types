@@ -37,7 +37,7 @@ operation:
     lagSpecification:
       items:
         - lagPeriod: Hours
-          lagValue: "600"
+          lagValue: "6000"
     locCSS: ""
     lopt: and
     namCSS: ""

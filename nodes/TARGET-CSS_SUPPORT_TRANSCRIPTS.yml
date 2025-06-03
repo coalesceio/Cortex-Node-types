@@ -1,0 +1,117 @@
+fileVersion: 1
+id: bd09cf61-0481-4aaa-a89e-fc3ff2deb197
+name: CSS_SUPPORT_TRANSCRIPTS
+operation:
+  config:
+    allcol: false
+    attrcol:
+      items:
+        - acolname:
+            columnCounter: 8650e182-8416-407a-ad3a-6aa8dd98614c
+            stepCounter: bd09cf61-0481-4aaa-a89e-fc3ff2deb197
+        - acolname:
+            columnCounter: 4651dc37-e6c1-4b30-b082-076df44421b0
+            stepCounter: bd09cf61-0481-4aaa-a89e-fc3ff2deb197
+    colpreview:
+      items:
+        - {}
+    createcortex: true
+    embmodel: snowflake-arctic-embed-m-v1.5
+    excss: false
+    filcrit:
+      items:
+        - {}
+    filtoggle: false
+    initialize: ON_CREATE
+    lagSpecification:
+      items:
+        - lagPeriod: Hours
+          lagValue: "6000"
+    locCSS: ""
+    lopt: and
+    namCSS: ""
+    numboost: false
+    numericboost:
+      items:
+        - {}
+    query1: ""
+    querycortex: false
+    searchcol:
+      columnCounter: a2e510b2-2c14-45a7-b915-354d31c722f7
+      stepCounter: bd09cf61-0481-4aaa-a89e-fc3ff2deb197
+    timdec: false
+    timedecay:
+      items:
+        - {}
+    warehouseName: dev_wh_xs
+  database: ""
+  deployEnabled: true
+  description: ""
+  isMultisource: false
+  locationName: TARGET
+  materializationType: cortex search service
+  metadata:
+    appliedNodeTests: []
+    columns:
+      - appliedColumnTests: {}
+        columnReference:
+          columnCounter: a2e510b2-2c14-45a7-b915-354d31c722f7
+          stepCounter: bd09cf61-0481-4aaa-a89e-fc3ff2deb197
+        config: {}
+        dataType: VARCHAR(16777216)
+        description: ""
+        name: TRANSCRIPT_TEXT
+        nullable: true
+        sourceColumnReferences:
+          - columnReferences:
+              - columnCounter: 48157456-48a1-42be-b695-5e37f60b3c30
+                stepCounter: b2284fcc-ee49-4554-ad2c-7c5575bfb3bb
+            transform: ""
+      - appliedColumnTests: {}
+        columnReference:
+          columnCounter: 8650e182-8416-407a-ad3a-6aa8dd98614c
+          stepCounter: bd09cf61-0481-4aaa-a89e-fc3ff2deb197
+        config: {}
+        dataType: VARCHAR(16777216)
+        description: ""
+        name: REGION
+        nullable: true
+        sourceColumnReferences:
+          - columnReferences:
+              - columnCounter: 96391eb6-4f53-4bc9-bdd6-4307b1da23ae
+                stepCounter: b2284fcc-ee49-4554-ad2c-7c5575bfb3bb
+            transform: ""
+      - appliedColumnTests: {}
+        columnReference:
+          columnCounter: 4651dc37-e6c1-4b30-b082-076df44421b0
+          stepCounter: bd09cf61-0481-4aaa-a89e-fc3ff2deb197
+        config: {}
+        dataType: VARCHAR(16777216)
+        description: ""
+        name: AGENT_ID
+        nullable: true
+        sourceColumnReferences:
+          - columnReferences:
+              - columnCounter: 3f55aed2-5355-4a39-9b0c-cd30823d67d0
+                stepCounter: b2284fcc-ee49-4554-ad2c-7c5575bfb3bb
+            transform: ""
+    cteString: ""
+    enabledColumnTestIDs: []
+    sourceMapping:
+      - aliases: {}
+        customSQL:
+          customSQL: ""
+        dependencies:
+          - locationName: SOURCE
+            nodeName: SUPPORT_TRANSCRIPTS
+        join:
+          joinCondition: FROM {{ ref('SOURCE', 'SUPPORT_TRANSCRIPTS') }} "SUPPORT_TRANSCRIPTS"
+        name: CSS_SUPPORT_TRANSCRIPTS
+        noLinkRefs: []
+  name: CSS_SUPPORT_TRANSCRIPTS
+  overrideSQL: false
+  schema: ""
+  sqlType: "499"
+  type: sql
+  version: 1
+type: Node

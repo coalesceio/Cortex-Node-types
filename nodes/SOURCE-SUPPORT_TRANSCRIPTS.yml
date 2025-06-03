@@ -1,0 +1,73 @@
+fileVersion: 1
+id: b2284fcc-ee49-4554-ad2c-7c5575bfb3bb
+name: SUPPORT_TRANSCRIPTS
+operation:
+  database: ""
+  deployEnabled: true
+  description: ""
+  locationName: SOURCE
+  metadata:
+    columns:
+      - acceptedValues:
+          strictMatch: true
+          values: []
+        appliedColumnTests: {}
+        columnReference:
+          columnCounter: 48157456-48a1-42be-b695-5e37f60b3c30
+          stepCounter: b2284fcc-ee49-4554-ad2c-7c5575bfb3bb
+        config: {}
+        dataType: VARCHAR(16777216)
+        defaultValue: ""
+        description: ""
+        name: TRANSCRIPT_TEXT
+        nullable: true
+        primaryKey: false
+        sourceColumnReferences:
+          - columnReferences: []
+            transform: ""
+        transform: ""
+        uniqueKey: false
+      - acceptedValues:
+          strictMatch: true
+          values: []
+        appliedColumnTests: {}
+        columnReference:
+          columnCounter: 96391eb6-4f53-4bc9-bdd6-4307b1da23ae
+          stepCounter: b2284fcc-ee49-4554-ad2c-7c5575bfb3bb
+        config: {}
+        dataType: VARCHAR(16777216)
+        defaultValue: ""
+        description: ""
+        name: REGION
+        nullable: true
+        primaryKey: false
+        sourceColumnReferences:
+          - columnReferences: []
+            transform: ""
+        transform: ""
+        uniqueKey: false
+      - acceptedValues:
+          strictMatch: true
+          values: []
+        appliedColumnTests: {}
+        columnReference:
+          columnCounter: 3f55aed2-5355-4a39-9b0c-cd30823d67d0
+          stepCounter: b2284fcc-ee49-4554-ad2c-7c5575bfb3bb
+        config: {}
+        dataType: VARCHAR(16777216)
+        defaultValue: ""
+        description: ""
+        name: AGENT_ID
+        nullable: true
+        primaryKey: false
+        sourceColumnReferences:
+          - columnReferences: []
+            transform: ""
+        transform: ""
+        uniqueKey: false
+  name: SUPPORT_TRANSCRIPTS
+  schema: ""
+  sqlType: Source
+  type: sourceInput
+  version: 1
+type: Node

@@ -263,9 +263,9 @@ metadata:
         items:
         - displayName: Type
           type: materializationSelector
-          default: view
+          default: cortex search service
           options:
-          - view
+          - cortex search service
           isRequired: false   
         
 

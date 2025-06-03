@@ -151,7 +151,7 @@ operation:
   name: STG_AIRBNB_JSON
   overrideSQL: false
   schema: ""
-  sqlType: Stage
+  sqlType: "204"
   type: sql
   version: 1
 type: Node

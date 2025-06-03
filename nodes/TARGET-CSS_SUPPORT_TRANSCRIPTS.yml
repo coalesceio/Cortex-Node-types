@@ -9,9 +9,6 @@ operation:
         - acolname:
             columnCounter: 8650e182-8416-407a-ad3a-6aa8dd98614c
             stepCounter: bd09cf61-0481-4aaa-a89e-fc3ff2deb197
-        - acolname:
-            columnCounter: 4651dc37-e6c1-4b30-b082-076df44421b0
-            stepCounter: bd09cf61-0481-4aaa-a89e-fc3ff2deb197
     colpreview:
       items:
         - {}

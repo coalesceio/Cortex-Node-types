@@ -258,18 +258,7 @@ metadata:
           isRequired: false
         
      
-      - groupName: Hidden Config
-        enableIf: "false"
-        items:
-        - displayName: Type
-          type: materializationSelector
-          default: view
-          options:
-          - view
-          isRequired: false   
-        
-
-
+      
         
 
 

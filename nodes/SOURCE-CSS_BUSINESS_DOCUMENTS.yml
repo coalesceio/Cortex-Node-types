@@ -1,17 +1,17 @@
 fileVersion: 1
-id: f6f57c98-6731-423a-b577-2918fe91a0b3
-name: CSS_BUSINESS_DOCUMENTS_TECH
+id: 55548340-55b9-4248-aa75-759419784526
+name: CSS_BUSINESS_DOCUMENTS
 operation:
   config:
     allcol: true
     attrcol:
       items:
         - acolname:
-            columnCounter: 9097d3c3-1c67-4c48-a591-bacbf213c52b
-            stepCounter: f6f57c98-6731-423a-b577-2918fe91a0b3
+            columnCounter: d0a2c1a3-504c-464a-afeb-0905e1215e78
+            stepCounter: 55548340-55b9-4248-aa75-759419784526
         - acolname:
-            columnCounter: b29917e8-5aa2-41d4-8cbe-c3c28850c9a3
-            stepCounter: f6f57c98-6731-423a-b577-2918fe91a0b3
+            columnCounter: 76631a29-c6f5-44dd-9e7b-14cbc392af81
+            stepCounter: 55548340-55b9-4248-aa75-759419784526
     colpreview:
       items:
         - {}
@@ -20,39 +20,39 @@ operation:
     excss: false
     filcrit:
       items:
-        - filcolname: null
-          filcolval: null
-          mopt: eq
+        - filcolname:
+            columnCounter: d0a2c1a3-504c-464a-afeb-0905e1215e78
+            stepCounter: 55548340-55b9-4248-aa75-759419784526
+          filcolval: "200"
+          mopt: gte
+        - filcolname:
+            columnCounter: d0a2c1a3-504c-464a-afeb-0905e1215e78
+            stepCounter: 55548340-55b9-4248-aa75-759419784526
+          filcolval: "500"
+          mopt: lte
     filtoggle: true
     initialize: ON_CREATE
     lagSpecification:
       items:
         - lagPeriod: Hours
-          lagValue: "600"
+          lagValue: "6000"
     locCSS: ""
-    lopt: and
+    lopt: or
+    mulfilcon: true
     namCSS: ""
-    numboost: true
+    numboost: false
     numericboost:
       items:
-        - colname:
-            columnCounter: 9097d3c3-1c67-4c48-a591-bacbf213c52b
-            stepCounter: f6f57c98-6731-423a-b577-2918fe91a0b3
-          wage: "1"
-    query1: technology
+        - {}
+    query1: good comments
     querycortex: true
     searchcol:
-      columnCounter: 97ec9496-cace-4850-ba96-810d75d1d1f1
-      stepCounter: f6f57c98-6731-423a-b577-2918fe91a0b3
-    timdec: true
+      columnCounter: 5bf1bca4-9b4e-4d82-bad4-e17c15c6d2c0
+      stepCounter: 55548340-55b9-4248-aa75-759419784526
+    timdec: false
     timedecay:
       items:
-        - lhours: "240"
-          reftstmp: "2025-02-19T14:30:45.123-08:00"
-          tcolname:
-            columnCounter: ac254ae9-9a44-46fb-9335-fbbe963c40a4
-            stepCounter: f6f57c98-6731-423a-b577-2918fe91a0b3
-          twage: "1"
+        - {}
     undefined: true
     warehouseName: dev_wh_xs
   database: ""
@@ -60,14 +60,14 @@ operation:
   description: ""
   isMultisource: false
   locationName: SOURCE
-  materializationType: view
+  materializationType: cortex search service
   metadata:
     appliedNodeTests: []
     columns:
       - appliedColumnTests: {}
         columnReference:
-          columnCounter: 97ec9496-cace-4850-ba96-810d75d1d1f1
-          stepCounter: f6f57c98-6731-423a-b577-2918fe91a0b3
+          columnCounter: 5bf1bca4-9b4e-4d82-bad4-e17c15c6d2c0
+          stepCounter: 55548340-55b9-4248-aa75-759419784526
         config: {}
         dataType: VARCHAR(16777216)
         description: ""
@@ -80,8 +80,8 @@ operation:
             transform: ""
       - appliedColumnTests: {}
         columnReference:
-          columnCounter: ac254ae9-9a44-46fb-9335-fbbe963c40a4
-          stepCounter: f6f57c98-6731-423a-b577-2918fe91a0b3
+          columnCounter: 8aa2e5a0-fb7c-4cb2-9100-8ba071068697
+          stepCounter: 55548340-55b9-4248-aa75-759419784526
         config: {}
         dataType: TIMESTAMP_NTZ(9)
         description: ""
@@ -94,8 +94,8 @@ operation:
             transform: ""
       - appliedColumnTests: {}
         columnReference:
-          columnCounter: 36d46638-716d-4910-b2f5-431f89e792c4
-          stepCounter: f6f57c98-6731-423a-b577-2918fe91a0b3
+          columnCounter: e15c9bd3-f7fb-4c59-ba6a-096ad4fe074c
+          stepCounter: 55548340-55b9-4248-aa75-759419784526
         config: {}
         dataType: TIMESTAMP_NTZ(9)
         description: ""
@@ -108,8 +108,8 @@ operation:
             transform: ""
       - appliedColumnTests: {}
         columnReference:
-          columnCounter: 9097d3c3-1c67-4c48-a591-bacbf213c52b
-          stepCounter: f6f57c98-6731-423a-b577-2918fe91a0b3
+          columnCounter: d0a2c1a3-504c-464a-afeb-0905e1215e78
+          stepCounter: 55548340-55b9-4248-aa75-759419784526
         config: {}
         dataType: NUMBER(38,0)
         description: ""
@@ -122,8 +122,8 @@ operation:
             transform: ""
       - appliedColumnTests: {}
         columnReference:
-          columnCounter: b29917e8-5aa2-41d4-8cbe-c3c28850c9a3
-          stepCounter: f6f57c98-6731-423a-b577-2918fe91a0b3
+          columnCounter: 76631a29-c6f5-44dd-9e7b-14cbc392af81
+          stepCounter: 55548340-55b9-4248-aa75-759419784526
         config: {}
         dataType: NUMBER(38,0)
         description: ""
@@ -145,9 +145,9 @@ operation:
             nodeName: BUSINESS_DOCUMENTS
         join:
           joinCondition: FROM {{ ref('SOURCE', 'BUSINESS_DOCUMENTS') }} "BUSINESS_DOCUMENTS"
-        name: CSS_BUSINESS_DOCUMENTS_TECH
+        name: CSS_BUSINESS_DOCUMENTS
         noLinkRefs: []
-  name: CSS_BUSINESS_DOCUMENTS_TECH
+  name: CSS_BUSINESS_DOCUMENTS
   overrideSQL: false
   schema: ""
   sqlType: "499"

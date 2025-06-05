@@ -155,7 +155,7 @@ metadata:
 
         - type: toggleButton
           displayName: Multiple Filter conditions
-          attributName: mulfilcon
+          attributeName: mulfilcon
           enableIf: "{%- if config.filtoggle -%} true {%- else -%} false {%- endif -%}"
 
         - type: dropdownSelector
@@ -166,7 +166,7 @@ metadata:
           - and
           - or
           - not
-          enableIf: "{%- if config.mulfilcon -%} true {%- else -%} false {%- endif -%}"
+          enableIf: "{%- if config.mulfilcon == true -%} true {%- else -%} false {%- endif -%}"
 
         - type: tabular
           displayName: 'Filtering criteria'

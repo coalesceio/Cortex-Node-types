@@ -67,16 +67,16 @@ does not permit copying or modification for any other purpose.
 
 {#Filter#}
 {%if config.filtoggle%}
-     {% set column, mopt,val = config.filcrit.get('items') | map(attribute='filcolname.name') | list, config.filcrit.get('items') | map(attribute='mopt') | list,config.filcrit.get('items') | map(attribute='filcolval')|list %}
+     {% set column, mopt,val = config.filcrit.get('items') | map(attribute='filcolname.name') | list, config.filcrit.get('items') | map(attribute='mopt') | list,config.filcrit.get('items') | map(attribute='filcolval')|list%}
      
-     {%if mulfilcon %}
-         {%set ns.filcrit = ns.filcrit + '"@' + lopt[loop.index0] + '":['  %}
+     {%if config.mulfilcon %}
+         {%set ns.filcrit = ns.filcrit + '"@' + config.lopt + '":['  %}
      {%endif%}
      {%for ncol in column %}
          {%set ns.filcrit = ns.filcrit + '"@'+ mopt[loop.index0] + '": {"'+ ncol +'":"' + val[loop.index0] + '"}' %}
          {%if  not loop.last%} {%set ns.filcrit = ns.filcrit + ','%}{%endif%}
     {%endfor%}
-    {%if mulfilcon %}
+    {%ifconfig.mulfilcon %}
          {%set ns.filcrit = ns.filcrit + ']'  %}
      {%endif%}
 {%endif%}

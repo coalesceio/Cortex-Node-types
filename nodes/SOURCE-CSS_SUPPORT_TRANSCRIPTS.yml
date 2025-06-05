@@ -1,34 +1,59 @@
 fileVersion: 1
-id: b6966460-f657-4aef-8b19-aaf6dae781e2
+id: bf136e60-8cf8-409c-99bc-95b52d7180af
 name: CSS_SUPPORT_TRANSCRIPTS
 operation:
   config:
+    allcol: true
     attrcol:
-      columnCounter: 6fa9c64c-7be6-4a35-9421-f72d0dcb362e
-      stepCounter: b6966460-f657-4aef-8b19-aaf6dae781e2
+      items:
+        - acolname:
+            columnCounter: 83c72694-e685-4761-bea4-f227227ca4ab
+            stepCounter: bf136e60-8cf8-409c-99bc-95b52d7180af
+    colpreview:
+      items:
+        - columnName: null
+    createcortex: true
     embmodel: snowflake-arctic-embed-m-v1.5
-    initialize: ON_SCHEDULE
+    excss: false
+    filcrit:
+      items:
+        - {}
+    filtoggle: false
+    initialize: ON_CREATE
     lagSpecification:
       items:
         - lagPeriod: Hours
-          lagValue: "60"
+          lagValue: "6000"
+    locCSS: ""
+    lopt: and
+    namCSS: ""
+    numboost: false
+    numericboost:
+      items:
+        - {}
+    query1: technology
+    querycortex: true
     searchcol:
-      columnCounter: 3009b3bb-46bf-4f56-8836-8fa5feed0f33
-      stepCounter: b6966460-f657-4aef-8b19-aaf6dae781e2
+      columnCounter: fac6d7b1-a7e1-4ce3-afff-a1e1c2f85b1c
+      stepCounter: bf136e60-8cf8-409c-99bc-95b52d7180af
+    timdec: false
+    timedecay:
+      items:
+        - {}
     warehouseName: dev_wh_xs
   database: ""
   deployEnabled: true
   description: ""
   isMultisource: false
   locationName: SOURCE
-  materializationType: table
+  materializationType: cortex search service
   metadata:
     appliedNodeTests: []
     columns:
       - appliedColumnTests: {}
         columnReference:
-          columnCounter: 3009b3bb-46bf-4f56-8836-8fa5feed0f33
-          stepCounter: b6966460-f657-4aef-8b19-aaf6dae781e2
+          columnCounter: fac6d7b1-a7e1-4ce3-afff-a1e1c2f85b1c
+          stepCounter: bf136e60-8cf8-409c-99bc-95b52d7180af
         config: {}
         dataType: VARCHAR(16777216)
         description: ""
@@ -41,8 +66,8 @@ operation:
             transform: ""
       - appliedColumnTests: {}
         columnReference:
-          columnCounter: 6fa9c64c-7be6-4a35-9421-f72d0dcb362e
-          stepCounter: b6966460-f657-4aef-8b19-aaf6dae781e2
+          columnCounter: 83c72694-e685-4761-bea4-f227227ca4ab
+          stepCounter: bf136e60-8cf8-409c-99bc-95b52d7180af
         config: {}
         dataType: VARCHAR(16777216)
         description: ""
@@ -55,8 +80,8 @@ operation:
             transform: ""
       - appliedColumnTests: {}
         columnReference:
-          columnCounter: a2815652-b1af-48e8-bce3-13bad97d3e33
-          stepCounter: b6966460-f657-4aef-8b19-aaf6dae781e2
+          columnCounter: 5d3c771f-c8a7-4f3e-95cb-6e979966d206
+          stepCounter: bf136e60-8cf8-409c-99bc-95b52d7180af
         config: {}
         dataType: VARCHAR(16777216)
         description: ""

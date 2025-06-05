@@ -39,7 +39,7 @@ operation:
     numericboost:
       items:
         - {}
-    query1: Cost effective apartment
+    query1: Cheaper
     querycortex: true
     searchcol:
       columnCounter: 6abf7a8c-dddf-4fef-a9d2-6abb5fcadf81

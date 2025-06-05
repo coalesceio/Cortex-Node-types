@@ -32,7 +32,7 @@ operation:
     numericboost:
       items:
         - {}
-    query1: safe
+    query1: fair price
     querycortex: true
     timdec: false
     timedecay:

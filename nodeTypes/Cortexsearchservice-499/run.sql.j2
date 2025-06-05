@@ -76,7 +76,7 @@ does not permit copying or modification for any other purpose.
          {%set ns.filcrit = ns.filcrit + '"@'+ mopt[loop.index0] + '": {"'+ ncol +'":"' + val[loop.index0] + '"}' %}
          {%if  not loop.last%} {%set ns.filcrit = ns.filcrit + ','%}{%endif%}
     {%endfor%}
-    {%ifconfig.mulfilcon %}
+    {%if config.mulfilcon %}
          {%set ns.filcrit = ns.filcrit + ']'  %}
      {%endif%}
 {%endif%}

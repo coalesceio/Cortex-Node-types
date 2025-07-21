@@ -26,10 +26,10 @@ operation:
           filcolval: "200"
           mopt: gte
         - filcolname:
-            columnCounter: d0a2c1a3-504c-464a-afeb-0905e1215e78
+            columnCounter: 76631a29-c6f5-44dd-9e7b-14cbc392af81
             stepCounter: 55548340-55b9-4248-aa75-759419784526
-          filcolval: "500"
-          mopt: lte
+          filcolval: "10"
+          mopt: gte
     filtoggle: true
     initialize: ON_CREATE
     lagSpecification:
@@ -44,7 +44,7 @@ operation:
     numericboost:
       items:
         - {}
-    query1: good comments
+    query1: new product
     querycortex: true
     searchcol:
       columnCounter: 5bf1bca4-9b4e-4d82-bad4-e17c15c6d2c0

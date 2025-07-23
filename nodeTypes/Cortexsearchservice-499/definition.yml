@@ -9,7 +9,7 @@ metadata:
     short: CSS
     tagColor: "#F6FF3C"
     isDisabled: true
-    plural: Dynamic Tables
+    plural: Tables
 
     deployStrategy: advanced
     isColumnResyncEnabled: true

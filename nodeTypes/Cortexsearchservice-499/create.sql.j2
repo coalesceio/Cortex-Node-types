@@ -271,7 +271,7 @@ does not permit copying or modification for any other purpose.
 
             {% if  warehouseTest == false or lagSpecificationTest == false or downstreamOptionTest == false or nodeCommentTest == false %}
                 
-                {{ stage('Alter Cortex Search Service', true, "sql", "alter") }}
+                {{ stage('Alter Cortex Search Service') }}
 				
 				ALTER CORTEX SEARCH SERVICE {{fullyQualifiedTargetCSSName }} SET
                  {{ CSSWarehouse }}
@@ -281,7 +281,7 @@ does not permit copying or modification for any other purpose.
               
             {%endif%}
         
-              {{ stage('Refresh Cortex Search Service', true, "sql", "alter") }}
+              {{ stage('Refresh Cortex Search Service') }}
                ALTER CORTEX SEARCH SERVICE {{fullyQualifiedTargetCSSName }} REFRESH
 
     {%endif%}
@@ -293,7 +293,7 @@ does not permit copying or modification for any other purpose.
     {% set targetCSSSchema = ref_no_link(currentState.node.location.name, currentState.node.name).split('.')[1] %} 
     {% set fullyQualifiedTargetCSSName = ref_no_link(currentState.node.location.name, currentState.node.name) %}
 
-    {{ stage('Drop Cortex Search Service', true, "sql", "drop") }}
+    {{ stage('Drop Cortex Search Service') }}
     DROP CORTEX SEARCH SERVICE IF EXISTS {{ fullyQualifiedTargetCSSName }}			  
 
 {%endif%}

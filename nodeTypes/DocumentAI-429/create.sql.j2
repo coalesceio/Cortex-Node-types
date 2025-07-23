@@ -28,7 +28,7 @@ does not permit copying or modification for any other purpose.
     {# Source Object Location and Name #}
 	{% set stageStorageLocation =  desiredState.config.stageStorageLocationName | string %}
 	{% set stageNameVar =  desiredState.config.stageName | string %}
-    {% set refLink = "{{ ref_no_link('" + stageStorageLocation + "', '" + stageNameVar +"') }}" %}
+    {% set refLink = "{{ ref('" + stageStorageLocation + "', '" + stageNameVar +"') }}" %}
      
 	
     {# Target Stream Location and Name #}
@@ -50,19 +50,19 @@ does not permit copying or modification for any other purpose.
 {% if desiredState and desiredState != currentState %}
 
     {% if currentState == undefined or desiredState.config.redeploymentBehavior == 'Create or Replace' %}
-        {{ stage('Create Stream', true, "sql", "create") }}
-        CREATE OR REPLACE STREAM {{fullyQualifiedStreamName}}
+        {{ stage('Create Stream') }}
+        CREATE OR REPLACE STREAM {{ ref(streamTargetLocationName, streamName) }}
             ON {{ streamType }} {{ refLink }}
 
     {% elif currentState != undefined and desiredState.config.redeploymentBehavior == 'Create If Not Exists'%}
-        {{ stage('Re-Create Stream at existing offset', true, "sql", "alter") }}
-        CREATE STREAM IF NOT EXISTS {{ fullyQualifiedStreamName }}
+        {{ stage('Re-Create Stream at existing offset') }}
+        CREATE STREAM IF NOT EXISTS {{ ref(streamTargetLocationName, streamName) }}
             ON {{ streamType }} {{ refLink }}
 
 
     {% elif currentState != undefined and desiredState.config.redeploymentBehavior == 'Create At Existing Stream'%}
-        {{ stage('Re-Create Stream at existing offset', true, "sql", "alter") }}
-        CREATE OR REPLACE STREAM {{ fullyQualifiedStreamName }}
+        {{ stage('Re-Create Stream at existing offset') }}
+        CREATE OR REPLACE STREAM {{ ref(streamTargetLocationName, streamName) }}
             ON {{ streamType }} {{ refLink }}
 
     {% endif %}
@@ -77,8 +77,8 @@ does not permit copying or modification for any other purpose.
     {% set streamName = currentState.node.name %}
     {% set fullyQualifiedStreamName = '"' + streamTargetDatabaseName + '"."' + streamTargetSchemaName + '"."' + streamName +'_STREAM'+'"' %}
 
-    {{ stage('Drop Stream', true, "sql", "drop") }}
-    DROP STREAM IF EXISTS {{ fullyQualifiedStreamName }}
+    {{ stage('Drop Stream') }}
+    DROP STREAM IF EXISTS {{ ref(streamTargetLocationName, streamName) }}
 
 {% endif %}
 
@@ -99,7 +99,7 @@ does not permit copying or modification for any other purpose.
                       DROP TABLE IF EXISTS {{ ref_no_link(currentState.node.location.name, currentState.node.name) }}
                 {% endif %}
                  
-                {{ stage('Create'+ ' {{desiredState.node.materializationType}}' , true, "sql", "create") }}
+                {{ stage('Create'+ ' {{desiredState.node.materializationType}}') }}
                CREATE OR REPLACE {{desiredState.node.materializationType}} {{ ref_no_link(desiredState.node.location.name, desiredState.node.name) }}
                 (
                 {% for col in desiredState.columns %}
@@ -119,7 +119,7 @@ does not permit copying or modification for any other purpose.
         {% if currentState == undefined or currentState.storageLocations|length == 0 %}
                                   
                       
-            {{ stage('Create '+ ' {{desiredState.node.materializationType}}' , true, "sql", "create") }}
+            {{ stage('Create '+ ' {{desiredState.node.materializationType}}') }}
                 CREATE OR REPLACE {{desiredState.node.materializationType}} {{ ref_no_link(desiredState.node.location.name, desiredState.node.name) }}
                 (
                     {% for col in desiredState.columns %}
@@ -170,19 +170,17 @@ does not permit copying or modification for any other purpose.
 
             {# Rename / Move Object #}
             {% if (nsVariables.storageLocationTest == false or currentState.node.name != desiredState.node.name or currentState.node.location.name != desiredState.node.location.name) %}
-                {{ stage('Rename and / or Move Table', true, "sql", "alter") }}
+                {{ stage('Rename and / or Move Table') }}
                 ALTER TABLE {{ ref_no_link(currentState.node.location.name, currentState.node.name) }}
                 RENAME TO   {{ ref_no_link(desiredState.node.location.name, desiredState.node.name) }}
             {% endif %}
 
             {# Change table description #}
             {% if (nsVariables.nodeCommentTest == false or currentState.node.description != desiredState.node.description) %}
-                 {{ stage('Change table description', true, "sql", "alter") }}
+                 {{ stage('Change table description') }}
                  ALTER TABLE {{ ref_no_link(desiredState.node.location.name, desiredState.node.name) }}
                 SET COMMENT = '{{ desiredState.node.description | escape }}'
             {% endif %}
-
-
 
             {# Drop Columns #}
             
@@ -191,7 +189,7 @@ does not permit copying or modification for any other purpose.
                 {% set nsVariables.colchanges = nsVariables.colchanges + 1 %}
 
                     {% if nsVariables.colchanges == 1 %}
-                        {{ stage('Drop Columns', true, "sql", "alter") }}
+                        {{ stage('Drop Columns') }}
                         ALTER TABLE {{ ref_no_link(desiredState.node.location.name, desiredState.node.name) }}
                         DROP COLUMN 
                     {% else %}
@@ -208,7 +206,7 @@ does not permit copying or modification for any other purpose.
                 {% set nsVariables.colchanges = nsVariables.colchanges + 1 %}
 
                     {% if nsVariables.colchanges == 1 %}
-                        {{ stage('Add Columns', true, "sql", "alter") }}
+                        {{ stage('Add Columns') }}
                         ALTER TABLE {{ ref_no_link(desiredState.node.location.name, desiredState.node.name) }}
                         ADD COLUMN
                     {% else %}
@@ -227,7 +225,7 @@ does not permit copying or modification for any other purpose.
                 {% if renameCurCol.id in desiredState.columns | map(attribute="id") %}
                     {% set desiredColumnName = desiredState.columns | selectattr('id', 'equalto', renameCurCol.id) | map(attribute='name') | first %}
                     {% if renameCurCol.name != desiredColumnName %}
-                        {{ stage('Rename Column ' + renameCurCol.name, true, "sql", "alter") }}
+                        {{ stage('Rename Column ' + renameCurCol.name) }}
                         ALTER TABLE {{ ref_no_link(desiredState.node.location.name, desiredState.node.name) }}
                         RENAME COLUMN "{{ renameCurCol.name }}"
                         TO "{{ desiredColumnName }}"
@@ -262,7 +260,7 @@ does not permit copying or modification for any other purpose.
                         {% set nsVariables.colchanges = nsVariables.colchanges + 1 %}
 
                         {% if nsVariables.colchanges == 1 %}
-                            {{ stage('Change Column Attributes', true, "sql", "alter") }}
+                            {{ stage('Change Column Attributes') }}
                             ALTER TABLE {{ ref_no_link(desiredState.node.location.name, desiredState.node.name) }}
                             MODIFY
                         {% endif %}
@@ -286,7 +284,7 @@ does not permit copying or modification for any other purpose.
                         {% if descriptionTest == false %}
                             {% if nsVariables.colchanges > 1 %},{% endif %}
                             COLUMN "{{ desiredColumnName }}"
-                            COMMENT '{{ desiredDescription }}'
+                            COMMENT '{{ desiredDescription |escape }}'
                             {% set nsVariables.colchanges = nsVariables.colchanges + 1 %}
                         {% endif %}
                         {% if defaultValueTest == false %}
@@ -304,12 +302,8 @@ does not permit copying or modification for any other purpose.
                                             
                     {% endif %}
                 {% endif %}
-            {% endfor %}
-            
-            
+            {% endfor %}            
         {% endif %}
-
-
     {% endif %}
 
 {% elif currentState != undefined and desiredState == undefined %}
@@ -321,12 +315,12 @@ does not permit copying or modification for any other purpose.
     
     {% if currentState.node.materializationType == 'view' %}
 
-     {{ stage('Drop Table or View', true, "sql", "drop") }}
+     {{ stage('Drop Table or View') }}
      DROP {{ currentState.node.materializationType }} IF EXISTS {{ fullyQualifiedTargetObjectName }}
 
     {% else %}
      
-       {{ stage('Drop ' + currentState.node.materializationType , true, "sql", "drop") }}
+       {{ stage('Drop ' + currentState.node.materializationType) }}
        DROP TABLE IF EXISTS {{ fullyQualifiedTargetObjectName }}
 
     {% endif %}
@@ -373,10 +367,8 @@ does not permit copying or modification for any other purpose.
    {% set extractionQueryName = desiredState.config.extractionQueryName %}
    {% set extractionQueryVersion = desiredState.config.extractionQueryVersion %}
 
-
          {% set tableColumnIds = columns | map(attribute='id') | list %}
          {% set tableColumnNames = columns | map(attribute='name') | list %}
-
 
              {% set targetTableName = desiredState.node.name %}
 
@@ -417,7 +409,7 @@ does not permit copying or modification for any other purpose.
             {% set tableColumnIds = desiredState.columns | map(attribute='id') | list %}
             {% set tableColumnNames = desiredState.columns | map(attribute='name') | list %}    
 
-            {{ stage('Create Task', true, "sql", "create") }}
+            {{ stage('Create Task') }}
             CREATE OR REPLACE TASK 
                 {{ fullyQualifiedTaskName }} 
                 {{ taskType}} 
@@ -435,7 +427,7 @@ does not permit copying or modification for any other purpose.
               {%endif%}
               {%- if not loop.last -%}, {% endif %}
             {%- endfor %}           
-            FROM {{ fullyQualifiedStreamName }}
+            FROM {{ ref(streamTargetLocationName, streamName) }}
             {% set ret_clause = get_clause( desiredState.sources[0].join ).lstrip()%}
             {% if subf != "" %} {{subf}}
 			  {% if ret_clause|trim !='' %}
@@ -474,7 +466,7 @@ does not permit copying or modification for any other purpose.
         {% set taskName = currentState.node.name + '_TASK'  %}
         {%- set fullyQualifiedTaskName = targetTableDatabase + '.' + targetTableSchema + '."' + taskName + '"' -%} 
 
-        {{ stage('Drop Current Task', true, "sql", "drop") }}
+        {{ stage('Drop Current Task') }}
             DROP TASK IF EXISTS {{ fullyQualifiedTaskName }} 
 
     {%- endif -%}

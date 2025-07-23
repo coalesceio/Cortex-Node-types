@@ -6,6 +6,10 @@ operation:
     allcol: false
     attrcol:
       columnCounter: 9744c83b-82c7-41a1-95fe-0e4f4298f1b9
+      items:
+        - acolname:
+            columnCounter: e6fee244-c589-4c6f-8899-c86ca1be3747
+            stepCounter: 8ad46fa2-0480-48c7-b2a6-c31641a662f8
       stepCounter: 8ad46fa2-0480-48c7-b2a6-c31641a662f8
     colpreview:
       items:

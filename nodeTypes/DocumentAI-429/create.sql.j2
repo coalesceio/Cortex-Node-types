@@ -91,7 +91,7 @@ does not permit copying or modification for any other purpose.
 
                 {# Change in materialization type #}
 
-                {{ stage('Drop ' + currentState.node.materializationType + ' ' + ref_no_link(currentState.node.location.name, currentState.node.name), true, "sql", "drop") }}
+                {{ stage('Drop ' + currentState.node.materializationType + ' ' + ref_no_link(currentState.node.location.name, currentState.node.name)) }}
 
                  {% if currentState.node.materializationType == 'view' %} 
                       DROP {{currentState.node.materializationType}} IF EXISTS {{ ref_no_link(currentState.node.location.name, currentState.node.name) }}
@@ -440,14 +440,9 @@ does not permit copying or modification for any other purpose.
             {% if desiredState.config.groupByAll %}GROUP BY ALL{% endif %}
 
         {%- if desiredState.config.schedulePeriodOption != 'Predecessor' -%} 
-                {{ stage('Resume Task', true, "sql", "create") }}
+                {{ stage('Resume Task') }}
                 ALTER TASK {{ fullyQualifiedTaskName }} RESUME;
             {%- endif -%}
-    
-            
-        {% else %}
-            {{ stage('Development Mode - No Task.') }}
-            select 1 = 0
             
         {%- endif -%}
 

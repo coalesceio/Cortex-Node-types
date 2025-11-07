@@ -27,9 +27,7 @@ operation:
       items:
         - lagPeriod: Minutes
           lagValue: 60
-    locCSS: null
     lopt: and
-    namCSS: null
     numboost: false
     numericboost:
       items:

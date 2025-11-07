@@ -17,6 +17,7 @@ operation:
         - columnName: null
     createcortex: true
     embmodel: snowflake-arctic-embed-m-v1.5
+    excss: false
     filcrit:
       items:
         - filcolname:
@@ -30,6 +31,7 @@ operation:
       items:
         - lagPeriod: Hours
           lagValue: "600"
+    mulfilcon: false
     numboost: false
     numericboost:
       items:

@@ -79,9 +79,10 @@ metadata:
           attributeName: initialize
           default: "ON_CREATE"
           options:
+          - ''
           - ON_CREATE
           - ON_SCHEDULE 
-          isRequired: true
+          isRequired: false
        
        
         - type: dropdownSelector   

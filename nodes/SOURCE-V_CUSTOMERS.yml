@@ -4,8 +4,6 @@ name: V_CUSTOMERS
 operation:
   config:
     insertStrategy: UNION
-    postSQL: null
-    preSQL: null
     selectDistinct: false
     testsEnabled: false
     truncateBefore: false

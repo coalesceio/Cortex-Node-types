@@ -151,7 +151,11 @@ does not permit copying or modification for any other purpose.
         {% set fullyQualifiedTargetCSSName = ref_no_link(desiredState.node.location.name, desiredState.node.name) %}
          
         {#Initialize option#}
-        {% set CSSinitialize = desiredState.config.initialize %}
+        {% if desiredState.config.initialize == ''%}
+            {% set CSSinitialize = 'ON_CREATE'%}
+        {% else %}
+            {% set CSSinitialize = desiredState.config.initialize %}
+        {% endif %}
 
         {#Warehouse#}
         {# Can be updated during deployment via a parameter to account for different warehouse names in different deployments#}

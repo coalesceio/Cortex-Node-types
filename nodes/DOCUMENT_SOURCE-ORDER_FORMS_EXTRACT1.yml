@@ -9,8 +9,6 @@ operation:
     extractionQueryVersion: "4"
     fileNames: ""
     flagSrcStream: true
-    postSQL: null
-    preSQL: null
     redeploymentBehavior: Create or Replace
     schedulePeriod: "120"
     schedulePeriodOption: Minutes

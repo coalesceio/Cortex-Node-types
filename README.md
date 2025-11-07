@@ -660,7 +660,7 @@ The Cortex Search service node has the following configuration groups:
 |------------|----------------|
 | **Warehouse** | (Required) Name of warehouse used to refresh the Dynamic Table |
 | **Lag Specification** |(Required) Specifies the maximum amount of time that the Cortex Search service content should lag behind updates to the base tables specified in the source query.Set refresh schedule with:<br/>- **Time Value**: Frequency of the refresh<br/>- **Time Period**: Seconds/Minutes/Hours/Days |
-| **Initialize** | (Required) Initial refresh behavior:<br/>- **ON_CREATE**: Refresh synchronously at creation<br/>- **ON_SCHEDULE**: Refresh at next scheduled time |
+| **Initialize** | Initial refresh behavior:<br/>- **BLANK('')**: If the blank option is selected, the default behavior will be ON_CREATE.<br>- **ON_CREATE**: Refresh synchronously at creation<br/>- **ON_SCHEDULE**: Refresh at next scheduled time |
 
 ![cssschedule](https://github.com/user-attachments/assets/ba0e3bc5-633a-4db4-9b08-b3ffc4cc2e4a)
 

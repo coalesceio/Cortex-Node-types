@@ -35,6 +35,8 @@ operation:
       items:
         - lagPeriod: Hours
           lagValue: "6000"
+    locCSS: ""
+    namCSS: ""
     numboost: false
     numericboost:
       items:

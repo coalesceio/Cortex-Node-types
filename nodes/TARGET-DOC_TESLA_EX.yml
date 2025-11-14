@@ -28,6 +28,7 @@ operation:
     sourceType: Directory Table
     stageName: DEMO_DOC_AI_STAGE
     stageStorageLocationName: DOCUMENT_SOURCE
+    subfolder: ""
     truncateBefore: true
     whName: SNOWFLAKE_DOCUMENT_AI_WH
   database: ""

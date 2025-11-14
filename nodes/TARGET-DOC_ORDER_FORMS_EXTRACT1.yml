@@ -3,7 +3,7 @@ id: ab05949e-5fb9-4eb5-ad35-5dee4a268915
 name: DOC_ORDER_FORMS_EXTRACT1
 operation:
   config:
-    devMode: true
+    devMode: false
     extractionQueryName: SALES_ORDER_FORMS
     extractionQueryStorageLocationName: DAI
     extractionQueryVersion: "4"
@@ -16,7 +16,7 @@ operation:
     sourceType: Directory Table
     stageName: DEMO_DOCUMENTS
     stageStorageLocationName: DOCUMENT_SOURCE
-    subfolder: subfolder
+    subfolder: ""
     truncateBefore: true
     whName: FIVETRAN_WAREHOUSE
   database: ""

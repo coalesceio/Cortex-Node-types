@@ -2,10 +2,9 @@
     Copyright (c) 2023 Coalesce. All rights reserved.
 This script and its associated documentation are confidential and proprietary to Coalesce.
 Unauthorized reproduction, distribution, or disclosure of this material is strictly prohibited.
-Coalesce permits you to copy and modify this script for the purposes of using with Coalsce but
+Coalesce permits you to copy and modify this script for the purposes of using with Coalesce but
 does not permit copying or modification for any other purpose.  
 #}
-{# == Node Type Version        : 1  == #}
 {# == Node Type Name           : Document AI == #}
 {# == Node Type Description    : This node executes Document AI extraction queries on unstructured documents == #}
 
@@ -35,8 +34,8 @@ does not permit copying or modification for any other purpose.
     {% set streamTargetLocationName = desiredState.node.location.name %}
     {% set streamTargetDatabaseName = desiredState.storageLocations | selectattr('name', 'equalto', streamTargetLocationName) | map(attribute='database') | first %}
     {% set streamTargetSchemaName = desiredState.storageLocations | selectattr('name', 'equalto', streamTargetLocationName) | map(attribute='schema') | first %}
-    {% set streamName = desiredState.node.name %}
-    {% set fullyQualifiedStreamName = '"' + streamTargetDatabaseName + '"."' + streamTargetSchemaName + '"."' + streamName + '_STREAM'+ '"' %}
+    {% set streamName = desiredState.node.name + '_STREAM' %}
+    {% set fullyQualifiedStreamName = '"' + streamTargetDatabaseName + '"."' + streamTargetSchemaName + '"."' + streamName %}
 
     {# Stream Type #}
     {% if  desiredState.config.sourceType == 'Directory Table' %} 
@@ -74,8 +73,8 @@ does not permit copying or modification for any other purpose.
     {% set streamTargetLocationName = currentState.node.location.name %}
     {% set streamTargetDatabaseName = currentState.storageLocations | selectattr('name', 'equalto', streamTargetLocationName) | map(attribute='database') | first %}
     {% set streamTargetSchemaName = currentState.storageLocations | selectattr('name', 'equalto', streamTargetLocationName) | map(attribute='schema') | first %}
-    {% set streamName = currentState.node.name %}
-    {% set fullyQualifiedStreamName = '"' + streamTargetDatabaseName + '"."' + streamTargetSchemaName + '"."' + streamName +'_STREAM'+'"' %}
+    {% set streamName = currentState.node.name + '_STREAM' %}
+    {% set fullyQualifiedStreamName = '"' + streamTargetDatabaseName + '"."' + streamTargetSchemaName + '"."' + streamName %}
 
     {{ stage('Drop Stream') }}
     DROP STREAM IF EXISTS {{ ref(streamTargetLocationName, streamName) }}
@@ -467,4 +466,3 @@ does not permit copying or modification for any other purpose.
     {%- endif -%}
 
 {% endif %}
-

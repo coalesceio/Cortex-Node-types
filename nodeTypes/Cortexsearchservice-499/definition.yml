@@ -88,8 +88,9 @@ metadata:
         - type: dropdownSelector   
           displayName: Embedding model
           attributeName: embmodel
-          default: "snowflake-arctic-embed-m-v1.5"
+          default: ""
           options:
+          - ""
           - snowflake-arctic-embed-m-v1.5
           - snowflake-arctic-embed-l-v2.0
           - voyage-multilingual-2 

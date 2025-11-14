@@ -2,10 +2,9 @@
     Copyright (c) 2023 Coalesce. All rights reserved.
 This script and its associated documentation are confidential and proprietary to Coalesce.
 Unauthorized reproduction, distribution, or disclosure of this material is strictly prohibited.
-Coalesce permits you to copy and modify this script for the purposes of using with Coalsce but
+Coalesce permits you to copy and modify this script for the purposes of using with Coalesce but
 does not permit copying or modification for any other purpose.  
 #}
-{# == Node Type Version        : 1  == #}
 {# == Node Type Name           : Cortex Search Service == #}
 {# == Node Type Description    : This node creates a Cortex Search Service in snowflake  == #}
 
@@ -189,7 +188,10 @@ does not permit copying or modification for any other purpose.
             TARGET_LAG = '{{ CSSLagSpecification }}'
             WAREHOUSE = {{CSSWarehouse}}
             INITIALIZE = {{CSSinitialize}}
-            EMBEDDING_MODEL = '{{desiredState.config.embmodel}}'
+
+            {% if desiredState.config.embmodel != '' %}
+                EMBEDDING_MODEL = '{{desiredState.config.embmodel}}'
+            {% endif %}
             {{ CSSComment  }}
         AS 
         (SELECT 

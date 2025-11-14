@@ -2,10 +2,9 @@
     Copyright (c) 2023 Coalesce. All rights reserved.
 This script and its associated documentation are confidential and proprietary to Coalesce.
 Unauthorized reproduction, distribution, or disclosure of this material is strictly prohibited.
-Coalesce permits you to copy and modify this script for the purposes of using with Coalsce but
+Coalesce permits you to copy and modify this script for the purposes of using with Coalesce but
 does not permit copying or modification for any other purpose.  
 #}
-{# == Node Type Version        : 1  == #}
 {# == Node Type Name           : Document AI == #}
 {# == Node Type Description    : This node executes Document AI extraction queries on unstructured documents == #}
 
@@ -99,5 +98,13 @@ does not permit copying or modification for any other purpose.
 			  {{join_clause}}
 			   {% endif %}
             {% if config.groupByAll %}GROUP BY ALL{% endif %}
+
+{% else %}
+
+    {{ stage('Task Mode - No Manual Run') }}
+    -- This node is configured to run as a scheduled task
+    -- Manual Run is only available when Development Mode is enabled
+    -- To execute this task, wait for the scheduled run or manually execute: EXECUTE TASK {{node.name + '_TASK'}}
+    SELECT 1 AS INFO_MESSAGE WHERE FALSE
             
 {% endif -%}

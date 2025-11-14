@@ -147,7 +147,7 @@ metadata:
       - displayName: Task Schedule
         attributeName: schedulePeriodOption
         type: dropdownSelector
-        default: Predecessor
+        default: Minutes
         options:
           - Minutes
           - CRON

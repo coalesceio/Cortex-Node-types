@@ -2,10 +2,9 @@
     Copyright (c) 2023 Coalesce. All rights reserved.
 This script and its associated documentation are confidential and proprietary to Coalesce.
 Unauthorized reproduction, distribution, or disclosure of this material is strictly prohibited.
-Coalesce permits you to copy and modify this script for the purposes of using with Coalsce but
+Coalesce permits you to copy and modify this script for the purposes of using with Coalesce but
 does not permit copying or modification for any other purpose.  
 #}
-{# == Node Type Version        : 1  == #}
 {# == Node Type Name           : Cortex Search Service == #}
 {# == Node Type Description    : This node creates a target view with the search results of Cortex Search Service  == #}
 
@@ -116,4 +115,12 @@ FROM TABLE(FLATTEN(PARSE_JSON(SNOWFLAKE.CORTEX.SEARCH_PREVIEW(
       }
     }'
 ))['results'] ))
-{%endif%}
+
+{% else %}
+
+    {{ stage('Preview/Query Mode Off') }}
+    -- This node is configured not to run Cortex Search Service Queries
+    -- Please enable 'Preview/Query the Cortex Service' in the node configuration to activate this functionality and choose appropriate settings
+    SELECT 1 AS INFO_MESSAGE WHERE FALSE
+
+{% endif %}

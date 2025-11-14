@@ -478,7 +478,7 @@ The Document AI node has the following configuration groups:
 
 | **Option** | **Description** |
 |------------|----------------|
-| **Development Mode** | True / False toggle that determines whether a task will be created or if SQL executes as DML<br/>**True** - Table created and SQL executes as Run action<br/>**False** - SQL wrapped in task with specified Scheduling Options |
+| **Development Mode** | True / False toggle that determines whether a task will be created or if SQL executes as DML<br/>**True** - Table created and SQL executes as Run action<br/>**False** - SQL wrapped in task with specified Scheduling Options. When Run is executed, a message appears prompting the user to **wait** or suggesting a **manual run**. |
 | **CREATE AS** | Choose target object type:<br/>- Table : Permanent table with data retention and fail-safe<br/>- Transient Table : Temporary table without data retention |
 | **Truncate Before** | True / False toggle determines whether a table will be overwritten each time a task executes<br/>**True** - Uses INSERT OVERWRITE<br/>**False** - Uses INSERT to append data |
 
@@ -650,7 +650,7 @@ The Cortex Search service node has the following configuration groups:
 | **Option** | **Description** |
 |------------|----------------|
 | **Create Cortex Service** | True / False toggle that determines whether to create a cortex search service <br/>**True** -  SQL executes as Create action to create cortex search service <br/>**False** - No cortex search service created |
-| **Preview/Query the Cortex Service** | True / False toggle that determines whether to query the cortex search service created <br/>**True** -  SQL executes as run action to create view with the results of querying the cortex search service <br/>**False** - No view is created with the query results of cortex search service |
+| **Preview/Query the Cortex Service** | True / False toggle that determines whether to query the cortex search service created <br/>**True** -  SQL executes as run action to create view with the results of querying the cortex search service <br/>**False** - No view is created with the query results of cortex search service. When Run is executed, a message appears prompting the user to toggle on Preview/Query. |
 
 ![cssgeneral](https://github.com/user-attachments/assets/1c051a9d-4c7f-4ef9-8415-d31ae035c9c8)
 
@@ -668,7 +668,7 @@ The Cortex Search service node has the following configuration groups:
 
 | **Option** | **Description** |
 |------------|----------------|
-| **Embedding model** | (Required)Parameter that specifies the embedding model to use in the Cortex Search Service. |
+| **Embedding model** | Parameter that specifies the embedding model to use in the Cortex Search Service. If the EMBEDDING_MODEL is not specified, the **default** model is used. The default model is snowflake-arctic-embed-m-v1.5. |
 | **Search column** |(Required) Specifies the text column in the base table that you wish to search on. This column must be a text value. |
 | **Attribute Columns** | (Required)Specifies comma-separated list of columns in the base table that you wish to filter on when issuing queries to the service.|
 

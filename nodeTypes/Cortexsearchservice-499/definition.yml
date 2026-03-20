@@ -21,10 +21,12 @@ metadata:
         - type: toggleButton
           displayName: 'Create Cortex Service'
           attributeName: createcortex
+          default: false
 
         - type: toggleButton
           displayName: 'Preview/Query the Cortex Service'
           attributeName: querycortex
+          default: false
 
       - groupName: Cortex search schedule Options
         enableIf: "{%- if config.createcortex -%} true {%- else -%} false {%- endif -%}"
@@ -121,20 +123,24 @@ metadata:
         - type: toggleButton
           displayName:  Use existing Cortex Search Service
           attributeName: excss
+          default: false
 
         - type: textBox
           displayName: Coalesce storage location of CSS
           enableIf: "{%- if config.excss -%} true {%- else -%} false {%- endif -%}"
           attributeName: locCSS
+          default: ""
         
         - type: textBox
           displayName: Name of Cortex Search Service
           enableIf: "{%- if config.excss -%} true {%- else -%} false {%- endif -%}"
           attributeName: namCSS
+          default: ""
 
         - type: toggleButton
           displayName: All Columns in the preview 
           attributeName: allcol
+          default: false
           isRequired: false
        
         - type: tabular
@@ -153,11 +159,13 @@ metadata:
         - type: toggleButton
           displayName: Filter
           attributeName: filtoggle
+          default: false
           isRequired: false
 
         - type: toggleButton
           displayName: Multiple Filter conditions
           attributeName: mulfilcon
+          default: false
           enableIf: "{%- if config.filtoggle -%} true {%- else -%} false {%- endif -%}"
 
         - type: dropdownSelector
@@ -195,6 +203,7 @@ metadata:
           - type: textBox
             displayName: Filter Value
             attributeName: filcolval
+            default: ""
             isRequired: false
       
           isRequired: false
@@ -202,6 +211,7 @@ metadata:
         - type: toggleButton
           displayName: Apply numeric boost to Search Service
           attributeName: numboost
+          default: false
           isRequired: false
 
         - type: tabular
@@ -218,6 +228,7 @@ metadata:
           -  type: textBox
              displayName: Weightage
              attributeName: wage
+             default: ""
              isRequired: false
       
           isRequired: false
@@ -225,6 +236,7 @@ metadata:
         - type: toggleButton
           displayName: Apply time decay to Search Service
           attributeName: timdec
+          default: false
           isRequired: false
 
         - type: tabular
@@ -241,16 +253,19 @@ metadata:
           -  type: textBox
              displayName: Weightage
              attributeName: twage
+             default: ""
              isRequired: false
 
           -  type: textBox
              displayName: Limit hours      
              attributeName: lhours
+             default: ""
              isRequired: false
           
           -  type: textBox
              displayName: Refrence timestamp(timestamp from which decay is caluculated)
              attributeName: reftstmp
+             default: ""
              isRequired: false
       
           isRequired: false  
@@ -258,6 +273,7 @@ metadata:
         - type: textBox
           displayName: Query
           attributeName: query1
+          default: ""
           isRequired: false
         
       - groupName: Hidden Config
@@ -269,13 +285,5 @@ metadata:
           options:
           - cortex search service
           isRequired: false   
-        
-
-
-      
-        
-
-
-        
 name: Cortex search service
 type: NodeType

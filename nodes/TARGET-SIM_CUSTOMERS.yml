@@ -3,68 +3,51 @@ id: c662aaf8-1b30-47a6-92d8-7e09d588ebdf
 name: SIM_CUSTOMERS
 operation:
   config:
-    appendOnly: false
-    autoRetryToggle: false
-    autoSuspendToggle: false
-    clusterKey: false
-    clusterKeyConfig:
+    allcol: false
+    attrcol:
       items:
-        - {}
-    clusterKeyConfigExpressions:
-      items:
-        - {}
-    clusterKeyExpressions: false
-    configJSON: ""
-    createas: table
-    devMode: true
-    errIntName: ""
-    errNotifyToggle: false
-    execTime:
-      items:
-        - {}
-    flagSrcStream: true
-    groupByAll: false
-    initialRows: true
-    loadType: Merge
-    maxServerlessSize: 6. XXLARGE
-    minServerlessSize: 1. XSMALL
-    numFailures: "10"
-    orderBy:
-      items:
-        - colName:
-            columnCounter: ef10bcd0-6b50-45e4-a0b0-33981580b2ec
+        - acolname:
+            columnCounter: e7483d73-9d8c-4e6f-b017-ccac9b5571d1
             stepCounter: c662aaf8-1b30-47a6-92d8-7e09d588ebdf
-          sortOrd: desc
-    overlapExecToggle: false
-    partitionBy:
+    colpreview:
       items:
-        - partColName:
-            columnCounter: c6295113-009a-4fed-8fd3-f910d27febc8
-            stepCounter: c662aaf8-1b30-47a6-92d8-7e09d588ebdf
-    predTask: DATA_TRANSFORMATION_ROOT_TASK
-    propagateDeletes: false
-    redeploymentBehavior: Create or Replace
-    retryAttmpt: "0"
-    rootTask: DATA_TRANSFORMATION_ROOT_TASK
-    scheduleCRON: 5 0-23 * * * America/Los_Angeles
-    schedulePeriodOption: Predecessor
-    schedulingMode: Warehouse Task
-    selectDistinct: true
-    serverlessSize: 3. MEDIUM
-    sizeBoundToggle: false
-    sourceType: Table
-    spfcUserToggle: false
-    succIntName: ""
-    successNotifyToggle: false
-    taskGraphToggle: false
-    userName: ""
-    whName: <WAREHOUSE_NAME>
+        - {}
+    createcortex: true
+    embmodel: ""
+    excss: false
+    filcrit:
+      items:
+        - {}
+    filtoggle: false
+    initialize: ON_CREATE
+    lagSpecification:
+      items:
+        - lagPeriod: Minutes
+          lagValue: "60"
+    locCSS: ""
+    lopt: and
+    mulfilcon: false
+    namCSS: ""
+    numboost: false
+    numericboost:
+      items:
+        - {}
+    query1: ""
+    querycortex: false
+    searchcol:
+      columnCounter: e7483d73-9d8c-4e6f-b017-ccac9b5571d1
+      stepCounter: c662aaf8-1b30-47a6-92d8-7e09d588ebdf
+    timdec: false
+    timedecay:
+      items:
+        - {}
+    warehouseName: COMPUTE_WH
   database: ""
   deployEnabled: true
   description: ""
   isMultisource: false
   locationName: TARGET
-  materializationType: task
+  materializationType: cortex search service
   metadata:
     appliedNodeTests: []
     columns:
@@ -124,40 +107,6 @@ operation:
               - columnCounter: 0312d55a-a68b-413b-8660-072b3ba44f5c
                 stepCounter: 1da6cc27-0554-4194-ad29-edfbb1922634
             transform: ""
-      - acceptedValues:
-          strictMatch: true
-          values: []
-        appliedColumnTests: {}
-        columnReference:
-          columnCounter: d2d51a14-8f51-43f2-b773-32a97714bd20
-          stepCounter: c662aaf8-1b30-47a6-92d8-7e09d588ebdf
-        config: {}
-        dataType: TIMESTAMP
-        defaultValue: ""
-        description: ""
-        isSystemCreateDate: true
-        name: SYSTEM_CREATE_DATE
-        nullable: true
-        sourceColumnReferences:
-          - columnReferences: []
-            transform: CAST(CURRENT_TIMESTAMP AS TIMESTAMP)
-      - acceptedValues:
-          strictMatch: true
-          values: []
-        appliedColumnTests: {}
-        columnReference:
-          columnCounter: 57d24684-03fd-4c7c-8b34-760806f96fe5
-          stepCounter: c662aaf8-1b30-47a6-92d8-7e09d588ebdf
-        config: {}
-        dataType: TIMESTAMP
-        defaultValue: ""
-        description: ""
-        isSystemUpdateDate: true
-        name: SYSTEM_UPDATE_DATE
-        nullable: true
-        sourceColumnReferences:
-          - columnReferences: []
-            transform: CAST(CURRENT_TIMESTAMP AS TIMESTAMP)
     cteString: ""
     enabledColumnTestIDs: []
     sourceMapping:
@@ -175,7 +124,7 @@ operation:
   name: SIM_CUSTOMERS
   overrideSQL: false
   schema: ""
-  sqlType: streams-and-tasks:::152
+  sqlType: "499"
   type: sql
   version: 1
 type: Node

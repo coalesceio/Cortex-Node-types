@@ -3,54 +3,54 @@ id: dbcb6708-1192-4982-aea0-6eaa2a75ae06
 name: PSTG_CUSTOMERS
 operation:
   config:
-    clusterKey: false
-    clusterKeyConfig:
+    allcol: false
+    attrcol:
+      items:
+        - acolname:
+            columnCounter: 09041745-9b66-4b3c-83c2-cb09feb36e69
+            stepCounter: dbcb6708-1192-4982-aea0-6eaa2a75ae06
+    colpreview:
       items:
         - {}
-    clusterKeyConfigExpressions:
+    createcortex: true
+    embmodel: ""
+    excss: false
+    filcrit:
       items:
         - {}
-    clusterKeyExpressions: false
-    groupByAll: false
-    insertStrategy: UNION ALL
-    lastModifiedComparison: false
-    orderby: false
-    orderbycolumn:
+    filtoggle: false
+    initialize: ON_CREATE
+    lagSpecification:
+      items:
+        - lagPeriod: Minutes
+          lagValue: "60"
+    locCSS: ""
+    lopt: and
+    mulfilcon: false
+    namCSS: ""
+    numboost: false
+    numericboost:
       items:
         - {}
-    postSQL: ""
-    preSQL: "SELECT COUNT(*) FROM {{ ref('SOURCE', 'CUSTOMERS') }} "
-    selectDistinct: false
-    testsEnabled: false
-    treatNullAsCurrentTimestamp: false
-    truncateBefore: false
-    type2Dimension: false
+    query1: ""
+    querycortex: false
+    searchcol:
+      columnCounter: 09041745-9b66-4b3c-83c2-cb09feb36e69
+      stepCounter: dbcb6708-1192-4982-aea0-6eaa2a75ae06
+    timdec: false
+    timedecay:
+      items:
+        - {}
+    warehouseName: COMPUTE_WH
   database: ""
   deployEnabled: true
   description: ""
   isMultisource: false
   locationName: TARGET
-  materializationType: transient table
+  materializationType: cortex search service
   metadata:
     appliedNodeTests: []
     columns:
-      - acceptedValues:
-          strictMatch: true
-          values: []
-        appliedColumnTests: {}
-        columnReference:
-          columnCounter: a2a95c41-8953-43b4-9a0a-32e6db38b9a7
-          stepCounter: dbcb6708-1192-4982-aea0-6eaa2a75ae06
-        config: {}
-        dataType: NUMBER
-        defaultValue: ""
-        description: ""
-        isSurrogateKey: true
-        name: PSTG_CUSTOMERS_KEY
-        nullable: true
-        sourceColumnReferences:
-          - columnReferences: []
-            transform: ""
       - appliedColumnTests: {}
         columnReference:
           columnCounter: a6768fa3-6652-4f3d-a59f-9bc2fd69f85e
@@ -107,108 +107,6 @@ operation:
               - columnCounter: 0312d55a-a68b-413b-8660-072b3ba44f5c
                 stepCounter: 1da6cc27-0554-4194-ad29-edfbb1922634
             transform: ""
-      - acceptedValues:
-          strictMatch: true
-          values: []
-        appliedColumnTests: {}
-        columnReference:
-          columnCounter: 3c2b8bfa-3610-4cb7-aa35-cf53c33da231
-          stepCounter: dbcb6708-1192-4982-aea0-6eaa2a75ae06
-        config: {}
-        dataType: NUMBER
-        defaultValue: ""
-        description: ""
-        isSystemVersion: true
-        name: SYSTEM_VERSION
-        nullable: true
-        sourceColumnReferences:
-          - columnReferences: []
-            transform: ""
-      - acceptedValues:
-          strictMatch: true
-          values: []
-        appliedColumnTests: {}
-        columnReference:
-          columnCounter: bf8d249c-2c41-4365-bb7c-c0b7b4b83e75
-          stepCounter: dbcb6708-1192-4982-aea0-6eaa2a75ae06
-        config: {}
-        dataType: VARCHAR
-        defaultValue: ""
-        description: ""
-        isSystemCurrentFlag: true
-        name: SYSTEM_CURRENT_FLAG
-        nullable: true
-        sourceColumnReferences:
-          - columnReferences: []
-            transform: ""
-      - acceptedValues:
-          strictMatch: true
-          values: []
-        appliedColumnTests: {}
-        columnReference:
-          columnCounter: 79e8a6b6-db8d-495b-b173-1f1e6a691e72
-          stepCounter: dbcb6708-1192-4982-aea0-6eaa2a75ae06
-        config: {}
-        dataType: TIMESTAMP
-        defaultValue: ""
-        description: ""
-        isSystemStartDate: true
-        name: SYSTEM_START_DATE
-        nullable: true
-        sourceColumnReferences:
-          - columnReferences: []
-            transform: CAST(CURRENT_TIMESTAMP AS TIMESTAMP)
-      - acceptedValues:
-          strictMatch: true
-          values: []
-        appliedColumnTests: {}
-        columnReference:
-          columnCounter: 85f3b2b3-f3bb-496e-b335-753f62537d6c
-          stepCounter: dbcb6708-1192-4982-aea0-6eaa2a75ae06
-        config: {}
-        dataType: TIMESTAMP
-        defaultValue: ""
-        description: ""
-        isSystemEndDate: true
-        name: SYSTEM_END_DATE
-        nullable: true
-        sourceColumnReferences:
-          - columnReferences: []
-            transform: CAST('2999-12-31 00:00:00' AS TIMESTAMP)
-      - acceptedValues:
-          strictMatch: true
-          values: []
-        appliedColumnTests: {}
-        columnReference:
-          columnCounter: 9b3d93ba-0fbb-48a9-a353-05f944fb2a80
-          stepCounter: dbcb6708-1192-4982-aea0-6eaa2a75ae06
-        config: {}
-        dataType: TIMESTAMP
-        defaultValue: ""
-        description: ""
-        isSystemCreateDate: true
-        name: SYSTEM_CREATE_DATE
-        nullable: true
-        sourceColumnReferences:
-          - columnReferences: []
-            transform: CAST(CURRENT_TIMESTAMP AS TIMESTAMP)
-      - acceptedValues:
-          strictMatch: true
-          values: []
-        appliedColumnTests: {}
-        columnReference:
-          columnCounter: fedec40f-54bf-424d-8a29-dcf388b04641
-          stepCounter: dbcb6708-1192-4982-aea0-6eaa2a75ae06
-        config: {}
-        dataType: TIMESTAMP
-        defaultValue: ""
-        description: ""
-        isSystemUpdateDate: true
-        name: SYSTEM_UPDATE_DATE
-        nullable: true
-        sourceColumnReferences:
-          - columnReferences: []
-            transform: CAST(CURRENT_TIMESTAMP AS TIMESTAMP)
     cteString: ""
     enabledColumnTestIDs: []
     sourceMapping:
@@ -226,7 +124,7 @@ operation:
   name: PSTG_CUSTOMERS
   overrideSQL: false
   schema: ""
-  sqlType: base-node-types-advanced-deploy:::391
+  sqlType: "499"
   type: sql
   version: 1
 type: Node

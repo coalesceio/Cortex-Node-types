@@ -3,16 +3,51 @@ id: a323bfbb-3a73-4821-8515-5e420ecc9d03
 name: STREAM_CUSTOMERS
 operation:
   config:
-    appendOnly: false
-    initialRows: true
-    redeploymentBehavior: Create or Replace
-    sourceType: Table
+    allcol: false
+    attrcol:
+      items:
+        - acolname:
+            columnCounter: bd2d295a-1eba-401c-a9c9-33525ca8bd36
+            stepCounter: a323bfbb-3a73-4821-8515-5e420ecc9d03
+    colpreview:
+      items:
+        - {}
+    createcortex: true
+    embmodel: ""
+    excss: false
+    filcrit:
+      items:
+        - {}
+    filtoggle: false
+    initialize: ON_CREATE
+    lagSpecification:
+      items:
+        - lagPeriod: Minutes
+          lagValue: "60"
+    locCSS: ""
+    lopt: and
+    mulfilcon: false
+    namCSS: ""
+    numboost: false
+    numericboost:
+      items:
+        - {}
+    query1: ""
+    querycortex: false
+    searchcol:
+      columnCounter: bd2d295a-1eba-401c-a9c9-33525ca8bd36
+      stepCounter: a323bfbb-3a73-4821-8515-5e420ecc9d03
+    timdec: false
+    timedecay:
+      items:
+        - {}
+    warehouseName: COMPUTE_WH
   database: ""
   deployEnabled: true
   description: ""
   isMultisource: false
   locationName: TARGET
-  materializationType: stream
+  materializationType: cortex search service
   metadata:
     appliedNodeTests: []
     columns:
@@ -72,57 +107,6 @@ operation:
               - columnCounter: 0312d55a-a68b-413b-8660-072b3ba44f5c
                 stepCounter: 1da6cc27-0554-4194-ad29-edfbb1922634
             transform: ""
-      - acceptedValues:
-          strictMatch: true
-          values: []
-        appliedColumnTests: {}
-        columnReference:
-          columnCounter: 87dbb607-9d84-48cb-a22e-000fef3fa1f2
-          stepCounter: a323bfbb-3a73-4821-8515-5e420ecc9d03
-        config: {}
-        dataType: STRING
-        defaultValue: ""
-        description: ""
-        metadataAction: true
-        name: METADATA$ACTION
-        nullable: true
-        sourceColumnReferences:
-          - columnReferences: []
-            transform: ""
-      - acceptedValues:
-          strictMatch: true
-          values: []
-        appliedColumnTests: {}
-        columnReference:
-          columnCounter: 391a688b-a6dd-42c9-b2cb-42df3e0fdf3e
-          stepCounter: a323bfbb-3a73-4821-8515-5e420ecc9d03
-        config: {}
-        dataType: boolean
-        defaultValue: ""
-        description: ""
-        metadataIsUpdate: true
-        name: METADATA$ISUPDATE
-        nullable: true
-        sourceColumnReferences:
-          - columnReferences: []
-            transform: ""
-      - acceptedValues:
-          strictMatch: true
-          values: []
-        appliedColumnTests: {}
-        columnReference:
-          columnCounter: f3d921f8-3349-4ac5-a088-58a8645387c5
-          stepCounter: a323bfbb-3a73-4821-8515-5e420ecc9d03
-        config: {}
-        dataType: STRING
-        defaultValue: ""
-        description: ""
-        metadataRowID: true
-        name: METADATA$ROW_ID
-        nullable: true
-        sourceColumnReferences:
-          - columnReferences: []
-            transform: ""
     cteString: ""
     enabledColumnTestIDs: []
     sourceMapping:
@@ -140,7 +124,7 @@ operation:
   name: STREAM_CUSTOMERS
   overrideSQL: false
   schema: ""
-  sqlType: streams-and-tasks:::153
+  sqlType: "499"
   type: sql
   version: 1
 type: Node

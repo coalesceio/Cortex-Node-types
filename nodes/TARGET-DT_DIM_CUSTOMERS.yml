@@ -3,81 +3,54 @@ id: f5f03a6c-c3d4-4123-87f5-a9faa7222c74
 name: DT_DIM_CUSTOMERS
 operation:
   config:
-    advanceWarehouse: false
-    backfill: false
-    backfillSource: ""
-    backfillSourceSchema: ""
-    clusterKey: false
-    clusterKeyConfig:
+    allcol: false
+    attrcol:
+      items:
+        - acolname:
+            columnCounter: dad1eca5-ef02-4cdd-a1b7-674f39577901
+            stepCounter: f5f03a6c-c3d4-4123-87f5-a9faa7222c74
+    colpreview:
       items:
         - {}
-    clusterKeyConfigExpressions:
+    createcortex: true
+    embmodel: ""
+    excss: false
+    filcrit:
       items:
         - {}
-    clusterKeyExpressions: false
-    cpygrants: false
-    downstreamOption: false
-    immutabilityConstraint: false
-    immutableExpression: ""
+    filtoggle: false
     initialize: ON_CREATE
-    initializeWarehouseSize: ""
     lagSpecification:
       items:
         - lagPeriod: Minutes
           lagValue: "60"
-    orderBy:
-      items:
-        - colName:
-            columnCounter: 15c57e5b-6822-4be4-8832-4a7a6caecae2
-            stepCounter: f5f03a6c-c3d4-4123-87f5-a9faa7222c74
-    orderByDateTime:
-      items:
-        - {}
-    orderseq:
+    locCSS: ""
+    lopt: and
+    mulfilcon: false
+    namCSS: ""
+    numboost: false
+    numericboost:
       items:
         - {}
-    partitionBy:
-      items:
-        - partColName:
-            columnCounter: 146e3ea7-a56b-48be-9b86-4005cf557355
-            stepCounter: f5f03a6c-c3d4-4123-87f5-a9faa7222c74
-    recordVersioning: Datetime Column
-    recordorderBy:
+    query1: ""
+    querycortex: false
+    searchcol:
+      columnCounter: dad1eca5-ef02-4cdd-a1b7-674f39577901
+      stepCounter: f5f03a6c-c3d4-4123-87f5-a9faa7222c74
+    timdec: false
+    timedecay:
       items:
         - {}
-    refreshWarehouseSize: ""
-    refresh_mode: AUTO
-    timeTravel: false
-    timeTravelreference: ""
-    timeTraveltype: ""
-    timeTravelvalue: ""
     warehouseName: COMPUTE_WH
   database: ""
   deployEnabled: true
   description: ""
   isMultisource: false
   locationName: TARGET
-  materializationType: dynamic table
+  materializationType: cortex search service
   metadata:
     appliedNodeTests: []
     columns:
-      - acceptedValues:
-          strictMatch: true
-          values: []
-        appliedColumnTests: {}
-        columnReference:
-          columnCounter: 44bf4ac5-9a9a-46a0-b4d1-a2516b6f62b0
-          stepCounter: f5f03a6c-c3d4-4123-87f5-a9faa7222c74
-        config: {}
-        dataType: STRING
-        defaultValue: ""
-        description: ""
-        isSurrogateKey: true
-        name: DT_DIM_CUSTOMERS_KEY
-        nullable: true
-        sourceColumnReferences:
-          - columnReferences: []
-            transform: "{{ dimensionHistoryPk() }}"
       - appliedColumnTests: {}
         columnReference:
           columnCounter: 146e3ea7-a56b-48be-9b86-4005cf557355
@@ -134,74 +107,6 @@ operation:
               - columnCounter: 0312d55a-a68b-413b-8660-072b3ba44f5c
                 stepCounter: 1da6cc27-0554-4194-ad29-edfbb1922634
             transform: ""
-      - acceptedValues:
-          strictMatch: true
-          values: []
-        appliedColumnTests: {}
-        columnReference:
-          columnCounter: d99622f0-2b3e-4971-b91d-af4d06e6209c
-          stepCounter: f5f03a6c-c3d4-4123-87f5-a9faa7222c74
-        config: {}
-        dataType: TIMESTAMP
-        defaultValue: ""
-        description: ""
-        isSystemStartDate: true
-        name: RECORD_START_TIME
-        nullable: true
-        sourceColumnReferences:
-          - columnReferences: []
-            transform: "{%if config.recordVersioning not in ('Integer Column')%}{{order_by_col()}}{%else%} {{order_by_col_int()}}{%endif%}"
-      - acceptedValues:
-          strictMatch: true
-          values: []
-        appliedColumnTests: {}
-        columnReference:
-          columnCounter: e664771f-c7d3-44d5-a820-9af881953df2
-          stepCounter: f5f03a6c-c3d4-4123-87f5-a9faa7222c74
-        config: {}
-        dataType: TIMESTAMP
-        defaultValue: ""
-        description: ""
-        isSystemEndDate: true
-        name: RECORD_END_TIME
-        nullable: true
-        sourceColumnReferences:
-          - columnReferences: []
-            transform: LEAD({%if config.recordVersioning not in ('Integer Column')%}{{order_by_col()}}{%else%}{{order_by_col_int()}} {%endif%}) OVER (PARTITION BY {{ partition_by() }} ORDER BY {{ order_by_col() }} asc)
-      - acceptedValues:
-          strictMatch: true
-          values: []
-        appliedColumnTests: {}
-        columnReference:
-          columnCounter: 1f7e6892-f800-48a5-a64a-66151a6c12b2
-          stepCounter: f5f03a6c-c3d4-4123-87f5-a9faa7222c74
-        config: {}
-        dataType: NUMERIC
-        defaultValue: ""
-        description: ""
-        isRecordCurrent: true
-        name: RECORD_CURRENT_FLAG
-        nullable: true
-        sourceColumnReferences:
-          - columnReferences: []
-            transform: CASE WHEN (LEAD({%if config.recordVersioning not in ('Integer Column')%}{{order_by_col()}}{%else%}{{order_by_col_int()}} {%endif%}) OVER (PARTITION BY {{ partition_by() }} ORDER BY {{ order_by_col() }} asc)) IS NULL THEN 1 ELSE 0 END
-      - acceptedValues:
-          strictMatch: true
-          values: []
-        appliedColumnTests: {}
-        columnReference:
-          columnCounter: d97f656f-0312-4e4b-8cbf-c06b684167dc
-          stepCounter: f5f03a6c-c3d4-4123-87f5-a9faa7222c74
-        config: {}
-        dataType: TIMESTAMP
-        defaultValue: ""
-        description: ""
-        name: RECORD_CREATED_DATE
-        nullable: true
-        recordCreated: true
-        sourceColumnReferences:
-          - columnReferences: []
-            transform: FIRST_VALUE({%if config.recordVersioning not in ('Integer Column')%}{{order_by_col()}}{%else%} {{order_by_col_int()}}{%endif%}) OVER (PARTITION BY {{ partition_by() }} ORDER BY {{ order_by_col() }} asc)
     cteString: ""
     enabledColumnTestIDs: []
     sourceMapping:
@@ -219,7 +124,7 @@ operation:
   name: DT_DIM_CUSTOMERS
   overrideSQL: false
   schema: ""
-  sqlType: dynamic-tables:::350
+  sqlType: "499"
   type: sql
   version: 1
 type: Node

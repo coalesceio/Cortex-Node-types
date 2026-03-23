@@ -3,59 +3,51 @@ id: 1ffe3f37-9be2-48e4-81a9-cee3cae9e30d
 name: CTSK_CUSTOMERS
 operation:
   config:
-    changetracking: false
-    clusterKey: false
-    clusterKeyConfig:
+    allcol: false
+    attrcol:
+      items:
+        - acolname:
+            columnCounter: 26c4bc35-96f0-4ca5-a68a-f95c7318fc4b
+            stepCounter: 1ffe3f37-9be2-48e4-81a9-cee3cae9e30d
+    colpreview:
       items:
         - {}
-    clusterKeyConfigExpressions:
+    createcortex: true
+    embmodel: ""
+    excss: false
+    filcrit:
       items:
         - {}
-    clusterKeyExpressions: false
-    constraintsspec:
+    filtoggle: false
+    initialize: ON_CREATE
+    lagSpecification:
+      items:
+        - lagPeriod: Minutes
+          lagValue: "60"
+    locCSS: ""
+    lopt: and
+    mulfilcon: false
+    namCSS: ""
+    numboost: false
+    numericboost:
       items:
         - {}
-    datretention: ""
-    defaultcoallation: ""
-    devMode: false
-    eschemaevol: false
-    flagSrcStream: true
-    foreignk: ""
-    foreignkeycon:
+    query1: ""
+    querycortex: false
+    searchcol:
+      columnCounter: 26c4bc35-96f0-4ca5-a68a-f95c7318fc4b
+      stepCounter: 1ffe3f37-9be2-48e4-81a9-cee3cae9e30d
+    timdec: false
+    timedecay:
       items:
         - {}
-    groupByAll: false
-    inlineconst: false
-    insertStrategy: UNION
-    maxdataretention: ""
-    multiStreamBehavior: AND
-    orderby: false
-    orderbycolumn:
-      items:
-        - {}
-    outlineconst: false
-    predTask: DATA_TRANSFORMATION_ROOT_TASK
-    primary: ""
-    primarykeycon:
-      items:
-        - {}
-    primarykeyname: ""
-    rootTask: DATA_TRANSFORMATION_ROOT_TASK
-    scheduleCRON: 5 0-23 * * * America/Los_Angeles
-    schedulePeriod: "60"
-    schedulePeriodOption: Minutes
-    schedulingMode: Warehouse Task
-    selectDistinct: false
-    serverlessSize: MEDIUM
-    timeOut: 60000
-    truncateBefore: true
-    whName: COMPUTE_WH
+    warehouseName: COMPUTE_WH
   database: ""
   deployEnabled: true
   description: ""
   isMultisource: false
   locationName: TARGET
-  materializationType: task
+  materializationType: cortex search service
   metadata:
     appliedNodeTests: []
     columns:
@@ -132,7 +124,7 @@ operation:
   name: CTSK_CUSTOMERS
   overrideSQL: false
   schema: ""
-  sqlType: create-or-alter-package:::548
+  sqlType: "499"
   type: sql
   version: 1
 type: Node

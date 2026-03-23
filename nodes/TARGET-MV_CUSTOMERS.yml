@@ -3,22 +3,51 @@ id: 853d5c02-cb62-462d-9e3d-27319c092ae5
 name: MV_CUSTOMERS
 operation:
   config:
-    clusterKey: false
-    clusterKeyConfig:
+    allcol: false
+    attrcol:
+      items:
+        - acolname:
+            columnCounter: 09248b93-87a2-459a-ac11-652a7bc8927c
+            stepCounter: 853d5c02-cb62-462d-9e3d-27319c092ae5
+    colpreview:
       items:
         - {}
-    clusterKeyConfigExpressions:
+    createcortex: true
+    embmodel: ""
+    excss: false
+    filcrit:
       items:
         - {}
-    clusterKeyExpressions: false
-    secureOption: false
-    selectDistinct: true
+    filtoggle: false
+    initialize: ON_CREATE
+    lagSpecification:
+      items:
+        - lagPeriod: Minutes
+          lagValue: "60"
+    locCSS: ""
+    lopt: and
+    mulfilcon: false
+    namCSS: ""
+    numboost: false
+    numericboost:
+      items:
+        - {}
+    query1: ""
+    querycortex: false
+    searchcol:
+      columnCounter: 09248b93-87a2-459a-ac11-652a7bc8927c
+      stepCounter: 853d5c02-cb62-462d-9e3d-27319c092ae5
+    timdec: false
+    timedecay:
+      items:
+        - {}
+    warehouseName: COMPUTE_WH
   database: ""
   deployEnabled: true
   description: ""
   isMultisource: false
   locationName: TARGET
-  materializationType: Materialized View
+  materializationType: cortex search service
   metadata:
     appliedNodeTests: []
     columns:
@@ -95,7 +124,7 @@ operation:
   name: MV_CUSTOMERS
   overrideSQL: false
   schema: ""
-  sqlType: materialized-view:::178
+  sqlType: "499"
   type: sql
   version: 1
 type: Node

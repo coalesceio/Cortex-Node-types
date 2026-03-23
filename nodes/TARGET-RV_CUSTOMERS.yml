@@ -3,22 +3,51 @@ id: b1202119-d1ed-4456-92af-d7339db49e43
 name: RV_CUSTOMERS
 operation:
   config:
-    incColumn:
-      columnCounter: f353bc88-cc8c-4187-88dc-70a946b42c64
+    allcol: false
+    attrcol:
+      items:
+        - acolname:
+            columnCounter: 284d4351-62e4-4cfc-870e-87a53522c2f9
+            stepCounter: b1202119-d1ed-4456-92af-d7339db49e43
+    colpreview:
+      items:
+        - {}
+    createcortex: true
+    embmodel: ""
+    excss: false
+    filcrit:
+      items:
+        - {}
+    filtoggle: false
+    initialize: ON_CREATE
+    lagSpecification:
+      items:
+        - lagPeriod: Minutes
+          lagValue: "60"
+    locCSS: ""
+    lopt: and
+    mulfilcon: false
+    namCSS: ""
+    numboost: false
+    numericboost:
+      items:
+        - {}
+    query1: ""
+    querycortex: false
+    searchcol:
+      columnCounter: 284d4351-62e4-4cfc-870e-87a53522c2f9
       stepCounter: b1202119-d1ed-4456-92af-d7339db49e43
-    insertStrategy: UNION ALL
-    persistTableLocation: TARGET
-    persistTableName: PSTG_CUSTOMERS
-    refTable: true
-    srcTable: false
-    suffixlength: ex:1
-    testsEnabled: true
+    timdec: false
+    timedecay:
+      items:
+        - {}
+    warehouseName: COMPUTE_WH
   database: ""
   deployEnabled: true
   description: ""
   isMultisource: false
   locationName: TARGET
-  materializationType: run view
+  materializationType: cortex search service
   metadata:
     appliedNodeTests: []
     columns:
@@ -95,7 +124,7 @@ operation:
   name: RV_CUSTOMERS
   overrideSQL: false
   schema: ""
-  sqlType: incremental-loading:::281
+  sqlType: "499"
   type: sql
   version: 1
 type: Node

@@ -3,32 +3,51 @@ id: 3b876822-58b3-4e84-9fd2-dbe888d22549
 name: INTTBL_CUSTOMERS
 operation:
   config:
-    autoRefresh: true
-    clusterKey: true
-    clusterKeyConfig:
+    allcol: false
+    attrcol:
       items:
-        - columnName:
-            columnCounter: 2b1168e6-6375-47e6-b4f0-55bfd19146a1
+        - acolname:
+            columnCounter: a5b36c86-91c6-419e-8e8f-41543c3d8105
             stepCounter: 3b876822-58b3-4e84-9fd2-dbe888d22549
-    clusterKeyConfigExpressions:
+    colpreview:
       items:
         - {}
-    clusterKeyExpressions: false
-    groupByAll: false
-    insertStrategy: UNION ALL
+    createcortex: true
+    embmodel: ""
+    excss: false
+    filcrit:
+      items:
+        - {}
+    filtoggle: false
+    initialize: ON_CREATE
     lagSpecification:
       items:
         - lagPeriod: Minutes
           lagValue: "60"
-    selectDistinct: false
-    testsEnabled: false
+    locCSS: ""
+    lopt: and
+    mulfilcon: false
+    namCSS: ""
+    numboost: false
+    numericboost:
+      items:
+        - {}
+    query1: ""
+    querycortex: false
+    searchcol:
+      columnCounter: a5b36c86-91c6-419e-8e8f-41543c3d8105
+      stepCounter: 3b876822-58b3-4e84-9fd2-dbe888d22549
+    timdec: false
+    timedecay:
+      items:
+        - {}
     warehouseName: COMPUTE_WH
   database: ""
   deployEnabled: true
   description: ""
   isMultisource: false
   locationName: TARGET
-  materializationType: interactive table
+  materializationType: cortex search service
   metadata:
     appliedNodeTests: []
     columns:
@@ -105,7 +124,7 @@ operation:
   name: INTTBL_CUSTOMERS
   overrideSQL: false
   schema: ""
-  sqlType: interactive-table:::602
+  sqlType: "499"
   type: sql
   version: 1
 type: Node

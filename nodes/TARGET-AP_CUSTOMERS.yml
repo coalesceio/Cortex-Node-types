@@ -3,59 +3,51 @@ id: 2c387ccc-4517-4c1c-9d6b-9fa9e8e2fc36
 name: AP_CUSTOMERS
 operation:
   config:
-    capUpdate: false
-    clusterKey: false
-    clusterKeyConfig:
+    allcol: false
+    attrcol:
+      items:
+        - acolname:
+            columnCounter: f9f71102-20ba-4e11-bb90-ddc8d9a31fc3
+            stepCounter: 2c387ccc-4517-4c1c-9d6b-9fa9e8e2fc36
+    colpreview:
       items:
         - {}
-    clusterKeyConfigExpressions:
+    createcortex: true
+    embmodel: ""
+    excss: false
+    filcrit:
       items:
         - {}
-    clusterKeyExpressions: false
-    createas: table
-    devMode: true
-    dmlCol:
+    filtoggle: false
+    initialize: ON_CREATE
+    lagSpecification:
+      items:
+        - lagPeriod: Minutes
+          lagValue: "60"
+    locCSS: ""
+    lopt: and
+    mulfilcon: false
+    namCSS: ""
+    numboost: false
+    numericboost:
+      items:
+        - {}
+    query1: ""
+    querycortex: false
+    searchcol:
       columnCounter: f9f71102-20ba-4e11-bb90-ddc8d9a31fc3
       stepCounter: 2c387ccc-4517-4c1c-9d6b-9fa9e8e2fc36
-    dmlDelete: D
-    dmlInsert: I
-    dmlUpdate: U
-    flagSrcStream: true
-    initialRows: true
-    insertOnly: false
-    orderBy:
-      items:
-        - colName:
-            columnCounter: 1510e9c7-29e0-4d56-a557-24d749d50de6
-            stepCounter: 2c387ccc-4517-4c1c-9d6b-9fa9e8e2fc36
-          sortOrd: desc
-    orderByDateTime:
+    timdec: false
+    timedecay:
       items:
         - {}
-    partitionBy:
-      items:
-        - partColName:
-            columnCounter: d0da1e4f-11ca-45af-bad8-9eacf362e75e
-            stepCounter: 2c387ccc-4517-4c1c-9d6b-9fa9e8e2fc36
-    predTask: ""
-    recordVersioning: Datetime Column
-    redeploymentBehavior: Create or Replace
-    retainLastNonDeleteFlag: false
-    rootTask: ""
-    scheduleCRON: 5 0-23 * * * America/Los_Angeles
-    schedulePeriod: "60"
-    schedulePeriodOption: Minutes
-    schedulingMode: Warehouse Task
-    serverlessSize: MEDIUM
-    softDeleteFlag: false
-    sourceType: Table
-    whName: <WAREHOUSE_NAME>
+    warehouseName: COMPUTE_WH
   database: ""
   deployEnabled: true
   description: ""
   isMultisource: false
   locationName: TARGET
-  materializationType: table
+  materializationType: cortex search service
   metadata:
     appliedNodeTests: []
     columns:
@@ -115,23 +107,6 @@ operation:
               - columnCounter: 0312d55a-a68b-413b-8660-072b3ba44f5c
                 stepCounter: 1da6cc27-0554-4194-ad29-edfbb1922634
             transform: ""
-      - acceptedValues:
-          strictMatch: true
-          values: []
-        appliedColumnTests: {}
-        columnReference:
-          columnCounter: dfef7fcb-beab-428e-a728-78a6fa1530ff
-          stepCounter: 2c387ccc-4517-4c1c-9d6b-9fa9e8e2fc36
-        config: {}
-        dataType: timestamp
-        defaultValue: ""
-        description: ""
-        hmUpdTs: true
-        name: DM_UPDATE_TIMESTAMP
-        nullable: true
-        sourceColumnReferences:
-          - columnReferences: []
-            transform: current_timestamp::timestamp_ntz
     cteString: ""
     enabledColumnTestIDs: []
     sourceMapping:
@@ -149,7 +124,7 @@ operation:
   name: AP_CUSTOMERS
   overrideSQL: false
   schema: ""
-  sqlType: deferred-merge:::300
+  sqlType: "499"
   type: sql
   version: 1
 type: Node

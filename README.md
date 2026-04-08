@@ -788,9 +788,9 @@ A Cortex Search Service will be dropped if all of these are true:
 
 ### AI Extract Code
 
-* [Node definition](https://github.com/coalesceio/Cortex-Node-types/blob/main/nodeTypes/DocumentAI-429/definition.yml)
-* [Create Template](https://github.com/coalesceio/Cortex-Node-types/blob/main/nodeTypes/DocumentAI-429/create.sql.j2)
-* [Run Template](https://github.com/coalesceio/Cortex-Node-types/blob/main/nodeTypes/DocumentAI-429/run.sql.j2)
+* [Node definition](https://github.com/coalesceio/Cortex-Node-types/blob/main/nodeTypes/AIExtract-429/definition.yml)
+* [Create Template](https://github.com/coalesceio/Cortex-Node-types/blob/main/nodeTypes/AIExtract-429/create.sql.j2)
+* [Run Template](https://github.com/coalesceio/Cortex-Node-types/blob/main/nodeTypes/AIExtract-429/run.sql.j2)
 
 ### Cortex Search Service
 

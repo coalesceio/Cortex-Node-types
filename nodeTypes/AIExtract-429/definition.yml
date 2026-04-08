@@ -5,11 +5,11 @@ metadata:
   defaultStorageLocation: null
   error: null
   nodeMetadataSpec: |
-    capitalized: Document AI Stage
+    capitalized: AI Extract Stage
     short: 'DOC'
     tagColor: '#bd6db7'
     isDisabled: false
-    plural: Doc AI
+    plural: AI Extract Stages
 
     deployStrategy: advanced
 
@@ -77,30 +77,33 @@ metadata:
         default: 'Enter folder name in stage if applicable-folder/subfolder'
         isRequired: false
 
-        
-    - groupName: DocumentAI model build
-      items:
+      - displayName: Response Format Dictionary Toggle
+        attributeName: optionJsonToggle
+        type: toggleButton
+        default: false
 
-      - displayName: Coalesce Storage Location of DocumentAI model 
-        attributeName: extractionQueryStorageLocationName
-        type: textBox
-        default: 'Enter Storage Location name'
-        enableIf: "true"
-        isRequired: true
+      - type: tabular
+        displayName: ℹ️ AI Extract Extraction Schema 
+        attributeName: columnFamiliesConfig
+        enableIf: "{% if config.optionJsonToggle == false %} true {% else %} false {% endif %}"
 
-      - displayName: DocumentAI model Name
-        attributeName: extractionQueryName
-        type: textBox
-        default: 'Enter DocumentAI model name'
-        enableIf: "true"
-        isRequired: true
+        columns:
+          - displayName: Field Name
+            attributeName: fieldName
+            type: textBox
 
-      - displayName: DocumentAI model build Version
-        attributeName: extractionQueryVersion
+          - displayName: Question
+            attributeName: qualifierString
+            type: textBox
+
+        isRequired: false
+
+      - displayName: |
+          💡 Extraction Dictionary
+          Ex. [["key", "question"], ["key2", "question2"]]
+        attributeName: optionsJson
         type: textBox
-        default: 'Enter  DocumentAI model build version'
-        enableIf: "true"
-        isRequired: true
+        enableIf: "{% if config.optionJsonToggle == true %} true {% else %} false {% endif %}"
 
     - groupName: Scheduling Options
 
@@ -203,5 +206,5 @@ metadata:
       dataType: TIMESTAMP_NTZ
       placement: beginning
       attributeName: fileLastModified
-name: Document AI
+name: AI Extract
 type: NodeType

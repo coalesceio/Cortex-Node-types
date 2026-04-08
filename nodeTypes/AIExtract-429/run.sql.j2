@@ -8,8 +8,8 @@ does not permit copying or modification for any other purpose.
 {# == Node Type Name           : Document AI == #}
 {# == Node Type Description    : This node executes Document AI extraction queries on unstructured documents == #}
 
-
 {% if config.devMode == true %}
+    
 
     {% set nsVariables = namespace() %}
 
@@ -69,35 +69,57 @@ does not permit copying or modification for any other purpose.
    {% set extractionQueryVersion = config.extractionQueryVersion %}
 
 
-    {% set tableColumnIds = columns | map(attribute='id') | list %}
-    {% set tableColumnNames = columns | map(attribute='name') | list %}
+  {% set nsDocAI = namespace(formatPairs=[]) %}
 
-    
-    {{ stage('Insert Data') }}
+  {% set configRows = config.columnFamiliesConfig.get('items') if config.columnFamiliesConfig else [] %}
 
-        
-            INSERT INTO {{ fullyQualifiedTargetTableName }}
-			SELECT
-           {%- for col in sources[0].columns %}
-             {% if ( col.extractedData) %}
-             "{{ dbExtractionQuery }}"."{{ schExtractionQuery }}"."{{ extractionQueryName }}"!PREDICT(
-              GET_PRESIGNED_URL(@"{{ dbStage }}"."{{ schStage }}".{{ config.stageName }}, RELATIVE_PATH), {{ extractionQueryVersion }})
-             {% else %}
-              {{ get_source_transform(col) }} AS "{{ col.name }}" 
-             {%endif%}
-             {%- if not loop.last -%}, {% endif %}
-          {%- endfor %}
-          FROM {{ fullyQualifiedStreamName }}
-          {% set ret_clause = get_clause( sources[0].join ).lstrip()%}
-            {% if subf != "" %} {{subf}}
-			  {% if ret_clause|trim !='' %}
-			     {{ret_clause}}
-			  {% endif %}
-			  {%- else -%}
-			  {% set join_clause = ret_clause | replace("AND ", "WHERE ", 1) if ret_clause.startswith("AND ") else ret_clause %}
-			  {{join_clause}}
-			   {% endif %}
-            {% if config.groupByAll %}GROUP BY ALL{% endif %}
+  {% if configRows %}
+      {% for row in configRows %}
+
+          {% set fName = row.get('fieldName', '') %}
+          {% set qString = row.get('qualifierString', '') %}
+          
+          {% set pairString = "['" + fName + "', '" + qString + "']" %}
+          
+          {% set nsDocAI.formatPairs = nsDocAI.formatPairs + [pairString] %}
+      {% endfor %}
+  {% endif %}
+
+  {% set finalResponseFormat = "responseFormat => [" + nsDocAI.formatPairs | join(', ') + "]" %}
+
+{{ stage('Insert Data') }}
+
+INSERT INTO {{ fullyQualifiedTargetTableName }}
+SELECT
+{%- for col in sources[0].columns %}
+  {%- if col.extractedData %}
+  AI_EXTRACT(
+    file => TO_FILE('@"{{ dbStage }}"."{{ schStage }}".{{ config.stageName }}', RELATIVE_PATH),
+    {%- if config.optionJsonToggle == true %}
+    responseFormat => {{ config.optionsJson }}
+    {%- else %}
+    {{ finalResponseFormat }}
+    {%- endif %}
+  ) AS "{{ col.name }}"
+  {%- else %}
+  {{ get_source_transform(col) }} AS "{{ col.name }}"
+  {%- endif %}
+  {%- if not loop.last %}, {% endif %}
+{%- endfor %}
+FROM {{ fullyQualifiedStreamName }}
+{%- set ret_clause = get_clause(sources[0].join).lstrip() -%}
+{%- if subf != "" %} 
+  {{ subf }}
+  {%- if ret_clause|trim != '' %}
+  {{ ret_clause }}
+  {%- endif %}
+{%- else -%}
+  {%- set join_clause = ret_clause | replace("AND ", "WHERE ", 1) if ret_clause.startswith("AND ") else ret_clause -%}
+  {{ join_clause }}
+{%- endif %}
+{%- if config.groupByAll %}
+GROUP BY ALL
+{%- endif %}
 
 {% else %}
 
@@ -108,3 +130,6 @@ does not permit copying or modification for any other purpose.
     SELECT 1 AS INFO_MESSAGE WHERE FALSE
             
 {% endif -%}
+
+
+

@@ -86,6 +86,7 @@ does not permit copying or modification for any other purpose.
     
     {% if desiredState.node.materializationType == 'table' or desiredState.node.materializationType == 'transient table'  %}     
 
+
         {% if currentState != undefined and currentState.node.materializationType != desiredState.node.materializationType %}
 
                 {# Change in materialization type #}

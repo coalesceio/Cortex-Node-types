@@ -3,9 +3,9 @@ id: 5ab5e61a-c5d1-4a25-8570-93e9fe76efb9
 name: DOC_TESLA_EX
 operation:
   config:
-    devMode: false
+    devMode: true
     extractionQueryName: SF_QUARTER_REPORT
-    extractionQueryStorageLocationName: SOURCE
+    extractionQueryStorageLocationName: DOCUMENT_SOURCE
     extractionQueryVersion: "1"
     flagSrcStream: true
     loadType: Insert

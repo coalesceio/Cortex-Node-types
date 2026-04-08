@@ -23,7 +23,7 @@ operation:
         - columnName:
             columnCounter: 9e2382c0-31e6-4d8f-887c-74a86566c708
             stepCounter: 7c08dffc-53e6-43de-a2b0-1a153ad8e592
-    createcortex: false
+    createcortex: true
     embmodel: snowflake-arctic-embed-m-v1.5
     excss: false
     filcrit:
@@ -39,6 +39,7 @@ operation:
       items:
         - lagPeriod: Hours
           lagValue: "600"
+    mulfilcon: false
     numboost: true
     numericboost:
       items:

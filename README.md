@@ -5,7 +5,7 @@
 * [LLM Cortex Functions](#llm-cortex-functions)
 * [Top Insights](#top-insights)
 * [Classification](#classification)
-* [Document AI](#document-ai)
+* [AI Extract](#ai-extract)
 * [Cortex Search Service](#cortex-search-service)
 * [Code](#code)
 ---
@@ -433,40 +433,40 @@ This is executed in two stages:
 | **Delete Table** | Coalesce Internal table is dropped |
 | **Delete Table** | Target table in Snowflake is dropped |
 
-## Document AI
+## AI Extract
 
-The Coalesce Document AI UDN is a node that allows you to develop and deploy a processing pipeline using the already prepared Document AI model build, streams, and tasks. The pipeline will extract information from new inspection documents stored in an internal stage.
+### AI_EXTRACT (Document AI legacy models)
 
-Document AI is an advanced AI model to extract data from documents. It can read both text and images, like logos or signatures, and is perfect for processing documents like invoices or financial statements automatically.
-More information about Document AI can be found in the official [Snowflake's Introduction to Document AI](https://docs.snowflake.com/en/user-guide/snowflake-cortex/document-ai/overview).
+> **DECOMMISSIONED FEATURE**
+>
+> Document AI and the `<model_build_name>!PREDICT` method are decommissioned. For more information, see [Document AI decommission](https://docs.snowflake.com/en/user-guide/document-ai/decommissioning).
 
-### Prerequisite for DocumentAI node type
+The Coalesce AI Extract UDN is a node that allows you to develop and deploy a document processing pipeline using the **SNOWFLAKE.CORTEX.AI_EXTRACT** function. This pipeline enables the extraction of structured information from documents stored in a Snowflake stage by using natural language questions, eliminating the need for manual model training or complex UI-based setups.
 
-* Set up the required objects(database,schema) and privileges to create table,task,stream
-* Prepare and publish a [DocumentAI model](https://docs.snowflake.com/en/user-guide/snowflake-cortex/document-ai/tutorials/create-processing-pipelines#prepare-a-document-ai-model-build) in Snowflake using DocumentAI interface
+AI_EXTRACT is a modern Cortex AI function that serves as the successor to the legacy AI Extract workflow. It uses a high-performance vision-language model (Arctic-Extract) to identify and retrieve entities, lists, and tables from unstructured files like invoices, receipts, or financial statements. More information about AI_EXTRACT can be found in the official [Snowflake’s Introduction to AI_EXTRACT](https://docs.snowflake.com/en/sql-reference/functions/ai_extract).
 
-### Usage of DocumentAI node type
+
+### Usage of AI Extract node type
 * Set up the required objects and privileges
-* Prepare and publish a Document AI model build in Snowflake using DocumentAI interface
-* Provide the information of the Document AI model build under config section of the node added for Document AI node type.Also provide task related information as well
+* Provide the stage path and file details for the documents to be processed within the configuration section of the node.
 * The node creates a pipeline to process documents
 * The data is available in the target table only after uploading new documents to the internal stage specified in config.
 * If the node is created with 'Development mode-ON',no task is created and data can instantly loaded into target from documents using run option once the files are uploaded.
 * If the node is created with 'Development mode-OFF',task is created to process the uploaded files 
+* Stages created with Client-side encryption are not supported.
 
-### Document AI Node Configuration
+### AI Extract Node Configuration
 
-The Document AI node has the following configuration groups:
+The AI Extract node has the following configuration groups:
 
 * [Node Properties](#stream-and-insert-or-merge-node-properties)
-* [General Options](#Document-AI-general-options)
-* [Stream Options](#Document-AI-stream-options)
-* [Source Data](#Document-AI-Source-Data)
-* [Document AI Model build](#Document-AI-Model-build)
-* [Scheduling Options](#Document-AI-scheduling-options)
+* [General Options](#AI-Extract-general-options)
+* [Stream Options](#AI-Extract-stream-options)
+* [Source Data](#AI-Extract-Source-Data)
+* [Scheduling Options](#AI-Extract-scheduling-options)
 
 
-#### Document AI Node Properties
+#### AI Extract Node Properties
 
 | **Property** | **Description** |
 |-------------|-----------------|
@@ -474,7 +474,7 @@ The Document AI node has the following configuration groups:
 | **Node Type** | Name of template used to create node objects |
 | **Deploy Enabled** | If TRUE the node will be deployed / redeployed when changes are detected<br/>If FALSE the node will not be deployed or will be dropped during redeployment |
 
-#### Document AI General Options
+#### AI Extract General Options
 
 | **Option** | **Description** |
 |------------|----------------|
@@ -483,29 +483,25 @@ The Document AI node has the following configuration groups:
 | **Truncate Before** | True / False toggle determines whether a table will be overwritten each time a task executes<br/>**True** - Uses INSERT OVERWRITE<br/>**False** - Uses INSERT to append data |
 
 
-#### Document AI Stream Options
+#### AI Extract Stream Options
 
 | **Option** | **Description** |
 |------------|----------------|
 | **Source Object** | **Directory Table**:<br/>- A directory table is an object that sits on top of a stage, similar to an external table, and stores metadata about the files in the stage. It doesn’t have its own privileges and is used to reference file-level data. Both external (cloud storage) and internal (Snowflake) stages support directory tables. You can add a directory table to a stage when creating it with CREATE STAGE or modify it later using ALTER STAGE. |
 | **Redeployment Behavior** | options for Redeployment : <br/>- Create or Replace<br/>- Create if Not Exists<br/>- Create at Existing Stream |
 
-#### Document AI Source Data
+#### AI Extract Source Data
 
 | **Option** | **Description** |
 |------------|----------------|
 | **Colaesce Storage Location of stage** | The Storage location Name in Coalesce where the stage is located |
 | **Stage Name** | The Stage name created in Snowflake |
+| **Path or Subfolder** | The path or the subfolder name where the file is present inside a stage. |
+| **Response Format Dictionary Toggle** | A toggle to choose the input method. Set to **TRUE** to use a dictionary or **FALSE** to use a structured table grid. |
+| **Extraction Dictionary** | (Visible when Toggle is **TRUE**)<br/> A textbox where you can directly provide a dictionary containing the field names and their corresponding questions. |
+| **AI Extract Extraction Schema (Table)** | (Visible when Toggle is **FALSE**)<br/> A list where you define what information the AI should look for.<br/> **Field Name**: The name of the column where the answer will be saved.<br/> **Question:** The question you want to ask the AI (e.g., "What is the invoice date?"). |
 
-#### Document AI Model build
-
-| **Option** | **Description** |
-|------------|----------------|
-| **Coalesce Storage Location of DocumentAI model** | The Storage location Name in Coalesce where the extraction query of DOcumentAI model is located |
-| **DocumentAI model Name** | The identifier or name of the a [model build](https://docs.snowflake.com/en/user-guide/snowflake-cortex/document-ai/prepare-model-build) for extracting information <br/>(Located in AI & ML- Document AI in Snowflake) |
-| **DocumentAI model build Version** | The specific [version of the DocumentAI model](https://docs.snowflake.com/en/user-guide/snowflake-cortex/document-ai/overview#document-ai-model-version-history), helping to track updates or changes<br/>(Build Version in AI & ML- Document AI in Snowflake)|
-
-#### Document AI Scheduling Options
+#### AI Extract Scheduling Options
 
 | **Option** | **Description** |
 |------------|----------------|
@@ -517,7 +513,7 @@ The Document AI node has the following configuration groups:
 | **Enter task schedule using minutes**| Visible when Task Schedule is set to Minutes.<br/> Enter a whole number from 1 to 11520 which represents the number of minutes between task runs |
 | **Enter task schedule using CRON**| For more reference visit [Cron expressions](https://docs.coalesce.io/docs/reference/cron-reference/) |
 
-### DocumentAI - System Columns
+### AI Extract - System Columns
 
 The set of columns which has source data and file metadata information.
 
@@ -530,11 +526,21 @@ The set of columns which has source data and file metadata information.
 | **EXTRACTED_DATA**        | The data extracted from documents|
 | **DATA_EXTRACT_TIMESTAMP**| The load timestamp of document extraction|
 
-### Document AI Deployment
+#### Usage Example
 
-#### Document AI Deployment Parameters
+* Extraction Dictionary 
+<img width="775" height="243" alt="image" src="https://github.com/user-attachments/assets/d85d4f1d-eb5c-4e98-aa8b-54ab29301e1a" />
 
-The DocumentAI node includes an environment parameter that allows you to specify a different warehouse used to run a task in different environments.
+* AI Extract Extraction Schema
+<img width="878" height="375" alt="image" src="https://github.com/user-attachments/assets/fcf1a729-efb6-4c22-87ba-b73077eaf827" />
+
+
+
+### AI Extract Deployment
+
+#### AI Extract Deployment Parameters
+
+The AI Extract node includes an environment parameter that allows you to specify a different warehouse used to run a task in different environments.
 
 The parameter name is `targetTaskWarehouse` with default value `DEV ENVIRONMENT`.
 
@@ -546,15 +552,15 @@ The parameter name is `targetTaskWarehouse` with default value `DEV ENVIRONMENT`
 
 When set to any value other than DEV ENVIRONMENT` the node will attempt to create the task using a Snowflake warehouse with the specified value.
 
-For example, with the below setting for the parameter in a QA environment, the task will execute using a warehouse named `SNOWFLAKE_DOCUMENT_AI_WH`.
+For example, with the below setting for the parameter in a QA environment, the task will execute using a warehouse named `SNOWFLAKE_AI_EXTRACT_WH`.
 
 ```json
 {
-    "targetTaskWarehouse": "SNOWFLAKE_DOCUMENT_AI_WH"
+    "targetTaskWarehouse": "SNOWFLAKE_AI_EXTRACT_WH"
 }
 ```
 
-#### Document AI Initial Deployment
+#### AI Extract Initial Deployment
 
 
 | **Stage** | **Description** |
@@ -567,7 +573,7 @@ For example, with the below setting for the parameter in a QA environment, the t
 If a task is part of a DAG of tasks, the DAG needs to include a node type called `Task DAG Resume Root`. This node will resume the root node once all the dependent tasks have been created as part of a deployment.
 The task node has no ALTER capabilities. All task-enabled nodes are CREATE OR REPLACE only, though this is subject to change
 
-#### Document AI Redeployment
+#### AI Extract Redeployment
 
 Stream redeployment behavior:
 
@@ -601,7 +607,7 @@ Task changes:
 
 If the nodes are redeployed with no changes compared to previous deployment,then no stages are executed
 
-### Document AI Undeployment
+### AI Extract Undeployment
 
 When node is deleted, the following stages execute:
 
@@ -780,7 +786,7 @@ A Cortex Search Service will be dropped if all of these are true:
 * [Create Template](https://github.com/coalesceio/Cortex-Node-types/blob/main/nodeTypes/Classification-337/create.sql.j2)
 * [Run Template](https://github.com/coalesceio/Cortex-Node-types/blob/main/nodeTypes/Classification-337/run.sql.j2)
 
-### Document AI Code
+### AI Extract Code
 
 * [Node definition](https://github.com/coalesceio/Cortex-Node-types/blob/main/nodeTypes/DocumentAI-429/definition.yml)
 * [Create Template](https://github.com/coalesceio/Cortex-Node-types/blob/main/nodeTypes/DocumentAI-429/create.sql.j2)

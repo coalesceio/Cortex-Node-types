@@ -464,6 +464,8 @@ The AI Extract node has the following configuration groups:
 * [Stream Options](#AI-Extract-stream-options)
 * [Source Data](#AI-Extract-Source-Data)
 * [Scheduling Options](#AI-Extract-scheduling-options)
+* [Advance Scheduling Options](#AI-Extract-advance-scheduling-options)
+* [Notification Options](#AI-Extract-notification-options)
 
 
 #### AI Extract Node Properties
@@ -505,13 +507,39 @@ The AI Extract node has the following configuration groups:
 
 | **Option** | **Description** |
 |------------|----------------|
-| **Scheduling Mode** | Choose compute type:<br/>- **Warehouse Task**: User managed warehouse executes tasks<br/>- **Serverless Task**: Uses serverless compute |
+| **Scheduling Mode** | **Warehouse Task**: User managed warehouse executes tasks |
 | **When Source Stream has Data Flag** | True/False toggle to check for stream data<br/>**True** - Only run task if source stream has capture change data<br/>**False** -  Run task on schedule regardless of whether the source stream has data. If the source is not a stream should set this to false. |
-| **Select Warehouse on which to run task** | Visible if Scheduling Mode is set to Warehouse Task. Enter the name of the warehouse you want the task to run on without quotes.|
-| **Select initial serverless Warehouse size** | Visible when Scheduling Mode is set to Serverless Task.<br/> Select the initial compute size on which to run the task. Snowflake will adjust size from there based on target schedule and task run times. |
-| **Task Schedule** | Choose schedule type:<br/>- **Minutes** - Specify interval in minutes.<br/>- **Cron** - . Specifies a cron expression and time zone for periodically running the task. Supports a subset of standard cron utility syntax.|
-| **Enter task schedule using minutes**| Visible when Task Schedule is set to Minutes.<br/> Enter a whole number from 1 to 11520 which represents the number of minutes between task runs |
-| **Enter task schedule using CRON**| For more reference visit [Cron expressions](https://docs.coalesce.io/docs/reference/cron-reference/) |
+| **Select Warehouse on which to run task** | Enter the name of the warehouse you want the task to run on without quotes.|
+| **Task Schedule** | Choose schedule type:<br/>- **Minutes** - Specify interval in minutes. Enter a whole number from 1 to 11520 which represents the number of minutes between task runs.<br/>- **Cron** - Uses [Cron expressions](https://docs.coalesce.io/docs/reference/cron-reference/). Specifies a cron expression and time zone for periodically running the task. Supports a subset of standard cron utility syntax. |
+| **Execution Time** | The specific duration for the task run limit. Supported ranges:<br/>- **SECONDS**: 10 - 691200<br/>- **MINUTES**: 1 - 11520<br/>- **HOURS**: 1 - 192 <br/>*Note: For upgrades from version 2.4.3 or earlier, ensure the scheduling configuration is manually updated to align with the new tabular input format*|
+
+#### AI EXTRACT Advanced Scheduling Options
+
+<img width="776" height="744" alt="image" src="https://github.com/user-attachments/assets/ab28860c-0115-4ca5-9b57-8e1f719ad37a" />
+
+| **Option** | **Description** |
+|------------|----------------|
+| **Execute As Specific User** | Toggle to run on behalf of another user. Requires `GRANT IMPERSONATE` privileges. |
+| **User Name** | The specific user account name used when **Execute As Specific User** is enabled. |
+| **Allow Overlapping Execution** | Allows a new instance of the task to start if the previous one is still running. |
+| **Enable Task Graph Config** | Enables a text box to provide **Configuration JSON** for the task graph. |
+| **Auto-Suspend After Failures** | Automatically suspends the task after a set number of consecutive failures. |
+| **Number of Consecutive Failures** | Set the threshold (0 - No Limit) before the task is automatically suspended. <br/>- When toggle is OFF: Parameter is not included (uses Snowflake default of 10).<br/>- When toggle is ON with value 0: **Disables** auto-suspension.<br/>- When toggle is ON with value > 0: **Suspends** after that many consecutive failures. |
+| **Enable Auto-Retry** | Toggle to automatically retry the task if it fails. |
+| **Retry Attempts** | Specify the number of retry attempts allowed (Range: 0 - 30). |
+
+
+#### AI EXTRACT Notification Options
+
+<img width="785" height="371" alt="image" src="https://github.com/user-attachments/assets/d0aae222-cfcb-4497-a572-3fa7079287c8" />
+
+| **Option** | **Description** |
+|------------|----------------|
+| **Enable Error Notifications** | Toggle to send alerts on failure. Requires an **Error Integration Name**. |
+| **Enable Success Notifications** | Toggle to send alerts on success. Requires a **Success Integration Name**. |
+
+> **Note:** Options under **Advanced Scheduling Options** and **Notification Options** (Execution Time, Overlapping Execution, Auto-Suspend, Auto-Retry, etc.) are only applicable to **Root** and **Independent** tasks. The only exception is **Execute As Specific User**, which can be configured for any task in the graph.
+
 
 ### AI Extract - System Columns
 

@@ -1,5 +1,14 @@
 fileVersion: 1
 id: "746"
-mappingDefinitions: {}
+mappingDefinitions:
+  DOCUMENT_SOURCE:
+    database: PRANJAL_DEV
+    schema: PUBLIC
+  SOURCE:
+    database: PRANJAL_DEV
+    schema: SOURCE_DB
+  TARGET:
+    database: PRANJAL_DEV
+    schema: TEST_DB
 name: "[NM-220]NodeTypeSwitchTest"
 type: Environment

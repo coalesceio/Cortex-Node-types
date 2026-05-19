@@ -1,0 +1,136 @@
+fileVersion: 1
+id: 87dc4ed5-558f-424c-beb7-b467fd681d71
+name: TSKWRK_ORDERS
+operation:
+  config:
+    autoRetryToggle: false
+    autoSuspendToggle: false
+    clusterKey: false
+    clusterKeyConfig:
+      items:
+        - {}
+    clusterKeyConfigExpressions:
+      items:
+        - {}
+    clusterKeyExpressions: false
+    configJSON: ""
+    devMode: true
+    errIntName: ""
+    errNotifyToggle: false
+    execTime:
+      items:
+        - {}
+    flagSrcStream: true
+    groupByAll: false
+    insertStrategy: UNION
+    maxServerlessSize: 6. XXLARGE
+    minServerlessSize: 1. XSMALL
+    multiStreamBehavior: AND
+    numFailures: "10"
+    orderby: false
+    orderbycolumn:
+      items:
+        - {}
+    overlapExecToggle: false
+    predTask: DATA_TRANSFORMATION_ROOT_TASK
+    retryAttmpt: "0"
+    rootTask: DATA_TRANSFORMATION_ROOT_TASK
+    scheduleCRON: 5 0-23 * * * America/Los_Angeles
+    schedulePeriodOption: Minutes
+    schedulingMode: Warehouse Task
+    selectDistinct: true
+    serverlessSize: 3. MEDIUM
+    sizeBoundToggle: false
+    spfcUserToggle: false
+    succIntName: ""
+    successNotifyToggle: false
+    taskGraphToggle: false
+    truncateBefore: true
+    userName: ""
+    whName: <WAREHOUSE_NAME>
+  database: ""
+  deployEnabled: true
+  description: ""
+  isMultisource: false
+  locationName: TARGET
+  materializationType: task
+  metadata:
+    appliedNodeTests: []
+    columns:
+      - appliedColumnTests: {}
+        columnReference:
+          columnCounter: df504af3-e3ab-4fa4-a4ac-053a0342ca95
+          stepCounter: 87dc4ed5-558f-424c-beb7-b467fd681d71
+        config: {}
+        dataType: NUMBER(38,0)
+        description: ""
+        name: ORDER_KEY
+        nullable: true
+        sourceColumnReferences:
+          - columnReferences:
+              - columnCounter: 6969fb33-cdb5-413d-8a00-d883d1e631e2
+                stepCounter: d80c882d-d5db-42c7-b796-e0280eb7c9ef
+            transform: ""
+      - appliedColumnTests: {}
+        columnReference:
+          columnCounter: 03cbd87a-c6e3-41f3-a3a8-dd9c53822beb
+          stepCounter: 87dc4ed5-558f-424c-beb7-b467fd681d71
+        config: {}
+        dataType: VARCHAR(25)
+        description: ""
+        name: ORDER_NAME
+        nullable: true
+        sourceColumnReferences:
+          - columnReferences:
+              - columnCounter: f6000054-2393-4e5b-9c71-b0d50c02603b
+                stepCounter: d80c882d-d5db-42c7-b796-e0280eb7c9ef
+            transform: ""
+      - appliedColumnTests: {}
+        columnReference:
+          columnCounter: 6cd871ad-8a7d-4128-84b0-47c214979af8
+          stepCounter: 87dc4ed5-558f-424c-beb7-b467fd681d71
+        config: {}
+        dataType: DATE
+        description: ""
+        name: ORDER_DATE
+        nullable: true
+        sourceColumnReferences:
+          - columnReferences:
+              - columnCounter: 68b152df-ae03-47f4-8ea7-c4f566246a45
+                stepCounter: d80c882d-d5db-42c7-b796-e0280eb7c9ef
+            transform: ""
+      - appliedColumnTests: {}
+        columnReference:
+          columnCounter: b2d3d7be-6f29-4227-9480-0c9be206c0b3
+          stepCounter: 87dc4ed5-558f-424c-beb7-b467fd681d71
+        config: {}
+        dataType: TIMESTAMP_NTZ(9)
+        description: ""
+        name: CREATED_AT
+        nullable: true
+        sourceColumnReferences:
+          - columnReferences:
+              - columnCounter: e8022d8d-bb43-4c3e-9db3-61c48a835383
+                stepCounter: d80c882d-d5db-42c7-b796-e0280eb7c9ef
+            transform: ""
+    cteString: ""
+    enabledColumnTestIDs: []
+    sourceMapping:
+      - aliases:
+          ORDERS: d80c882d-d5db-42c7-b796-e0280eb7c9ef
+        customSQL:
+          customSQL: ""
+        dependencies:
+          - locationName: SOURCE
+            nodeName: ORDERS
+        join:
+          joinCondition: FROM {{ ref('SOURCE', 'ORDERS') }} "ORDERS"
+        name: TSKWRK_ORDERS
+        noLinkRefs: []
+  name: TSKWRK_ORDERS
+  overrideSQL: false
+  schema: ""
+  sqlType: streams-and-tasks:::151
+  type: sql
+  version: 1
+type: Node

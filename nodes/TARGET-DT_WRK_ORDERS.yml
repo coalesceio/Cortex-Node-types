@@ -1,15 +1,12 @@
 fileVersion: 1
-id: d2d5fb27-1473-4331-b105-7c35b97af981
-name: WRK_ORDERS_view02
+id: 783e762f-7b13-42cd-a180-3e875f0a3b4f
+name: DT_WRK_ORDERS
 operation:
   config:
-    asofColumn:
-      items:
-        - {}
-    asofJoin: true
-    asofJoinMain: false
-    asofJoinON: false
-    asofJoinUSING: false
+    advanceWarehouse: false
+    backfill: false
+    backfillSource: ""
+    backfillSourceSchema: ""
     clusterKey: false
     clusterKeyConfig:
       items:
@@ -18,30 +15,39 @@ operation:
       items:
         - {}
     clusterKeyExpressions: false
+    cpygrants: false
+    downstreamOption: false
     groupByAll: false
-    insertStrategy: INSERT
-    orderby: false
-    orderbycolumn:
+    immutabilityConstraint: false
+    immutableExpression: ""
+    initialize: ON_CREATE
+    initializeWarehouseSize: ""
+    insertStrategy: UNION ALL
+    lagSpecification:
       items:
-        - {}
-    postSQL: ""
-    preSQL: ""
+        - lagPeriod: Minutes
+          lagValue: "60"
+    refreshWarehouseSize: ""
+    refresh_mode: AUTO
     selectDistinct: false
-    testsEnabled: false
-    truncateBefore: true
+    timeTravel: false
+    timeTravelreference: ""
+    timeTraveltype: ""
+    timeTravelvalue: ""
+    warehouseName: COMPUTE_WH
   database: ""
   deployEnabled: true
   description: ""
   isMultisource: false
   locationName: TARGET
-  materializationType: view
+  materializationType: dynamic table
   metadata:
     appliedNodeTests: []
     columns:
       - appliedColumnTests: {}
         columnReference:
-          columnCounter: 2b5e951c-673b-4451-9198-bf6564715830
-          stepCounter: d2d5fb27-1473-4331-b105-7c35b97af981
+          columnCounter: 55bedf88-0182-4b27-b5c3-90a4932d2363
+          stepCounter: 783e762f-7b13-42cd-a180-3e875f0a3b4f
         config: {}
         dataType: NUMBER(38,0)
         description: ""
@@ -54,8 +60,8 @@ operation:
             transform: ""
       - appliedColumnTests: {}
         columnReference:
-          columnCounter: fb5d75b0-e23f-48e2-884d-1dae821132f4
-          stepCounter: d2d5fb27-1473-4331-b105-7c35b97af981
+          columnCounter: 26b58f57-b36f-41d3-a2d6-df594d4f97ef
+          stepCounter: 783e762f-7b13-42cd-a180-3e875f0a3b4f
         config: {}
         dataType: VARCHAR(25)
         description: ""
@@ -68,8 +74,8 @@ operation:
             transform: ""
       - appliedColumnTests: {}
         columnReference:
-          columnCounter: 438b5689-0291-4527-a75d-e195fd8530fc
-          stepCounter: d2d5fb27-1473-4331-b105-7c35b97af981
+          columnCounter: 99185adf-5206-47eb-8310-ce940acf0f8f
+          stepCounter: 783e762f-7b13-42cd-a180-3e875f0a3b4f
         config: {}
         dataType: DATE
         description: ""
@@ -82,8 +88,8 @@ operation:
             transform: ""
       - appliedColumnTests: {}
         columnReference:
-          columnCounter: 2fcf4810-fcbf-42c7-8cf6-a0a9db302f46
-          stepCounter: d2d5fb27-1473-4331-b105-7c35b97af981
+          columnCounter: 9427dd72-a5e3-4a7f-b4d9-4680dbed2903
+          stepCounter: 783e762f-7b13-42cd-a180-3e875f0a3b4f
         config: {}
         dataType: TIMESTAMP_NTZ(9)
         description: ""
@@ -105,13 +111,13 @@ operation:
           - locationName: SOURCE
             nodeName: ORDERS
         join:
-          joinCondition: FROM  {{ ref('SOURCE', 'ORDERS') }} ORDERS
-        name: WRK_ORDERS_view02
+          joinCondition: FROM {{ ref('SOURCE', 'ORDERS') }} "ORDERS"
+        name: DT_WRK_ORDERS
         noLinkRefs: []
-  name: WRK_ORDERS_view02
+  name: DT_WRK_ORDERS
   overrideSQL: false
   schema: ""
-  sqlType: base-node-types-advanced-deploy:::179
+  sqlType: dynamic-tables:::347
   type: sql
   version: 1
 type: Node

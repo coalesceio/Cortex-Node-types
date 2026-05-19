@@ -10,5 +10,5 @@ mappingDefinitions:
   TARGET:
     database: PRANJAL_DEV
     schema: TARGET_DB
-name: New Environment
+name: "[Test]"
 type: Environment

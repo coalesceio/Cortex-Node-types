@@ -9,6 +9,6 @@ mappingDefinitions:
     schema: SOURCE_DB
   TARGET:
     database: PRANJAL_DEV
-    schema: TARGET_DB
+    schema: TEST_DB
 name: "[Test]"
 type: Environment

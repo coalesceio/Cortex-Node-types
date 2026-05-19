@@ -178,7 +178,7 @@ does not permit copying or modification for any other purpose.
             
 
             {# Rename / Move Object #}
-            {% if (nsVariables.storageLocationTest == false or currentState.node.name != desiredState.node.name or  or currentDatabaseSchema != desiredDatabaseSchema ) %}
+            {% if (nsVariables.storageLocationTest == false or currentState.node.name != desiredState.node.name or currentDatabaseSchema != desiredDatabaseSchema ) %}
                 {{ stage('Rename and / or Move Table') }}
                 ALTER TABLE {{ ref_no_link(currentState.node.location.name, currentState.node.name) }}
                 RENAME TO   {{ ref_no_link(desiredState.node.location.name, desiredState.node.name) }}

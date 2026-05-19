@@ -1,0 +1,14 @@
+fileVersion: 1
+id: "780"
+mappingDefinitions:
+  DOCUMENT_SOURCE:
+    database: PRANJAL_DEV
+    schema: PUBLIC
+  SOURCE:
+    database: PRANJAL_DEV
+    schema: SOURCE_DB
+  TARGET:
+    database: PRANJAL_DEV
+    schema: TARGET_DB
+name: New Environment
+type: Environment

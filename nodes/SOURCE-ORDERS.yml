@@ -1,11 +1,11 @@
 fileVersion: 1
-id: 79dad39b-75f9-4c20-b3d6-856cd344607b
-name: IMAGE_CONTENT
+id: d80c882d-d5db-42c7-b796-e0280eb7c9ef
+name: ORDERS
 operation:
   database: ""
   deployEnabled: true
   description: ""
-  locationName: TARGET
+  locationName: SOURCE
   metadata:
     columns:
       - acceptedValues:
@@ -13,13 +13,13 @@ operation:
           values: []
         appliedColumnTests: {}
         columnReference:
-          columnCounter: 78d7dfe9-0541-4b3a-b4f5-c128c19126da
-          stepCounter: 79dad39b-75f9-4c20-b3d6-856cd344607b
+          columnCounter: 6969fb33-cdb5-413d-8a00-d883d1e631e2
+          stepCounter: d80c882d-d5db-42c7-b796-e0280eb7c9ef
         config: {}
-        dataType: VARCHAR(33)
+        dataType: NUMBER(38,0)
         defaultValue: ""
         description: ""
-        name: STAGE
+        name: ORDER_KEY
         nullable: true
         primaryKey: false
         sourceColumnReferences:
@@ -32,13 +32,13 @@ operation:
           values: []
         appliedColumnTests: {}
         columnReference:
-          columnCounter: 70079f1f-dadb-48f1-9c7b-6b44703d8e77
-          stepCounter: 79dad39b-75f9-4c20-b3d6-856cd344607b
+          columnCounter: f6000054-2393-4e5b-9c71-b0d50c02603b
+          stepCounter: d80c882d-d5db-42c7-b796-e0280eb7c9ef
         config: {}
-        dataType: VARCHAR(16)
+        dataType: VARCHAR(25)
         defaultValue: ""
         description: ""
-        name: FILENAME
+        name: ORDER_NAME
         nullable: true
         primaryKey: false
         sourceColumnReferences:
@@ -51,13 +51,13 @@ operation:
           values: []
         appliedColumnTests: {}
         columnReference:
-          columnCounter: 67ee1efc-c924-4c54-95d5-b238959963ee
-          stepCounter: 79dad39b-75f9-4c20-b3d6-856cd344607b
+          columnCounter: 68b152df-ae03-47f4-8ea7-c4f566246a45
+          stepCounter: d80c882d-d5db-42c7-b796-e0280eb7c9ef
         config: {}
-        dataType: VARCHAR(16777216)
+        dataType: DATE
         defaultValue: ""
         description: ""
-        name: LAYOUT
+        name: ORDER_DATE
         nullable: true
         primaryKey: false
         sourceColumnReferences:
@@ -65,7 +65,26 @@ operation:
             transform: ""
         transform: ""
         uniqueKey: false
-  name: IMAGE_CONTENT
+      - acceptedValues:
+          strictMatch: true
+          values: []
+        appliedColumnTests: {}
+        columnReference:
+          columnCounter: e8022d8d-bb43-4c3e-9db3-61c48a835383
+          stepCounter: d80c882d-d5db-42c7-b796-e0280eb7c9ef
+        config: {}
+        dataType: TIMESTAMP_NTZ(9)
+        defaultValue: ""
+        description: ""
+        name: CREATED_AT
+        nullable: true
+        primaryKey: false
+        sourceColumnReferences:
+          - columnReferences: []
+            transform: ""
+        transform: ""
+        uniqueKey: false
+  name: ORDERS
   schema: ""
   sqlType: Source
   type: sourceInput

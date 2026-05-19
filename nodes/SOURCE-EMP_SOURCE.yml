@@ -1,6 +1,6 @@
 fileVersion: 1
-id: ef2610a5-7082-41c2-bdeb-bf1641c5ecb2
-name: PRODUCTFEEDBACK_
+id: 5e8675aa-5e4a-4a5b-9b1e-a141364e8fcc
+name: EMP_SOURCE
 operation:
   database: ""
   deployEnabled: true
@@ -13,77 +13,97 @@ operation:
           values: []
         appliedColumnTests: {}
         columnReference:
-          columnCounter: 31ac139f-1327-4f0a-b2b0-70dcedd49f9a
-          stepCounter: ef2610a5-7082-41c2-bdeb-bf1641c5ecb2
+          columnCounter: 4728f490-1dcc-4c85-a0af-1f1af8ca537c
+          stepCounter: 5e8675aa-5e4a-4a5b-9b1e-a141364e8fcc
         config: {}
-        dataType: VARCHAR(50)
+        dataType: NUMBER(38,0)
         defaultValue: ""
         description: ""
-        name: USER_NAME
+        name: EMP_ID
         nullable: true
         primaryKey: false
+        sourceColumnReferences:
+          - columnReferences: []
+            transform: ""
+        transform: ""
         uniqueKey: false
       - acceptedValues:
           strictMatch: true
           values: []
         appliedColumnTests: {}
         columnReference:
-          columnCounter: 9004620d-f32e-4245-84f4-b5e464ed9db7
-          stepCounter: ef2610a5-7082-41c2-bdeb-bf1641c5ecb2
+          columnCounter: 073c7276-4385-474f-a1bd-4321618b1d9b
+          stepCounter: 5e8675aa-5e4a-4a5b-9b1e-a141364e8fcc
         config: {}
         dataType: VARCHAR(16777216)
         defaultValue: ""
         description: ""
-        name: REVIEW_CONTENT
+        name: EMP_NAME
         nullable: true
         primaryKey: false
+        sourceColumnReferences:
+          - columnReferences: []
+            transform: ""
+        transform: ""
         uniqueKey: false
       - acceptedValues:
           strictMatch: true
           values: []
         appliedColumnTests: {}
         columnReference:
-          columnCounter: 5941568f-4226-41a3-a2ce-7c3717c59ec9
-          stepCounter: ef2610a5-7082-41c2-bdeb-bf1641c5ecb2
+          columnCounter: 760607ca-bb64-4268-b6a8-3153a9723a48
+          stepCounter: 5e8675aa-5e4a-4a5b-9b1e-a141364e8fcc
         config: {}
-        dataType: VARCHAR(255)
+        dataType: VARCHAR(16777216)
         defaultValue: ""
         description: ""
-        name: REVIEW_CONTENT_JAPSTRING
+        name: EMP_CITY
         nullable: true
         primaryKey: false
+        sourceColumnReferences:
+          - columnReferences: []
+            transform: ""
+        transform: ""
         uniqueKey: false
       - acceptedValues:
           strictMatch: true
           values: []
         appliedColumnTests: {}
         columnReference:
-          columnCounter: 65ee3733-183b-478c-9723-6b33f8367c38
-          stepCounter: ef2610a5-7082-41c2-bdeb-bf1641c5ecb2
+          columnCounter: 6d71c36c-0b67-4e79-9574-5baf08974852
+          stepCounter: 5e8675aa-5e4a-4a5b-9b1e-a141364e8fcc
         config: {}
-        dataType: VARCHAR(255)
+        dataType: VARCHAR(16777216)
         defaultValue: ""
         description: ""
-        name: REVIEW_CONTENT_RUSSIANSTRING
+        name: DML_FLAG
         nullable: true
         primaryKey: false
+        sourceColumnReferences:
+          - columnReferences: []
+            transform: ""
+        transform: ""
         uniqueKey: false
       - acceptedValues:
           strictMatch: true
           values: []
         appliedColumnTests: {}
         columnReference:
-          columnCounter: fc433247-1ada-4122-afb0-f6f404d18185
-          stepCounter: ef2610a5-7082-41c2-bdeb-bf1641c5ecb2
+          columnCounter: a60ba41f-c3bb-49d7-972a-b28eec836f8b
+          stepCounter: 5e8675aa-5e4a-4a5b-9b1e-a141364e8fcc
         config: {}
-        dataType: VARCHAR(255)
+        dataType: TIMESTAMP_NTZ(9)
         defaultValue: ""
         description: ""
-        name: STATEMENTS
+        name: CREATED_AT
         nullable: true
         primaryKey: false
+        sourceColumnReferences:
+          - columnReferences: []
+            transform: ""
+        transform: ""
         uniqueKey: false
-  name: PRODUCTFEEDBACK_
+  name: EMP_SOURCE
   schema: ""
   sqlType: Source
   type: sourceInput

@@ -3,32 +3,40 @@ id: f6fcdacc-133d-4694-9e4a-461bcaa06c9e
 name: WRK_ORDERS_001
 operation:
   config:
-    asofColumn:
+    autoRetryToggle: false
+    autoSuspendToggle: false
+    columnFamiliesConfig:
+      items:
+        - fieldName: company_name
+          qualifierString: What is the name of the company?
+    configJSON: ""
+    devMode: true
+    errIntName: ""
+    errNotifyToggle: false
+    execTime:
       items:
         - {}
-    asofJoin: true
-    asofJoinMain: false
-    asofJoinON: false
-    asofJoinUSING: false
-    clusterKey: false
-    clusterKeyConfig:
-      items:
-        - {}
-    clusterKeyConfigExpressions:
-      items:
-        - {}
-    clusterKeyExpressions: false
-    groupByAll: false
-    insertStrategy: INSERT
-    orderby: false
-    orderbycolumn:
-      items:
-        - {}
-    postSQL: ""
-    preSQL: ""
-    selectDistinct: false
-    testsEnabled: false
+    flagSrcStream: true
+    numFailures: "10"
+    optionJsonToggle: false
+    optionsJson: ""
+    overlapExecToggle: false
+    redeploymentBehavior: Create or Replace
+    retryAttmpt: "0"
+    scheduleCRON: 5 0-23 * * * America/Los_Angeles
+    schedulePeriodOption: Minutes
+    schedulingMode: Warehouse Task
+    sourceType: Directory Table
+    spfcUserToggle: false
+    stageName: DOC_AI_STAGE
+    stageStorageLocationName: SOURCE
+    subfolder: ""
+    succIntName: ""
+    successNotifyToggle: false
+    taskGraphToggle: false
     truncateBefore: true
+    userName: ""
+    whName: <WAREHOUSE_NAME>
   database: ""
   deployEnabled: true
   description: ""
@@ -40,60 +48,82 @@ operation:
     columns:
       - appliedColumnTests: {}
         columnReference:
-          columnCounter: 04a6a908-d801-402f-ba13-ff291284f8fb
+          columnCounter: 67dfdb76-46fc-44de-aca6-77f866f7b58e
           stepCounter: f6fcdacc-133d-4694-9e4a-461bcaa06c9e
         config: {}
-        dataType: NUMBER(38,0)
+        dataType: STRING
         description: ""
-        name: ORDER_KEY
+        fileName: true
+        name: FILENAME
         nullable: true
         sourceColumnReferences:
-          - columnReferences:
-              - columnCounter: 6969fb33-cdb5-413d-8a00-d883d1e631e2
-                stepCounter: d80c882d-d5db-42c7-b796-e0280eb7c9ef
+          - columnReferences: []
+            transform: REGEXP_SUBSTR(RELATIVE_PATH, '[^/]+$')
+      - appliedColumnTests: {}
+        columnReference:
+          columnCounter: c133f63c-de96-47ae-a0f4-82d37e2cd932
+          stepCounter: f6fcdacc-133d-4694-9e4a-461bcaa06c9e
+        config: {}
+        dataType: STRING
+        description: ""
+        name: FILE_URL
+        nullable: true
+        presignedURL: true
+        sourceColumnReferences:
+          - columnReferences: []
+            transform: FILE_URL
+      - appliedColumnTests: {}
+        columnReference:
+          columnCounter: 3f82f34c-b0dd-453a-b5cf-9a1429d20354
+          stepCounter: f6fcdacc-133d-4694-9e4a-461bcaa06c9e
+        config: {}
+        dataType: TIMESTAMP_NTZ
+        description: ""
+        fileLastModified: true
+        name: FILE_LAST_MODIFIED
+        nullable: true
+        sourceColumnReferences:
+          - columnReferences: []
+            transform: TO_TIMESTAMP_NTZ(LAST_MODIFIED)
+      - appliedColumnTests: {}
+        columnReference:
+          columnCounter: 0488d26a-1556-4030-a307-2f70e9a8203d
+          stepCounter: f6fcdacc-133d-4694-9e4a-461bcaa06c9e
+        config: {}
+        dataType: NUMBER
+        description: ""
+        name: SIZE
+        nullable: true
+        size: true
+        sourceColumnReferences:
+          - columnReferences: []
+            transform: SIZE
+      - appliedColumnTests: {}
+        columnReference:
+          columnCounter: 7553c80c-329c-49e7-9d82-fed26f143723
+          stepCounter: f6fcdacc-133d-4694-9e4a-461bcaa06c9e
+        config: {}
+        dataType: VARIANT
+        description: ""
+        extractedData: true
+        name: EXTRACTED_DATA
+        nullable: true
+        sourceColumnReferences:
+          - columnReferences: []
             transform: ""
       - appliedColumnTests: {}
         columnReference:
-          columnCounter: 02a20467-6afb-4eb5-96ae-ab2cd5abb056
+          columnCounter: 34d4a82e-8f96-41c2-b6d0-c1cd1a8fc4ef
           stepCounter: f6fcdacc-133d-4694-9e4a-461bcaa06c9e
         config: {}
-        dataType: VARCHAR(25)
+        dataType: TIMESTAMP_NTZ
         description: ""
-        name: ORDER_NAME
+        fileLastModified: true
+        name: DATA_EXTRACT_TIMESTAMP
         nullable: true
         sourceColumnReferences:
-          - columnReferences:
-              - columnCounter: f6000054-2393-4e5b-9c71-b0d50c02603b
-                stepCounter: d80c882d-d5db-42c7-b796-e0280eb7c9ef
-            transform: ""
-      - appliedColumnTests: {}
-        columnReference:
-          columnCounter: 648b37bc-707a-48bf-b1a7-d97577eaa949
-          stepCounter: f6fcdacc-133d-4694-9e4a-461bcaa06c9e
-        config: {}
-        dataType: DATE
-        description: ""
-        name: ORDER_DATE
-        nullable: true
-        sourceColumnReferences:
-          - columnReferences:
-              - columnCounter: 68b152df-ae03-47f4-8ea7-c4f566246a45
-                stepCounter: d80c882d-d5db-42c7-b796-e0280eb7c9ef
-            transform: ""
-      - appliedColumnTests: {}
-        columnReference:
-          columnCounter: 7fd56a8d-c962-4c1a-81a9-01ee941e6806
-          stepCounter: f6fcdacc-133d-4694-9e4a-461bcaa06c9e
-        config: {}
-        dataType: TIMESTAMP_NTZ(9)
-        description: ""
-        name: CREATED_AT
-        nullable: true
-        sourceColumnReferences:
-          - columnReferences:
-              - columnCounter: e8022d8d-bb43-4c3e-9db3-61c48a835383
-                stepCounter: d80c882d-d5db-42c7-b796-e0280eb7c9ef
-            transform: ""
+          - columnReferences: []
+            transform: CURRENT_TIMESTAMP::TIMESTAMP_NTZ
     cteString: ""
     enabledColumnTestIDs: []
     sourceMapping:
@@ -111,7 +141,7 @@ operation:
   name: WRK_ORDERS_001
   overrideSQL: false
   schema: ""
-  sqlType: base-node-types-advanced-deploy:::179
+  sqlType: "429"
   type: sql
   version: 1
 type: Node

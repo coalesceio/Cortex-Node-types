@@ -3,78 +3,127 @@ id: 03cb5c51-389e-4727-8d14-f77ffb4d8417
 name: RV_ORDERS
 operation:
   config:
-    insertStrategy: UNION ALL
-    persistTableLocation: "ex: TARGET"
-    persistTableName: "ex: DIM_ORDERS"
-    refTable: false
-    srcTable: false
-    suffixlength: ex:1
-    testsEnabled: true
+    autoRetryToggle: false
+    autoSuspendToggle: false
+    columnFamiliesConfig:
+      items:
+        - fieldName: company_name
+          qualifierString: What is the name of the company?
+    configJSON: ""
+    devMode: true
+    errIntName: ""
+    errNotifyToggle: false
+    execTime:
+      items:
+        - {}
+    flagSrcStream: true
+    numFailures: "10"
+    optionJsonToggle: false
+    optionsJson: ""
+    overlapExecToggle: false
+    redeploymentBehavior: Create or Replace
+    retryAttmpt: "0"
+    scheduleCRON: 5 0-23 * * * America/Los_Angeles
+    schedulePeriodOption: Minutes
+    schedulingMode: Warehouse Task
+    sourceType: Directory Table
+    spfcUserToggle: false
+    stageName: DOC_AI_STAGE
+    stageStorageLocationName: SOURCE
+    subfolder: ""
+    succIntName: ""
+    successNotifyToggle: false
+    taskGraphToggle: false
+    truncateBefore: false
+    userName: ""
+    whName: <WAREHOUSE_NAME>
   database: ""
   deployEnabled: true
   description: ""
   isMultisource: false
   locationName: TARGET
-  materializationType: run view
+  materializationType: table
   metadata:
     appliedNodeTests: []
     columns:
       - appliedColumnTests: {}
         columnReference:
-          columnCounter: 21eeb83c-6793-401d-9c16-0609373c2e7a
+          columnCounter: d814ac8a-c7eb-48e4-91cd-12a2beb7056d
           stepCounter: 03cb5c51-389e-4727-8d14-f77ffb4d8417
         config: {}
-        dataType: NUMBER(38,0)
+        dataType: STRING
         description: ""
-        name: ORDER_KEY
+        fileName: true
+        name: FILENAME
         nullable: true
         sourceColumnReferences:
-          - columnReferences:
-              - columnCounter: 6969fb33-cdb5-413d-8a00-d883d1e631e2
-                stepCounter: d80c882d-d5db-42c7-b796-e0280eb7c9ef
+          - columnReferences: []
+            transform: REGEXP_SUBSTR(RELATIVE_PATH, '[^/]+$')
+      - appliedColumnTests: {}
+        columnReference:
+          columnCounter: 15a16660-50ff-43d9-8b86-5052c5d5025c
+          stepCounter: 03cb5c51-389e-4727-8d14-f77ffb4d8417
+        config: {}
+        dataType: STRING
+        description: ""
+        name: FILE_URL
+        nullable: true
+        presignedURL: true
+        sourceColumnReferences:
+          - columnReferences: []
+            transform: FILE_URL
+      - appliedColumnTests: {}
+        columnReference:
+          columnCounter: d0bfc822-bd09-4bc8-99b4-3186a4a46b25
+          stepCounter: 03cb5c51-389e-4727-8d14-f77ffb4d8417
+        config: {}
+        dataType: TIMESTAMP_NTZ
+        description: ""
+        fileLastModified: true
+        name: FILE_LAST_MODIFIED
+        nullable: true
+        sourceColumnReferences:
+          - columnReferences: []
+            transform: TO_TIMESTAMP_NTZ(LAST_MODIFIED)
+      - appliedColumnTests: {}
+        columnReference:
+          columnCounter: 2f673476-e0ff-491a-9f4c-d72d7c85f826
+          stepCounter: 03cb5c51-389e-4727-8d14-f77ffb4d8417
+        config: {}
+        dataType: NUMBER
+        description: ""
+        name: SIZE
+        nullable: true
+        size: true
+        sourceColumnReferences:
+          - columnReferences: []
+            transform: SIZE
+      - appliedColumnTests: {}
+        columnReference:
+          columnCounter: c3979b82-5973-4a37-9e33-1fff451f7a7c
+          stepCounter: 03cb5c51-389e-4727-8d14-f77ffb4d8417
+        config: {}
+        dataType: VARIANT
+        description: ""
+        extractedData: true
+        name: EXTRACTED_DATA
+        nullable: true
+        sourceColumnReferences:
+          - columnReferences: []
             transform: ""
       - appliedColumnTests: {}
         columnReference:
-          columnCounter: 99a3519a-a69b-494f-9e04-b0933f73a7a7
+          columnCounter: 84ad185d-8333-4a17-adf0-3b973674ca0e
           stepCounter: 03cb5c51-389e-4727-8d14-f77ffb4d8417
         config: {}
-        dataType: VARCHAR(25)
+        dataType: TIMESTAMP_NTZ
         description: ""
-        name: ORDER_NAME
+        fileLastModified: true
+        name: DATA_EXTRACT_TIMESTAMP
         nullable: true
         sourceColumnReferences:
-          - columnReferences:
-              - columnCounter: f6000054-2393-4e5b-9c71-b0d50c02603b
-                stepCounter: d80c882d-d5db-42c7-b796-e0280eb7c9ef
-            transform: ""
-      - appliedColumnTests: {}
-        columnReference:
-          columnCounter: 11a310e2-fbd4-4993-b29c-83e277248208
-          stepCounter: 03cb5c51-389e-4727-8d14-f77ffb4d8417
-        config: {}
-        dataType: DATE
-        description: ""
-        name: ORDER_DATE
-        nullable: true
-        sourceColumnReferences:
-          - columnReferences:
-              - columnCounter: 68b152df-ae03-47f4-8ea7-c4f566246a45
-                stepCounter: d80c882d-d5db-42c7-b796-e0280eb7c9ef
-            transform: ""
-      - appliedColumnTests: {}
-        columnReference:
-          columnCounter: 2cc9f46b-630c-4db5-9f5f-c3c4e12f4312
-          stepCounter: 03cb5c51-389e-4727-8d14-f77ffb4d8417
-        config: {}
-        dataType: TIMESTAMP_NTZ(9)
-        description: ""
-        name: CREATED_AT
-        nullable: true
-        sourceColumnReferences:
-          - columnReferences:
-              - columnCounter: e8022d8d-bb43-4c3e-9db3-61c48a835383
-                stepCounter: d80c882d-d5db-42c7-b796-e0280eb7c9ef
-            transform: ""
+          - columnReferences: []
+            transform: CURRENT_TIMESTAMP::TIMESTAMP_NTZ
     cteString: ""
     enabledColumnTestIDs: []
     sourceMapping:
@@ -99,9 +148,9 @@ operation:
         name: RV_ORDERS
         noLinkRefs: []
   name: RV_ORDERS
-  overrideSQL: true
+  overrideSQL: false
   schema: ""
-  sqlType: incremental-loading:::281
+  sqlType: "429"
   type: sql
   version: 1
 type: Node

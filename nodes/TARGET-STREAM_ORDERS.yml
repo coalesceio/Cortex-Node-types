@@ -3,126 +3,127 @@ id: bd090177-3199-4ee4-ab86-1c43f233c6ec
 name: STREAM_ORDERS
 operation:
   config:
-    appendOnly: false
-    initialRows: true
+    autoRetryToggle: false
+    autoSuspendToggle: false
+    columnFamiliesConfig:
+      items:
+        - fieldName: company_name
+          qualifierString: What is the name of the company?
+    configJSON: ""
+    devMode: true
+    errIntName: ""
+    errNotifyToggle: false
+    execTime:
+      items:
+        - {}
+    flagSrcStream: true
+    numFailures: "10"
+    optionJsonToggle: false
+    optionsJson: ""
+    overlapExecToggle: false
     redeploymentBehavior: Create or Replace
-    sourceType: Table
+    retryAttmpt: "0"
+    scheduleCRON: 5 0-23 * * * America/Los_Angeles
+    schedulePeriodOption: Minutes
+    schedulingMode: Warehouse Task
+    sourceType: Directory Table
+    spfcUserToggle: false
+    stageName: DOC_AI_STAGE
+    stageStorageLocationName: SOURCE
+    subfolder: ""
+    succIntName: ""
+    successNotifyToggle: false
+    taskGraphToggle: false
+    truncateBefore: false
+    userName: ""
+    whName: <WAREHOUSE_NAME>
   database: ""
   deployEnabled: true
   description: ""
   isMultisource: false
   locationName: TARGET
-  materializationType: stream
+  materializationType: table
   metadata:
     appliedNodeTests: []
     columns:
       - appliedColumnTests: {}
         columnReference:
-          columnCounter: 2380620c-a420-49ee-a7a5-b189e3cf7d9f
-          stepCounter: bd090177-3199-4ee4-ab86-1c43f233c6ec
-        config: {}
-        dataType: NUMBER(38,0)
-        description: ""
-        name: ORDER_KEY
-        nullable: true
-        sourceColumnReferences:
-          - columnReferences:
-              - columnCounter: 6969fb33-cdb5-413d-8a00-d883d1e631e2
-                stepCounter: d80c882d-d5db-42c7-b796-e0280eb7c9ef
-            transform: ""
-      - appliedColumnTests: {}
-        columnReference:
-          columnCounter: 0b226d09-0081-4bb9-b943-97b4f6cf15e6
-          stepCounter: bd090177-3199-4ee4-ab86-1c43f233c6ec
-        config: {}
-        dataType: VARCHAR(25)
-        description: ""
-        name: ORDER_NAME
-        nullable: true
-        sourceColumnReferences:
-          - columnReferences:
-              - columnCounter: f6000054-2393-4e5b-9c71-b0d50c02603b
-                stepCounter: d80c882d-d5db-42c7-b796-e0280eb7c9ef
-            transform: ""
-      - appliedColumnTests: {}
-        columnReference:
-          columnCounter: e8cf8149-fd64-48b4-9594-5c18fda8a8db
-          stepCounter: bd090177-3199-4ee4-ab86-1c43f233c6ec
-        config: {}
-        dataType: DATE
-        description: ""
-        name: ORDER_DATE
-        nullable: true
-        sourceColumnReferences:
-          - columnReferences:
-              - columnCounter: 68b152df-ae03-47f4-8ea7-c4f566246a45
-                stepCounter: d80c882d-d5db-42c7-b796-e0280eb7c9ef
-            transform: ""
-      - appliedColumnTests: {}
-        columnReference:
-          columnCounter: a49bd21b-39e5-427f-85de-13a45b379323
-          stepCounter: bd090177-3199-4ee4-ab86-1c43f233c6ec
-        config: {}
-        dataType: TIMESTAMP_NTZ(9)
-        description: ""
-        name: CREATED_AT
-        nullable: true
-        sourceColumnReferences:
-          - columnReferences:
-              - columnCounter: e8022d8d-bb43-4c3e-9db3-61c48a835383
-                stepCounter: d80c882d-d5db-42c7-b796-e0280eb7c9ef
-            transform: ""
-      - acceptedValues:
-          strictMatch: true
-          values: []
-        appliedColumnTests: {}
-        columnReference:
-          columnCounter: e4fec74e-2b7d-453b-ba42-88b3a4baf8a9
+          columnCounter: 946be7ce-8ee4-446e-8b7f-bdbd790bcce9
           stepCounter: bd090177-3199-4ee4-ab86-1c43f233c6ec
         config: {}
         dataType: STRING
-        defaultValue: ""
         description: ""
-        metadataAction: true
-        name: METADATA$ACTION
+        fileName: true
+        name: FILENAME
         nullable: true
         sourceColumnReferences:
           - columnReferences: []
-            transform: ""
-      - acceptedValues:
-          strictMatch: true
-          values: []
-        appliedColumnTests: {}
+            transform: REGEXP_SUBSTR(RELATIVE_PATH, '[^/]+$')
+      - appliedColumnTests: {}
         columnReference:
-          columnCounter: f8f6719b-5cc4-4cdf-b9df-c01f52217d19
-          stepCounter: bd090177-3199-4ee4-ab86-1c43f233c6ec
-        config: {}
-        dataType: boolean
-        defaultValue: ""
-        description: ""
-        metadataIsUpdate: true
-        name: METADATA$ISUPDATE
-        nullable: true
-        sourceColumnReferences:
-          - columnReferences: []
-            transform: ""
-      - acceptedValues:
-          strictMatch: true
-          values: []
-        appliedColumnTests: {}
-        columnReference:
-          columnCounter: 49a2f11d-361e-4861-ae7d-60ebc3cfbdd5
+          columnCounter: 318e45ef-bc3f-4809-8ddb-5eb49c580064
           stepCounter: bd090177-3199-4ee4-ab86-1c43f233c6ec
         config: {}
         dataType: STRING
-        defaultValue: ""
         description: ""
-        metadataRowID: true
-        name: METADATA$ROW_ID
+        name: FILE_URL
+        nullable: true
+        presignedURL: true
+        sourceColumnReferences:
+          - columnReferences: []
+            transform: FILE_URL
+      - appliedColumnTests: {}
+        columnReference:
+          columnCounter: ea7e2ebd-bb12-4490-abce-13eee6cc84ae
+          stepCounter: bd090177-3199-4ee4-ab86-1c43f233c6ec
+        config: {}
+        dataType: TIMESTAMP_NTZ
+        description: ""
+        fileLastModified: true
+        name: FILE_LAST_MODIFIED
+        nullable: true
+        sourceColumnReferences:
+          - columnReferences: []
+            transform: TO_TIMESTAMP_NTZ(LAST_MODIFIED)
+      - appliedColumnTests: {}
+        columnReference:
+          columnCounter: 53e05681-321a-48cd-9e89-58e97846fad0
+          stepCounter: bd090177-3199-4ee4-ab86-1c43f233c6ec
+        config: {}
+        dataType: NUMBER
+        description: ""
+        name: SIZE
+        nullable: true
+        size: true
+        sourceColumnReferences:
+          - columnReferences: []
+            transform: SIZE
+      - appliedColumnTests: {}
+        columnReference:
+          columnCounter: b2b645c1-77ae-48de-aaa1-9b9cfc4e4e76
+          stepCounter: bd090177-3199-4ee4-ab86-1c43f233c6ec
+        config: {}
+        dataType: VARIANT
+        description: ""
+        extractedData: true
+        name: EXTRACTED_DATA
         nullable: true
         sourceColumnReferences:
           - columnReferences: []
             transform: ""
+      - appliedColumnTests: {}
+        columnReference:
+          columnCounter: ca3d6c4c-feb0-463c-acba-f3f05333163f
+          stepCounter: bd090177-3199-4ee4-ab86-1c43f233c6ec
+        config: {}
+        dataType: TIMESTAMP_NTZ
+        description: ""
+        fileLastModified: true
+        name: DATA_EXTRACT_TIMESTAMP
+        nullable: true
+        sourceColumnReferences:
+          - columnReferences: []
+            transform: CURRENT_TIMESTAMP::TIMESTAMP_NTZ
     cteString: ""
     enabledColumnTestIDs: []
     sourceMapping:
@@ -140,7 +141,7 @@ operation:
   name: STREAM_ORDERS
   overrideSQL: false
   schema: ""
-  sqlType: streams-and-tasks:::153
+  sqlType: "429"
   type: sql
   version: 1
 type: Node

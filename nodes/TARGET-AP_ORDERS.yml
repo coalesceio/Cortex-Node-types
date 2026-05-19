@@ -5,67 +5,36 @@ operation:
   config:
     autoRetryToggle: false
     autoSuspendToggle: false
-    capUpdate: false
-    clusterKey: false
-    clusterKeyConfig:
+    columnFamiliesConfig:
       items:
-        - {}
-    clusterKeyConfigExpressions:
-      items:
-        - {}
-    clusterKeyExpressions: false
+        - fieldName: company_name
+          qualifierString: What is the name of the company?
     configJSON: ""
-    createas: table
     devMode: true
-    dmlCol:
-      columnCounter: 84cda469-d269-47b5-be7b-bc8f5c2ea4c9
-      stepCounter: 9eff18ac-73eb-4391-8e68-90947589d633
-    dmlDelete: D
-    dmlInsert: I
-    dmlUpdate: U
     errIntName: ""
     errNotifyToggle: false
     execTime:
       items:
         - {}
     flagSrcStream: true
-    initialRows: true
-    insertOnly: false
-    maxServerlessSize: 6. XXLARGE
-    minServerlessSize: 1. XSMALL
     numFailures: "10"
-    orderBy:
-      items:
-        - colName:
-            columnCounter: cc716a0f-c124-45b1-8bf0-6144d504e240
-            stepCounter: 9eff18ac-73eb-4391-8e68-90947589d633
-          sortOrd: desc
-    orderByDateTime:
-      items:
-        - {}
+    optionJsonToggle: false
+    optionsJson: ""
     overlapExecToggle: false
-    partitionBy:
-      items:
-        - partColName:
-            columnCounter: 33fadc45-7f9a-4c6a-946c-47f6c318f447
-            stepCounter: 9eff18ac-73eb-4391-8e68-90947589d633
-    predTask: DATA_TRANSFORMATION_ROOT_TASK
-    recordVersioning: Datetime Column
     redeploymentBehavior: Create or Replace
-    retainLastNonDeleteFlag: false
     retryAttmpt: "0"
-    rootTask: DATA_TRANSFORMATION_ROOT_TASK
     scheduleCRON: 5 0-23 * * * America/Los_Angeles
-    schedulePeriodOption: Predecessor
+    schedulePeriodOption: Minutes
     schedulingMode: Warehouse Task
-    serverlessSize: 3. MEDIUM
-    sizeBoundToggle: false
-    softDeleteFlag: false
-    sourceType: Table
+    sourceType: Directory Table
     spfcUserToggle: false
+    stageName: DOC_AI_STAGE
+    stageStorageLocationName: SOURCE
+    subfolder: ""
     succIntName: ""
     successNotifyToggle: false
     taskGraphToggle: false
+    truncateBefore: false
     userName: ""
     whName: <WAREHOUSE_NAME>
   database: ""
@@ -79,77 +48,82 @@ operation:
     columns:
       - appliedColumnTests: {}
         columnReference:
-          columnCounter: 33fadc45-7f9a-4c6a-946c-47f6c318f447
+          columnCounter: fda25498-072d-41f6-be02-b357a4fed1e0
           stepCounter: 9eff18ac-73eb-4391-8e68-90947589d633
         config: {}
-        dataType: NUMBER(38,0)
+        dataType: STRING
         description: ""
-        name: ORDER_KEY
-        nullable: true
-        sourceColumnReferences:
-          - columnReferences:
-              - columnCounter: 6969fb33-cdb5-413d-8a00-d883d1e631e2
-                stepCounter: d80c882d-d5db-42c7-b796-e0280eb7c9ef
-            transform: ""
-      - appliedColumnTests: {}
-        columnReference:
-          columnCounter: 84cda469-d269-47b5-be7b-bc8f5c2ea4c9
-          stepCounter: 9eff18ac-73eb-4391-8e68-90947589d633
-        config: {}
-        dataType: VARCHAR(25)
-        description: ""
-        name: ORDER_NAME
-        nullable: true
-        sourceColumnReferences:
-          - columnReferences:
-              - columnCounter: f6000054-2393-4e5b-9c71-b0d50c02603b
-                stepCounter: d80c882d-d5db-42c7-b796-e0280eb7c9ef
-            transform: ""
-      - appliedColumnTests: {}
-        columnReference:
-          columnCounter: 55b9e54f-87e5-45ee-8351-2fe977d02cac
-          stepCounter: 9eff18ac-73eb-4391-8e68-90947589d633
-        config: {}
-        dataType: DATE
-        description: ""
-        name: ORDER_DATE
-        nullable: true
-        sourceColumnReferences:
-          - columnReferences:
-              - columnCounter: 68b152df-ae03-47f4-8ea7-c4f566246a45
-                stepCounter: d80c882d-d5db-42c7-b796-e0280eb7c9ef
-            transform: ""
-      - appliedColumnTests: {}
-        columnReference:
-          columnCounter: cc716a0f-c124-45b1-8bf0-6144d504e240
-          stepCounter: 9eff18ac-73eb-4391-8e68-90947589d633
-        config: {}
-        dataType: TIMESTAMP_NTZ(9)
-        description: ""
-        name: CREATED_AT
-        nullable: true
-        sourceColumnReferences:
-          - columnReferences:
-              - columnCounter: e8022d8d-bb43-4c3e-9db3-61c48a835383
-                stepCounter: d80c882d-d5db-42c7-b796-e0280eb7c9ef
-            transform: ""
-      - acceptedValues:
-          strictMatch: true
-          values: []
-        appliedColumnTests: {}
-        columnReference:
-          columnCounter: 0270da28-8f7c-41ef-a565-7db9e86f2130
-          stepCounter: 9eff18ac-73eb-4391-8e68-90947589d633
-        config: {}
-        dataType: timestamp
-        defaultValue: ""
-        description: ""
-        hmUpdTs: true
-        name: DM_UPDATE_TIMESTAMP
+        fileName: true
+        name: FILENAME
         nullable: true
         sourceColumnReferences:
           - columnReferences: []
-            transform: current_timestamp::timestamp_ntz
+            transform: REGEXP_SUBSTR(RELATIVE_PATH, '[^/]+$')
+      - appliedColumnTests: {}
+        columnReference:
+          columnCounter: df4538ab-2b1b-4085-b6c7-5cfd3d54e357
+          stepCounter: 9eff18ac-73eb-4391-8e68-90947589d633
+        config: {}
+        dataType: STRING
+        description: ""
+        name: FILE_URL
+        nullable: true
+        presignedURL: true
+        sourceColumnReferences:
+          - columnReferences: []
+            transform: FILE_URL
+      - appliedColumnTests: {}
+        columnReference:
+          columnCounter: 8e545df3-198f-4f48-b5c4-60071815c299
+          stepCounter: 9eff18ac-73eb-4391-8e68-90947589d633
+        config: {}
+        dataType: TIMESTAMP_NTZ
+        description: ""
+        fileLastModified: true
+        name: FILE_LAST_MODIFIED
+        nullable: true
+        sourceColumnReferences:
+          - columnReferences: []
+            transform: TO_TIMESTAMP_NTZ(LAST_MODIFIED)
+      - appliedColumnTests: {}
+        columnReference:
+          columnCounter: de37222d-4ae5-4034-833a-c6ba3607999f
+          stepCounter: 9eff18ac-73eb-4391-8e68-90947589d633
+        config: {}
+        dataType: NUMBER
+        description: ""
+        name: SIZE
+        nullable: true
+        size: true
+        sourceColumnReferences:
+          - columnReferences: []
+            transform: SIZE
+      - appliedColumnTests: {}
+        columnReference:
+          columnCounter: 048938bf-57a5-46a4-b339-5c75800217fd
+          stepCounter: 9eff18ac-73eb-4391-8e68-90947589d633
+        config: {}
+        dataType: VARIANT
+        description: ""
+        extractedData: true
+        name: EXTRACTED_DATA
+        nullable: true
+        sourceColumnReferences:
+          - columnReferences: []
+            transform: ""
+      - appliedColumnTests: {}
+        columnReference:
+          columnCounter: 5fc65b11-46bd-4b94-9c58-0ff188efea5e
+          stepCounter: 9eff18ac-73eb-4391-8e68-90947589d633
+        config: {}
+        dataType: TIMESTAMP_NTZ
+        description: ""
+        fileLastModified: true
+        name: DATA_EXTRACT_TIMESTAMP
+        nullable: true
+        sourceColumnReferences:
+          - columnReferences: []
+            transform: CURRENT_TIMESTAMP::TIMESTAMP_NTZ
     cteString: ""
     enabledColumnTestIDs: []
     sourceMapping:
@@ -167,7 +141,7 @@ operation:
   name: AP_ORDERS
   overrideSQL: false
   schema: ""
-  sqlType: deferred-merge:::300
+  sqlType: "429"
   type: sql
   version: 1
 type: Node

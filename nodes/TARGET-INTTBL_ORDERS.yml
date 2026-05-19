@@ -3,91 +3,127 @@ id: 16506b93-1228-4b51-b434-0ae37c9f19ae
 name: INTTBL_ORDERS
 operation:
   config:
-    autoRefresh: true
-    clusterKey: true
-    clusterKeyConfig:
+    autoRetryToggle: false
+    autoSuspendToggle: false
+    columnFamiliesConfig:
       items:
-        - columnName:
-            columnCounter: 99a758ef-9b6d-4ba3-a97a-9fe015db966a
-            stepCounter: 16506b93-1228-4b51-b434-0ae37c9f19ae
-    clusterKeyConfigExpressions:
+        - fieldName: company_name
+          qualifierString: What is the name of the company?
+    configJSON: ""
+    devMode: true
+    errIntName: ""
+    errNotifyToggle: false
+    execTime:
       items:
         - {}
-    clusterKeyExpressions: false
-    groupByAll: false
-    insertStrategy: UNION ALL
-    lagSpecification:
-      items:
-        - lagPeriod: Minutes
-          lagValue: "60"
-    selectDistinct: false
-    testsEnabled: false
-    warehouseName: COMPUTE_WH
+    flagSrcStream: true
+    numFailures: "10"
+    optionJsonToggle: false
+    optionsJson: ""
+    overlapExecToggle: false
+    redeploymentBehavior: Create or Replace
+    retryAttmpt: "0"
+    scheduleCRON: 5 0-23 * * * America/Los_Angeles
+    schedulePeriodOption: Minutes
+    schedulingMode: Warehouse Task
+    sourceType: Directory Table
+    spfcUserToggle: false
+    stageName: DOC_AI_STAGE
+    stageStorageLocationName: SOURCE
+    subfolder: ""
+    succIntName: ""
+    successNotifyToggle: false
+    taskGraphToggle: false
+    truncateBefore: false
+    userName: ""
+    whName: <WAREHOUSE_NAME>
   database: ""
   deployEnabled: true
   description: ""
   isMultisource: false
   locationName: TARGET
-  materializationType: interactive table
+  materializationType: table
   metadata:
     appliedNodeTests: []
     columns:
       - appliedColumnTests: {}
         columnReference:
-          columnCounter: fa6ea256-6d77-493b-823d-5ee2f7908a9b
+          columnCounter: 717b018c-bee9-4e10-8e19-ac6042b134e3
           stepCounter: 16506b93-1228-4b51-b434-0ae37c9f19ae
         config: {}
-        dataType: NUMBER(38,0)
+        dataType: STRING
         description: ""
-        name: ORDER_KEY
+        fileName: true
+        name: FILENAME
         nullable: true
         sourceColumnReferences:
-          - columnReferences:
-              - columnCounter: 6969fb33-cdb5-413d-8a00-d883d1e631e2
-                stepCounter: d80c882d-d5db-42c7-b796-e0280eb7c9ef
+          - columnReferences: []
+            transform: REGEXP_SUBSTR(RELATIVE_PATH, '[^/]+$')
+      - appliedColumnTests: {}
+        columnReference:
+          columnCounter: b09d226d-a020-4a4b-a7c5-732d5c1edfc5
+          stepCounter: 16506b93-1228-4b51-b434-0ae37c9f19ae
+        config: {}
+        dataType: STRING
+        description: ""
+        name: FILE_URL
+        nullable: true
+        presignedURL: true
+        sourceColumnReferences:
+          - columnReferences: []
+            transform: FILE_URL
+      - appliedColumnTests: {}
+        columnReference:
+          columnCounter: d0b32bc2-9810-4946-a547-f1c778a356f2
+          stepCounter: 16506b93-1228-4b51-b434-0ae37c9f19ae
+        config: {}
+        dataType: TIMESTAMP_NTZ
+        description: ""
+        fileLastModified: true
+        name: FILE_LAST_MODIFIED
+        nullable: true
+        sourceColumnReferences:
+          - columnReferences: []
+            transform: TO_TIMESTAMP_NTZ(LAST_MODIFIED)
+      - appliedColumnTests: {}
+        columnReference:
+          columnCounter: 4456c5d0-c04c-40d1-834d-c81e16e2486e
+          stepCounter: 16506b93-1228-4b51-b434-0ae37c9f19ae
+        config: {}
+        dataType: NUMBER
+        description: ""
+        name: SIZE
+        nullable: true
+        size: true
+        sourceColumnReferences:
+          - columnReferences: []
+            transform: SIZE
+      - appliedColumnTests: {}
+        columnReference:
+          columnCounter: 63d638ac-1f58-4b59-a346-6828fdd25fba
+          stepCounter: 16506b93-1228-4b51-b434-0ae37c9f19ae
+        config: {}
+        dataType: VARIANT
+        description: ""
+        extractedData: true
+        name: EXTRACTED_DATA
+        nullable: true
+        sourceColumnReferences:
+          - columnReferences: []
             transform: ""
       - appliedColumnTests: {}
         columnReference:
-          columnCounter: 99a758ef-9b6d-4ba3-a97a-9fe015db966a
+          columnCounter: b4fe2ae0-d056-4128-b910-5ff115c5d815
           stepCounter: 16506b93-1228-4b51-b434-0ae37c9f19ae
         config: {}
-        dataType: VARCHAR(25)
+        dataType: TIMESTAMP_NTZ
         description: ""
-        name: ORDER_NAME
+        fileLastModified: true
+        name: DATA_EXTRACT_TIMESTAMP
         nullable: true
         sourceColumnReferences:
-          - columnReferences:
-              - columnCounter: f6000054-2393-4e5b-9c71-b0d50c02603b
-                stepCounter: d80c882d-d5db-42c7-b796-e0280eb7c9ef
-            transform: ""
-      - appliedColumnTests: {}
-        columnReference:
-          columnCounter: a5c03ffd-9aea-40b8-912a-2c3e2abaab0e
-          stepCounter: 16506b93-1228-4b51-b434-0ae37c9f19ae
-        config: {}
-        dataType: DATE
-        description: ""
-        name: ORDER_DATE
-        nullable: true
-        sourceColumnReferences:
-          - columnReferences:
-              - columnCounter: 68b152df-ae03-47f4-8ea7-c4f566246a45
-                stepCounter: d80c882d-d5db-42c7-b796-e0280eb7c9ef
-            transform: ""
-      - appliedColumnTests: {}
-        columnReference:
-          columnCounter: 59d57275-ac22-42f8-b343-709b56f5ac57
-          stepCounter: 16506b93-1228-4b51-b434-0ae37c9f19ae
-        config: {}
-        dataType: TIMESTAMP_NTZ(9)
-        description: ""
-        name: CREATED_AT
-        nullable: true
-        sourceColumnReferences:
-          - columnReferences:
-              - columnCounter: e8022d8d-bb43-4c3e-9db3-61c48a835383
-                stepCounter: d80c882d-d5db-42c7-b796-e0280eb7c9ef
-            transform: ""
+          - columnReferences: []
+            transform: CURRENT_TIMESTAMP::TIMESTAMP_NTZ
     cteString: ""
     enabledColumnTestIDs: []
     sourceMapping:
@@ -105,7 +141,7 @@ operation:
   name: INTTBL_ORDERS
   overrideSQL: false
   schema: ""
-  sqlType: interactive-table:::602
+  sqlType: "429"
   type: sql
   version: 1
 type: Node

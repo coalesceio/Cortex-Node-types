@@ -100,7 +100,7 @@ does not permit copying or modification for any other purpose.
     {% if desiredState.node.materializationType == 'table' or desiredState.node.materializationType == 'transient table'  %}     
 
 
-        {% if currentState != undefined and currentState.node.materializationType != desiredState.node.materializationType or  currentState.node.nodeType != desiredState.node.nodeType%}
+        {% if currentState != undefined and (currentState.node.materializationType != desiredState.node.materializationType or currentState.node.nodeType != desiredState.node.nodeType) %}
 
                 {# Change in materialization type #}
 
@@ -142,7 +142,7 @@ does not permit copying or modification for any other purpose.
                     )
                 {%- if desiredState.node.description | length > 0 %} COMMENT = '{{ desiredState.node.description | escape }}'{% endif %}
           
-        {% elif currentState != undefined and currentState.node.materializationType == desiredState.node.materializationType %}
+        {% elif currentState != undefined and currentState.node.materializationType == desiredState.node.materializationType and currentState.node.nodeType == desiredState.node.nodeType %}
 
             {# Change Node Name or Change Storage Location #}
             {# Storage Location Tests #}

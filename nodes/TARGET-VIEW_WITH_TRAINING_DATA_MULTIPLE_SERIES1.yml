@@ -4,6 +4,8 @@ name: VIEW_WITH_TRAINING_DATA_MULTIPLE_SERIES1
 operation:
   config:
     insertStrategy: UNION
+    postSQL: ""
+    preSQL: ""
     selectDistinct: false
   database: ""
   deployEnabled: true

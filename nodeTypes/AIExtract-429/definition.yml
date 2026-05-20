@@ -155,10 +155,28 @@ metadata:
           - Minutes
           - CRON
 
-      - displayName: Enter task schedule using minutes
-        attributeName: schedulePeriod
-        type: textBox
-        default: '60'
+      - type: tabular
+        displayName: Execution Time [💡Seconds(10 - 691200), Minutes(1 - 11520), Hours(1 - 192)]
+        attributeName: execTime
+
+        columns:
+
+        -  type: textBox
+           displayName: ''
+           attributeName: value
+           default: 60
+           isRequired: false
+
+        -  type: dropdownSelector
+           displayName: ''
+           attributeName: period
+           default: "Minutes"
+           options:
+            - Seconds
+            - Minutes
+            - Hours
+           isRequired: false
+
         isRequired: false
         enableIf: "{% if config.schedulePeriodOption == 'Minutes' %} true {% else %} false {% endif %}"
 
@@ -168,6 +186,122 @@ metadata:
         default: '5 0-23 * * * America/Los_Angeles'
         isRequired: false
         enableIf: "{% if config.schedulePeriodOption == 'CRON' %} true {% else %} false {% endif %}"
+
+    - groupName: Advanced Scheduling Options
+      enableIf: "{% if config.devMode %} false {% else %} true {% endif %}"
+      items:
+
+      - displayName: Execute As Specific User
+        attributeName: spfcUserToggle
+        type: toggleButton
+        default: false
+        isRequired: false
+
+      - type: label
+        attributeName: userInfo
+        displayName: "ℹ️ Runs the task on behalf of a specified user account. Requires GRANT IMPERSONATE ON USER privilege."
+        enableIf: "{% if config.spfcUserToggle %} true {% else %} false {% endif %}"
+
+      - type: label
+        attributeName: warningSpfcUser
+        displayName: "⚠️ Warning: targetTaskExecuteAsUser parameter is not provided."
+        enableIf: "{% if config.spfcUserToggle and parameters.targetTaskExecuteAsUser | trim | default('') == '' %} true {% else %} false {% endif %}"
+
+      - displayName: User Name
+        attributeName: userName
+        type: textBox
+        default: ''
+        isRequired: false
+        enableIf: "{% if config.spfcUserToggle %} true {% else %} false {% endif %}"
+
+      - displayName: Allow Overlapping Execution
+        attributeName: overlapExecToggle
+        type: toggleButton
+        default: false
+        isRequired: false
+        enableIf: "{% if config.schedulePeriodOption not in ['Predecessor'] %} true {% else %} false {% endif %}"
+
+      - displayName: Enable Task Graph Config
+        attributeName: taskGraphToggle
+        type: toggleButton
+        default: false
+        isRequired: false
+        enableIf: "{% if config.schedulePeriodOption not in ['Predecessor'] %} true {% else %} false {% endif %}"
+
+      - displayName: Configuration JSON
+        attributeName: configJSON
+        type: textBox
+        default: ''
+        isRequired: false
+        enableIf: "{% if config.schedulePeriodOption not in ['Predecessor'] and config.taskGraphToggle %} true {% else %} false {% endif %}"
+
+      - displayName: Auto-Suspend After Failures
+        attributeName: autoSuspendToggle
+        type: toggleButton
+        default: false
+        isRequired: false
+        enableIf: "{% if config.schedulePeriodOption not in ['Predecessor'] %} true {% else %} false {% endif %}"
+
+      - displayName: Number of Consecutive Failures (💡Range. 0 - No Limit)
+        attributeName: numFailures
+        type: textBox
+        default: '10'
+        isRequired: false
+        enableIf: "{% if config.schedulePeriodOption not in ['Predecessor'] and config.autoSuspendToggle %} true {% else %} false {% endif %}"
+
+      - displayName: Enable Auto-Retry
+        attributeName: autoRetryToggle
+        type: toggleButton
+        default: false
+        isRequired: false
+        enableIf: "{% if config.schedulePeriodOption not in ['Predecessor'] %} true {% else %} false {% endif %}"
+
+      - displayName: Retry Attempts
+        attributeName: retryAttmpt
+        type: textBox
+        default: '0'
+        isRequired: false
+        enableIf: "{% if config.schedulePeriodOption not in ['Predecessor'] and config.autoRetryToggle %} true {% else %} false {% endif %}"
+
+    - groupName: Notification Options
+      enableIf: "{% if config.devMode or config.schedulePeriodOption in ['Predecessor'] %} false {% else %} true {% endif %}"
+      items:
+
+      - displayName: Enable Error Notifications
+        attributeName: errNotifyToggle
+        type: toggleButton
+        default: false
+        isRequired: false
+
+      - type: label
+        attributeName: warningErrIntName
+        displayName: "⚠️ Warning: targetTaskErrorIntegration parameter is not provided."
+        enableIf: "{% if config.errNotifyToggle and parameters.targetTaskErrorIntegration | trim | default('') == '' %} true {% else %} false {% endif %}"
+
+      - displayName: Error Integration Name
+        attributeName: errIntName
+        type: textBox
+        default: ''
+        isRequired: false
+        enableIf: "{% if config.errNotifyToggle %} true {% else %} false {% endif %}"
+
+      - displayName: Enable Success Notifications
+        attributeName: successNotifyToggle
+        type: toggleButton
+        default: false
+        isRequired: false
+
+      - type: label
+        attributeName: warningSuccIntName
+        displayName: "⚠️ Warning: targetTaskSuccessIntegration parameter is not provided."
+        enableIf: "{% if config.successNotifyToggle and parameters.targetTaskSuccessIntegration | trim | default('') == '' %} true {% else %} false {% endif %}"
+
+      - displayName: Success Integration Name
+        attributeName: succIntName
+        type: textBox
+        default: ''
+        isRequired: false
+        enableIf: "{% if config.successNotifyToggle %} true {% else %} false {% endif %}"
 
        
     systemColumns:

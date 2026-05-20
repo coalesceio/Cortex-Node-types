@@ -1,58 +1,78 @@
 fileVersion: 1
-id: 272f9f4e-665e-442f-bd04-095bf6173430
-name: CSS_AIRBNB_SAFETY
+id: 7c08dffc-53e6-43de-a2b0-1a153ad8e592
+name: CSS_AIRBNB_JSON2
 operation:
   config:
-    allcol: true
+    allcol: false
     attrcol:
       items:
-        - {}
+        - acolname:
+            columnCounter: 3d3072d5-2dd0-423b-b9da-9d0290c26161
+            stepCounter: 7c08dffc-53e6-43de-a2b0-1a153ad8e592
+        - acolname:
+            columnCounter: 97731cdb-dbba-458e-8c7c-f9adda5475eb
+            stepCounter: 7c08dffc-53e6-43de-a2b0-1a153ad8e592
     colpreview:
       items:
-        - columnName: null
-    createcortex: false
+        - columnName:
+            columnCounter: 3d3072d5-2dd0-423b-b9da-9d0290c26161
+            stepCounter: 7c08dffc-53e6-43de-a2b0-1a153ad8e592
+        - columnName:
+            columnCounter: 97731cdb-dbba-458e-8c7c-f9adda5475eb
+            stepCounter: 7c08dffc-53e6-43de-a2b0-1a153ad8e592
+        - columnName:
+            columnCounter: 9e2382c0-31e6-4d8f-887c-74a86566c708
+            stepCounter: 7c08dffc-53e6-43de-a2b0-1a153ad8e592
+    createcortex: true
     embmodel: snowflake-arctic-embed-m-v1.5
-    excss: true
+    excss: false
     filcrit:
       items:
         - filcolname:
-            columnCounter: 41d0f44e-53d4-407e-8cbd-0272e21de26c
-            stepCounter: 272f9f4e-665e-442f-bd04-095bf6173430
+            columnCounter: 97731cdb-dbba-458e-8c7c-f9adda5475eb
+            stepCounter: 7c08dffc-53e6-43de-a2b0-1a153ad8e592
           filcolval: Private room
           mopt: eq
-    filtoggle: false
+    filtoggle: true
     initialize: ON_CREATE
     lagSpecification:
       items:
-        - {}
-    locCSS: SOURCE
-    lopt: and
-    namCSS: CSS_AIRBNB_COSTLIER
-    numboost: false
+        - lagPeriod: Hours
+          lagValue: "600"
+    locCSS: ""
+    mulfilcon: false
+    namCSS: ""
+    numboost: true
     numericboost:
       items:
-        - {}
-    query1: fair price
+        - colname:
+            columnCounter: cba3efb3-2d0c-45e2-88d7-1248df0ae006
+            stepCounter: 7c08dffc-53e6-43de-a2b0-1a153ad8e592
+          wage: "1"
+    query1: Cheaper
     querycortex: true
+    searchcol:
+      columnCounter: 4e585993-a39d-432e-8dec-b0cc486a3dc2
+      stepCounter: 7c08dffc-53e6-43de-a2b0-1a153ad8e592
     timdec: false
     timedecay:
       items:
         - {}
-    undefined: false
+    undefined: true
     warehouseName: dev_wh_xs
   database: ""
   deployEnabled: true
   description: ""
   isMultisource: false
-  locationName: SOURCE
-  materializationType: view
+  locationName: TARGET
+  materializationType: table
   metadata:
     appliedNodeTests: []
     columns:
       - appliedColumnTests: {}
         columnReference:
-          columnCounter: b219864f-2c37-4968-906d-4776410b9269
-          stepCounter: 272f9f4e-665e-442f-bd04-095bf6173430
+          columnCounter: 1c8537d3-790b-4a81-9bd4-35952bc9301b
+          stepCounter: 7c08dffc-53e6-43de-a2b0-1a153ad8e592
         config: {}
         dataType: VARCHAR(16777216)
         description: ""
@@ -65,8 +85,8 @@ operation:
             transform: ""
       - appliedColumnTests: {}
         columnReference:
-          columnCounter: 8e380a32-0fe2-4654-9b63-6308f882188a
-          stepCounter: 272f9f4e-665e-442f-bd04-095bf6173430
+          columnCounter: 3d3072d5-2dd0-423b-b9da-9d0290c26161
+          stepCounter: 7c08dffc-53e6-43de-a2b0-1a153ad8e592
         config: {}
         dataType: ARRAY
         description: ""
@@ -79,8 +99,8 @@ operation:
             transform: ""
       - appliedColumnTests: {}
         columnReference:
-          columnCounter: 25bd4fa3-5502-4819-93ae-c6b40dc54e32
-          stepCounter: 272f9f4e-665e-442f-bd04-095bf6173430
+          columnCounter: 9e2382c0-31e6-4d8f-887c-74a86566c708
+          stepCounter: 7c08dffc-53e6-43de-a2b0-1a153ad8e592
         config: {}
         dataType: VARCHAR(16777216)
         description: ""
@@ -93,8 +113,8 @@ operation:
             transform: ""
       - appliedColumnTests: {}
         columnReference:
-          columnCounter: 62021107-4ee9-42ed-99ca-9e9e5db087c6
-          stepCounter: 272f9f4e-665e-442f-bd04-095bf6173430
+          columnCounter: cba3efb3-2d0c-45e2-88d7-1248df0ae006
+          stepCounter: 7c08dffc-53e6-43de-a2b0-1a153ad8e592
         config: {}
         dataType: NUMBER(5,0)
         description: ""
@@ -107,8 +127,8 @@ operation:
             transform: ""
       - appliedColumnTests: {}
         columnReference:
-          columnCounter: 41d0f44e-53d4-407e-8cbd-0272e21de26c
-          stepCounter: 272f9f4e-665e-442f-bd04-095bf6173430
+          columnCounter: 97731cdb-dbba-458e-8c7c-f9adda5475eb
+          stepCounter: 7c08dffc-53e6-43de-a2b0-1a153ad8e592
         config: {}
         dataType: VARCHAR(16777216)
         description: ""
@@ -121,8 +141,8 @@ operation:
             transform: ""
       - appliedColumnTests: {}
         columnReference:
-          columnCounter: deebd159-d432-4c43-a938-e30583f740c7
-          stepCounter: 272f9f4e-665e-442f-bd04-095bf6173430
+          columnCounter: 64d3bc04-3755-4917-aaf4-58f313ef5298
+          stepCounter: 7c08dffc-53e6-43de-a2b0-1a153ad8e592
         config: {}
         dataType: VARCHAR(16777216)
         description: ""
@@ -135,8 +155,8 @@ operation:
             transform: ""
       - appliedColumnTests: {}
         columnReference:
-          columnCounter: 2529b022-f218-454a-a91e-e0dbba5e7f2d
-          stepCounter: 272f9f4e-665e-442f-bd04-095bf6173430
+          columnCounter: 7012247a-08f1-4672-a474-570e48cd45e8
+          stepCounter: 7c08dffc-53e6-43de-a2b0-1a153ad8e592
         config: {}
         dataType: VARCHAR(16777216)
         description: ""
@@ -149,8 +169,8 @@ operation:
             transform: ""
       - appliedColumnTests: {}
         columnReference:
-          columnCounter: 345ceeef-91cd-49cf-bd31-986d02865f41
-          stepCounter: 272f9f4e-665e-442f-bd04-095bf6173430
+          columnCounter: 4e585993-a39d-432e-8dec-b0cc486a3dc2
+          stepCounter: 7c08dffc-53e6-43de-a2b0-1a153ad8e592
         config: {}
         dataType: STRING
         description: ""
@@ -164,17 +184,18 @@ operation:
     cteString: ""
     enabledColumnTestIDs: []
     sourceMapping:
-      - aliases: {}
+      - aliases:
+          STG_AIRBNB_JSON: cc62fd4e-1cc2-4652-ba7b-47670f52feba
         customSQL:
           customSQL: ""
         dependencies:
-          - locationName: SOURCE
+          - locationName: TARGET
             nodeName: STG_AIRBNB_JSON
         join:
-          joinCondition: FROM {{ ref('SOURCE', 'STG_AIRBNB_JSON') }} "STG_AIRBNB_JSON"
-        name: CSS_AIRBNB_SAFETY
+          joinCondition: FROM {{ ref('TARGET', 'STG_AIRBNB_JSON') }} "STG_AIRBNB_JSON"
+        name: CSS_AIRBNB_JSON2
         noLinkRefs: []
-  name: CSS_AIRBNB_SAFETY
+  name: CSS_AIRBNB_JSON2
   overrideSQL: false
   schema: ""
   sqlType: "499"

@@ -55,7 +55,7 @@ operation:
   deployEnabled: true
   description: ""
   isMultisource: false
-  locationName: SOURCE
+  locationName: TARGET
   materializationType: table
   metadata:
     appliedNodeTests: []
@@ -119,14 +119,15 @@ operation:
     cteString: ""
     enabledColumnTestIDs: []
     sourceMapping:
-      - aliases: {}
+      - aliases:
+          STG_AIRBNB_JSON: cc62fd4e-1cc2-4652-ba7b-47670f52feba
         customSQL:
           customSQL: ""
         dependencies:
-          - locationName: SOURCE
+          - locationName: TARGET
             nodeName: STG_AIRBNB_JSON
         join:
-          joinCondition: FROM {{ ref('SOURCE', 'STG_AIRBNB_JSON') }} "STG_AIRBNB_JSON"
+          joinCondition: FROM {{ ref('TARGET', 'STG_AIRBNB_JSON') }} "STG_AIRBNB_JSON"
         name: CSS_AIRBNB_CHEAPER
         noLinkRefs: []
   name: CSS_AIRBNB_CHEAPER

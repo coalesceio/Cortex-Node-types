@@ -1,31 +1,48 @@
 fileVersion: 1
-id: ab05949e-5fb9-4eb5-ad35-5dee4a268915
-name: DOC_ORDER_FORMS_EXTRACT1
+id: 9f6ffef5-53e8-4943-8c0e-4148ebc5ede1
+name: DOC_NODE_test001
 operation:
   config:
+    autoRetryToggle: true
+    autoSuspendToggle: true
+    columnFamiliesConfig:
+      items:
+        - fieldName: agreement_type
+          qualifierString: What is the type of document?
+    configJSON: ""
     devMode: false
-    extractionQueryName: SALES_ORDER_FORMS
-    extractionQueryStorageLocationName: DAI
-    extractionQueryVersion: "4"
-    fileNames: ""
+    errIntName: ""
+    errNotifyToggle: false
+    execTime:
+      items:
+        - period: Seconds
+          value: "60"
     flagSrcStream: true
+    numFailures: "10"
     optionJsonToggle: false
     optionsJson: ""
+    overlapExecToggle: true
     redeploymentBehavior: Create or Replace
-    schedulePeriod: "120"
+    retryAttmpt: "0"
+    scheduleCRON: 5 0-23 * * * America/Los_Angeles
     schedulePeriodOption: Minutes
     schedulingMode: Warehouse Task
     sourceType: Directory Table
-    stageName: DEMO_DOCUMENTS
-    stageStorageLocationName: DOCUMENT_SOURCE
+    spfcUserToggle: true
+    stageName: DOC_AI_STAGE
+    stageStorageLocationName: SOURCE
     subfolder: ""
-    truncateBefore: true
-    whName: FIVETRAN_WAREHOUSE
+    succIntName: ""
+    successNotifyToggle: false
+    taskGraphToggle: false
+    truncateBefore: false
+    userName: PMANE
+    whName: COMPUTE_WH
   database: ""
   deployEnabled: true
-  description: Document AI sample document
+  description: ""
   isMultisource: false
-  locationName: TARGET
+  locationName: SOURCE
   materializationType: table
   metadata:
     appliedNodeTests: []
@@ -35,10 +52,10 @@ operation:
           values: []
         appliedColumnTests: {}
         columnReference:
-          columnCounter: 203fd77a-1191-48ba-be76-b854c73e9b45
-          stepCounter: ab05949e-5fb9-4eb5-ad35-5dee4a268915
+          columnCounter: bd000455-f7ee-43dd-9d67-43b0ee3b7641
+          stepCounter: 9f6ffef5-53e8-4943-8c0e-4148ebc5ede1
         config: {}
-        dataType: string
+        dataType: STRING
         defaultValue: ""
         description: ""
         fileName: true
@@ -46,16 +63,16 @@ operation:
         nullable: true
         sourceColumnReferences:
           - columnReferences: []
-            transform: RELATIVE_PATH
+            transform: REGEXP_SUBSTR(RELATIVE_PATH, '[^/]+$')
       - acceptedValues:
           strictMatch: true
           values: []
         appliedColumnTests: {}
         columnReference:
-          columnCounter: 2ef5062c-8c21-4ae1-9ff0-b5f6c106727b
-          stepCounter: ab05949e-5fb9-4eb5-ad35-5dee4a268915
+          columnCounter: f11b3da5-7e57-4844-be55-87545de190e6
+          stepCounter: 9f6ffef5-53e8-4943-8c0e-4148ebc5ede1
         config: {}
-        dataType: string
+        dataType: STRING
         defaultValue: ""
         description: ""
         name: FILE_URL
@@ -69,8 +86,8 @@ operation:
           values: []
         appliedColumnTests: {}
         columnReference:
-          columnCounter: fee8de3c-6fc6-4845-ac28-2f2126e92fd5
-          stepCounter: ab05949e-5fb9-4eb5-ad35-5dee4a268915
+          columnCounter: ef580008-d92b-4865-9330-1a10447876d0
+          stepCounter: 9f6ffef5-53e8-4943-8c0e-4148ebc5ede1
         config: {}
         dataType: TIMESTAMP_NTZ
         defaultValue: ""
@@ -86,8 +103,8 @@ operation:
           values: []
         appliedColumnTests: {}
         columnReference:
-          columnCounter: 6df978ca-30f1-4de5-9086-1b2a1d178685
-          stepCounter: ab05949e-5fb9-4eb5-ad35-5dee4a268915
+          columnCounter: 1b1182b8-8901-4875-ac61-f96fae8176f8
+          stepCounter: 9f6ffef5-53e8-4943-8c0e-4148ebc5ede1
         config: {}
         dataType: NUMBER
         defaultValue: ""
@@ -103,8 +120,8 @@ operation:
           values: []
         appliedColumnTests: {}
         columnReference:
-          columnCounter: bb948389-9588-45a4-8b79-93f145e0d128
-          stepCounter: ab05949e-5fb9-4eb5-ad35-5dee4a268915
+          columnCounter: 8b658b32-bc1f-4deb-a359-ffc503589bd8
+          stepCounter: 9f6ffef5-53e8-4943-8c0e-4148ebc5ede1
         config: {}
         dataType: VARIANT
         defaultValue: ""
@@ -120,18 +137,17 @@ operation:
           values: []
         appliedColumnTests: {}
         columnReference:
-          columnCounter: f9946e7a-a391-4a2b-a9f9-7b9b1f2952dd
-          stepCounter: ab05949e-5fb9-4eb5-ad35-5dee4a268915
+          columnCounter: eb93af2c-ca6b-45a3-af19-780d886fba41
+          stepCounter: 9f6ffef5-53e8-4943-8c0e-4148ebc5ede1
         config: {}
         dataType: TIMESTAMP_NTZ
         defaultValue: ""
         description: ""
+        fileLastModified: true
         name: DATA_EXTRACT_TIMESTAMP
         nullable: true
         sourceColumnReferences:
-          - columnReferences:
-              - columnCounter: "0"
-                stepCounter: "0"
+          - columnReferences: []
             transform: CURRENT_TIMESTAMP::TIMESTAMP_NTZ
     cteString: ""
     enabledColumnTestIDs: []
@@ -142,9 +158,9 @@ operation:
         dependencies: []
         join:
           joinCondition: ""
-        name: DOC_ORDER_FORMS_EXTRACT1
+        name: DOC_NODE_test001
         noLinkRefs: []
-  name: DOC_ORDER_FORMS_EXTRACT1
+  name: DOC_NODE_test001
   overrideSQL: false
   schema: ""
   sqlType: "429"

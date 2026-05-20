@@ -23,6 +23,25 @@ does not permit copying or modification for any other purpose.
 {#Create Cortex search service #}
 
 {% if desiredState  %}
+    {%- if currentState != undefined and currentState.node.nodeType != desiredState.node.nodeType %}
+        {%- set warningMsg = getNodeTypeSwitchWarning() | default('') %}
+
+        {# Warning display - Node type changes can impact related tasks, streams, or services. #}
+        {%- if warningMsg | trim | length > 0 -%}
+            {{ stage('Warning! Node Type Switching Detected', false) }}
+            {{ warningMsg }}
+            select 1=0
+        {%- endif -%}
+
+        {% if currentState.node.materializationType != desiredState.node.materializationType %}
+                {# Change in materialization type #}
+                {{ stage('Drop ' + ref_no_link(currentState.node.location.name, currentState.node.name)) }}
+                {%- set materialization = dropMaterialization(currentState.node.materializationType) %}
+                DROP {{ materialization }} {{ ref_no_link(currentState.node.location.name, currentState.node.name) }}
+
+        {% endif %}
+    {%- endif -%}
+
 
    {# Identify all config changes that would cause a CREATE instead of ALTER#}
    {% if currentState != undefined %} 
@@ -85,17 +104,17 @@ does not permit copying or modification for any other purpose.
         {% set nodeNameTest = currentState.node.name == desiredState.node.name %}
 
         {# Initialize test #}
-        {% set initialtest = currentState.config.initialize == desiredState.config.initialize %}
+        {% set initialtest = currentState.config.initialize | default('') == desiredState.config.initialize %}
 
         {# Embedding model test #}
-        {% set embmodtest = currentState.config.embmodel == desiredState.config.embmodel %}
+        {% set embmodtest = currentState.config.embmodel | default('') == desiredState.config.embmodel %}
 
         {#Search columns#}
-        {%set searchcoltest = desiredState.config.searchcol.name == currentState.config.searchcol.name%}
+        {%set searchcoltest = desiredState.config.searchcol.name == (currentState.config.searchcol | default({})).name | default('') %}
 
         {#Attribute columns#}
         {%set desiredattrcolarray = desiredState.config.attrcol.get('items') | map(attribute='acolname.name')| list %}
-        {%set currentattrcolarray = currentState.config.attrcol.get('items') | map(attribute='acolname.name')| list %}
+        {%set currentattrcolarray = (currentState.config.attrcol | default({})).get('items', []) | map(attribute='acolname.name')| list %}
         {%set attrcoltest = desiredattrcolarray == currentattrcolarray %}
 
         {#If any of the above are false then a CREATE must be run#}
@@ -121,7 +140,7 @@ does not permit copying or modification for any other purpose.
         {# Identify config changes that would only result in ALTER #}
     {% if createTest == false %}
         {% if desiredState.parameters.searchServiceWarehouse == 'DEV ENVIRONMENT' %}
-            {% set warehouseTest = currentState.config.warehouseName == desiredState.config.warehouseName %}
+            {% set warehouseTest = currentState.config.warehouseName | default('') == desiredState.config.warehouseName %}
         {% else %}
             {% set warehouseTest = currentState.parameters.searchServiceWarehouse == desiredState.parameters.searchServiceWarehouse %}
         {% endif %}
@@ -239,13 +258,13 @@ does not permit copying or modification for any other purpose.
 
         {# Current Warehouse#}
         {% if currentState.parameters.searchServiceWarehouse == 'DEV ENVIRONMENT' %}
-            {% set currentCSSWarehouse = currentState.config.warehouseName %}
+            {% set currentCSSWarehouse = currentState.config.warehouseName | default('') %}
         {% else %}
             {% set currentCSSWarehouse = currentState.parameters.searchServiceWarehouse %}
         {% endif %}
 
         {# Current Downstream Option or Lag Specification#}
-        {% if currentState.config.downstreamOption == true %}
+        {% if currentState.config.downstreamOption | default(false) == true %}
             {% set currentCSSLagSpecification = 'DOWNSTREAM' %}
         {% else %}
             {% set currentCSSLagValue = currentState.config.lagSpecification.get('items') | map(attribute='lagValue') | first %}
@@ -299,7 +318,8 @@ does not permit copying or modification for any other purpose.
     {% set targetCSSSchema = ref_no_link(currentState.node.location.name, currentState.node.name).split('.')[1] %} 
     {% set fullyQualifiedTargetCSSName = ref_no_link(currentState.node.location.name, currentState.node.name) %}
 
-    {{ stage('Drop Cortex Search Service') }}
-    DROP CORTEX SEARCH SERVICE IF EXISTS {{ fullyQualifiedTargetCSSName }}			  
+    {{ stage('Drop ' + ref_no_link(currentState.node.location.name, currentState.node.name)) }}
+    {%- set materialization = dropMaterialization(currentState.node.materializationType) %}
+    DROP {{ materialization }} {{ ref_no_link(currentState.node.location.name, currentState.node.name) }}			  
 
 {%endif%}

@@ -1,65 +1,54 @@
 fileVersion: 1
-id: f5c13cd7-c48c-4db7-b419-cadafbc04f3f
-name: CSS_AIRBNB_JSON1
+id: a9f21d9c-bae2-4b7f-a143-66ba9b72c351
+name: CSS_AIRBNB_JSON
 operation:
   config:
-    allcol: true
+    allcol: false
     attrcol:
       items:
-        - acolname:
-            columnCounter: 007ebe89-587d-489e-9cb4-a9a96fc313d7
-            stepCounter: f5c13cd7-c48c-4db7-b419-cadafbc04f3f
-        - acolname:
-            columnCounter: ba654960-d3fa-43a5-980e-8d5a4eed5e4f
-            stepCounter: f5c13cd7-c48c-4db7-b419-cadafbc04f3f
+        - {}
     colpreview:
       items:
-        - columnName: null
-    createcortex: true
-    embmodel: snowflake-arctic-embed-m-v1.5
+        - {}
+    createcortex: false
+    embmodel: ""
     excss: false
     filcrit:
       items:
-        - filcolname:
-            columnCounter: ba654960-d3fa-43a5-980e-8d5a4eed5e4f
-            stepCounter: f5c13cd7-c48c-4db7-b419-cadafbc04f3f
-          filcolval: Private room
-          mopt: eq
-    filtoggle: true
+        - {}
+    filtoggle: false
     initialize: ON_CREATE
     lagSpecification:
       items:
-        - lagPeriod: Hours
-          lagValue: "600"
+        - {}
+    locCSS: ""
+    lopt: and
     mulfilcon: false
+    namCSS: ""
     numboost: false
     numericboost:
       items:
         - {}
-    query1: Less costlier
+    query1: ""
     querycortex: false
-    searchcol:
-      columnCounter: 3f10cd41-6c32-410d-a804-d3a9bb1e6768
-      stepCounter: f5c13cd7-c48c-4db7-b419-cadafbc04f3f
     timdec: false
     timedecay:
       items:
         - {}
-    undefined: false
     warehouseName: dev_wh_xs
   database: ""
   deployEnabled: true
   description: ""
   isMultisource: false
   locationName: SOURCE
-  materializationType: table
+  materializationType: cortex search service
   metadata:
     appliedNodeTests: []
     columns:
       - appliedColumnTests: {}
         columnReference:
-          columnCounter: 3eb2eed3-8da6-49bb-adac-33b88ee2adc6
-          stepCounter: f5c13cd7-c48c-4db7-b419-cadafbc04f3f
+          columnCounter: 9b87c59b-b656-4bf0-b352-b07afc473d2b
+          stepCounter: a9f21d9c-bae2-4b7f-a143-66ba9b72c351
         config: {}
         dataType: VARCHAR(16777216)
         description: ""
@@ -72,8 +61,8 @@ operation:
             transform: ""
       - appliedColumnTests: {}
         columnReference:
-          columnCounter: 007ebe89-587d-489e-9cb4-a9a96fc313d7
-          stepCounter: f5c13cd7-c48c-4db7-b419-cadafbc04f3f
+          columnCounter: b0582ba0-11d2-4216-80e7-684e789cb629
+          stepCounter: a9f21d9c-bae2-4b7f-a143-66ba9b72c351
         config: {}
         dataType: ARRAY
         description: ""
@@ -86,8 +75,8 @@ operation:
             transform: ""
       - appliedColumnTests: {}
         columnReference:
-          columnCounter: 1772d850-11e9-4bc2-aac7-ad55d5473e1d
-          stepCounter: f5c13cd7-c48c-4db7-b419-cadafbc04f3f
+          columnCounter: 25471780-f18f-42ed-831d-3214388b0c88
+          stepCounter: a9f21d9c-bae2-4b7f-a143-66ba9b72c351
         config: {}
         dataType: VARCHAR(16777216)
         description: ""
@@ -100,8 +89,8 @@ operation:
             transform: ""
       - appliedColumnTests: {}
         columnReference:
-          columnCounter: 02771079-8a3c-493a-bb7d-5dfb36bc4f5d
-          stepCounter: f5c13cd7-c48c-4db7-b419-cadafbc04f3f
+          columnCounter: 090b8c76-d864-46c4-984e-f292d002c897
+          stepCounter: a9f21d9c-bae2-4b7f-a143-66ba9b72c351
         config: {}
         dataType: NUMBER(5,0)
         description: ""
@@ -114,8 +103,8 @@ operation:
             transform: ""
       - appliedColumnTests: {}
         columnReference:
-          columnCounter: ba654960-d3fa-43a5-980e-8d5a4eed5e4f
-          stepCounter: f5c13cd7-c48c-4db7-b419-cadafbc04f3f
+          columnCounter: d5f2a8a1-8dbf-4f49-8c00-5b40bbb21cfd
+          stepCounter: a9f21d9c-bae2-4b7f-a143-66ba9b72c351
         config: {}
         dataType: VARCHAR(16777216)
         description: ""
@@ -128,8 +117,8 @@ operation:
             transform: ""
       - appliedColumnTests: {}
         columnReference:
-          columnCounter: 26b305fb-e124-447c-bd64-290f42938b6c
-          stepCounter: f5c13cd7-c48c-4db7-b419-cadafbc04f3f
+          columnCounter: b9b5ed92-7cb5-488e-b277-cca03f612fea
+          stepCounter: a9f21d9c-bae2-4b7f-a143-66ba9b72c351
         config: {}
         dataType: VARCHAR(16777216)
         description: ""
@@ -142,8 +131,8 @@ operation:
             transform: ""
       - appliedColumnTests: {}
         columnReference:
-          columnCounter: 3471dda5-8ba9-4937-85ef-90aed811752d
-          stepCounter: f5c13cd7-c48c-4db7-b419-cadafbc04f3f
+          columnCounter: 63335f22-08ac-4f90-bc5a-0465087bdec9
+          stepCounter: a9f21d9c-bae2-4b7f-a143-66ba9b72c351
         config: {}
         dataType: VARCHAR(16777216)
         description: ""
@@ -156,8 +145,8 @@ operation:
             transform: ""
       - appliedColumnTests: {}
         columnReference:
-          columnCounter: 3f10cd41-6c32-410d-a804-d3a9bb1e6768
-          stepCounter: f5c13cd7-c48c-4db7-b419-cadafbc04f3f
+          columnCounter: 74e0926d-3146-425d-8d87-bc64a4754184
+          stepCounter: a9f21d9c-bae2-4b7f-a143-66ba9b72c351
         config: {}
         dataType: STRING
         description: ""
@@ -171,17 +160,18 @@ operation:
     cteString: ""
     enabledColumnTestIDs: []
     sourceMapping:
-      - aliases: {}
+      - aliases:
+          STG_AIRBNB_JSON: cc62fd4e-1cc2-4652-ba7b-47670f52feba
         customSQL:
           customSQL: ""
         dependencies:
-          - locationName: SOURCE
+          - locationName: TARGET
             nodeName: STG_AIRBNB_JSON
         join:
-          joinCondition: FROM {{ ref('SOURCE', 'STG_AIRBNB_JSON') }} "STG_AIRBNB_JSON"
-        name: CSS_AIRBNB_JSON1
+          joinCondition: FROM {{ ref('TARGET', 'STG_AIRBNB_JSON') }} "STG_AIRBNB_JSON"
+        name: CSS_AIRBNB_JSON
         noLinkRefs: []
-  name: CSS_AIRBNB_JSON1
+  name: CSS_AIRBNB_JSON
   overrideSQL: false
   schema: ""
   sqlType: "499"

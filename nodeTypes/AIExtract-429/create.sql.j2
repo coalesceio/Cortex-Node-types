@@ -176,6 +176,7 @@ does not permit copying or modification for any other purpose.
                 {% set nsVariables.storageLocationTest = false %}
                  {% endif %}
             
+            
 
             {# Rename / Move Object #}
             {% if (nsVariables.storageLocationTest == false or currentState.node.name != desiredState.node.name or currentDatabaseSchema != desiredDatabaseSchema ) %}
@@ -185,9 +186,9 @@ does not permit copying or modification for any other purpose.
             {% endif %}
 
             {# Change table description #}
-            {% if (nsVariables.nodeCommentTest == false or currentState.node.description != desiredState.node.description) %}
-                 {{ stage('Change table description') }}
-                 ALTER TABLE {{ ref_no_link(desiredState.node.location.name, desiredState.node.name) }}
+            {% if currentState.node.description != desiredState.node.description %}
+                {{ stage('Change table description') }}
+                ALTER TABLE {{ ref_no_link(desiredState.node.location.name, desiredState.node.name) }}
                 SET COMMENT = '{{ desiredState.node.description | escape }}'
             {% endif %}
 

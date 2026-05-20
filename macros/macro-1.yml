@@ -202,25 +202,6 @@ macroString: |+
       {%- endif -%}
   {% endmacro %}
 
-  {####################################################################################################################################
-  Input: serverlessSize (string)
-
-  Output: Returns the server size only (e.g., XSMALL).
-
-  Description:
-      Handles both old and new formats safely.
-      If the value contains a '.', it returns the part after the dot.
-      If there is no '.', it returns the value as-is.
-      Returns nothing if input is missing.
-  ######################################################################################################################################}
-  {%- macro getServerSize(serverlessSize) %}
-
-      {%- if serverlessSize %}
-          {%- set parts = serverlessSize.split('.') %}
-          {{ parts[-1] }}
-      {%- endif %}
-
-  {%- endmacro %}
 
 
   {###########################################################################################

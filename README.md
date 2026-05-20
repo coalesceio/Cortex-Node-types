@@ -635,6 +635,14 @@ Task changes:
 
 If the nodes are redeployed with no changes compared to previous deployment,then no stages are executed
 
+#### Node Type Switching
+
+Node Type switching is supported starting from Coalesce version **7.28+**.
+
+From this version onward, a node’s materialization type can be switched from one supported type to another, subject to certain limitations.
+
+For more info click here - [Node Type Switching Logic and Limitations](#node-type-switching-logic)
+
 ### AI Extract Undeployment
 
 When node is deleted, the following stages execute:
@@ -769,6 +777,14 @@ Other column or table level changes like data type change, column name change, c
 
 If the nodes are redeployed with no changes compared to previous deployment,then no stages are executed
 
+#### Node Type Switching
+
+Node Type switching is supported starting from Coalesce version **7.28+**.
+
+From this version onward, a node’s materialization type can be switched from one supported type to another, subject to certain limitations.
+
+For more info click here - [Node Type Switching Logic and Limitations](#node-type-switching-logic)
+
 ### Cortex Search Service Undeployment
 
 A Cortex Search Service will be dropped if all of these are true:
@@ -781,7 +797,35 @@ A Cortex Search Service will be dropped if all of these are true:
 |-----------|----------------|
 | **Drop Create Search Service** | Removes table from target environment |
 
----
+-----------------
+
+#### Node Type Switching Logic
+| Current MaterializationType | Desired MaterializationType | Stage |
+|------------|--------|-------|
+| Any Other | Table(AI EXTRACT) | 1. Warning (if applicable)<br/>2. Drop <br/> 3. Create |
+| Any Other | Transient Table(AI EXTRACT) | 1. Warning (if applicable)<br/>2. Drop <br/> 3. Create |
+| Any Other | Cortex Search Service | 1. Warning (if applicable)<br/>2. Drop <br/> 3. Create |
+
+
+#### ⚠ Limitations of Node Type Switching (Current)
+
+| # | Current Materialization | Desired Materialization | Limitation |
+|---|--------------------------|--------------------------|------------|
+| 1 | Older Version Iceberg Table | Table | Results in `ALTER` failure. Iceberg tables require `ALTER ICEBERG TABLE`. Works only if latest package (with switching support) is already used. |
+| 2 | Older Version<br/>Create or Alter-View<br/>Data Quality-DMF | Any(except View) | Switch fails unless current node uses latest package supporting node type switching. |
+| 3 | First Node in Pipeline | Any | Not supported. First node is foundational and switching may disrupt the pipeline. |
+| 4 | External Packages | Any | Not supported as they typically act as first nodes in the pipeline. |
+| 5 | Functional Packages | Any | Not supported due to column re-sync behavior which may cause schema inconsistencies. |
+| 6 | Dynamic Dimension / LRV | Any | System columns must be manually dropped before redeployment. |
+| 7 | Any | Any Other | After performing node switching, the `Create/Run` in Workspace browser may not work as expected due to changes in the node’s materialization type. |
+| 8 | Table(Data Profiling) | Table | This may result in ALTER failure unless latest package is used(with system column removal support)**(Pending Release)** |
+| 9 | Any | Any Stream-based Node (Stream, Stream & I/M, Delta Merge, or Directory Stream) | When switching to a Stream-based node, do not select **'Create At Existing Stream'** from the Redeployment Behavior; this causes deployment errors. Use **'Create or Replace'** or **'Create If Not Exists'**. |
+| 10 | Stream | Any Other (and vice versa) | Snowflake CDC metadata columns (`METADATA$ACTION`, `METADATA$ISUPDATE`, `METADATA$ROW_ID`) are not automatically managed. They are neither removed nor added when there's a node type switch |
+| 11 | Any Other | AI EXTRACT | Existing table columns are not removed automatically. Such columns need to be manually dropped before redeployment. |
+| 12 | Any Other |  AI EXTRACT | When switching to the AI EXTRACT node, do not select **'Create At Existing Stream'** from the Redeployment Behavior; this causes deployment errors. Use **'Create or Replace'** or **'Create If Not Exists'**. |
+
+--------------
+
 
 ## Code
 
@@ -822,8 +866,8 @@ A Cortex Search Service will be dropped if all of these are true:
 
 ### Cortex Search Service
 
-*[Node_definition](https://github.com/coalesceio/Cortex-Node-types/blob/main/nodeTypes/Cortexsearchservice-499/definition.yml)
-*[Create_Template](https://github.com/coalesceio/Cortex-Node-types/blob/main/nodeTypes/Cortexsearchservice-499/create.sql.j2)
-*[Run_Template](https://github.com/coalesceio/Cortex-Node-types/blob/main/nodeTypes/Cortexsearchservice-499/run.sql.j2)
+* [Node_definition](https://github.com/coalesceio/Cortex-Node-types/blob/main/nodeTypes/Cortexsearchservice-499/definition.yml)
+* [Create_Template](https://github.com/coalesceio/Cortex-Node-types/blob/main/nodeTypes/Cortexsearchservice-499/create.sql.j2)
+* [Run_Template](https://github.com/coalesceio/Cortex-Node-types/blob/main/nodeTypes/Cortexsearchservice-499/run.sql.j2)
 
 [Macros](https://github.com/coalesceio/Cortex-Node-types/blob/main/macros/macro-1.yml)

@@ -21,7 +21,7 @@ operation:
     optionJsonToggle: false
     optionsJson: ""
     overlapExecToggle: false
-    redeploymentBehavior: Create At Existing Stream
+    redeploymentBehavior: Create or Replace
     retryAttmpt: "0"
     scheduleCRON: 5 0-23 * * * America/Los_Angeles
     schedulePeriodOption: Minutes

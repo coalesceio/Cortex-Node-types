@@ -435,7 +435,7 @@ This is executed in two stages:
 
 ## AI Extract
 
-### AI_EXTRACT (Document AI legacy models)
+### AI_EXTRACT (document AI Legacy Models)
 
 > **DECOMMISSIONED FEATURE**
 >
@@ -446,7 +446,7 @@ The Coalesce AI Extract UDN is a node that allows you to develop and deploy a do
 AI_EXTRACT is a modern Cortex AI function that serves as the successor to the legacy AI Extract workflow. It uses a high-performance vision-language model (Arctic-Extract) to identify and retrieve entities, lists, and tables from unstructured files like invoices, receipts, or financial statements. More information about AI_EXTRACT can be found in the official [Snowflake’s Introduction to AI_EXTRACT](https://docs.snowflake.com/en/sql-reference/functions/ai_extract).
 
 
-### Usage of AI Extract node type
+### UsaGE Of AI Extract Node Type
 * Set up the required objects and privileges
 * Provide the stage path and file details for the documents to be processed within the configuration section of the node.
 * The node creates a pipeline to process documents
@@ -631,7 +631,7 @@ Task changes:
 | **Create Task** | Creates scheduled task |
 | **Resume Task**| Resumes the task|
 
-### Redeployment with no changes 
+### Redeployment With No Changes 
 
 If the nodes are redeployed with no changes compared to previous deployment, then no stages are executed
 
@@ -659,7 +659,7 @@ The Cortex Search UDN enables low-latency, high-quality “fuzzy” search over 
 
 [Cortex Search](https://docs.snowflake.com/en/user-guide/snowflake-cortex/cortex-search/cortex-search-overview) gets you up and running with a hybrid (vector and keyword) search engine on your text data in minutes, without having to worry about embedding, infrastructure maintenance, search quality parameter tuning, or ongoing index refreshes.
 
-### Usage of Cortex Search Service node type
+### UsaGE Of CORtex Search Service Node Type
 * Set up the required objects and privileges
 * To create Cortex Search Service,keep 'Create Cortex Search Service' toggle ON.Provide schedule and advanced options.Hit create button and CSS is created
 * To preview/query the Cortex Search Service,keep 'Preview Cortex Search Service' toggle ON.Provide the necessary configs.Hit run button and a target view with the search results
@@ -773,7 +773,7 @@ These execute the two stages:
 
 Other column or table level changes like data type change, column name change, column addition/deletion or config level changes result in a `CREATE` statement.
 
-### Redeployment with no changes 
+### Redeployment With No Changes 
 
 If the nodes are redeployed with no changes compared to previous deployment, then no stages are executed
 

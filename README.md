@@ -29,8 +29,8 @@ The ML Forecast has two configuration groups:
 |-------------|-----------------|
 | **Storage Location** | Storage Location where the Forecast table will be created |
 | **Node Type** | Name of template used to create node objects |
-| **Description** | A description of the node's purpose |
-| **Deploy Enabled** | If TRUE the node will be deployed / redeployed when changes are detected<br/>If FALSE the node will not be deployed or will be dropped during redeployment |
+| **Description** | A description of the Node's purpose |
+| **Deploy Enabled** | If TRUE the node will be deployed or redeployed when changes are detected<br/>If FALSE the node will not be deployed or will be dropped during redeployment |
 
 #### Forecast Model Input
 
@@ -125,8 +125,8 @@ The ML Anomaly has two configuration groups:
 |-------------|-----------------|
 | **Storage Location** | Storage Location where the Table will be created |
 | **Node Type** | Name of template used to create node objects |
-| **Description** | A description of the node's purpose |
-| **Deploy Enabled** | If TRUE the node will be deployed / redeployed when changes are detected<br/>If FALSE the node will not be deployed or will be dropped during redeployment |
+| **Description** | A description of the Node's purpose |
+| **Deploy Enabled** | If TRUE the node will be deployed or redeployed when changes are detected<br/>If FALSE the node will not be deployed or will be dropped during redeployment |
 
 #### ML Anomaly Model Input
 
@@ -220,8 +220,8 @@ The LLMs Cortex function has three configuration groups:
 |-------------|-----------------|
 | **Storage Location** | Storage Location where the Table will be created |
 | **Node Type** | Name of template used to create node objects |
-| **Description** | A description of the node's purpose |
-| **Deploy Enabled** | If TRUE the node will be deployed / redeployed when changes are detected<br/>If FALSE the node will not be deployed or will be dropped during redeployment |
+| **Description** | A description of the Node's purpose |
+| **Deploy Enabled** | If TRUE the node will be deployed or redeployed when changes are detected<br/>If FALSE the node will not be deployed or will be dropped during redeployment |
 
 #### LLM Cortex Functions Options
 
@@ -311,8 +311,8 @@ The Top Insights node has two configuration groups:
 |-------------|-----------------|
 | **Storage Location** | Storage Location where the Table will be created |
 | **Node Type** | Name of template used to create node objects |
-| **Description** | A description of the node's purpose |
-| **Deploy Enabled** | If TRUE the node will be deployed / redeployed when changes are detected<br/>If FALSE the node will not be deployed or will be dropped during redeployment |
+| **Description** | A description of the Node's purpose |
+| **Deploy Enabled** | If TRUE the node will be deployed or redeployed when changes are detected<br/>If FALSE the node will not be deployed or will be dropped during redeployment |
 
 #### Top Insights Configuration
 
@@ -378,8 +378,8 @@ The Classification node has two configuration groups:
 |-------------|-----------------|
 | **Storage Location** | Storage Location where the Table will be created |
 | **Node Type** | Name of template used to create node objects |
-| **Description** | A description of the node's purpose |
-| **Deploy Enabled** | If TRUE the node will be deployed / redeployed when changes are detected<br/>If FALSE the node will not be deployed or will be dropped during redeployment |
+| **Description** | A description of the Node's purpose |
+| **Deploy Enabled** | If TRUE the node will be deployed or redeployed when changes are detected<br/>If FALSE the node will not be deployed or will be dropped during redeployment |
 
 #### Classification Model Input
 
@@ -435,7 +435,7 @@ This is executed in two stages:
 
 ## AI Extract
 
-### AI_EXTRACT (Document AI legacy models)
+### AI_EXTRACT (document AI Legacy Models)
 
 > **DECOMMISSIONED FEATURE**
 >
@@ -446,7 +446,7 @@ The Coalesce AI Extract UDN is a node that allows you to develop and deploy a do
 AI_EXTRACT is a modern Cortex AI function that serves as the successor to the legacy AI Extract workflow. It uses a high-performance vision-language model (Arctic-Extract) to identify and retrieve entities, lists, and tables from unstructured files like invoices, receipts, or financial statements. More information about AI_EXTRACT can be found in the official [Snowflake’s Introduction to AI_EXTRACT](https://docs.snowflake.com/en/sql-reference/functions/ai_extract).
 
 
-### Usage of AI Extract node type
+### UsaGE Of AI Extract Node Type
 * Set up the required objects and privileges
 * Provide the stage path and file details for the documents to be processed within the configuration section of the node.
 * The node creates a pipeline to process documents
@@ -474,7 +474,7 @@ The AI Extract node has the following configuration groups:
 |-------------|-----------------|
 | **Storage Location** | Storage Location where the stream,table,task will be created |
 | **Node Type** | Name of template used to create node objects |
-| **Deploy Enabled** | If TRUE the node will be deployed / redeployed when changes are detected<br/>If FALSE the node will not be deployed or will be dropped during redeployment |
+| **Deploy Enabled** | If TRUE the node will be deployed or redeployed when changes are detected<br/>If FALSE the node will not be deployed or will be dropped during redeployment |
 
 #### AI Extract General Options
 
@@ -631,9 +631,9 @@ Task changes:
 | **Create Task** | Creates scheduled task |
 | **Resume Task**| Resumes the task|
 
-### Redeployment with no changes 
+### Redeployment With No Changes 
 
-If the nodes are redeployed with no changes compared to previous deployment,then no stages are executed
+If the nodes are redeployed with no changes compared to previous deployment, then no stages are executed
 
 #### Node Type Switching
 
@@ -641,7 +641,7 @@ Node Type switching is supported starting from Coalesce version **7.28+**.
 
 From this version onward, a node’s materialization type can be switched from one supported type to another, subject to certain limitations.
 
-For more info click here - [Node Type Switching Logic and Limitations](#node-type-switching-logic)
+For more information, see [Node Type Switching Logic and Limitations](#node-type-switching-logic)
 
 ### AI Extract Undeployment
 
@@ -659,7 +659,7 @@ The Cortex Search UDN enables low-latency, high-quality “fuzzy” search over 
 
 [Cortex Search](https://docs.snowflake.com/en/user-guide/snowflake-cortex/cortex-search/cortex-search-overview) gets you up and running with a hybrid (vector and keyword) search engine on your text data in minutes, without having to worry about embedding, infrastructure maintenance, search quality parameter tuning, or ongoing index refreshes.
 
-### Usage of Cortex Search Service node type
+### UsaGE Of CORtex Search Service Node Type
 * Set up the required objects and privileges
 * To create Cortex Search Service,keep 'Create Cortex Search Service' toggle ON.Provide schedule and advanced options.Hit create button and CSS is created
 * To preview/query the Cortex Search Service,keep 'Preview Cortex Search Service' toggle ON.Provide the necessary configs.Hit run button and a target view with the search results
@@ -685,7 +685,7 @@ The Cortex Search service node has the following configuration groups:
 |-------------|-----------------|
 | **Storage Location** | Storage Location where the stream,table,task will be created |
 | **Node Type** | Name of template used to create node objects |
-| **Deploy Enabled** | If TRUE the node will be deployed / redeployed when changes are detected<br/>If FALSE the node will not be deployed or will be dropped during redeployment |
+| **Deploy Enabled** | If TRUE the node will be deployed or redeployed when changes are detected<br/>If FALSE the node will not be deployed or will be dropped during redeployment |
 
 #### Cortex Search service General Options
 
@@ -773,9 +773,9 @@ These execute the two stages:
 
 Other column or table level changes like data type change, column name change, column addition/deletion or config level changes result in a `CREATE` statement.
 
-### Redeployment with no changes 
+### Redeployment With No Changes 
 
-If the nodes are redeployed with no changes compared to previous deployment,then no stages are executed
+If the nodes are redeployed with no changes compared to previous deployment, then no stages are executed
 
 #### Node Type Switching
 
@@ -783,7 +783,7 @@ Node Type switching is supported starting from Coalesce version **7.28+**.
 
 From this version onward, a node’s materialization type can be switched from one supported type to another, subject to certain limitations.
 
-For more info click here - [Node Type Switching Logic and Limitations](#node-type-switching-logic)
+For more information, see [Node Type Switching Logic and Limitations](#node-type-switching-logic)
 
 ### Cortex Search Service Undeployment
 

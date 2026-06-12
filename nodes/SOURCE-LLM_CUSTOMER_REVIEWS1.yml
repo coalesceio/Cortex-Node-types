@@ -13,7 +13,7 @@ operation:
             columnCounter: 6be35723-acb5-4900-b327-c3ff1e527ff1
             stepCounter: 43e6b499-a15e-4bbc-8d6b-a49c53902dc6
           modelName: claude-4-sonnet
-          promptText: Summarize this text
+          promptText: WHAT IS THE CAPITAL?
     completeby:
       items:
         - cpartColName:

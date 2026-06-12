@@ -1,6 +1,6 @@
 fileVersion: 1
-id: ef2610a5-7082-41c2-bdeb-bf1641c5ecb2
-name: PRODUCTFEEDBACK_
+id: d8f7b44f-64f6-4a49-99ca-3ebe80b13882
+name: CLIENTS_1
 operation:
   database: ""
   deployEnabled: true
@@ -13,77 +13,97 @@ operation:
           values: []
         appliedColumnTests: {}
         columnReference:
-          columnCounter: 31ac139f-1327-4f0a-b2b0-70dcedd49f9a
-          stepCounter: ef2610a5-7082-41c2-bdeb-bf1641c5ecb2
+          columnCounter: 20f5407b-1dcf-43de-b9bd-479f461e2e1c
+          stepCounter: d8f7b44f-64f6-4a49-99ca-3ebe80b13882
         config: {}
-        dataType: VARCHAR(50)
+        dataType: NUMBER(38,0)
         defaultValue: ""
         description: ""
-        name: USER_NAME
+        name: CLIENT_ID
         nullable: true
         primaryKey: false
+        sourceColumnReferences:
+          - columnReferences: []
+            transform: ""
+        transform: ""
         uniqueKey: false
       - acceptedValues:
           strictMatch: true
           values: []
         appliedColumnTests: {}
         columnReference:
-          columnCounter: 9004620d-f32e-4245-84f4-b5e464ed9db7
-          stepCounter: ef2610a5-7082-41c2-bdeb-bf1641c5ecb2
+          columnCounter: 317c89de-1ce2-4581-9c69-4609ec73208b
+          stepCounter: d8f7b44f-64f6-4a49-99ca-3ebe80b13882
         config: {}
         dataType: VARCHAR(16777216)
         defaultValue: ""
         description: ""
-        name: REVIEW_CONTENT
+        name: CLIENT_NAME
         nullable: true
         primaryKey: false
+        sourceColumnReferences:
+          - columnReferences: []
+            transform: ""
+        transform: ""
         uniqueKey: false
       - acceptedValues:
           strictMatch: true
           values: []
         appliedColumnTests: {}
         columnReference:
-          columnCounter: 5941568f-4226-41a3-a2ce-7c3717c59ec9
-          stepCounter: ef2610a5-7082-41c2-bdeb-bf1641c5ecb2
+          columnCounter: 009e9f65-566b-4289-91fb-ac3d146adb95
+          stepCounter: d8f7b44f-64f6-4a49-99ca-3ebe80b13882
         config: {}
-        dataType: VARCHAR(255)
+        dataType: VARCHAR(16777216)
         defaultValue: ""
         description: ""
-        name: REVIEW_CONTENT_JAPSTRING
+        name: EMAIL
         nullable: true
         primaryKey: false
+        sourceColumnReferences:
+          - columnReferences: []
+            transform: ""
+        transform: ""
         uniqueKey: false
       - acceptedValues:
           strictMatch: true
           values: []
         appliedColumnTests: {}
         columnReference:
-          columnCounter: 65ee3733-183b-478c-9723-6b33f8367c38
-          stepCounter: ef2610a5-7082-41c2-bdeb-bf1641c5ecb2
+          columnCounter: ed624f34-b13a-4d26-b765-b5170b58d368
+          stepCounter: d8f7b44f-64f6-4a49-99ca-3ebe80b13882
         config: {}
-        dataType: VARCHAR(255)
+        dataType: VARCHAR(16777216)
         defaultValue: ""
         description: ""
-        name: REVIEW_CONTENT_RUSSIANSTRING
+        name: REGION
         nullable: true
         primaryKey: false
+        sourceColumnReferences:
+          - columnReferences: []
+            transform: ""
+        transform: ""
         uniqueKey: false
       - acceptedValues:
           strictMatch: true
           values: []
         appliedColumnTests: {}
         columnReference:
-          columnCounter: fc433247-1ada-4122-afb0-f6f404d18185
-          stepCounter: ef2610a5-7082-41c2-bdeb-bf1641c5ecb2
+          columnCounter: 36c07272-a849-4718-9229-4dab3259aa8e
+          stepCounter: d8f7b44f-64f6-4a49-99ca-3ebe80b13882
         config: {}
-        dataType: VARCHAR(255)
+        dataType: TIMESTAMP_NTZ(9)
         defaultValue: ""
         description: ""
-        name: STATEMENTS
+        name: UPDATE_TIME
         nullable: true
         primaryKey: false
+        sourceColumnReferences:
+          - columnReferences: []
+            transform: ""
+        transform: ""
         uniqueKey: false
-  name: PRODUCTFEEDBACK_
+  name: CLIENTS_1
   schema: ""
   sqlType: Source
   type: sourceInput

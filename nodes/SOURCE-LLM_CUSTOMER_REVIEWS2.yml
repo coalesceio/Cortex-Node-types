@@ -1,0 +1,160 @@
+fileVersion: 1
+id: abd1e56c-6b04-4e4a-bf54-5f1d6c52e6a1
+name: LLM_CUSTOMER_REVIEWS2
+operation:
+  config:
+    aiCompleteFunction: true
+    aiExtractFunction: true
+    aiSentimentFunction: true
+    aiTranslateFunction: true
+    completeby:
+      items:
+        - cpartColName:
+            columnCounter: 1a360aa8-4dde-4462-aa8b-b150ae182b4c
+            stepCounter: abd1e56c-6b04-4e4a-bf54-5f1d6c52e6a1
+          modelName: claude-4-sonnet
+          promptText: Summarize this text
+    exby:
+      items:
+        - askque: what''s the Question ?
+          epartColName:
+            columnCounter: 88726656-201d-4490-be32-cfd600353f76
+            stepCounter: abd1e56c-6b04-4e4a-bf54-5f1d6c52e6a1
+    extractfunction: false
+    insertStrategy: INSERT
+    pby:
+      items:
+        - partColName: null
+    postSQL: ""
+    preSQL: ""
+    sby:
+      items:
+        - spartColName:
+            columnCounter: 1a360aa8-4dde-4462-aa8b-b150ae182b4c
+            stepCounter: abd1e56c-6b04-4e4a-bf54-5f1d6c52e6a1
+    sentimentfunction: false
+    summarizefunction: false
+    tby:
+      items:
+        - lanorder: "'ja', 'en'"
+          tpartColName:
+            columnCounter: 9b74c76c-a4b7-424f-88a2-fe9bf771532f
+            stepCounter: abd1e56c-6b04-4e4a-bf54-5f1d6c52e6a1
+    testsEnabled: true
+    translatefunction: false
+    truncateBefore: true
+    useLegacyFunctions: false
+  database: ""
+  deployEnabled: true
+  description: ""
+  isMultisource: false
+  locationName: SOURCE
+  materializationType: table
+  metadata:
+    appliedNodeTests: []
+    columns:
+      - appliedColumnTests: {}
+        columnReference:
+          columnCounter: c91c11a2-e9c1-4a81-9e38-b1d521e5bdac
+          stepCounter: abd1e56c-6b04-4e4a-bf54-5f1d6c52e6a1
+        config: {}
+        dataType: VARCHAR(50)
+        description: ""
+        name: USER_NAME
+        nullable: true
+        sourceColumnReferences:
+          - columnReferences:
+              - columnCounter: dc3c41c5-5af9-4f38-a53e-99a21a5c9c63
+                stepCounter: a40d1ed9-5941-472c-9602-d4e37d5515f8
+            transform: ""
+      - appliedColumnTests: {}
+        columnReference:
+          columnCounter: 1a360aa8-4dde-4462-aa8b-b150ae182b4c
+          stepCounter: abd1e56c-6b04-4e4a-bf54-5f1d6c52e6a1
+        config: {}
+        dataType: VARCHAR(16777216)
+        description: ""
+        name: REVIEW_CONTENT
+        nullable: true
+        sourceColumnReferences:
+          - columnReferences:
+              - columnCounter: 8ed66988-c85f-46f5-935b-1e51fbed6dd8
+                stepCounter: a40d1ed9-5941-472c-9602-d4e37d5515f8
+            transform: ""
+      - appliedColumnTests: {}
+        columnReference:
+          columnCounter: 9b74c76c-a4b7-424f-88a2-fe9bf771532f
+          stepCounter: abd1e56c-6b04-4e4a-bf54-5f1d6c52e6a1
+        config: {}
+        dataType: VARCHAR(255)
+        description: ""
+        name: REVIEW_CONTENT_JAPSTRING
+        nullable: true
+        sourceColumnReferences:
+          - columnReferences:
+              - columnCounter: 2353d2ed-6ced-41b6-acd6-4bb25dbeb065
+                stepCounter: a40d1ed9-5941-472c-9602-d4e37d5515f8
+            transform: ""
+      - appliedColumnTests: {}
+        columnReference:
+          columnCounter: 4d6f4bef-c32a-4961-b996-efdc7943c959
+          stepCounter: abd1e56c-6b04-4e4a-bf54-5f1d6c52e6a1
+        config: {}
+        dataType: VARCHAR(255)
+        description: ""
+        name: REVIEW_CONTENT_RUSSIANSTRING
+        nullable: true
+        sourceColumnReferences:
+          - columnReferences:
+              - columnCounter: 456f05b6-ceae-4601-ab01-8b3358b41b82
+                stepCounter: a40d1ed9-5941-472c-9602-d4e37d5515f8
+            transform: ""
+      - appliedColumnTests: {}
+        columnReference:
+          columnCounter: f6b189a6-bc21-4e64-a5ca-46452e4e1cd2
+          stepCounter: abd1e56c-6b04-4e4a-bf54-5f1d6c52e6a1
+        config: {}
+        dataType: VARCHAR(255)
+        description: ""
+        name: STATEMENTS
+        nullable: true
+        sourceColumnReferences:
+          - columnReferences:
+              - columnCounter: c49edf0c-e19c-4c25-bab9-73b48bcb7170
+                stepCounter: a40d1ed9-5941-472c-9602-d4e37d5515f8
+            transform: ""
+      - appliedColumnTests: {}
+        columnReference:
+          columnCounter: 88726656-201d-4490-be32-cfd600353f76
+          stepCounter: abd1e56c-6b04-4e4a-bf54-5f1d6c52e6a1
+        config: {}
+        dataType: VARCHAR(16777216)
+        description: ""
+        name: CAPITAL
+        nullable: true
+        sourceColumnReferences:
+          - columnReferences:
+              - columnCounter: 6b71de4d-69c8-4db2-8aed-afbefc4523bd
+                stepCounter: a40d1ed9-5941-472c-9602-d4e37d5515f8
+            transform: ""
+    cteString: ""
+    enabledColumnTestIDs: []
+    sourceMapping:
+      - aliases:
+          CUSTOMER_REVIEWS: a40d1ed9-5941-472c-9602-d4e37d5515f8
+        customSQL:
+          customSQL: ""
+        dependencies:
+          - locationName: SOURCE
+            nodeName: CUSTOMER_REVIEWS
+        join:
+          joinCondition: FROM {{ ref('SOURCE', 'CUSTOMER_REVIEWS') }} "CUSTOMER_REVIEWS"
+        name: LLM_CUSTOMER_REVIEWS2
+        noLinkRefs: []
+  name: LLM_CUSTOMER_REVIEWS2
+  overrideSQL: false
+  schema: ""
+  sqlType: "271"
+  type: sql
+  version: 1
+type: Node

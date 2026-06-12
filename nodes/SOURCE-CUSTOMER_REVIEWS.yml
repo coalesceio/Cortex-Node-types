@@ -1,6 +1,6 @@
 fileVersion: 1
-id: 376f6ff2-780c-432b-8b5c-d7c4fae7f823
-name: CUSTOMER_TRAINING
+id: a40d1ed9-5941-472c-9602-d4e37d5515f8
+name: CUSTOMER_REVIEWS
 operation:
   database: ""
   deployEnabled: true
@@ -13,13 +13,13 @@ operation:
           values: []
         appliedColumnTests: {}
         columnReference:
-          columnCounter: d229e013-e0e9-4fb3-a89e-c7524dde3888
-          stepCounter: 376f6ff2-780c-432b-8b5c-d7c4fae7f823
+          columnCounter: dc3c41c5-5af9-4f38-a53e-99a21a5c9c63
+          stepCounter: a40d1ed9-5941-472c-9602-d4e37d5515f8
         config: {}
-        dataType: NUMBER(6,0)
+        dataType: VARCHAR(50)
         defaultValue: ""
         description: ""
-        name: AGE_BAND
+        name: USER_NAME
         nullable: true
         primaryKey: false
         sourceColumnReferences:
@@ -32,13 +32,13 @@ operation:
           values: []
         appliedColumnTests: {}
         columnReference:
-          columnCounter: a8b66508-4f7d-426b-a1bb-19422429d915
-          stepCounter: 376f6ff2-780c-432b-8b5c-d7c4fae7f823
+          columnCounter: 8ed66988-c85f-46f5-935b-1e51fbed6dd8
+          stepCounter: a40d1ed9-5941-472c-9602-d4e37d5515f8
         config: {}
-        dataType: VARCHAR(18)
+        dataType: VARCHAR(16777216)
         defaultValue: ""
         description: ""
-        name: HOUSEHOLD_INCOME
+        name: REVIEW_CONTENT
         nullable: true
         primaryKey: false
         sourceColumnReferences:
@@ -51,13 +51,13 @@ operation:
           values: []
         appliedColumnTests: {}
         columnReference:
-          columnCounter: 849b3511-c2a8-44ed-9e05-1651f5aec3dd
-          stepCounter: 376f6ff2-780c-432b-8b5c-d7c4fae7f823
+          columnCounter: 2353d2ed-6ced-41b6-acd6-4bb25dbeb065
+          stepCounter: a40d1ed9-5941-472c-9602-d4e37d5515f8
         config: {}
-        dataType: VARCHAR(8)
+        dataType: VARCHAR(255)
         defaultValue: ""
         description: ""
-        name: MARITAL_STATUS
+        name: REVIEW_CONTENT_JAPSTRING
         nullable: true
         primaryKey: false
         sourceColumnReferences:
@@ -70,13 +70,13 @@ operation:
           values: []
         appliedColumnTests: {}
         columnReference:
-          columnCounter: ed6e6152-dd42-45e5-9e2f-d11afe82fe35
-          stepCounter: 376f6ff2-780c-432b-8b5c-d7c4fae7f823
+          columnCounter: 456f05b6-ceae-4601-ab01-8b3358b41b82
+          stepCounter: a40d1ed9-5941-472c-9602-d4e37d5515f8
         config: {}
-        dataType: FLOAT
+        dataType: VARCHAR(255)
         defaultValue: ""
         description: ""
-        name: HOUSEHOLD_SIZE
+        name: REVIEW_CONTENT_RUSSIANSTRING
         nullable: true
         primaryKey: false
         sourceColumnReferences:
@@ -89,13 +89,13 @@ operation:
           values: []
         appliedColumnTests: {}
         columnReference:
-          columnCounter: 87f97008-6ed8-4d40-bb3f-704e4fe8d241
-          stepCounter: 376f6ff2-780c-432b-8b5c-d7c4fae7f823
+          columnCounter: c49edf0c-e19c-4c25-bab9-73b48bcb7170
+          stepCounter: a40d1ed9-5941-472c-9602-d4e37d5515f8
         config: {}
-        dataType: VARCHAR(6)
+        dataType: VARCHAR(255)
         defaultValue: ""
         description: ""
-        name: SEGMENT
+        name: STATEMENTS
         nullable: true
         primaryKey: false
         sourceColumnReferences:
@@ -103,7 +103,26 @@ operation:
             transform: ""
         transform: ""
         uniqueKey: false
-  name: CUSTOMER_TRAINING
+      - acceptedValues:
+          strictMatch: true
+          values: []
+        appliedColumnTests: {}
+        columnReference:
+          columnCounter: 6b71de4d-69c8-4db2-8aed-afbefc4523bd
+          stepCounter: a40d1ed9-5941-472c-9602-d4e37d5515f8
+        config: {}
+        dataType: VARCHAR(16777216)
+        defaultValue: ""
+        description: ""
+        name: CAPITAL
+        nullable: true
+        primaryKey: false
+        sourceColumnReferences:
+          - columnReferences: []
+            transform: ""
+        transform: ""
+        uniqueKey: false
+  name: CUSTOMER_REVIEWS
   schema: ""
   sqlType: Source
   type: sourceInput

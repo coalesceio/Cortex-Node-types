@@ -54,7 +54,9 @@
 {%- set quecol = []  -%}
 {%- set translatecol = []  -%}
 {%- set langcol = []  -%}
-
+{%- set completecol = [] -%}
+{%- set promptcol = [] -%}
+{%- set modelcol = [] -%}
 
 
 {% if config.summarizefunction %}
@@ -85,28 +87,73 @@
 {% endif %}
 {% set seq = extractcol + quecol if extractcol is defined and quecol is defined else [] %}
 
+{% if config.aiCompleteFunction and config.cby %}
+    {%- for i in config.cby.get('items', []) -%}
+        {% set completecol = completecol.append(i.cpartColName.name) %}
+        {% set promptcol = promptcol.append(i.promptText | escape) %}
+        {% set modelcol = modelcol.append(i.modelName) %}
+    {%- endfor %}
+{% endif %}
 
 SELECT
 {% for col in source.columns %}
     {% if col.name in sumcol %}
         SNOWFLAKE.CORTEX.SUMMARIZE({{ get_source_transform(col) }}) AS "{{ col.name }}"
+
     {% elif col.name in senticol %}
-        SNOWFLAKE.CORTEX.SENTIMENT({{ get_source_transform(col) }}) AS "{{ col.name }}"	
-	{% elif col.name in translatecol %}
+        {% if config.useLegacyFunctions %}
+            SNOWFLAKE.CORTEX.SENTIMENT({{ get_source_transform(col) }})
+        {% else %}
+           TO_VARCHAR(
+		AI_SENTIMENT({{ get_source_transform(col) }})
+		)
+        {% endif %} AS "{{ col.name }}"
+
+    {% elif col.name in translatecol %}
         {% set col_index = translatecol.index(col.name) %}
-		SNOWFLAKE.CORTEX.TRANSLATE({{ get_source_transform(col) }}, {{ langcol[col_index] }}) AS "{{ col.name }}"
-		
-	{% elif col.name in extractcol %}
+        {% if config.useLegacyFunctions %}
+            SNOWFLAKE.CORTEX.TRANSLATE(
+                {{ get_source_transform(col) }},
+                {{ langcol[col_index] }}
+            )
+        {% else %}
+            AI_TRANSLATE(
+                {{ get_source_transform(col) }},
+                {{ langcol[col_index] }}
+            )
+        {% endif %} AS "{{ col.name }}"
+
+    {% elif col.name in extractcol %}
         {% set col_index1 = extractcol.index(col.name) %}
-		SNOWFLAKE.CORTEX.EXTRACT_ANSWER({{ get_source_transform(col) }}, '''{{quecol[col_index1]}}''') AS "{{ col.name }}"
+        {% if config.useLegacyFunctions %}
+            SNOWFLAKE.CORTEX.EXTRACT_ANSWER(
+                {{ get_source_transform(col) }},
+                '''{{ quecol[col_index1] }}'''
+            )
+        {% else %}
+            AI_EXTRACT(
+                {{ get_source_transform(col) }},
+                {'answer':'{{ quecol[col_index1] }}'}
+            )
+        {% endif %} AS "{{ col.name }}"
 		
-    {% else %} 
+	{% elif col.name in completecol %}
+    {% set col_index2 = completecol.index(col.name) %}
+
+    AI_COMPLETE(
+        '{{ modelcol[col_index2] }}',
+        CONCAT(
+            '{{ promptcol[col_index2] }}',
+            ' ',
+            {{ get_source_transform(col) }}
+        )
+    ) AS "{{ col.name }}"
+
+    {% else %}
         {{ get_source_transform(col) }} AS "{{ col.name }}"
     {% endif %}
     {%- if not loop.last -%}, {% endif %}
 {% endfor %}
-
-
 
 
 {{ source.join }}

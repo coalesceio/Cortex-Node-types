@@ -233,5 +233,23 @@ metadata:
 
         isRequired: false
         enableIf: '{% if config.aiClassifyFunction %} true {% else %} false {% endif %}'
+
+      - displayName: AI_FILTER
+        attributeName: aiFilterFunction
+        type: toggleButton
+        default: false
+        enableIf: '{% if not config.useLegacyFunctions %} true {% else %} false {% endif %}'
+
+      - type: tabular
+        displayName: 'AI Filter Configuration'
+        attributeName: flby
+        columns:
+          - type: columnDropdownSelector
+            displayName: Column Name
+            attributeName: filterColName
+            isRequired: true
+
+        isRequired: false
+        enableIf: '{% if config.aiFilterFunction %} true {% else %} false {% endif %}'
 name: Cortex Functions
 type: NodeType

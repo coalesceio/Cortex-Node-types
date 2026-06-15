@@ -1,5 +1,5 @@
 fileVersion: 1
-id: a40d1ed9-5941-472c-9602-d4e37d5515f8
+id: e06d64a8-bac5-4b9f-88bf-6f25972c33fd
 name: CUSTOMER_REVIEWS
 operation:
   database: ""
@@ -13,8 +13,8 @@ operation:
           values: []
         appliedColumnTests: {}
         columnReference:
-          columnCounter: dc3c41c5-5af9-4f38-a53e-99a21a5c9c63
-          stepCounter: a40d1ed9-5941-472c-9602-d4e37d5515f8
+          columnCounter: cadc7369-519b-48ff-a8c4-e93d8f45034f
+          stepCounter: e06d64a8-bac5-4b9f-88bf-6f25972c33fd
         config: {}
         dataType: VARCHAR(50)
         defaultValue: ""
@@ -32,8 +32,8 @@ operation:
           values: []
         appliedColumnTests: {}
         columnReference:
-          columnCounter: 8ed66988-c85f-46f5-935b-1e51fbed6dd8
-          stepCounter: a40d1ed9-5941-472c-9602-d4e37d5515f8
+          columnCounter: 1e96c9a5-fcc8-4e0e-85ea-1aa6dc7a4b7c
+          stepCounter: e06d64a8-bac5-4b9f-88bf-6f25972c33fd
         config: {}
         dataType: VARCHAR(16777216)
         defaultValue: ""
@@ -51,8 +51,8 @@ operation:
           values: []
         appliedColumnTests: {}
         columnReference:
-          columnCounter: 2353d2ed-6ced-41b6-acd6-4bb25dbeb065
-          stepCounter: a40d1ed9-5941-472c-9602-d4e37d5515f8
+          columnCounter: 7a6cca36-9ca7-475f-8bfe-05983db6f65b
+          stepCounter: e06d64a8-bac5-4b9f-88bf-6f25972c33fd
         config: {}
         dataType: VARCHAR(255)
         defaultValue: ""
@@ -70,8 +70,8 @@ operation:
           values: []
         appliedColumnTests: {}
         columnReference:
-          columnCounter: 456f05b6-ceae-4601-ab01-8b3358b41b82
-          stepCounter: a40d1ed9-5941-472c-9602-d4e37d5515f8
+          columnCounter: b431fe75-539f-4573-998d-45c097e9d10a
+          stepCounter: e06d64a8-bac5-4b9f-88bf-6f25972c33fd
         config: {}
         dataType: VARCHAR(255)
         defaultValue: ""
@@ -89,8 +89,8 @@ operation:
           values: []
         appliedColumnTests: {}
         columnReference:
-          columnCounter: c49edf0c-e19c-4c25-bab9-73b48bcb7170
-          stepCounter: a40d1ed9-5941-472c-9602-d4e37d5515f8
+          columnCounter: 7665bd1a-1df1-41e8-8445-23d136f83e31
+          stepCounter: e06d64a8-bac5-4b9f-88bf-6f25972c33fd
         config: {}
         dataType: VARCHAR(255)
         defaultValue: ""
@@ -108,13 +108,32 @@ operation:
           values: []
         appliedColumnTests: {}
         columnReference:
-          columnCounter: 6b71de4d-69c8-4db2-8aed-afbefc4523bd
-          stepCounter: a40d1ed9-5941-472c-9602-d4e37d5515f8
+          columnCounter: 0b81e07f-cd2b-43b2-96d2-1ab8e9ab2c1a
+          stepCounter: e06d64a8-bac5-4b9f-88bf-6f25972c33fd
         config: {}
         dataType: VARCHAR(16777216)
         defaultValue: ""
         description: ""
         name: CAPITAL
+        nullable: true
+        primaryKey: false
+        sourceColumnReferences:
+          - columnReferences: []
+            transform: ""
+        transform: ""
+        uniqueKey: false
+      - acceptedValues:
+          strictMatch: true
+          values: []
+        appliedColumnTests: {}
+        columnReference:
+          columnCounter: 70a96cdc-f7fa-408a-a5e3-123b306b17fd
+          stepCounter: e06d64a8-bac5-4b9f-88bf-6f25972c33fd
+        config: {}
+        dataType: VARCHAR(16777216)
+        defaultValue: ""
+        description: ""
+        name: REVIEW_TEXT
         nullable: true
         primaryKey: false
         sourceColumnReferences:

@@ -1,0 +1,269 @@
+fileVersion: 1
+id: 70de2197-1ccb-475d-9174-bc122ddb0310
+name: DOC_CUSTOMER_REVIEWS
+operation:
+  config:
+    autoRetryToggle: false
+    autoSuspendToggle: false
+    columnFamiliesConfig:
+      items:
+        - fieldName: ""
+          qualifierString: ""
+    configJSON: ""
+    devMode: true
+    errIntName: ""
+    errNotifyToggle: false
+    execTime:
+      items:
+        - {}
+    flagSrcStream: true
+    numFailures: "10"
+    optionJsonToggle: false
+    optionsJson: ""
+    overlapExecToggle: false
+    redeploymentBehavior: Create At Existing Stream
+    retryAttmpt: "0"
+    scheduleCRON: 5 0-23 * * * America/Los_Angeles
+    schedulePeriodOption: Minutes
+    schedulingMode: Warehouse Task
+    sourceType: Directory Table
+    spfcUserToggle: false
+    stageName: ""
+    stageStorageLocationName: ""
+    subfolder: Enter folder name in stage if applicable-folder/subfolder
+    succIntName: ""
+    successNotifyToggle: false
+    taskGraphToggle: false
+    truncateBefore: false
+    userName: ""
+    whName: <WAREHOUSE_NAME>
+  database: ""
+  deployEnabled: true
+  description: ""
+  isMultisource: false
+  locationName: SOURCE
+  materializationType: table
+  metadata:
+    appliedNodeTests: []
+    columns:
+      - acceptedValues:
+          strictMatch: true
+          values: []
+        appliedColumnTests: {}
+        columnReference:
+          columnCounter: a398e762-14dd-4eda-be0d-fa6b2a860523
+          stepCounter: 70de2197-1ccb-475d-9174-bc122ddb0310
+        config: {}
+        dataType: STRING
+        defaultValue: ""
+        description: ""
+        fileName: true
+        name: FILENAME
+        nullable: true
+        sourceColumnReferences:
+          - columnReferences: []
+            transform: REGEXP_SUBSTR(RELATIVE_PATH, '[^/]+$')
+      - acceptedValues:
+          strictMatch: true
+          values: []
+        appliedColumnTests: {}
+        columnReference:
+          columnCounter: c0cb8c55-0487-48d6-9656-a1ec5049f67d
+          stepCounter: 70de2197-1ccb-475d-9174-bc122ddb0310
+        config: {}
+        dataType: STRING
+        defaultValue: ""
+        description: ""
+        name: FILE_URL
+        nullable: true
+        presignedURL: true
+        sourceColumnReferences:
+          - columnReferences: []
+            transform: FILE_URL
+      - acceptedValues:
+          strictMatch: true
+          values: []
+        appliedColumnTests: {}
+        columnReference:
+          columnCounter: 5045f6c1-5877-4677-b5f9-5d462eaa69b2
+          stepCounter: 70de2197-1ccb-475d-9174-bc122ddb0310
+        config: {}
+        dataType: TIMESTAMP_NTZ
+        defaultValue: ""
+        description: ""
+        fileLastModified: true
+        name: FILE_LAST_MODIFIED
+        nullable: true
+        sourceColumnReferences:
+          - columnReferences: []
+            transform: TO_TIMESTAMP_NTZ(LAST_MODIFIED)
+      - acceptedValues:
+          strictMatch: true
+          values: []
+        appliedColumnTests: {}
+        columnReference:
+          columnCounter: 6e346451-8eb0-4900-b674-91be0e6fad2e
+          stepCounter: 70de2197-1ccb-475d-9174-bc122ddb0310
+        config: {}
+        dataType: NUMBER
+        defaultValue: ""
+        description: ""
+        name: SIZE
+        nullable: true
+        size: true
+        sourceColumnReferences:
+          - columnReferences: []
+            transform: SIZE
+      - acceptedValues:
+          strictMatch: true
+          values: []
+        appliedColumnTests: {}
+        columnReference:
+          columnCounter: 60503277-b0cc-41f8-812d-c596ff93efce
+          stepCounter: 70de2197-1ccb-475d-9174-bc122ddb0310
+        config: {}
+        dataType: VARIANT
+        defaultValue: ""
+        description: ""
+        extractedData: true
+        name: EXTRACTED_DATA
+        nullable: true
+        sourceColumnReferences:
+          - columnReferences: []
+            transform: ""
+      - acceptedValues:
+          strictMatch: true
+          values: []
+        appliedColumnTests: {}
+        columnReference:
+          columnCounter: 69fcf122-476f-4066-8076-020917132fc9
+          stepCounter: 70de2197-1ccb-475d-9174-bc122ddb0310
+        config: {}
+        dataType: TIMESTAMP_NTZ
+        defaultValue: ""
+        description: ""
+        fileLastModified: true
+        name: DATA_EXTRACT_TIMESTAMP
+        nullable: true
+        sourceColumnReferences:
+          - columnReferences: []
+            transform: CURRENT_TIMESTAMP::TIMESTAMP_NTZ
+      - appliedColumnTests: {}
+        columnReference:
+          columnCounter: 86f599c3-b8be-4af3-89b4-ab3a8be62f8d
+          stepCounter: 70de2197-1ccb-475d-9174-bc122ddb0310
+        config: {}
+        dataType: VARCHAR(50)
+        description: ""
+        name: USER_NAME
+        nullable: true
+        sourceColumnReferences:
+          - columnReferences:
+              - columnCounter: cadc7369-519b-48ff-a8c4-e93d8f45034f
+                stepCounter: e06d64a8-bac5-4b9f-88bf-6f25972c33fd
+            transform: ""
+      - appliedColumnTests: {}
+        columnReference:
+          columnCounter: b31b6703-9a7c-4b95-8ae9-829804304fe0
+          stepCounter: 70de2197-1ccb-475d-9174-bc122ddb0310
+        config: {}
+        dataType: VARCHAR(16777216)
+        description: ""
+        name: REVIEW_CONTENT
+        nullable: true
+        sourceColumnReferences:
+          - columnReferences:
+              - columnCounter: 1e96c9a5-fcc8-4e0e-85ea-1aa6dc7a4b7c
+                stepCounter: e06d64a8-bac5-4b9f-88bf-6f25972c33fd
+            transform: ""
+      - appliedColumnTests: {}
+        columnReference:
+          columnCounter: 3e6c0ff8-13e3-4a8a-b9d1-d2b04ebb169d
+          stepCounter: 70de2197-1ccb-475d-9174-bc122ddb0310
+        config: {}
+        dataType: VARCHAR(255)
+        description: ""
+        name: REVIEW_CONTENT_JAPSTRING
+        nullable: true
+        sourceColumnReferences:
+          - columnReferences:
+              - columnCounter: 7a6cca36-9ca7-475f-8bfe-05983db6f65b
+                stepCounter: e06d64a8-bac5-4b9f-88bf-6f25972c33fd
+            transform: ""
+      - appliedColumnTests: {}
+        columnReference:
+          columnCounter: 28597a56-fc7a-4ea0-b903-fcb0e3e794dc
+          stepCounter: 70de2197-1ccb-475d-9174-bc122ddb0310
+        config: {}
+        dataType: VARCHAR(255)
+        description: ""
+        name: REVIEW_CONTENT_RUSSIANSTRING
+        nullable: true
+        sourceColumnReferences:
+          - columnReferences:
+              - columnCounter: b431fe75-539f-4573-998d-45c097e9d10a
+                stepCounter: e06d64a8-bac5-4b9f-88bf-6f25972c33fd
+            transform: ""
+      - appliedColumnTests: {}
+        columnReference:
+          columnCounter: 1785b3b0-ca5c-4d1e-8d5d-57f32a38fd06
+          stepCounter: 70de2197-1ccb-475d-9174-bc122ddb0310
+        config: {}
+        dataType: VARCHAR(255)
+        description: ""
+        name: STATEMENTS
+        nullable: true
+        sourceColumnReferences:
+          - columnReferences:
+              - columnCounter: 7665bd1a-1df1-41e8-8445-23d136f83e31
+                stepCounter: e06d64a8-bac5-4b9f-88bf-6f25972c33fd
+            transform: ""
+      - appliedColumnTests: {}
+        columnReference:
+          columnCounter: 2b8746b7-577a-4d84-a458-2453c280b079
+          stepCounter: 70de2197-1ccb-475d-9174-bc122ddb0310
+        config: {}
+        dataType: VARCHAR(16777216)
+        description: ""
+        name: CAPITAL
+        nullable: true
+        sourceColumnReferences:
+          - columnReferences:
+              - columnCounter: 0b81e07f-cd2b-43b2-96d2-1ab8e9ab2c1a
+                stepCounter: e06d64a8-bac5-4b9f-88bf-6f25972c33fd
+            transform: ""
+      - appliedColumnTests: {}
+        columnReference:
+          columnCounter: d1cbc18c-6ad4-438a-a848-d5068becfcf2
+          stepCounter: 70de2197-1ccb-475d-9174-bc122ddb0310
+        config: {}
+        dataType: VARCHAR(16777216)
+        description: ""
+        name: REVIEW_TEXT
+        nullable: true
+        sourceColumnReferences:
+          - columnReferences:
+              - columnCounter: 70a96cdc-f7fa-408a-a5e3-123b306b17fd
+                stepCounter: e06d64a8-bac5-4b9f-88bf-6f25972c33fd
+            transform: ""
+    cteString: ""
+    enabledColumnTestIDs: []
+    sourceMapping:
+      - aliases:
+          CUSTOMER_REVIEWS: e06d64a8-bac5-4b9f-88bf-6f25972c33fd
+        customSQL:
+          customSQL: ""
+        dependencies:
+          - locationName: SOURCE
+            nodeName: CUSTOMER_REVIEWS
+        join:
+          joinCondition: FROM {{ ref('SOURCE', 'CUSTOMER_REVIEWS') }} "CUSTOMER_REVIEWS"
+        name: DOC_CUSTOMER_REVIEWS
+        noLinkRefs: []
+  name: DOC_CUSTOMER_REVIEWS
+  overrideSQL: false
+  schema: ""
+  sqlType: "429"
+  type: sql
+  version: 1
+type: Node

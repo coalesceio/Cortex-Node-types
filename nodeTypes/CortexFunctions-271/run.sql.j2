@@ -59,6 +59,7 @@
 {%- set modelcol = [] -%}
 {%- set classifycol = [] -%}
 {%- set categorycol = [] -%}
+{%- set filtercol = [] -%}
 
 
 {% if config.summarizefunction %}
@@ -104,6 +105,11 @@
     {%- endfor %}
 {% endif %}
 
+{% if config.aiFilterFunction and config.flby %}
+    {%- for i in config.flby.get('items', []) -%}
+        {% set filtercol = filtercol.append(i.filterColName.name) %}
+    {%- endfor %}
+{% endif %}
 
 SELECT
 {% for col in source.columns %}
@@ -167,6 +173,12 @@ SELECT
         ['{{ categorycol[col_index3] | replace(",", "','") }}']
     ):labels[0]::STRING AS "{{ col.name }}"
 	
+    {% elif col.name in filtercol %}
+
+    AI_FILTER(
+        {{ get_source_transform(col) }}
+    ) AS "{{ col.name }}"
+
     {% else %}
         {{ get_source_transform(col) }} AS "{{ col.name }}"
     {% endif %}

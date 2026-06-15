@@ -206,5 +206,32 @@ metadata:
 
         isRequired: false
         enableIf: '{% if config.aiCompleteFunction %} true {% else %} false {% endif %}'
+    	
+      - displayName: AI_CLASSIFY
+        attributeName: aiClassifyFunction
+        type: toggleButton
+        default: false
+        enableIf: '{% if not config.useLegacyFunctions %} true {% else %} false {% endif %}'
+    	
+      - type: tabular
+        displayName: 'AI Classify Configuration'
+        attributeName: clby
+        columns:
+          - type: columnDropdownSelector
+            displayName: Column Name
+            attributeName: classColName
+            isRequired: true
+
+          - type: textBox
+            displayName: Categories (comma separated)
+            attributeName: categories
+            default: 'Positive,Negative,Neutral'
+            isRequired: true
+
+        default:
+          - categories: 'Positive,Negative,Neutral'
+
+        isRequired: false
+        enableIf: '{% if config.aiClassifyFunction %} true {% else %} false {% endif %}'
 name: Cortex Functions
 type: NodeType

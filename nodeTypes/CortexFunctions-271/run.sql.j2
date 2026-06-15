@@ -57,6 +57,8 @@
 {%- set completecol = [] -%}
 {%- set promptcol = [] -%}
 {%- set modelcol = [] -%}
+{%- set classifycol = [] -%}
+{%- set categorycol = [] -%}
 
 
 {% if config.summarizefunction %}
@@ -94,6 +96,14 @@
         {% set modelcol = modelcol.append(i.modelName) %}
     {%- endfor %}
 {% endif %}
+
+{% if config.aiClassifyFunction and config.clby %}
+    {%- for i in config.clby.get('items', []) -%}
+        {% set classifycol = classifycol.append(i.classColName.name) %}
+        {% set categorycol = categorycol.append(i.categories) %}
+    {%- endfor %}
+{% endif %}
+
 
 SELECT
 {% for col in source.columns %}
@@ -149,6 +159,14 @@ SELECT
         )
     ) AS "{{ col.name }}"
 
+    {% elif col.name in classifycol %}
+    {% set col_index3 = classifycol.index(col.name) %}
+
+    AI_CLASSIFY(
+        {{ get_source_transform(col) }},
+        ['{{ categorycol[col_index3] | replace(",", "','") }}']
+    ):labels[0]::STRING AS "{{ col.name }}"
+	
     {% else %}
         {{ get_source_transform(col) }} AS "{{ col.name }}"
     {% endif %}

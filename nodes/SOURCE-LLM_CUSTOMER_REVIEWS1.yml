@@ -3,6 +3,7 @@ id: 43e6b499-a15e-4bbc-8d6b-a49c53902dc6
 name: LLM_CUSTOMER_REVIEWS1
 operation:
   config:
+    aiClassifyFunction: true
     aiCompleteFunction: true
     aiExtractFunction: true
     aiSentimentFunction: true
@@ -14,6 +15,18 @@ operation:
             stepCounter: 43e6b499-a15e-4bbc-8d6b-a49c53902dc6
           modelName: claude-4-sonnet
           promptText: WHAT IS THE CAPITAL?
+    classifyby:
+      items:
+        - categories: Positive,Negative,Neutral
+          classColName:
+            columnCounter: 3458cd46-1ce0-4322-9d7c-2e261dd3a3c0
+            stepCounter: 43e6b499-a15e-4bbc-8d6b-a49c53902dc6
+    clby:
+      items:
+        - categories: Positive,Negative,Neutral
+          classColName:
+            columnCounter: 3458cd46-1ce0-4322-9d7c-2e261dd3a3c0
+            stepCounter: 43e6b499-a15e-4bbc-8d6b-a49c53902dc6
     completeby:
       items:
         - cpartColName:

@@ -60,7 +60,7 @@
 {%- set classifycol = [] -%}
 {%- set categorycol = [] -%}
 {%- set filtercol = [] -%}
-
+{%- set redactcol = [] -%}
 
 {% if config.summarizefunction %}
     {%- for i in config.pby.get('items') -%}
@@ -68,27 +68,45 @@
     {%- endfor %}
 {% endif %}
 
-{% if config.sentimentfunction %}
-    {%- for i in config.sby.get('items') -%}
-        {% set senticol = senticol.append(i.spartColName.name) %}
+{% if config.sentimentfunction and config.sby %}
+    {%- for i in config.sby.get('items', []) -%}
+        {% set _ = senticol.append(i.spartColName.name) %}
     {%- endfor %}
 {% endif %}
 
-{% if config.translatefunction %}
-    {%- for i in config.tby.get('items') -%}
-        {% set translatecol = translatecol.append(i.tpartColName.name) %}
-		{% set langcol = langcol.append(i.lanorder ) %}
+{% if config.aisentimentFunction and config.sbyai %}
+    {%- for i in config.sbyai.get('items', []) -%}
+        {% set _ = senticol.append(i.spartColNameai.name) %}
     {%- endfor %}
 {% endif %}
-{% set seq = translatecol + langcol if translatecol is defined and langcol is defined else [] %}
 
-{% if config.extractfunction %}
-    {%- for i in config.exby.get('items') -%}
-        {% set extractcol = extractcol.append(i.epartColName.name) %}
-		{% set quecol = quecol.append(i.askque | escape) %}
+{% if config.translateFunction and config.tby %}
+    {%- for i in config.tby.get('items', []) -%}
+        {% set _ = translatecol.append(i.tpartColName.name) %}
+        {% set _ = langcol.append(i.lanorder) %}
     {%- endfor %}
 {% endif %}
-{% set seq = extractcol + quecol if extractcol is defined and quecol is defined else [] %}
+
+{% if config.aitranslateFunction and config.tbyai %}
+    {%- for i in config.tbyai.get('items', []) -%}
+        {% set _ = translatecol.append(i.tpartColNameai.name) %}
+        {% set _ = langcol.append(i.lanorderai) %}
+    {%- endfor %}
+{% endif %}
+
+{% if config.extractfunction and config.exby %}
+    {%- for i in config.exby.get('items', []) -%}
+        {% set _ = extractcol.append(i.epartColName.name) %}
+        {% set _ = quecol.append(i.askque | escape) %}
+    {%- endfor %}
+{% endif %}
+
+{% if config.aiextractFunction and config.exbyai %}
+    {%- for i in config.exbyai.get('items', []) -%}
+        {% set _ = extractcol.append(i.epartColNameai.name) %}
+        {% set _ = quecol.append(i.askqueai | escape) %}
+    {%- endfor %}
+{% endif %}
 
 {% if config.aiCompleteFunction and config.cby %}
     {%- for i in config.cby.get('items', []) -%}
@@ -108,6 +126,12 @@
 {% if config.aiFilterFunction and config.flby %}
     {%- for i in config.flby.get('items', []) -%}
         {% set filtercol = filtercol.append(i.filterColName.name) %}
+    {%- endfor %}
+{% endif %}
+
+{% if config.aiRedactFunction and config.rdby %}
+    {%- for i in config.rdby.get('items', []) -%}
+        {% set redactcol = redactcol.append(i.redactColName.name) %}
     {%- endfor %}
 {% endif %}
 
@@ -179,6 +203,12 @@ SELECT
         {{ get_source_transform(col) }}
     ) AS "{{ col.name }}"
 
+	{% elif col.name in redactcol %}
+
+    AI_REDACT(
+        {{ get_source_transform(col) }}
+    ) AS "{{ col.name }}"
+	
     {% else %}
         {{ get_source_transform(col) }} AS "{{ col.name }}"
     {% endif %}

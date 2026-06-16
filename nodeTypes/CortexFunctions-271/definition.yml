@@ -84,36 +84,41 @@ metadata:
         attributeName: sentimentfunction
         type: toggleButton
         default: false
-        enableIf: '{% if config.useLegacyFunctions %} true {% else %} false {% endif %}'
+        enableIf: "{% if config.useLegacyFunctions %} true {% else %} false {% endif %}"
 
-      - displayName: AI_SENTIMENT
-        attributeName: aiSentimentFunction
-        type: toggleButton
-        default: false
-        enableIf: '{% if not config.useLegacyFunctions %} true {% else %} false {% endif %}'
-
-      - displayName: 'Select Columns '
-        type: tabular
+      - type: tabular
+        displayName: 'Select Columns'
         attributeName: sby
         columns:
-        - type: columnDropdownSelector
-          displayName: Column Name
-          attributeName: spartColName
-          isRequired: true
+          - type: columnDropdownSelector
+            displayName: Column Name
+            attributeName: spartColName
+            isRequired: true
         isRequired: false
-        enableIf: '{% if config.sentimentfunction or config.aiSentimentFunction %} true {% else %} false {% endif %}'
+        enableIf: "{% if config.sentimentfunction %} true {% else %} false {% endif %}"
 
+      - displayName: AI_SENTIMENT
+        attributeName: aisentimentFunction
+        type: toggleButton
+        default: false
+        enableIf: "{% if not config.useLegacyFunctions %} true {% else %} false {% endif %}"
+
+      - type: tabular
+        displayName: 'Select Columns'
+        attributeName: sbyai
+        columns:
+          - type: columnDropdownSelector
+            displayName: Column Name
+            attributeName: spartColNameai
+            isRequired: true
+        isRequired: false
+        enableIf: "{% if config.aisentimentFunction %} true {% else %} false {% endif %}"
+        
       - displayName: TRANSLATE
-        attributeName: TranslateFunction
+        attributeName: translateFunction
         type: toggleButton
         default: false
         enableIf: '{% if config.useLegacyFunctions %} true {% else %} false {% endif %}'
-
-      - displayName: AI_TRANSLATE
-        attributeName: aiTranslateFunction
-        type: toggleButton
-        default: false
-        enableIf: '{% if not config.useLegacyFunctions %} true {% else %} false {% endif %}'
 
       - type: tabular
         displayName: 'Select Columns'
@@ -131,7 +136,31 @@ metadata:
             isRequired: true
 
         isRequired: false
-        enableIf: '{% if config.translatefunction or config.aiTranslateFunction %} true {% else %} false {% endif %}'
+        enableIf: '{% if config.translateFunction %} true {% else %} false {% endif %}'
+
+      - displayName: AI_TRANSLATE
+        attributeName: aitranslateFunction
+        type: toggleButton
+        default: false
+        enableIf: '{% if not config.useLegacyFunctions %} true {% else %} false {% endif %}'
+
+      - type: tabular
+        displayName: 'Select Columns'
+        attributeName: tbyai
+        columns:
+          - type: columnDropdownSelector
+            displayName: Column Name
+            attributeName: tpartColNameai
+            isRequired: true
+
+          - type: textBox
+            displayName: Translate from
+            attributeName: lanorderai
+            default: "'From', 'To'"
+            isRequired: true
+
+        isRequired: false
+        enableIf: '{% if config.aitranslateFunction %} true {% else %} false {% endif %}'
 
       - displayName: EXTRACT ANSWER
         attributeName: extractfunction
@@ -139,21 +168,10 @@ metadata:
         default: false
         enableIf: '{% if config.useLegacyFunctions %} true {% else %} false {% endif %}'
 
-      - displayName: AI_EXTRACT ANSWER
-        attributeName: aiExtractFunction
-        type: toggleButton
-        default: false
-        enableIf: '{% if not config.useLegacyFunctions %} true {% else %} false {% endif %}'
-
       - displayName: Datatype for target column must be an ARRAY.
         attributeName: extractArrayInfo
         type: label
         enableIf: '{%- if config.useLegacyFunctions %}true{%- else %}false{%- endif %}'
-    	
-      - displayName: Datatype for target column must be an VARIANT.
-        attributeName: extractVariantInfo
-        type: label
-        enableIf: '{%- if not config.useLegacyFunctions %}true{%- else %}false{%- endif %}'
 
       - type: tabular
         displayName: 'Select Columns'
@@ -171,7 +189,36 @@ metadata:
             isRequired: true
 
         isRequired: false
-        enableIf: '{% if config.extractfunction or config.aiExtractFunction %} true {% else %} false {% endif %}'
+        enableIf: '{% if config.extractfunction %} true {% else %} false {% endif %}'
+
+      - displayName: AI_EXTRACT ANSWER
+        attributeName: aiextractFunction
+        type: toggleButton
+        default: false
+        enableIf: '{% if not config.useLegacyFunctions %} true {% else %} false {% endif %}'
+    	
+      - displayName: Datatype for target column must be an VARIANT.
+        attributeName: extractVariantInfo
+        type: label
+        enableIf: '{%- if not config.useLegacyFunctions %}true{%- else %}false{%- endif %}'
+
+      - type: tabular
+        displayName: 'Select Columns'
+        attributeName: exbyai
+        columns:
+          - type: columnDropdownSelector
+            displayName: Column Name
+            attributeName: epartColNameai
+            isRequired: true
+
+          - type: textBox
+            displayName: Ask me a Question
+            attributeName: askqueai
+            default: "what''s the Question ?"
+            isRequired: true
+
+        isRequired: false
+        enableIf: '{% if config.aiextractFunction %} true {% else %} false {% endif %}'
 
       - displayName: AI_COMPLETE
         attributeName: aiCompleteFunction
@@ -251,5 +298,38 @@ metadata:
 
         isRequired: false
         enableIf: '{% if config.aiFilterFunction %} true {% else %} false {% endif %}'
+
+    - groupName: Advanced Aggregation
+      items:
+
+      - displayName: AI_AGG
+        attributeName: aiAggFunction
+        type: toggleButton
+        default: false
+
+      - type: tabular
+        displayName: AI_AGG Configuration
+        attributeName: aggby
+        columns:
+          - type: columnDropdownSelector
+            displayName: Column Name
+            attributeName: aggColName
+            isRequired: true
+
+        isRequired: false
+        enableIf: '{% if config.aiAggFunction %} true {% else %} false {% endif %}'
+
+    - displayName: AI_SUMMARIZE_AGG
+      attributeName: aiSummarizeAggFunction
+      type: toggleButton
+      default: false
+
+    - displayName: Source Column
+      attributeName: summarizeAggColName
+      type: columnDropdownSelector
+      isRequired: true
+
+       isRequired: false
+       enableIf: '{% if config.aiSummarizeAggFunction %} true {% else %} false {% endif %}'
 name: Cortex Functions
 type: NodeType

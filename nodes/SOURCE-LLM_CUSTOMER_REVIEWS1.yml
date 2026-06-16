@@ -3,12 +3,20 @@ id: 43e6b499-a15e-4bbc-8d6b-a49c53902dc6
 name: LLM_CUSTOMER_REVIEWS1
 operation:
   config:
+    TranslateFunction: false
+    aggby:
+      items:
+        - aggColName: null
+    aiAggFunction: true
     aiClassifyFunction: false
     aiCompleteFunction: false
-    aiExtractFunction: false
+    aiExtractFunction: true
     aiFilterFunction: false
     aiSentimentFunction: false
     aiTranslateFunction: false
+    aiextractFunction: false
+    aisentimentFunction: false
+    aitranslateFunction: false
     cby:
       items:
         - cpartColName:
@@ -41,7 +49,7 @@ operation:
           epartColName:
             columnCounter: 568deda3-5723-4369-80b7-ab60c13bebd9
             stepCounter: 43e6b499-a15e-4bbc-8d6b-a49c53902dc6
-    extractfunction: true
+    extractfunction: false
     flby:
       items:
         - filterColName:
@@ -60,14 +68,14 @@ operation:
         - spartColName:
             columnCounter: 7ac68e32-6644-425f-ad83-785cf75e9066
             stepCounter: 43e6b499-a15e-4bbc-8d6b-a49c53902dc6
-    sentimentfunction: true
+    sbyai:
+      items:
+        - spartColNameai: null
+    sentimentfunction: false
     summarizefunction: false
     tby:
       items:
-        - lanorder: "'ja', 'en'"
-          tpartColName:
-            columnCounter: 798465d4-3a9c-4412-a5e9-c204be70f34f
-            stepCounter: 43e6b499-a15e-4bbc-8d6b-a49c53902dc6
+        - {}
     testsEnabled: true
     translatefunction: true
     truncateBefore: true

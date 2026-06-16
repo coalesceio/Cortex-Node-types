@@ -4,7 +4,7 @@ isDisabled: false
 metadata:
   defaultStorageLocation: null
   error: null
-  nodeMetadataSpec: |-
+  nodeMetadataSpec: |+
     capitalized: Cortex Functions 
     short: LLM
     plural: llms
@@ -299,37 +299,23 @@ metadata:
         isRequired: false
         enableIf: '{% if config.aiFilterFunction %} true {% else %} false {% endif %}'
 
-    - groupName: Advanced Aggregation
-      items:
-
-      - displayName: AI_AGG
-        attributeName: aiAggFunction
+      - displayName: AI_REDACT
+        attributeName: aiRedactFunction
         type: toggleButton
         default: false
 
       - type: tabular
-        displayName: AI_AGG Configuration
-        attributeName: aggby
+        displayName: 'Select Columns'
+        attributeName: rdby
         columns:
           - type: columnDropdownSelector
             displayName: Column Name
-            attributeName: aggColName
+            attributeName: redactColName
             isRequired: true
 
         isRequired: false
-        enableIf: '{% if config.aiAggFunction %} true {% else %} false {% endif %}'
+        enableIf: '{% if config.aiRedactFunction %} true {% else %} false {% endif %}'
 
-    - displayName: AI_SUMMARIZE_AGG
-      attributeName: aiSummarizeAggFunction
-      type: toggleButton
-      default: false
 
-    - displayName: Source Column
-      attributeName: summarizeAggColName
-      type: columnDropdownSelector
-      isRequired: true
-
-       isRequired: false
-       enableIf: '{% if config.aiSummarizeAggFunction %} true {% else %} false {% endif %}'
 name: Cortex Functions
 type: NodeType

@@ -61,6 +61,10 @@
 {%- set categorycol = [] -%}
 {%- set filtercol = [] -%}
 {%- set redactcol = [] -%}
+{%- set embedcol = [] -%}
+{%- set embedmodel = [] -%}
+{%- set similaritycol = [] -%}
+{%- set similaritytext = [] -%}
 
 {% if config.summarizefunction %}
     {%- for i in config.pby.get('items') -%}
@@ -132,6 +136,20 @@
 {% if config.aiRedactFunction and config.rdby %}
     {%- for i in config.rdby.get('items', []) -%}
         {% set redactcol = redactcol.append(i.redactColName.name) %}
+    {%- endfor %}
+{% endif %}
+
+{% if config.aiEmbedFunction and config.embby %}
+    {%- for i in config.embby.get('items', []) -%}
+        {% set _ = embedcol.append(i.embedColName.name) %}
+        {% set _ = embedmodel.append(i.embedModel) %}
+    {%- endfor %}
+{% endif %}
+
+{% if config.aiSimilarityFunction and config.simby %}
+    {%- for i in config.simby.get('items', []) -%}
+        {% set _ = similaritycol.append(i.similarityColName.name) %}
+        {% set _ = similaritytext.append(i.compareText | escape) %}
     {%- endfor %}
 {% endif %}
 
@@ -207,6 +225,24 @@ SELECT
 
     AI_REDACT(
         {{ get_source_transform(col) }}
+    ) AS "{{ col.name }}"
+	
+	{% elif col.name in embedcol %}
+
+    {% set col_index4 = embedcol.index(col.name) %}
+
+    AI_EMBED(
+        '{{ embedmodel[col_index4] }}',
+        {{ get_source_transform(col) }}
+    ) AS "{{ col.name }}"
+	
+	{% elif col.name in similaritycol %}
+
+    {% set sim_index = similaritycol.index(col.name) %}
+
+    AI_SIMILARITY(
+        {{ get_source_transform(col) }},
+        '{{ similaritytext[sim_index] }}'
     ) AS "{{ col.name }}"
 	
     {% else %}

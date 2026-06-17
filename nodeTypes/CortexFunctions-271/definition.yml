@@ -316,6 +316,58 @@ metadata:
         isRequired: false
         enableIf: '{% if config.aiRedactFunction %} true {% else %} false {% endif %}'
 
+      - displayName: AI_EMBED
+        attributeName: aiEmbedFunction
+        type: toggleButton
+        default: false
+
+      - displayName: Target column datatype must be VECTOR.
+        attributeName: embedInfo
+        type: label
+        enableIf: '{% if config.aiEmbedFunction %} true {% else %} false {% endif %}'
+
+      - type: tabular
+        displayName: 'AI Embed Configuration'
+        attributeName: embby
+        columns:
+          - type: columnDropdownSelector
+            displayName: Column Name
+            attributeName: embedColName
+            isRequired: true
+
+          - type: dropdownSelector
+            displayName: Embedding Model
+            attributeName: embedModel
+            default: snowflake-arctic-embed-m-v1.5
+            options:
+              - snowflake-arctic-embed-m-v1.5
+              - nv-embed-qa-4
+              
+        isRequired: false
+        enableIf: '{% if config.aiEmbedFunction %} true {% else %} false {% endif %}'
+
+      - displayName: AI_SIMILARITY
+        attributeName: aiSimilarityFunction
+        type: toggleButton
+        default: false
+
+      - type: tabular
+        displayName: 'AI Similarity Configuration'
+        attributeName: simby
+        columns:
+          - type: columnDropdownSelector
+            displayName: Column Name
+            attributeName: similarityColName
+            isRequired: true
+
+          - type: textBox
+            displayName: Compare With Text
+            attributeName: compareText
+            default: 'good customer service'
+            isRequired: true
+
+        isRequired: false
+        enableIf: '{% if config.aiSimilarityFunction %} true {% else %} false {% endif %}'
 
 name: Cortex Functions
 type: NodeType

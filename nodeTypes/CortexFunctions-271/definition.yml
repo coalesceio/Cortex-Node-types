@@ -351,6 +351,11 @@ metadata:
         type: toggleButton
         default: false
 
+      - displayName: Target column datatype must be FLOAT.
+        attributeName: similarInfo
+        type: label
+        enableIf: '{% if config.aiEmbedFunction %} true {% else %} false {% endif %}'
+
       - type: tabular
         displayName: 'AI Similarity Configuration'
         attributeName: simby

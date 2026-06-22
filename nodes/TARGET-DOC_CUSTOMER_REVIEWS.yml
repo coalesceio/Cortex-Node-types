@@ -7,14 +7,16 @@ operation:
     autoSuspendToggle: false
     columnFamiliesConfig:
       items:
-        - {}
+        - fieldName: ""
+          qualifierString: ""
     configJSON: ""
-    devMode: true
+    devMode: false
     errIntName: ""
     errNotifyToggle: false
     execTime:
       items:
-        - {}
+        - period: Minutes
+          value: "60"
     flagSrcStream: true
     numFailures: "10"
     optionJsonToggle: false
@@ -27,9 +29,9 @@ operation:
     schedulingMode: Warehouse Task
     sourceType: Directory Table
     spfcUserToggle: false
-    stageName: ""
-    stageStorageLocationName: ""
-    subfolder: Enter folder name in stage if applicable-folder/subfolder
+    stageName: VINITHAFILES
+    stageStorageLocationName: TGT_DEV
+    subfolder: Orders.CSV
     succIntName: ""
     successNotifyToggle: false
     taskGraphToggle: false
@@ -40,7 +42,7 @@ operation:
   deployEnabled: true
   description: ""
   isMultisource: false
-  locationName: SOURCE
+  locationName: TARGET
   materializationType: table
   metadata:
     appliedNodeTests: []

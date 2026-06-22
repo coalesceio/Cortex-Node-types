@@ -7,19 +7,21 @@ operation:
     aggby:
       items:
         - aggColName: null
+    aggregateFunctionType: AI_SUMMARIZE_AGG
+    aggregateMode: true
     aiAggFunction: true
-    aiClassifyFunction: true
-    aiCompleteFunction: true
-    aiEmbedFunction: true
+    aiClassifyFunction: false
+    aiCompleteFunction: false
+    aiEmbedFunction: false
     aiExtractFunction: true
-    aiFilterFunction: true
+    aiFilterFunction: false
     aiRedactFunction: false
     aiSentimentFunction: false
-    aiSimilarityFunction: true
+    aiSimilarityFunction: false
     aiTranslateFunction: false
-    aiextractFunction: true
-    aisentimentFunction: true
-    aitranslateFunction: true
+    aiextractFunction: false
+    aisentimentFunction: false
+    aitranslateFunction: false
     cby:
       items:
         - cpartColName:

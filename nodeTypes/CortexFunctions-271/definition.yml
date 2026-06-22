@@ -4,7 +4,7 @@ isDisabled: false
 metadata:
   defaultStorageLocation: null
   error: null
-  nodeMetadataSpec: |+
+  nodeMetadataSpec: |
     capitalized: Cortex Functions 
     short: LLM
     plural: llms
@@ -57,8 +57,16 @@ metadata:
         type: textBox
         syntax: sql
         isRequired: false
+
+      - displayName: Aggregate AI Mode
+        attributeName: aggregateMode
+        type: toggleButton
+        default: false
+
     - groupName: Cortex Package
+      enableIf: '{% if not config.aggregateMode %} true {% else %} false {% endif %}'
       items:
+
       - displayName: Use Legacy Functions
         attributeName: useLegacyFunctions
         type: toggleButton
@@ -374,5 +382,43 @@ metadata:
         isRequired: false
         enableIf: '{% if config.aiSimilarityFunction %} true {% else %} false {% endif %}'
 
+    - groupName: Cortex AGG Package
+      enableIf: '{% if config.aggregateMode %} true {% else %} false {% endif %}'
+      items:
+
+      - displayName: Aggregate Function
+        attributeName: aggregateFunctionType
+        type: dropdownSelector
+        options:
+          - AI_AGG
+          - AI_SUMMARIZE_AGG
+
+      - type: tabular
+        displayName: Aggregate Columns
+        attributeName: aggby
+        columns:
+          - type: columnDropdownSelector
+            displayName: Column Name
+            attributeName: aggColName
+            isRequired: true
+            
+        isRequired: false
+
+      - displayName: Enable Group By
+        attributeName: enableGroupBy
+        type: toggleButton
+        default: false
+
+      - type: tabular
+        displayName: Group By Columns
+        attributeName: grpby
+        columns:
+          - type: columnDropdownSelector
+            displayName: Column Name
+            attributeName: groupColName
+            isRequired: true
+
+        isRequired: false
+        enableIf: '{% if config.enableGroupBy %} true {% else %} false {% endif %}'
 name: Cortex Functions
 type: NodeType

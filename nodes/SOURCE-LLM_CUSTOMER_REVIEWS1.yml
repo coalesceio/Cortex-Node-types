@@ -6,7 +6,9 @@ operation:
     TranslateFunction: false
     aggby:
       items:
-        - aggColName: null
+        - aggColName:
+            columnCounter: 3458cd46-1ce0-4322-9d7c-2e261dd3a3c0
+            stepCounter: 43e6b499-a15e-4bbc-8d6b-a49c53902dc6
     aggregateFunctionType: AI_SUMMARIZE_AGG
     aggregateMode: true
     aiAggFunction: true
@@ -18,6 +20,7 @@ operation:
     aiRedactFunction: false
     aiSentimentFunction: false
     aiSimilarityFunction: false
+    aiSummarizeAggFunction: true
     aiTranslateFunction: false
     aiextractFunction: false
     aisentimentFunction: false
@@ -54,6 +57,7 @@ operation:
             columnCounter: 8898e8b0-dcf8-459b-be55-cd3aedf07389
             stepCounter: 43e6b499-a15e-4bbc-8d6b-a49c53902dc6
           embedModel: snowflake-arctic-embed-m-v1.5
+    enableGroupBy: true
     exby:
       items:
         - askque: WHAT IS THE CAPITAL?
@@ -71,6 +75,11 @@ operation:
       items:
         - filterColName:
             columnCounter: 5cc3b1cd-d28a-4b61-b89a-f14b81f3e211
+            stepCounter: 43e6b499-a15e-4bbc-8d6b-a49c53902dc6
+    grpby:
+      items:
+        - groupColName:
+            columnCounter: 3458cd46-1ce0-4322-9d7c-2e261dd3a3c0
             stepCounter: 43e6b499-a15e-4bbc-8d6b-a49c53902dc6
     insertStrategy: INSERT
     pby:
@@ -102,6 +111,9 @@ operation:
           similarityColName:
             columnCounter: 691f992c-11ab-43bb-9d63-a70eb3e26024
             stepCounter: 43e6b499-a15e-4bbc-8d6b-a49c53902dc6
+    summarizeaggby:
+      items:
+        - summarizeAggColName: null
     summarizefunction: false
     tby:
       items:

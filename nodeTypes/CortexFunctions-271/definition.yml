@@ -386,23 +386,40 @@ metadata:
       enableIf: '{% if config.aggregateMode %} true {% else %} false {% endif %}'
       items:
 
-      - displayName: Aggregate Function
-        attributeName: aggregateFunctionType
-        type: dropdownSelector
-        options:
-          - AI_AGG
-          - AI_SUMMARIZE_AGG
+      - displayName: AI_AGG
+        attributeName: aiAggFunction
+        type: toggleButton
+        default: false
 
       - type: tabular
-        displayName: Aggregate Columns
+        displayName: AI_AGG Configuration
         attributeName: aggby
         columns:
           - type: columnDropdownSelector
             displayName: Column Name
             attributeName: aggColName
             isRequired: true
-            
+
         isRequired: false
+        enableIf: '{% if config.aiAggFunction %} true {% else %} false {% endif %}'
+
+      - displayName: AI_SUMMARIZE_AGG
+        attributeName: aiSummarizeAggFunction
+        type: toggleButton
+        default: false
+
+      - type: tabular
+        displayName: AI_SUMMARIZE_AGG Configuration
+        attributeName: summarizeaggby
+        columns:
+          - type: columnDropdownSelector
+            displayName: Column Name
+            attributeName: summarizeAggColName
+            isRequired: true
+
+        isRequired: false
+        enableIf: '{% if config.aiSummarizeAggFunction %} true {% else %} false {% endif %}' 
+
 
       - displayName: Enable Group By
         attributeName: enableGroupBy

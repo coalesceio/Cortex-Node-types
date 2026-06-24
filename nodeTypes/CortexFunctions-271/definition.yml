@@ -4,7 +4,7 @@ isDisabled: false
 metadata:
   defaultStorageLocation: null
   error: null
-  nodeMetadataSpec: |
+  nodeMetadataSpec: |+
     capitalized: Cortex Functions 
     short: LLM
     plural: llms
@@ -420,22 +420,5 @@ metadata:
         isRequired: false
         enableIf: '{% if config.aiSummarizeAggFunction %} true {% else %} false {% endif %}' 
 
-
-      - displayName: Enable Group By
-        attributeName: enableGroupBy
-        type: toggleButton
-        default: false
-
-      - type: tabular
-        displayName: Group By Columns
-        attributeName: grpby
-        columns:
-          - type: columnDropdownSelector
-            displayName: Column Name
-            attributeName: groupColName
-            isRequired: true
-
-        isRequired: false
-        enableIf: '{% if config.enableGroupBy %} true {% else %} false {% endif %}'
 name: Cortex Functions
 type: NodeType

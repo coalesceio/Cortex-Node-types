@@ -65,6 +65,9 @@
 {%- set embedmodel = [] -%}
 {%- set similaritycol = [] -%}
 {%- set similaritytext = [] -%}
+{%- set aggcol = [] -%}
+{%- set summarizeaggcol = [] -%}
+{%- set groupbycol = [] -%}
 
 {% if config.summarizefunction %}
     {%- for i in config.pby.get('items') -%}
@@ -152,6 +155,51 @@
         {% set _ = similaritytext.append(i.compareText | escape) %}
     {%- endfor %}
 {% endif %}
+
+{% if config.aiAggFunction and config.aggby %}
+    {%- for i in config.aggby.get('items', []) -%}
+        {% set _ = aggcol.append(i.aggColName.name) %}
+    {%- endfor %}
+{% endif %}
+
+{% if config.aiSummarizeAggFunction and config.summarizeaggby %}
+    {%- for i in config.summarizeaggby.get('items', []) -%}
+        {% set _ = summarizeaggcol.append(i.summarizeAggColName.name) %}
+    {%- endfor %}
+{% endif %}
+
+
+{% if config.aggregateMode %}
+
+SELECT
+
+{% for col in source.columns %}
+
+    {% if col.name in aggcol %}
+
+        AI_AGG({{ get_source_transform(col) }}) AS "{{ col.name }}"
+
+    {% elif col.name in summarizeaggcol %}
+
+        AI_SUMMARIZE_AGG({{ get_source_transform(col) }}) AS "{{ col.name }}"
+
+    {% else %}
+
+        {{ get_source_transform(col) }} AS "{{ col.name }}"
+
+    {% endif %}
+
+    {%- if not loop.last -%}, {% endif %}
+
+{% endfor %}
+
+{{ source.join }}
+
+{% if config.aggregateMode and (config.aiAggFunction or config.aiSummarizeAggFunction) %}
+GROUP BY ALL
+{% endif %}
+
+{% else %}
 
 SELECT
 {% for col in source.columns %}
@@ -250,7 +298,7 @@ SELECT
     {% endif %}
     {%- if not loop.last -%}, {% endif %}
 {% endfor %}
-
+{% endif %}
 
 {{ source.join }}
 	

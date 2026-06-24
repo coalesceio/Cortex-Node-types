@@ -9,7 +9,7 @@ operation:
         - aggColName:
             columnCounter: 5cc3b1cd-d28a-4b61-b89a-f14b81f3e211
             stepCounter: 43e6b499-a15e-4bbc-8d6b-a49c53902dc6
-          aggPrompt: ""
+          aggPrompt: Summarize the customer feedback
     aggregateFunctionType: AI_SUMMARIZE_AGG
     aggregateMode: true
     aiAggFunction: true
@@ -21,7 +21,7 @@ operation:
     aiRedactFunction: false
     aiSentimentFunction: false
     aiSimilarityFunction: false
-    aiSummarizeAggFunction: true
+    aiSummarizeAggFunction: false
     aiTranslateFunction: false
     aiextractFunction: false
     aisentimentFunction: false
@@ -229,7 +229,7 @@ operation:
           columnCounter: 568deda3-5723-4369-80b7-ab60c13bebd9
           stepCounter: 43e6b499-a15e-4bbc-8d6b-a49c53902dc6
         config: {}
-        dataType: VARIANT
+        dataType: VARCHAR
         description: ""
         name: CAPITAL_1
         nullable: true
@@ -257,7 +257,7 @@ operation:
           columnCounter: 8898e8b0-dcf8-459b-be55-cd3aedf07389
           stepCounter: 43e6b499-a15e-4bbc-8d6b-a49c53902dc6
         config: {}
-        dataType: VECTOR(FLOAT, 768)
+        dataType: VARCHAR(16777216)
         description: ""
         name: COMMENTS
         nullable: true
@@ -271,7 +271,7 @@ operation:
           columnCounter: 691f992c-11ab-43bb-9d63-a70eb3e26024
           stepCounter: 43e6b499-a15e-4bbc-8d6b-a49c53902dc6
         config: {}
-        dataType: FLOAT
+        dataType: VARCHAR(16777216)
         description: ""
         name: COMMENTS_1
         nullable: true

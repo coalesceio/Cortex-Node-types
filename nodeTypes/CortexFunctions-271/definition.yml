@@ -400,6 +400,11 @@ metadata:
             attributeName: aggColName
             isRequired: true
 
+          - type: textBox
+            displayName: Instruction
+            attributeName: aggPrompt
+            isRequired: true
+
         isRequired: false
         enableIf: '{% if config.aiAggFunction %} true {% else %} false {% endif %}'
 

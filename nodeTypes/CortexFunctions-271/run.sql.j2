@@ -67,7 +67,8 @@
 {%- set similaritytext = [] -%}
 {%- set aggcol = [] -%}
 {%- set summarizeaggcol = [] -%}
-{%- set groupbycol = [] -%}
+{%- set aggprompt = [] -%}
+
 
 {% if config.summarizefunction %}
     {%- for i in config.pby.get('items') -%}
@@ -159,6 +160,7 @@
 {% if config.aiAggFunction and config.aggby %}
     {%- for i in config.aggby.get('items', []) -%}
         {% set _ = aggcol.append(i.aggColName.name) %}
+        {% set _ = aggprompt.append(i.aggPrompt | escape) %}
     {%- endfor %}
 {% endif %}
 
@@ -177,7 +179,12 @@ SELECT
 
     {% if col.name in aggcol %}
 
-        AI_AGG({{ get_source_transform(col) }}) AS "{{ col.name }}"
+        {% set agg_index = aggcol.index(col.name) %}
+
+		AI_AGG(
+			{{ get_source_transform(col) }},
+			'{{ aggprompt[agg_index] }}'
+		)
 
     {% elif col.name in summarizeaggcol %}
 
@@ -192,12 +199,6 @@ SELECT
     {%- if not loop.last -%}, {% endif %}
 
 {% endfor %}
-
-{{ source.join }}
-
-{% if config.aggregateMode and (config.aiAggFunction or config.aiSummarizeAggFunction) %}
-GROUP BY ALL
-{% endif %}
 
 {% else %}
 
@@ -301,6 +302,10 @@ SELECT
 {% endif %}
 
 {{ source.join }}
+
+{% if config.aggregateMode and (config.aiAggFunction or config.aiSummarizeAggFunction) %}
+GROUP BY ALL
+{% endif %}
 	
 			{% if config.insertStrategy in ['UNION', 'UNION ALL'] and not loop.last %}
 				{{config.insertStrategy}}

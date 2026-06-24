@@ -7,8 +7,9 @@ operation:
     aggby:
       items:
         - aggColName:
-            columnCounter: 3458cd46-1ce0-4322-9d7c-2e261dd3a3c0
+            columnCounter: 5cc3b1cd-d28a-4b61-b89a-f14b81f3e211
             stepCounter: 43e6b499-a15e-4bbc-8d6b-a49c53902dc6
+          aggPrompt: ""
     aggregateFunctionType: AI_SUMMARIZE_AGG
     aggregateMode: true
     aiAggFunction: true
@@ -113,7 +114,9 @@ operation:
             stepCounter: 43e6b499-a15e-4bbc-8d6b-a49c53902dc6
     summarizeaggby:
       items:
-        - summarizeAggColName: null
+        - summarizeAggColName:
+            columnCounter: 8898e8b0-dcf8-459b-be55-cd3aedf07389
+            stepCounter: 43e6b499-a15e-4bbc-8d6b-a49c53902dc6
     summarizefunction: false
     tby:
       items:

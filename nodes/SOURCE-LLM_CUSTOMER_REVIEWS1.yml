@@ -11,21 +11,21 @@ operation:
             stepCounter: 43e6b499-a15e-4bbc-8d6b-a49c53902dc6
           aggPrompt: Summarize the customer feedback
     aggregateFunctionType: AI_SUMMARIZE_AGG
-    aggregateMode: true
+    aggregateMode: false
     aiAggFunction: true
-    aiClassifyFunction: false
-    aiCompleteFunction: false
-    aiEmbedFunction: false
+    aiClassifyFunction: true
+    aiCompleteFunction: true
+    aiEmbedFunction: true
     aiExtractFunction: true
-    aiFilterFunction: false
-    aiRedactFunction: false
+    aiFilterFunction: true
+    aiRedactFunction: true
     aiSentimentFunction: false
-    aiSimilarityFunction: false
-    aiSummarizeAggFunction: false
+    aiSimilarityFunction: true
+    aiSummarizeAggFunction: true
     aiTranslateFunction: false
-    aiextractFunction: false
-    aisentimentFunction: false
-    aitranslateFunction: false
+    aiextractFunction: true
+    aisentimentFunction: true
+    aitranslateFunction: true
     cby:
       items:
         - cpartColName:
@@ -229,7 +229,7 @@ operation:
           columnCounter: 568deda3-5723-4369-80b7-ab60c13bebd9
           stepCounter: 43e6b499-a15e-4bbc-8d6b-a49c53902dc6
         config: {}
-        dataType: VARCHAR
+        dataType: VARIANT
         description: ""
         name: CAPITAL_1
         nullable: true

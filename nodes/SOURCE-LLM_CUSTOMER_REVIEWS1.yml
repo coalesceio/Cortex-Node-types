@@ -13,19 +13,19 @@ operation:
     aggregateFunctionType: AI_SUMMARIZE_AGG
     aggregateMode: false
     aiAggFunction: true
-    aiClassifyFunction: true
-    aiCompleteFunction: true
-    aiEmbedFunction: true
+    aiClassifyFunction: false
+    aiCompleteFunction: false
+    aiEmbedFunction: false
     aiExtractFunction: true
-    aiFilterFunction: true
-    aiRedactFunction: true
+    aiFilterFunction: false
+    aiRedactFunction: false
     aiSentimentFunction: false
-    aiSimilarityFunction: true
+    aiSimilarityFunction: false
     aiSummarizeAggFunction: true
     aiTranslateFunction: false
-    aiextractFunction: true
-    aisentimentFunction: true
-    aitranslateFunction: true
+    aiextractFunction: false
+    aisentimentFunction: false
+    aitranslateFunction: false
     cby:
       items:
         - cpartColName:
@@ -130,7 +130,7 @@ operation:
     testsEnabled: true
     translatefunction: true
     truncateBefore: true
-    useLegacyFunctions: false
+    useLegacyFunctions: true
   database: ""
   deployEnabled: true
   description: ""

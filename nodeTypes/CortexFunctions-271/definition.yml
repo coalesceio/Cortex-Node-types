@@ -311,6 +311,7 @@ metadata:
         attributeName: aiRedactFunction
         type: toggleButton
         default: false
+        enableIf: '{% if not config.useLegacyFunctions %} true {% else %} false {% endif %}'
 
       - type: tabular
         displayName: 'Select Columns'
@@ -328,6 +329,7 @@ metadata:
         attributeName: aiEmbedFunction
         type: toggleButton
         default: false
+        enableIf: '{% if not config.useLegacyFunctions %} true {% else %} false {% endif %}'
 
       - displayName: Target column datatype must be VECTOR.
         attributeName: embedInfo
@@ -358,6 +360,7 @@ metadata:
         attributeName: aiSimilarityFunction
         type: toggleButton
         default: false
+        enableIf: '{% if not config.useLegacyFunctions %} true {% else %} false {% endif %}'
 
       - displayName: Target column datatype must be FLOAT.
         attributeName: similarInfo

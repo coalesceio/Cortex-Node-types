@@ -1,0 +1,6 @@
+excludeSelector: ""
+fileVersion: 1
+id: "100"
+includeSelector: "{ location: \"SOURCE\" name: \"CUSTOMER_REVIEWS\" } OR { location: \"SOURCE\" name: \"LLM_CUSTOMER_REVIEWS1\" }"
+name: Job
+type: Job

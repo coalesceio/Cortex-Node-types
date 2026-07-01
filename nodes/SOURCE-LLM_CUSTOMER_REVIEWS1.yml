@@ -11,7 +11,7 @@ operation:
             stepCounter: 43e6b499-a15e-4bbc-8d6b-a49c53902dc6
           aggPrompt: Summarize the customer feedback
     aggregateFunctionType: AI_SUMMARIZE_AGG
-    aggregateMode: false
+    aggregateMode: true
     aiAggFunction: true
     aiClassifyFunction: false
     aiCompleteFunction: false
@@ -116,6 +116,9 @@ operation:
       items:
         - summarizeAggColName:
             columnCounter: 8898e8b0-dcf8-459b-be55-cd3aedf07389
+            stepCounter: 43e6b499-a15e-4bbc-8d6b-a49c53902dc6
+        - summarizeAggColName:
+            columnCounter: 691f992c-11ab-43bb-9d63-a70eb3e26024
             stepCounter: 43e6b499-a15e-4bbc-8d6b-a49c53902dc6
     summarizefunction: false
     tby:
@@ -229,7 +232,7 @@ operation:
           columnCounter: 568deda3-5723-4369-80b7-ab60c13bebd9
           stepCounter: 43e6b499-a15e-4bbc-8d6b-a49c53902dc6
         config: {}
-        dataType: VARIANT
+        dataType: VARCHAR(16777216)
         description: ""
         name: CAPITAL_1
         nullable: true

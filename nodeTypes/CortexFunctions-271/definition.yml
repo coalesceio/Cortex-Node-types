@@ -176,10 +176,10 @@ metadata:
         default: false
         enableIf: '{% if config.useLegacyFunctions %} true {% else %} false {% endif %}'
 
-      - displayName: Datatype for target column must be an ARRAY.
+      - displayName: Target column datatype must be ARRAY.
         attributeName: extractArrayInfo
         type: label
-        enableIf: '{%- if config.useLegacyFunctions %}true{%- else %}false{%- endif %}'
+        enableIf: '{% if config.useLegacyFunctions %} true {% else %} false {% endif %}'
 
       - type: tabular
         displayName: 'Select Columns'
@@ -205,7 +205,7 @@ metadata:
         default: false
         enableIf: '{% if not config.useLegacyFunctions %} true {% else %} false {% endif %}'
     	
-      - displayName: Datatype for target column must be an VARIANT.
+      - displayName: Target column datatype must be VARIANT.
         attributeName: extractVariantInfo
         type: label
         enableIf: '{%- if not config.useLegacyFunctions %}true{%- else %}false{%- endif %}'
@@ -365,7 +365,7 @@ metadata:
       - displayName: Target column datatype must be FLOAT.
         attributeName: similarInfo
         type: label
-        enableIf: '{% if config.aiEmbedFunction %} true {% else %} false {% endif %}'
+        enableIf: '{% if config.aiSimilarityFunction %} true {% else %} false {% endif %}'
 
       - type: tabular
         displayName: 'AI Similarity Configuration'

@@ -1,0 +1,11 @@
+fileVersion: 1
+id: "824"
+mappingDefinitions:
+  SOURCE:
+    database: VINITHA_DEV
+    schema: SRC_DEV
+  TARGET:
+    database: VINITHA_DEV
+    schema: DEP_DEV
+name: Deployment Env
+type: Environment

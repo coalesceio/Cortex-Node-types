@@ -353,7 +353,7 @@ metadata:
       placement: beginning
       attributeName: size
 
-    - displayName: EXTRACTED_DATA
+    - displayName: PROCESSED_OUTPUT
       transform: ''
       dataType: VARIANT
       placement: beginning

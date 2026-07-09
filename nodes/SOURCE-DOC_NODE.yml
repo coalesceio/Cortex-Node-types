@@ -16,13 +16,14 @@ operation:
     errNotifyToggle: false
     execTime:
       items:
-        - {}
+        - period: Minutes
+          value: "60"
     flagSrcStream: true
     numFailures: "10"
     optionJsonToggle: false
     optionsJson: ""
     overlapExecToggle: false
-    redeploymentBehavior: Create If Not Exists
+    redeploymentBehavior: Create or Replace
     retryAttmpt: "0"
     scheduleCRON: 5 0-23 * * * America/Los_Angeles
     schedulePeriodOption: Minutes
@@ -37,7 +38,7 @@ operation:
     taskGraphToggle: false
     truncateBefore: false
     userName: ""
-    whName: <WAREHOUSE_NAME>
+    whName: COMPUTE_WH
   database: ""
   deployEnabled: true
   description: ""
@@ -123,7 +124,7 @@ operation:
           columnCounter: 051276b5-e506-42b7-9590-6e72ccf8ef82
           stepCounter: 8e6cff50-418d-429c-97a9-dd0a7d68c142
         config: {}
-        dataType: VARCHAR(16777216)
+        dataType: VARIANT
         defaultValue: ""
         description: ""
         extractedData: true

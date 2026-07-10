@@ -123,8 +123,13 @@ metadata:
         enableIf: "{% if config.aiFunction == 'AI_PARSE_DOCUMENT' %} true {% else %} false {% endif %}"
 
       - displayName: |
-          No additional configuration is required for AI_TRANSCRIBE.
-          The selected files will be transcribed directly from the configured stage.
+          ℹ️ AI_TRANSCRIBE Supported File Formats
+
+          Audio: FLAC, MP3, MP4, OGG, WAV, WEBM
+          Video: MKV, MP4, OGV, WEBM
+
+          Note:
+          • Refer to the Snowflake AI_TRANSCRIBE documentation for the latest supported formats and codecs.
         attributeName: transcribeInfo
         type: label
         enableIf: "{% if config.aiFunction == 'AI_TRANSCRIBE' %} true {% else %} false {% endif %}"

@@ -124,13 +124,21 @@ metadata:
 
       - displayName: |
           ℹ️ AI_TRANSCRIBE Supported File Formats
+        attributeName: transcribeHeader
+        type: label
+        enableIf: "{% if config.aiFunction == 'AI_TRANSCRIBE' %} true {% else %} false {% endif %}"
 
-          Audio: FLAC, MP3, MP4, OGG, WAV, WEBM
-          Video: MKV, MP4, OGV, WEBM
+      - displayName: |
+          🎵 Audio: FLAC, MP3, MP4, OGG, WAV, WEBM
+          🎥 Video: MKV, MP4, OGV, WEBM
+        attributeName: transcribeFormats
+        type: label
+        enableIf: "{% if config.aiFunction == 'AI_TRANSCRIBE' %} true {% else %} false {% endif %}"
 
-          Note:
-          • Refer to the Snowflake AI_TRANSCRIBE documentation for the latest supported formats and codecs.
-        attributeName: transcribeInfo
+      - displayName: |
+          ⚠️ Note:
+          Refer to the Snowflake AI_TRANSCRIBE documentation for supported formats and codecs.
+        attributeName: transcribeNote
         type: label
         enableIf: "{% if config.aiFunction == 'AI_TRANSCRIBE' %} true {% else %} false {% endif %}"
 

@@ -1,44 +1,42 @@
 fileVersion: 1
-id: 8e6cff50-418d-429c-97a9-dd0a7d68c142
+id: eb146886-5c00-485a-b3aa-0963483ad15a
 name: DOC_NODE
 operation:
   config:
-    aiFunction: AI_TRANSCRIBE
+    aiFunction: AI_EXTRACT
     autoRetryToggle: false
     autoSuspendToggle: false
     columnFamiliesConfig:
       items:
-        - fieldName: agreement_type
-          qualifierString: What is the type of document?
+        - {}
     configJSON: ""
     devMode: true
     errIntName: ""
     errNotifyToggle: false
     execTime:
       items:
-        - period: Minutes
-          value: "60"
+        - {}
     flagSrcStream: true
     numFailures: "10"
     optionJsonToggle: false
     optionsJson: ""
     overlapExecToggle: false
-    redeploymentBehavior: Create or Replace
+    redeploymentBehavior: Create At Existing Stream
     retryAttmpt: "0"
     scheduleCRON: 5 0-23 * * * America/Los_Angeles
     schedulePeriodOption: Minutes
     schedulingMode: Warehouse Task
     sourceType: Directory Table
     spfcUserToggle: false
-    stageName: STAGE
-    stageStorageLocationName: TARGET
-    subfolder: ""
+    stageName: ""
+    stageStorageLocationName: ""
+    subfolder: Enter folder name in stage if applicable-folder/subfolder
     succIntName: ""
     successNotifyToggle: false
     taskGraphToggle: false
     truncateBefore: false
     userName: ""
-    whName: COMPUTE_WH
+    whName: <WAREHOUSE_NAME>
   database: ""
   deployEnabled: true
   description: ""
@@ -53,8 +51,8 @@ operation:
           values: []
         appliedColumnTests: {}
         columnReference:
-          columnCounter: 061c8bff-b55f-46d4-bbcc-fc8990edb57c
-          stepCounter: 8e6cff50-418d-429c-97a9-dd0a7d68c142
+          columnCounter: 4de4f006-f54b-4e86-be24-4d914f5553c5
+          stepCounter: eb146886-5c00-485a-b3aa-0963483ad15a
         config: {}
         dataType: STRING
         defaultValue: ""
@@ -70,8 +68,8 @@ operation:
           values: []
         appliedColumnTests: {}
         columnReference:
-          columnCounter: d4016a53-d077-4803-9bec-e5a5600e7db2
-          stepCounter: 8e6cff50-418d-429c-97a9-dd0a7d68c142
+          columnCounter: 45ed7b0b-6c7f-4847-8cc6-2453ab4c9e62
+          stepCounter: eb146886-5c00-485a-b3aa-0963483ad15a
         config: {}
         dataType: STRING
         defaultValue: ""
@@ -87,8 +85,8 @@ operation:
           values: []
         appliedColumnTests: {}
         columnReference:
-          columnCounter: 5d0afdf6-62b3-4b7e-8e35-c2992dfb0811
-          stepCounter: 8e6cff50-418d-429c-97a9-dd0a7d68c142
+          columnCounter: bdef8328-d573-46e2-a41e-bc7df3a48114
+          stepCounter: eb146886-5c00-485a-b3aa-0963483ad15a
         config: {}
         dataType: TIMESTAMP_NTZ
         defaultValue: ""
@@ -104,8 +102,8 @@ operation:
           values: []
         appliedColumnTests: {}
         columnReference:
-          columnCounter: 08abcb9e-074e-435e-84ca-21d9664f30b9
-          stepCounter: 8e6cff50-418d-429c-97a9-dd0a7d68c142
+          columnCounter: e0bb70e3-0948-4f39-a12e-24bbaec8ddb5
+          stepCounter: eb146886-5c00-485a-b3aa-0963483ad15a
         config: {}
         dataType: NUMBER
         defaultValue: ""
@@ -121,14 +119,14 @@ operation:
           values: []
         appliedColumnTests: {}
         columnReference:
-          columnCounter: 051276b5-e506-42b7-9590-6e72ccf8ef82
-          stepCounter: 8e6cff50-418d-429c-97a9-dd0a7d68c142
+          columnCounter: 17094677-f75a-4fb0-a849-88a24263e26d
+          stepCounter: eb146886-5c00-485a-b3aa-0963483ad15a
         config: {}
         dataType: VARIANT
         defaultValue: ""
         description: ""
         extractedData: true
-        name: EXTRACTED_DATA
+        name: PROCESSED_OUTPUT
         nullable: true
         sourceColumnReferences:
           - columnReferences: []
@@ -138,8 +136,8 @@ operation:
           values: []
         appliedColumnTests: {}
         columnReference:
-          columnCounter: 6190358c-0014-42dd-b995-0f1d75a0f644
-          stepCounter: 8e6cff50-418d-429c-97a9-dd0a7d68c142
+          columnCounter: 4b6ba768-b67d-446b-86da-5bac728592fb
+          stepCounter: eb146886-5c00-485a-b3aa-0963483ad15a
         config: {}
         dataType: TIMESTAMP_NTZ
         defaultValue: ""

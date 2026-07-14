@@ -76,6 +76,7 @@ metadata:
         attributeName: summarizefunction
         type: toggleButton
         default: false
+        enableIf: "{% if config.useLegacyFunctions %} true {% else %} false {% endif %}"
 
       - displayName: 'Select Columns '
         type: tabular
@@ -86,7 +87,7 @@ metadata:
           attributeName: partColName
           isRequired: true
         isRequired: false
-        enableIf: '{% if config.summarizefunction %} true {% else %} false {% endif %}'
+        enableIf: '{% if config.useLegacyFunctions and config.summarizefunction %} true {% else %} false {% endif %}'
 
       - displayName: SENTIMENT
         attributeName: sentimentfunction
@@ -103,7 +104,7 @@ metadata:
             attributeName: spartColName
             isRequired: true
         isRequired: false
-        enableIf: "{% if config.sentimentfunction %} true {% else %} false {% endif %}"
+        enableIf: "{% if config.useLegacyFunctions and config.sentimentfunction %} true {% else %} false {% endif %}"
 
       - displayName: AI_SENTIMENT
         attributeName: aisentimentFunction
@@ -120,7 +121,7 @@ metadata:
             attributeName: spartColNameai
             isRequired: true
         isRequired: false
-        enableIf: "{% if config.aisentimentFunction %} true {% else %} false {% endif %}"
+        enableIf: "{% if not config.useLegacyFunctions and config.aisentimentFunction %} true {% else %} false {% endif %}"
         
       - displayName: TRANSLATE
         attributeName: translateFunction
@@ -144,7 +145,7 @@ metadata:
             isRequired: true
 
         isRequired: false
-        enableIf: '{% if config.translateFunction %} true {% else %} false {% endif %}'
+        enableIf: '{% if config.useLegacyFunctions and config.translateFunction %} true {% else %} false {% endif %}'
 
       - displayName: AI_TRANSLATE
         attributeName: aitranslateFunction
@@ -168,7 +169,7 @@ metadata:
             isRequired: true
 
         isRequired: false
-        enableIf: '{% if config.aitranslateFunction %} true {% else %} false {% endif %}'
+        enableIf: '{% if not config.useLegacyFunctions and config.aitranslateFunction %} true {% else %} false {% endif %}'
 
       - displayName: EXTRACT ANSWER
         attributeName: extractfunction
@@ -179,7 +180,7 @@ metadata:
       - displayName: Target column datatype must be ARRAY.
         attributeName: extractArrayInfo
         type: label
-        enableIf: '{% if config.useLegacyFunctions %} true {% else %} false {% endif %}'
+        enableIf: '{% if config.useLegacyFunctions and config.extractfunction %} true {% else %} false {% endif %}'
 
       - type: tabular
         displayName: 'Select Columns'
@@ -197,7 +198,7 @@ metadata:
             isRequired: true
 
         isRequired: false
-        enableIf: '{% if config.extractfunction %} true {% else %} false {% endif %}'
+        enableIf: '{% if config.useLegacyFunctions and config.extractfunction %} true {% else %} false {% endif %}'
 
       - displayName: AI_EXTRACT ANSWER
         attributeName: aiextractFunction
@@ -208,7 +209,7 @@ metadata:
       - displayName: Target column datatype must be VARIANT.
         attributeName: extractVariantInfo
         type: label
-        enableIf: '{%- if not config.useLegacyFunctions %}true{%- else %}false{%- endif %}'
+        enableIf: '{%- if not config.useLegacyFunctions and config.aiextractFunction %}true{%- else %}false{%- endif %}'
 
       - type: tabular
         displayName: 'Select Columns'
@@ -226,7 +227,7 @@ metadata:
             isRequired: true
 
         isRequired: false
-        enableIf: '{% if config.aiextractFunction %} true {% else %} false {% endif %}'
+        enableIf: '{%- if not config.useLegacyFunctions and config.aiextractFunction %} true {% else %} false {% endif %}'
 
       - displayName: AI_COMPLETE
         attributeName: aiCompleteFunction
@@ -260,7 +261,7 @@ metadata:
             isRequired: true
 
         isRequired: false
-        enableIf: '{% if config.aiCompleteFunction %} true {% else %} false {% endif %}'
+        enableIf: '{% if not config.useLegacyFunctions and config.aiCompleteFunction %} true {% else %} false {% endif %}'
     	
       - displayName: AI_CLASSIFY
         attributeName: aiClassifyFunction
@@ -287,7 +288,7 @@ metadata:
           - categories: 'Positive,Negative,Neutral'
 
         isRequired: false
-        enableIf: '{% if config.aiClassifyFunction %} true {% else %} false {% endif %}'
+        enableIf: '{% if not config.useLegacyFunctions and config.aiClassifyFunction %} true {% else %} false {% endif %}'
 
       - displayName: AI_FILTER
         attributeName: aiFilterFunction
@@ -305,7 +306,7 @@ metadata:
             isRequired: true
 
         isRequired: false
-        enableIf: '{% if config.aiFilterFunction %} true {% else %} false {% endif %}'
+        enableIf: '{% if not config.useLegacyFunctions and config.aiFilterFunction %} true {% else %} false {% endif %}'
 
       - displayName: AI_REDACT
         attributeName: aiRedactFunction
@@ -323,7 +324,7 @@ metadata:
             isRequired: true
 
         isRequired: false
-        enableIf: '{% if config.aiRedactFunction %} true {% else %} false {% endif %}'
+        enableIf: '{% if not config.useLegacyFunctions and config.aiRedactFunction %} true {% else %} false {% endif %}'
 
       - displayName: AI_EMBED
         attributeName: aiEmbedFunction
@@ -334,7 +335,7 @@ metadata:
       - displayName: Target column datatype must be VECTOR.
         attributeName: embedInfo
         type: label
-        enableIf: '{% if config.aiEmbedFunction %} true {% else %} false {% endif %}'
+        enableIf: '{%if not config.useLegacyFunctions and config.aiEmbedFunction %} true {% else %} false {% endif %}'
 
       - type: tabular
         displayName: 'AI Embed Configuration'
@@ -354,7 +355,7 @@ metadata:
               - nv-embed-qa-4
               
         isRequired: false
-        enableIf: '{% if config.aiEmbedFunction %} true {% else %} false {% endif %}'
+        enableIf: '{% if not config.useLegacyFunctions and config.aiEmbedFunction %} true {% else %} false {% endif %}'
 
       - displayName: AI_SIMILARITY
         attributeName: aiSimilarityFunction
@@ -365,7 +366,7 @@ metadata:
       - displayName: Target column datatype must be FLOAT.
         attributeName: similarInfo
         type: label
-        enableIf: '{% if config.aiSimilarityFunction %} true {% else %} false {% endif %}'
+        enableIf: '{% if not config.useLegacyFunctions and config.aiSimilarityFunction %} true {% else %} false {% endif %}'
 
       - type: tabular
         displayName: 'AI Similarity Configuration'
@@ -383,7 +384,7 @@ metadata:
             isRequired: true
 
         isRequired: false
-        enableIf: '{% if config.aiSimilarityFunction %} true {% else %} false {% endif %}'
+        enableIf: '{% if not config.useLegacyFunctions and config.aiSimilarityFunction %} true {% else %} false {% endif %}'
 
     - groupName: Cortex AGG Package
       enableIf: '{% if config.aggregateMode %} true {% else %} false {% endif %}'

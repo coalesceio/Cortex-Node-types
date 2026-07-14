@@ -13,7 +13,7 @@ operation:
     aggregateFunctionType: AI_SUMMARIZE_AGG
     aggregateMode: false
     aiAggFunction: true
-    aiClassifyFunction: true
+    aiClassifyFunction: false
     aiCompleteFunction: false
     aiEmbedFunction: true
     aiExtractFunction: true
@@ -28,11 +28,7 @@ operation:
     aitranslateFunction: false
     cby:
       items:
-        - cpartColName:
-            columnCounter: 6be35723-acb5-4900-b327-c3ff1e527ff1
-            stepCounter: 43e6b499-a15e-4bbc-8d6b-a49c53902dc6
-          modelName: claude-4-sonnet
-          promptText: WHAT IS THE CAPITAL?
+        - {}
     classifyby:
       items:
         - categories: Positive,Negative,Neutral
@@ -74,9 +70,7 @@ operation:
     extractfunction: false
     flby:
       items:
-        - filterColName:
-            columnCounter: 5cc3b1cd-d28a-4b61-b89a-f14b81f3e211
-            stepCounter: 43e6b499-a15e-4bbc-8d6b-a49c53902dc6
+        - filterColName: null
     grpby:
       items:
         - groupColName:
@@ -85,9 +79,7 @@ operation:
     insertStrategy: INSERT
     pby:
       items:
-        - partColName:
-            columnCounter: 7ac68e32-6644-425f-ad83-785cf75e9066
-            stepCounter: 43e6b499-a15e-4bbc-8d6b-a49c53902dc6
+        - {}
     postSQL: ""
     preSQL: ""
     rdby:

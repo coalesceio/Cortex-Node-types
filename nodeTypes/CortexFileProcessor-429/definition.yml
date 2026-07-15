@@ -5,11 +5,11 @@ metadata:
   defaultStorageLocation: null
   error: null
   nodeMetadataSpec: |
-    capitalized: AI Extract Stage
+    capitalized: Cortex File Processor
     short: 'DOC'
     tagColor: '#bd6db7'
     isDisabled: false
-    plural: AI Extract Stage
+    plural: Cortex File Processor
 
     deployStrategy: advanced
 
@@ -377,5 +377,5 @@ metadata:
       dataType: TIMESTAMP_NTZ
       placement: beginning
       attributeName: fileLastModified
-name: AI Extract
+name: Cortex File Processor
 type: NodeType

@@ -69,7 +69,7 @@
 {%- set summarizeaggcol = [] -%}
 {%- set aggprompt = [] -%}
 
-
+{% if config.useLegacyFunctions %}
 {% if config.summarizefunction %}
     {%- for i in config.pby.get('items') -%}
         {% set sumcol = sumcol.append(i.partColName.name) %}
@@ -82,12 +82,6 @@
     {%- endfor %}
 {% endif %}
 
-{% if config.aisentimentFunction and config.sbyai %}
-    {%- for i in config.sbyai.get('items', []) -%}
-        {% set _ = senticol.append(i.spartColNameai.name) %}
-    {%- endfor %}
-{% endif %}
-
 {% if config.translateFunction and config.tby %}
     {%- for i in config.tby.get('items', []) -%}
         {% set _ = translatecol.append(i.tpartColName.name) %}
@@ -95,17 +89,23 @@
     {%- endfor %}
 {% endif %}
 
-{% if config.aitranslateFunction and config.tbyai %}
-    {%- for i in config.tbyai.get('items', []) -%}
-        {% set _ = translatecol.append(i.tpartColNameai.name) %}
-        {% set _ = langcol.append(i.lanorderai) %}
-    {%- endfor %}
-{% endif %}
-
 {% if config.extractfunction and config.exby %}
     {%- for i in config.exby.get('items', []) -%}
         {% set _ = extractcol.append(i.epartColName.name) %}
         {% set _ = quecol.append(i.askque | escape) %}
+    {%- endfor %}
+{% endif %}
+{%else%}
+{% if config.aisentimentFunction and config.sbyai %}
+    {%- for i in config.sbyai.get('items', []) -%}
+        {% set _ = senticol.append(i.spartColNameai.name) %}
+    {%- endfor %}
+{% endif %}
+
+{% if config.aitranslateFunction and config.tbyai %}
+    {%- for i in config.tbyai.get('items', []) -%}
+        {% set _ = translatecol.append(i.tpartColNameai.name) %}
+        {% set _ = langcol.append(i.lanorderai) %}
     {%- endfor %}
 {% endif %}
 
@@ -169,7 +169,7 @@
         {% set _ = summarizeaggcol.append(i.summarizeAggColName.name) %}
     {%- endfor %}
 {% endif %}
-
+{% endif %}
 
 {% if config.aggregateMode %}
 

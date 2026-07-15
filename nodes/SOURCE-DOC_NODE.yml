@@ -1,14 +1,15 @@
 fileVersion: 1
-id: eb146886-5c00-485a-b3aa-0963483ad15a
+id: 54a0f042-c73e-49c6-bfb1-f92ffed1c339
 name: DOC_NODE
 operation:
   config:
-    aiFunction: AI_EXTRACT
+    aiFunction: AI_TRANSCRIBE
     autoRetryToggle: false
     autoSuspendToggle: false
     columnFamiliesConfig:
       items:
-        - {}
+        - fieldName: agreement_type
+          qualifierString: What is the type of document?
     configJSON: ""
     devMode: true
     errIntName: ""
@@ -28,9 +29,9 @@ operation:
     schedulingMode: Warehouse Task
     sourceType: Directory Table
     spfcUserToggle: false
-    stageName: ""
-    stageStorageLocationName: ""
-    subfolder: Enter folder name in stage if applicable-folder/subfolder
+    stageName: STAGE
+    stageStorageLocationName: TARGET
+    subfolder: ""
     succIntName: ""
     successNotifyToggle: false
     taskGraphToggle: false
@@ -51,8 +52,8 @@ operation:
           values: []
         appliedColumnTests: {}
         columnReference:
-          columnCounter: 4de4f006-f54b-4e86-be24-4d914f5553c5
-          stepCounter: eb146886-5c00-485a-b3aa-0963483ad15a
+          columnCounter: b4cc1f2f-83c1-4fdf-af71-e4d05e3d51f4
+          stepCounter: 54a0f042-c73e-49c6-bfb1-f92ffed1c339
         config: {}
         dataType: STRING
         defaultValue: ""
@@ -68,8 +69,8 @@ operation:
           values: []
         appliedColumnTests: {}
         columnReference:
-          columnCounter: 45ed7b0b-6c7f-4847-8cc6-2453ab4c9e62
-          stepCounter: eb146886-5c00-485a-b3aa-0963483ad15a
+          columnCounter: e57039d9-6672-4014-8b6f-2b9e88bf196a
+          stepCounter: 54a0f042-c73e-49c6-bfb1-f92ffed1c339
         config: {}
         dataType: STRING
         defaultValue: ""
@@ -85,8 +86,8 @@ operation:
           values: []
         appliedColumnTests: {}
         columnReference:
-          columnCounter: bdef8328-d573-46e2-a41e-bc7df3a48114
-          stepCounter: eb146886-5c00-485a-b3aa-0963483ad15a
+          columnCounter: 27d6409d-2af8-4ce1-a080-81582bfe0c4a
+          stepCounter: 54a0f042-c73e-49c6-bfb1-f92ffed1c339
         config: {}
         dataType: TIMESTAMP_NTZ
         defaultValue: ""
@@ -102,8 +103,8 @@ operation:
           values: []
         appliedColumnTests: {}
         columnReference:
-          columnCounter: e0bb70e3-0948-4f39-a12e-24bbaec8ddb5
-          stepCounter: eb146886-5c00-485a-b3aa-0963483ad15a
+          columnCounter: 15735f6c-4e49-4859-a32c-c37136cf89ee
+          stepCounter: 54a0f042-c73e-49c6-bfb1-f92ffed1c339
         config: {}
         dataType: NUMBER
         defaultValue: ""
@@ -119,8 +120,8 @@ operation:
           values: []
         appliedColumnTests: {}
         columnReference:
-          columnCounter: 17094677-f75a-4fb0-a849-88a24263e26d
-          stepCounter: eb146886-5c00-485a-b3aa-0963483ad15a
+          columnCounter: 89d57075-aab6-4336-bcd1-12ae91170204
+          stepCounter: 54a0f042-c73e-49c6-bfb1-f92ffed1c339
         config: {}
         dataType: VARIANT
         defaultValue: ""
@@ -136,8 +137,8 @@ operation:
           values: []
         appliedColumnTests: {}
         columnReference:
-          columnCounter: 4b6ba768-b67d-446b-86da-5bac728592fb
-          stepCounter: eb146886-5c00-485a-b3aa-0963483ad15a
+          columnCounter: 7bf640c0-6447-4213-8e84-e2c448697bc0
+          stepCounter: 54a0f042-c73e-49c6-bfb1-f92ffed1c339
         config: {}
         dataType: TIMESTAMP_NTZ
         defaultValue: ""

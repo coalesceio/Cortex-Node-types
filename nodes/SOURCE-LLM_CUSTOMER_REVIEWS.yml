@@ -6,9 +6,9 @@ operation:
     aggby:
       items:
         - aggColName:
-            columnCounter: b2c99204-f6f6-4607-b607-ce4a359d0f1a
+            columnCounter: bbb5c5ac-1985-4758-badd-263dfc31d6f1
             stepCounter: bd27c1c2-92cd-43aa-833c-d0206c792dd4
-          aggPrompt: Sum
+          aggPrompt: Extract common issues
     aggregateMode: true
     aiAggFunction: true
     aiClassifyFunction: false
@@ -17,7 +17,7 @@ operation:
     aiFilterFunction: true
     aiRedactFunction: true
     aiSimilarityFunction: true
-    aiSummarizeAggFunction: true
+    aiSummarizeAggFunction: false
     aiextractFunction: true
     aisentimentFunction: true
     aitranslateFunction: true
@@ -91,7 +91,7 @@ operation:
     summarizeaggby:
       items:
         - summarizeAggColName:
-            columnCounter: bbb5c5ac-1985-4758-badd-263dfc31d6f1
+            columnCounter: 0cbd7653-4bb8-4157-a455-fcee05d997b8
             stepCounter: bd27c1c2-92cd-43aa-833c-d0206c792dd4
     summarizefunction: true
     tby:
@@ -263,20 +263,6 @@ operation:
         sourceColumnReferences:
           - columnReferences:
               - columnCounter: aeddf6b9-29ff-418d-b611-68efa137364a
-                stepCounter: 96b362fc-3a9e-412f-846a-bb724223e067
-            transform: ""
-      - appliedColumnTests: {}
-        columnReference:
-          columnCounter: b2c99204-f6f6-4607-b607-ce4a359d0f1a
-          stepCounter: bd27c1c2-92cd-43aa-833c-d0206c792dd4
-        config: {}
-        dataType: NUMBER(38,0)
-        description: ""
-        name: AMOUNT
-        nullable: true
-        sourceColumnReferences:
-          - columnReferences:
-              - columnCounter: a7489ad8-b6b9-48a9-87a7-b62b9dda658e
                 stepCounter: 96b362fc-3a9e-412f-846a-bb724223e067
             transform: ""
     cteString: ""

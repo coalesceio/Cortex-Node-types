@@ -233,15 +233,22 @@ The LLMs Cortex function has three configuration groups:
 | **Enable tests** | Toggle to enable testing features |
 | **Pre-SQL** | SQL to execute before data insert operation |
 | **Post-SQL** | SQL to execute after data insert operation |
+| **Aggregate AI Mode** | True/False toggle:<br/>-  **True** : Enables the Cortex AGG Package, allowing configuration of the aggregate AI Cortex functions (AI_AGG and AI_SUMMARIZE_AGG).<br/>- **False**: Enables the Cortex Package, allowing configuration of the legacy Cortex functions and AI Cortex functions. |
 
 #### LLM Cortex Functions Cortex Package
 
 | **Option** | **Description** |
 |------------|----------------|
+| **Use Legacy Functions** | True/False toggle:<br/>- **True**: Enables the configuration of the legacy Cortex functions.<br/>- **False**: Enables the configuration of the AI Cortex functions |
 | **SUMMARIZE** | True/False toggle if the data from the column should be returned as a summary:<br/>- **True**: System prompts to add a column<br/>- **False**: Function remains inactive |
 | **SENTIMENT** | True/False toggle to return sentiment score (-1 to 1) for English text, with -1 being the most negative, 0 is neutral, and 1 is positive.:<br/>- **True**: System prompts to add a column<br/>- **False**: Function remains inactive |
-| **TRANSLATE** | True/False toggle to translate text:<br/>- True: System prompts to add a column<br/>- False: Function remains inactive |
+| **TRANSLATE** | True/False toggle to translate text:<br/>- **True**: System prompts to add a column<br/>- **False**: Function remains inactive |
 | **EXTRACT ANSWER** | True/False toggle to extract answers:<br/>- **True**: System prompts to add a column<br/>- **False**: Function remains inactive |
+| **AI_SENTIMENT** | True/False toggle to return the sentiment classification (Positive or Negative) for the input text:<br/>- **True**: System prompts to add a column.<br/>- **False**: Function remains inactive |
+| **AI_TRANSLATE** | True/False toggle to translate text:<br/>- **True**: System prompts to add a column<br/>- **False**: Function remains inactive |
+| **AI_EXTRACT ANSWER** | True/False toggle to extract answers:<br/>- **True**: System prompts to add a column<br/>- **False**: Function remains inactive |
+| **AI_COMPLETE** | True/False toggle to generate text or responses based on the provided prompt and input data using a selected AI model:<br/>- **True**: System prompts to add a column.<br/>- **False**: Function remains inactive |
+| **AI_CLASSIFY** | True/False toggle to classify the input text into one of the user-defined categories (for example, Positive, Negative, or Neutral):<br/>- **True**: System prompts to add a column.<br/>-  **False**: Function remains inactive |
 
 ### LLM Cortex Functions Key Points for Consideration
 

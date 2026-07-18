@@ -11,20 +11,20 @@ operation:
           aggPrompt: Extract common issues
     aggregateMode: true
     aiAggFunction: true
-    aiClassifyFunction: false
-    aiCompleteFunction: true
-    aiEmbedFunction: true
-    aiFilterFunction: true
-    aiRedactFunction: true
-    aiSimilarityFunction: true
-    aiSummarizeAggFunction: false
-    aiextractFunction: true
-    aisentimentFunction: true
-    aitranslateFunction: true
+    aiClassifyFunction: true
+    aiCompleteFunction: false
+    aiEmbedFunction: false
+    aiFilterFunction: false
+    aiRedactFunction: false
+    aiSimilarityFunction: false
+    aiSummarizeAggFunction: true
+    aiextractFunction: false
+    aisentimentFunction: false
+    aitranslateFunction: false
     cby:
       items:
         - cpartColName:
-            columnCounter: 4528510e-4f89-49bd-83bb-04ae038fbf88
+            columnCounter: 8f0fcdfe-a1ae-4160-86ac-3309b9cd5a1c
             stepCounter: bd27c1c2-92cd-43aa-833c-d0206c792dd4
           modelName: claude-4-sonnet
           promptText: Summarize this text
@@ -52,11 +52,11 @@ operation:
           epartColNameai:
             columnCounter: dec251fb-e2b4-4e54-87d7-276c974b6799
             stepCounter: bd27c1c2-92cd-43aa-833c-d0206c792dd4
-    extractfunction: true
+    extractfunction: false
     flby:
       items:
         - filterColName:
-            columnCounter: 7d26d775-7bea-4e9c-a852-95f18e673f56
+            columnCounter: 4528510e-4f89-49bd-83bb-04ae038fbf88
             stepCounter: bd27c1c2-92cd-43aa-833c-d0206c792dd4
     insertStrategy: INSERT
     pby:
@@ -69,7 +69,7 @@ operation:
     rdby:
       items:
         - redactColName:
-            columnCounter: 6c9c1ce7-aa9e-4c05-80c1-ac3f30937c04
+            columnCounter: bbb5c5ac-1985-4758-badd-263dfc31d6f1
             stepCounter: bd27c1c2-92cd-43aa-833c-d0206c792dd4
     sby:
       items:
@@ -81,19 +81,19 @@ operation:
         - spartColNameai:
             columnCounter: 8f0fcdfe-a1ae-4160-86ac-3309b9cd5a1c
             stepCounter: bd27c1c2-92cd-43aa-833c-d0206c792dd4
-    sentimentfunction: true
+    sentimentfunction: false
     simby:
       items:
         - compareText: good customer service
           similarityColName:
-            columnCounter: bbb5c5ac-1985-4758-badd-263dfc31d6f1
+            columnCounter: 4528510e-4f89-49bd-83bb-04ae038fbf88
             stepCounter: bd27c1c2-92cd-43aa-833c-d0206c792dd4
     summarizeaggby:
       items:
         - summarizeAggColName:
             columnCounter: 0cbd7653-4bb8-4157-a455-fcee05d997b8
             stepCounter: bd27c1c2-92cd-43aa-833c-d0206c792dd4
-    summarizefunction: true
+    summarizefunction: false
     tby:
       items:
         - lanorder: "'ja', 'en'"
@@ -107,8 +107,8 @@ operation:
             columnCounter: 10b86ec6-e3af-4b70-8199-88a496cb42cc
             stepCounter: bd27c1c2-92cd-43aa-833c-d0206c792dd4
     testsEnabled: false
-    translateFunction: true
-    truncateBefore: false
+    translateFunction: false
+    truncateBefore: true
     useLegacyFunctions: false
   database: ""
   deployEnabled: true
@@ -180,7 +180,7 @@ operation:
           columnCounter: 4528510e-4f89-49bd-83bb-04ae038fbf88
           stepCounter: bd27c1c2-92cd-43aa-833c-d0206c792dd4
         config: {}
-        dataType: VARCHAR(255)
+        dataType: VARCHAR(16777216)
         description: ""
         name: STATEMENTS
         nullable: true

@@ -1,5 +1,5 @@
 fileVersion: 1
-id: 54a0f042-c73e-49c6-bfb1-f92ffed1c339
+id: dfe63cfa-2670-4c0a-8cf2-ceb86b269ea9
 name: DOC_NODE
 operation:
   config:
@@ -29,7 +29,7 @@ operation:
     schedulingMode: Warehouse Task
     sourceType: Directory Table
     spfcUserToggle: false
-    stageName: STAGE
+    stageName: STAGE1
     stageStorageLocationName: TARGET
     subfolder: ""
     succIntName: ""
@@ -52,8 +52,8 @@ operation:
           values: []
         appliedColumnTests: {}
         columnReference:
-          columnCounter: b4cc1f2f-83c1-4fdf-af71-e4d05e3d51f4
-          stepCounter: 54a0f042-c73e-49c6-bfb1-f92ffed1c339
+          columnCounter: 3ff6bdec-4480-4d01-8c8a-eec9e8ca1535
+          stepCounter: dfe63cfa-2670-4c0a-8cf2-ceb86b269ea9
         config: {}
         dataType: STRING
         defaultValue: ""
@@ -69,8 +69,8 @@ operation:
           values: []
         appliedColumnTests: {}
         columnReference:
-          columnCounter: e57039d9-6672-4014-8b6f-2b9e88bf196a
-          stepCounter: 54a0f042-c73e-49c6-bfb1-f92ffed1c339
+          columnCounter: f319a3af-ba04-446a-914d-161850c77509
+          stepCounter: dfe63cfa-2670-4c0a-8cf2-ceb86b269ea9
         config: {}
         dataType: STRING
         defaultValue: ""
@@ -86,8 +86,8 @@ operation:
           values: []
         appliedColumnTests: {}
         columnReference:
-          columnCounter: 27d6409d-2af8-4ce1-a080-81582bfe0c4a
-          stepCounter: 54a0f042-c73e-49c6-bfb1-f92ffed1c339
+          columnCounter: 80e48d0b-682b-46bb-a378-c340d29e5e67
+          stepCounter: dfe63cfa-2670-4c0a-8cf2-ceb86b269ea9
         config: {}
         dataType: TIMESTAMP_NTZ
         defaultValue: ""
@@ -103,8 +103,8 @@ operation:
           values: []
         appliedColumnTests: {}
         columnReference:
-          columnCounter: 15735f6c-4e49-4859-a32c-c37136cf89ee
-          stepCounter: 54a0f042-c73e-49c6-bfb1-f92ffed1c339
+          columnCounter: a1fd2fc3-c1bc-439c-8e6b-a10ac0c0b499
+          stepCounter: dfe63cfa-2670-4c0a-8cf2-ceb86b269ea9
         config: {}
         dataType: NUMBER
         defaultValue: ""
@@ -120,8 +120,8 @@ operation:
           values: []
         appliedColumnTests: {}
         columnReference:
-          columnCounter: 89d57075-aab6-4336-bcd1-12ae91170204
-          stepCounter: 54a0f042-c73e-49c6-bfb1-f92ffed1c339
+          columnCounter: da914f50-4548-44c9-96e4-7aa1ca3137da
+          stepCounter: dfe63cfa-2670-4c0a-8cf2-ceb86b269ea9
         config: {}
         dataType: VARIANT
         defaultValue: ""
@@ -137,8 +137,8 @@ operation:
           values: []
         appliedColumnTests: {}
         columnReference:
-          columnCounter: 7bf640c0-6447-4213-8e84-e2c448697bc0
-          stepCounter: 54a0f042-c73e-49c6-bfb1-f92ffed1c339
+          columnCounter: 0c1b0403-c865-468f-b059-69974f97ec57
+          stepCounter: dfe63cfa-2670-4c0a-8cf2-ceb86b269ea9
         config: {}
         dataType: TIMESTAMP_NTZ
         defaultValue: ""

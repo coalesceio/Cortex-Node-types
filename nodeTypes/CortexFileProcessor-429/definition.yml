@@ -366,7 +366,7 @@ metadata:
       placement: beginning
       attributeName: size
 
-    - displayName: PROCESSED_OUTPUT
+    - displayName: PROCESSED_DATA
       transform: ''
       dataType: VARIANT
       placement: beginning

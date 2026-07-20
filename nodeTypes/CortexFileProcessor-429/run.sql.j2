@@ -68,7 +68,7 @@ does not permit copying or modification for any other purpose.
    {% set extractionQueryName = config.extractionQueryName %}
    {% set extractionQueryVersion = config.extractionQueryVersion %}
 
-
+  {% if config.aiFunction == 'AI_EXTRACT' %}
   {% set nsDocAI = namespace(formatPairs=[]) %}
 
   {% set configRows = config.columnFamiliesConfig.get('items') if config.columnFamiliesConfig else [] %}
@@ -86,6 +86,7 @@ does not permit copying or modification for any other purpose.
   {% endif %}
 
   {% set finalResponseFormat = "responseFormat => [" + nsDocAI.formatPairs | join(', ') + "]" %}
+  {% endif %}
 
 {{ stage('Insert Data') }}
 
@@ -93,14 +94,40 @@ INSERT INTO {{ fullyQualifiedTargetTableName }}
 SELECT
 {%- for col in sources[0].columns %}
   {%- if col.extractedData %}
-  AI_EXTRACT(
-    file => TO_FILE('@"{{ dbStage }}"."{{ schStage }}".{{ config.stageName }}', RELATIVE_PATH),
-    {%- if config.optionJsonToggle == true %}
-    responseFormat => {{ config.optionsJson }}
-    {%- else %}
-    {{ finalResponseFormat }}
-    {%- endif %}
-  ) AS "{{ col.name }}"
+
+    {%- if config.aiFunction == 'AI_EXTRACT' %}
+
+        AI_EXTRACT(
+            FILE => TO_FILE(
+                '@"{{ dbStage }}"."{{ schStage }}".{{ config.stageName }}',
+                RELATIVE_PATH
+            ),
+            {%- if config.optionJsonToggle == true %}
+            RESPONSEFORMAT => {{ config.optionsJson }}
+            {%- else %}
+            {{ finalResponseFormat }}
+            {%- endif %}
+        )
+
+    {%- elif config.aiFunction == 'AI_PARSE_DOCUMENT' %}
+
+        AI_PARSE_DOCUMENT(
+            TO_FILE(
+                '@"{{ dbStage }}"."{{ schStage }}".{{ config.stageName }}',
+                RELATIVE_PATH
+            )
+        )
+
+    {%- elif config.aiFunction == 'AI_TRANSCRIBE' %}
+
+        AI_TRANSCRIBE(
+            TO_FILE(
+                '@"{{ dbStage }}"."{{ schStage }}".{{ config.stageName }}',
+                RELATIVE_PATH
+            )
+        )
+
+    {%- endif %} AS "{{ col.name }}"
   {%- else %}
   {{ get_source_transform(col) }} AS "{{ col.name }}"
   {%- endif %}

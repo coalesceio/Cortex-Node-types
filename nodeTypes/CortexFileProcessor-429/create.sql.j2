@@ -482,15 +482,41 @@ does not permit copying or modification for any other purpose.
         INSERT INTO {{ fullyQualifiedTargetTableName }}
             SELECT
            {%- for col in desiredState.sources[0].columns %}
-              {%- if col.extractedData %}
-              AI_EXTRACT(
-                file => TO_FILE('@"{{ dbStage }}"."{{ schStage }}".{{ desiredState.config.stageName }}', RELATIVE_PATH),
-                {%- if desiredState.config.optionJsonToggle == true %}
-                responseFormat => {{ desiredState.config.optionsJson }}
-                {%- else %}
-                {{ finalResponseFormat }}
-                {%- endif %}
-              ) AS "{{ col.name }}"
+			{%- if col.extractedData %}
+
+				{%- if desiredState.config.aiFunction == 'AI_EXTRACT' %}
+
+				AI_EXTRACT(
+					FILE => TO_FILE(
+						'@"{{ dbStage }}"."{{ schStage }}".{{ desiredState.config.stageName }}',
+						RELATIVE_PATH
+					),
+					{%- if desiredState.config.optionJsonToggle == true %}
+					RESPONSEFORMAT => {{ desiredState.config.optionsJson }}
+					{%- else %}
+					{{ finalResponseFormat }}
+					{%- endif %}
+				)
+
+				{%- elif desiredState.config.aiFunction == 'AI_PARSE_DOCUMENT' %}
+
+				AI_PARSE_DOCUMENT(
+					TO_FILE(
+						'@"{{ dbStage }}"."{{ schStage }}".{{ desiredState.config.stageName }}',
+						RELATIVE_PATH
+					)
+				)
+
+				{%- elif desiredState.config.aiFunction == 'AI_TRANSCRIBE' %}
+
+				AI_TRANSCRIBE(
+					TO_FILE(
+						'@"{{ dbStage }}"."{{ schStage }}".{{ desiredState.config.stageName }}',
+						RELATIVE_PATH
+					)
+				)
+
+				{%- endif %} AS "{{ col.name }}"
               {%- else %}
               {{ get_source_transform(col) }} AS "{{ col.name }}"
               {%- endif %}

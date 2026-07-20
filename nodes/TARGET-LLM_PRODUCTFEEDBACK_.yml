@@ -37,7 +37,7 @@ operation:
   database: ""
   deployEnabled: true
   description: ""
-  isMultisource: false
+  isMultisource: true
   locationName: TARGET
   materializationType: table
   metadata:
@@ -57,6 +57,8 @@ operation:
               - columnCounter: 31ac139f-1327-4f0a-b2b0-70dcedd49f9a
                 stepCounter: ef2610a5-7082-41c2-bdeb-bf1641c5ecb2
             transform: ""
+          - columnReferences: []
+            transform: ""
       - appliedColumnTests: {}
         columnReference:
           columnCounter: 6e8cd843-d02b-409c-ad59-ac5fb1a41435
@@ -70,6 +72,8 @@ operation:
           - columnReferences:
               - columnCounter: 9004620d-f32e-4245-84f4-b5e464ed9db7
                 stepCounter: ef2610a5-7082-41c2-bdeb-bf1641c5ecb2
+            transform: ""
+          - columnReferences: []
             transform: ""
       - appliedColumnTests: {}
         columnReference:
@@ -85,6 +89,8 @@ operation:
               - columnCounter: 5941568f-4226-41a3-a2ce-7c3717c59ec9
                 stepCounter: ef2610a5-7082-41c2-bdeb-bf1641c5ecb2
             transform: ""
+          - columnReferences: []
+            transform: ""
       - appliedColumnTests: {}
         columnReference:
           columnCounter: a053363d-2b28-443d-9717-4ea1ea818b41
@@ -98,6 +104,8 @@ operation:
           - columnReferences:
               - columnCounter: 65ee3733-183b-478c-9723-6b33f8367c38
                 stepCounter: ef2610a5-7082-41c2-bdeb-bf1641c5ecb2
+            transform: ""
+          - columnReferences: []
             transform: ""
       - appliedColumnTests: {}
         columnReference:
@@ -113,6 +121,8 @@ operation:
               - columnCounter: fc433247-1ada-4122-afb0-f6f404d18185
                 stepCounter: ef2610a5-7082-41c2-bdeb-bf1641c5ecb2
             transform: ""
+          - columnReferences: []
+            transform: ""
       - appliedColumnTests: {}
         columnReference:
           columnCounter: fb9485f1-a79e-49bd-bd8d-f5fced16bd72
@@ -127,6 +137,8 @@ operation:
               - columnCounter: fc433247-1ada-4122-afb0-f6f404d18185
                 stepCounter: ef2610a5-7082-41c2-bdeb-bf1641c5ecb2
             transform: ""
+          - columnReferences: []
+            transform: ""
     cteString: ""
     enabledColumnTestIDs: []
     sourceMapping:
@@ -139,6 +151,14 @@ operation:
         join:
           joinCondition: FROM {{ ref('SOURCE', 'PRODUCTFEEDBACK_') }} "PRODUCTFEEDBACK_"
         name: LLM_PRODUCTFEEDBACK_
+        noLinkRefs: []
+      - aliases: {}
+        customSQL:
+          customSQL: ""
+        dependencies: []
+        join:
+          joinCondition: ""
+        name: NEW_SOURCE
         noLinkRefs: []
   name: LLM_PRODUCTFEEDBACK_
   overrideSQL: false

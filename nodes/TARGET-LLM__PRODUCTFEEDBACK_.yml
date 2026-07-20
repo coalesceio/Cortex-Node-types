@@ -3,6 +3,7 @@ id: 67ce0c0d-1d5c-4da3-a8cb-5044f9746046
 name: LLM__PRODUCTFEEDBACK_
 operation:
   config:
+    aitranslateFunction: true
     exby:
       items:
         - askque: what''s the Question ?
@@ -29,6 +30,12 @@ operation:
       items:
         - lanorder: "'ja', 'en'"
           tpartColName:
+            columnCounter: b3681689-5624-497b-aa51-251921d39751
+            stepCounter: 67ce0c0d-1d5c-4da3-a8cb-5044f9746046
+    tbyai:
+      items:
+        - lanorderai: "'', 'en'"
+          tpartColNameai:
             columnCounter: b3681689-5624-497b-aa51-251921d39751
             stepCounter: 67ce0c0d-1d5c-4da3-a8cb-5044f9746046
     testsEnabled: true

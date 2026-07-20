@@ -5,11 +5,11 @@ metadata:
   defaultStorageLocation: null
   error: null
   nodeMetadataSpec: |
-    capitalized: AI Extract Stage
+    capitalized: Cortex File Processor
     short: 'DOC'
     tagColor: '#bd6db7'
     isDisabled: false
-    plural: AI Extract Stages
+    plural: Cortex File Processor
 
     deployStrategy: advanced
 
@@ -77,15 +77,25 @@ metadata:
         default: 'Enter folder name in stage if applicable-folder/subfolder'
         isRequired: false
 
+      - displayName: AI File Function
+        attributeName: aiFunction
+        type: dropdownSelector
+        default: AI_EXTRACT
+        options:
+          - AI_EXTRACT
+          - AI_PARSE_DOCUMENT
+          - AI_TRANSCRIBE
+
       - displayName: Response Format Dictionary Toggle
         attributeName: optionJsonToggle
         type: toggleButton
         default: false
+        enableIf: "{% if config.aiFunction == 'AI_EXTRACT' %} true {% else %} false {% endif %}"
 
       - type: tabular
         displayName: ℹ️ AI Extract Extraction Schema 
         attributeName: columnFamiliesConfig
-        enableIf: "{% if config.optionJsonToggle == false %} true {% else %} false {% endif %}"
+        enableIf: "{% if config.aiFunction == 'AI_EXTRACT' and config.optionJsonToggle == false %} true {% else %} false {% endif %}"
 
         columns:
           - displayName: Field Name
@@ -103,7 +113,34 @@ metadata:
           Ex. [["key", "question"], ["key2", "question2"]]
         attributeName: optionsJson
         type: textBox
-        enableIf: "{% if config.optionJsonToggle == true %} true {% else %} false {% endif %}"
+        enableIf: "{% if config.aiFunction == 'AI_EXTRACT' and config.optionJsonToggle == true %} true {% else %} false {% endif %}"
+
+      - displayName: |
+          No additional configuration is required for AI_PARSE_DOCUMENT.
+          The selected files will be parsed directly from the configured stage.
+        attributeName: parseInfo
+        type: label
+        enableIf: "{% if config.aiFunction == 'AI_PARSE_DOCUMENT' %} true {% else %} false {% endif %}"
+
+      - displayName: |
+          ℹ️ AI_TRANSCRIBE Supported File Formats
+        attributeName: transcribeHeader
+        type: label
+        enableIf: "{% if config.aiFunction == 'AI_TRANSCRIBE' %} true {% else %} false {% endif %}"
+
+      - displayName: |
+          🎵 Audio: FLAC, MP3, MP4, OGG, WAV, WEBM
+          🎥 Video: MKV, MP4, OGV, WEBM
+        attributeName: transcribeFormats
+        type: label
+        enableIf: "{% if config.aiFunction == 'AI_TRANSCRIBE' %} true {% else %} false {% endif %}"
+
+      - displayName: |
+          ⚠️ Note:
+          Refer to the Snowflake AI_TRANSCRIBE documentation for supported formats and codecs.
+        attributeName: transcribeNote
+        type: label
+        enableIf: "{% if config.aiFunction == 'AI_TRANSCRIBE' %} true {% else %} false {% endif %}"
 
     - groupName: Scheduling Options
 
@@ -329,7 +366,7 @@ metadata:
       placement: beginning
       attributeName: size
 
-    - displayName: EXTRACTED_DATA
+    - displayName: PROCESSED_DATA
       transform: ''
       dataType: VARIANT
       placement: beginning
@@ -340,5 +377,5 @@ metadata:
       dataType: TIMESTAMP_NTZ
       placement: beginning
       attributeName: fileLastModified
-name: AI Extract
+name: Cortex File Processor
 type: NodeType

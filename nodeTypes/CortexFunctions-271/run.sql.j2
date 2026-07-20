@@ -54,62 +54,258 @@
 {%- set quecol = []  -%}
 {%- set translatecol = []  -%}
 {%- set langcol = []  -%}
+{%- set completecol = [] -%}
+{%- set promptcol = [] -%}
+{%- set modelcol = [] -%}
+{%- set classifycol = [] -%}
+{%- set categorycol = [] -%}
+{%- set filtercol = [] -%}
+{%- set redactcol = [] -%}
+{%- set embedcol = [] -%}
+{%- set embedmodel = [] -%}
+{%- set similaritycol = [] -%}
+{%- set similaritytext = [] -%}
+{%- set aggcol = [] -%}
+{%- set summarizeaggcol = [] -%}
+{%- set aggprompt = [] -%}
 
-
-
+{% if config.useLegacyFunctions %}
 {% if config.summarizefunction %}
     {%- for i in config.pby.get('items') -%}
         {% set sumcol = sumcol.append(i.partColName.name) %}
     {%- endfor %}
 {% endif %}
 
-{% if config.sentimentfunction %}
-    {%- for i in config.sby.get('items') -%}
-        {% set senticol = senticol.append(i.spartColName.name) %}
+{% if config.sentimentfunction and config.sby %}
+    {%- for i in config.sby.get('items', []) -%}
+        {% set _ = senticol.append(i.spartColName.name) %}
     {%- endfor %}
 {% endif %}
 
-{% if config.translatefunction %}
-    {%- for i in config.tby.get('items') -%}
-        {% set translatecol = translatecol.append(i.tpartColName.name) %}
-		{% set langcol = langcol.append(i.lanorder ) %}
+{% if config.translateFunction and config.tby %}
+    {%- for i in config.tby.get('items', []) -%}
+        {% set _ = translatecol.append(i.tpartColName.name) %}
+        {% set _ = langcol.append(i.lanorder) %}
     {%- endfor %}
 {% endif %}
-{% set seq = translatecol + langcol if translatecol is defined and langcol is defined else [] %}
 
-{% if config.extractfunction %}
-    {%- for i in config.exby.get('items') -%}
-        {% set extractcol = extractcol.append(i.epartColName.name) %}
-		{% set quecol = quecol.append(i.askque | escape) %}
+{% if config.extractfunction and config.exby %}
+    {%- for i in config.exby.get('items', []) -%}
+        {% set _ = extractcol.append(i.epartColName.name) %}
+        {% set _ = quecol.append(i.askque | escape) %}
     {%- endfor %}
 {% endif %}
-{% set seq = extractcol + quecol if extractcol is defined and quecol is defined else [] %}
+{%else%}
+{% if config.aisentimentFunction and config.sbyai %}
+    {%- for i in config.sbyai.get('items', []) -%}
+        {% set _ = senticol.append(i.spartColNameai.name) %}
+    {%- endfor %}
+{% endif %}
 
+{% if config.aitranslateFunction and config.tbyai %}
+    {%- for i in config.tbyai.get('items', []) -%}
+        {% set _ = translatecol.append(i.tpartColNameai.name) %}
+        {% set _ = langcol.append(i.lanorderai) %}
+    {%- endfor %}
+{% endif %}
+
+{% if config.aiextractFunction and config.exbyai %}
+    {%- for i in config.exbyai.get('items', []) -%}
+        {% set _ = extractcol.append(i.epartColNameai.name) %}
+        {% set _ = quecol.append(i.askqueai | escape) %}
+    {%- endfor %}
+{% endif %}
+
+{% if config.aiCompleteFunction and config.cby %}
+    {%- for i in config.cby.get('items', []) -%}
+        {% set completecol = completecol.append(i.cpartColName.name) %}
+        {% set promptcol = promptcol.append(i.promptText | escape) %}
+        {% set modelcol = modelcol.append(i.modelName) %}
+    {%- endfor %}
+{% endif %}
+
+{% if config.aiClassifyFunction and config.clby %}
+    {%- for i in config.clby.get('items', []) -%}
+        {% set classifycol = classifycol.append(i.classColName.name) %}
+        {% set categorycol = categorycol.append(i.categories) %}
+    {%- endfor %}
+{% endif %}
+
+{% if config.aiFilterFunction and config.flby %}
+    {%- for i in config.flby.get('items', []) -%}
+        {% set filtercol = filtercol.append(i.filterColName.name) %}
+    {%- endfor %}
+{% endif %}
+
+{% if config.aiRedactFunction and config.rdby %}
+    {%- for i in config.rdby.get('items', []) -%}
+        {% set redactcol = redactcol.append(i.redactColName.name) %}
+    {%- endfor %}
+{% endif %}
+
+{% if config.aiEmbedFunction and config.embby %}
+    {%- for i in config.embby.get('items', []) -%}
+        {% set _ = embedcol.append(i.embedColName.name) %}
+        {% set _ = embedmodel.append(i.embedModel) %}
+    {%- endfor %}
+{% endif %}
+
+{% if config.aiSimilarityFunction and config.simby %}
+    {%- for i in config.simby.get('items', []) -%}
+        {% set _ = similaritycol.append(i.similarityColName.name) %}
+        {% set _ = similaritytext.append(i.compareText | escape) %}
+    {%- endfor %}
+{% endif %}
+
+{% if config.aiAggFunction and config.aggby %}
+    {%- for i in config.aggby.get('items', []) -%}
+        {% set _ = aggcol.append(i.aggColName.name) %}
+        {% set _ = aggprompt.append(i.aggPrompt | escape) %}
+    {%- endfor %}
+{% endif %}
+
+{% if config.aiSummarizeAggFunction and config.summarizeaggby %}
+    {%- for i in config.summarizeaggby.get('items', []) -%}
+        {% set _ = summarizeaggcol.append(i.summarizeAggColName.name) %}
+    {%- endfor %}
+{% endif %}
+{% endif %}
+
+{% if config.aggregateMode %}
+
+SELECT
+
+{% for col in source.columns %}
+
+    {% if col.name in aggcol %}
+
+        {% set agg_index = aggcol.index(col.name) %}
+
+		AI_AGG(
+			{{ get_source_transform(col) }},
+			'{{ aggprompt[agg_index] }}'
+		)
+
+    {% elif col.name in summarizeaggcol %}
+
+        AI_SUMMARIZE_AGG({{ get_source_transform(col) }}) AS "{{ col.name }}"
+
+    {% else %}
+
+        {{ get_source_transform(col) }} AS "{{ col.name }}"
+
+    {% endif %}
+
+    {%- if not loop.last -%}, {% endif %}
+
+{% endfor %}
+
+{% else %}
 
 SELECT
 {% for col in source.columns %}
     {% if col.name in sumcol %}
         SNOWFLAKE.CORTEX.SUMMARIZE({{ get_source_transform(col) }}) AS "{{ col.name }}"
+
     {% elif col.name in senticol %}
-        SNOWFLAKE.CORTEX.SENTIMENT({{ get_source_transform(col) }}) AS "{{ col.name }}"	
-	{% elif col.name in translatecol %}
+        {% if config.useLegacyFunctions %}
+            SNOWFLAKE.CORTEX.SENTIMENT({{ get_source_transform(col) }})
+        {% else %}
+           TO_VARCHAR(
+		AI_SENTIMENT({{ get_source_transform(col) }})
+		)
+        {% endif %} AS "{{ col.name }}"
+
+    {% elif col.name in translatecol %}
         {% set col_index = translatecol.index(col.name) %}
-		SNOWFLAKE.CORTEX.TRANSLATE({{ get_source_transform(col) }}, {{ langcol[col_index] }}) AS "{{ col.name }}"
-		
-	{% elif col.name in extractcol %}
+        {% if config.useLegacyFunctions %}
+            SNOWFLAKE.CORTEX.TRANSLATE(
+                {{ get_source_transform(col) }},
+                {{ langcol[col_index] }}
+            )
+        {% else %}
+            AI_TRANSLATE(
+                {{ get_source_transform(col) }},
+                {{ langcol[col_index] }}
+            )
+        {% endif %} AS "{{ col.name }}"
+
+    {% elif col.name in extractcol %}
         {% set col_index1 = extractcol.index(col.name) %}
-		SNOWFLAKE.CORTEX.EXTRACT_ANSWER({{ get_source_transform(col) }}, '''{{quecol[col_index1]}}''') AS "{{ col.name }}"
+        {% if config.useLegacyFunctions %}
+            SNOWFLAKE.CORTEX.EXTRACT_ANSWER(
+                {{ get_source_transform(col) }},
+                '''{{ quecol[col_index1] }}'''
+            )
+        {% else %}
+            AI_EXTRACT(
+                {{ get_source_transform(col) }},
+                {'answer':'{{ quecol[col_index1] }}'}
+            )
+        {% endif %} AS "{{ col.name }}"
 		
-    {% else %} 
+	{% elif col.name in completecol %}
+    {% set col_index2 = completecol.index(col.name) %}
+
+    AI_COMPLETE(
+        '{{ modelcol[col_index2] }}',
+        CONCAT(
+            '{{ promptcol[col_index2] }}',
+            ' ',
+            {{ get_source_transform(col) }}
+        )
+    ) AS "{{ col.name }}"
+
+    {% elif col.name in classifycol %}
+    {% set col_index3 = classifycol.index(col.name) %}
+
+    AI_CLASSIFY(
+        {{ get_source_transform(col) }},
+        ['{{ categorycol[col_index3] | replace(",", "','") }}']
+    ):labels[0]::STRING AS "{{ col.name }}"
+	
+    {% elif col.name in filtercol %}
+
+    AI_FILTER(
+        {{ get_source_transform(col) }}
+    ) AS "{{ col.name }}"
+
+	{% elif col.name in redactcol %}
+
+    AI_REDACT(
+        {{ get_source_transform(col) }}
+    ) AS "{{ col.name }}"
+	
+	{% elif col.name in embedcol %}
+
+    {% set col_index4 = embedcol.index(col.name) %}
+
+    AI_EMBED(
+        '{{ embedmodel[col_index4] }}',
+        {{ get_source_transform(col) }}
+    ) AS "{{ col.name }}"
+	
+	{% elif col.name in similaritycol %}
+
+    {% set sim_index = similaritycol.index(col.name) %}
+
+    AI_SIMILARITY(
+        {{ get_source_transform(col) }},
+        '{{ similaritytext[sim_index] }}'
+    ) AS "{{ col.name }}"
+	
+    {% else %}
         {{ get_source_transform(col) }} AS "{{ col.name }}"
     {% endif %}
     {%- if not loop.last -%}, {% endif %}
 {% endfor %}
-
-
-
+{% endif %}
 
 {{ source.join }}
+
+{% if config.aggregateMode and (config.aiAggFunction or config.aiSummarizeAggFunction) %}
+GROUP BY ALL
+{% endif %}
 	
 			{% if config.insertStrategy in ['UNION', 'UNION ALL'] and not loop.last %}
 				{{config.insertStrategy}}

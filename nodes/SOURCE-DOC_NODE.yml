@@ -1,44 +1,43 @@
 fileVersion: 1
-id: 9f6ffef5-53e8-4943-8c0e-4148ebc5ede1
-name: DOC_NODE_test001
+id: db977dac-abf9-43d0-a677-8387c5f11711
+name: DOC_NODE
 operation:
   config:
-    aiFunction: AI_EXTRACT
-    autoRetryToggle: true
-    autoSuspendToggle: true
+    aiFunction: AI_PARSE_DOCUMENT
+    autoRetryToggle: false
+    autoSuspendToggle: false
     columnFamiliesConfig:
       items:
-        - fieldName: agreement_type
-          qualifierString: What is the type of document?
+        - fieldName: ""
+          qualifierString: ""
     configJSON: ""
-    devMode: false
+    devMode: true
     errIntName: ""
     errNotifyToggle: false
     execTime:
       items:
-        - period: Seconds
-          value: "60"
+        - {}
     flagSrcStream: true
     numFailures: "10"
     optionJsonToggle: false
     optionsJson: ""
-    overlapExecToggle: true
-    redeploymentBehavior: Create or Replace
+    overlapExecToggle: false
+    redeploymentBehavior: Create At Existing Stream
     retryAttmpt: "0"
     scheduleCRON: 5 0-23 * * * America/Los_Angeles
     schedulePeriodOption: Minutes
     schedulingMode: Warehouse Task
     sourceType: Directory Table
-    spfcUserToggle: true
-    stageName: DOC_AI_STAGE
-    stageStorageLocationName: SOURCE
+    spfcUserToggle: false
+    stageName: STAGE1
+    stageStorageLocationName: TARGET
     subfolder: ""
     succIntName: ""
     successNotifyToggle: false
     taskGraphToggle: false
     truncateBefore: false
-    userName: PMANE
-    whName: COMPUTE_WH
+    userName: ""
+    whName: <WAREHOUSE_NAME>
   database: ""
   deployEnabled: true
   description: ""
@@ -53,8 +52,8 @@ operation:
           values: []
         appliedColumnTests: {}
         columnReference:
-          columnCounter: bd000455-f7ee-43dd-9d67-43b0ee3b7641
-          stepCounter: 9f6ffef5-53e8-4943-8c0e-4148ebc5ede1
+          columnCounter: 896efa80-ee65-4b4d-b781-7f1a5084a3aa
+          stepCounter: db977dac-abf9-43d0-a677-8387c5f11711
         config: {}
         dataType: STRING
         defaultValue: ""
@@ -70,8 +69,8 @@ operation:
           values: []
         appliedColumnTests: {}
         columnReference:
-          columnCounter: f11b3da5-7e57-4844-be55-87545de190e6
-          stepCounter: 9f6ffef5-53e8-4943-8c0e-4148ebc5ede1
+          columnCounter: 9be43f52-141e-4eba-8ef5-0d8e3c8c1227
+          stepCounter: db977dac-abf9-43d0-a677-8387c5f11711
         config: {}
         dataType: STRING
         defaultValue: ""
@@ -87,8 +86,8 @@ operation:
           values: []
         appliedColumnTests: {}
         columnReference:
-          columnCounter: ef580008-d92b-4865-9330-1a10447876d0
-          stepCounter: 9f6ffef5-53e8-4943-8c0e-4148ebc5ede1
+          columnCounter: df62a6e5-a070-42b0-931d-b9f118603b2d
+          stepCounter: db977dac-abf9-43d0-a677-8387c5f11711
         config: {}
         dataType: TIMESTAMP_NTZ
         defaultValue: ""
@@ -104,8 +103,8 @@ operation:
           values: []
         appliedColumnTests: {}
         columnReference:
-          columnCounter: 1b1182b8-8901-4875-ac61-f96fae8176f8
-          stepCounter: 9f6ffef5-53e8-4943-8c0e-4148ebc5ede1
+          columnCounter: 2d8a6e4d-ba88-4550-bb24-8d2dd879b220
+          stepCounter: db977dac-abf9-43d0-a677-8387c5f11711
         config: {}
         dataType: NUMBER
         defaultValue: ""
@@ -121,14 +120,14 @@ operation:
           values: []
         appliedColumnTests: {}
         columnReference:
-          columnCounter: 8b658b32-bc1f-4deb-a359-ffc503589bd8
-          stepCounter: 9f6ffef5-53e8-4943-8c0e-4148ebc5ede1
+          columnCounter: c31232fa-012a-41b3-9fa8-e130656b52bf
+          stepCounter: db977dac-abf9-43d0-a677-8387c5f11711
         config: {}
         dataType: VARIANT
         defaultValue: ""
         description: ""
         extractedData: true
-        name: EXTRACTED_DATA
+        name: PROCESSED_DATA
         nullable: true
         sourceColumnReferences:
           - columnReferences: []
@@ -138,8 +137,8 @@ operation:
           values: []
         appliedColumnTests: {}
         columnReference:
-          columnCounter: eb93af2c-ca6b-45a3-af19-780d886fba41
-          stepCounter: 9f6ffef5-53e8-4943-8c0e-4148ebc5ede1
+          columnCounter: c99b06e4-6a9d-4e88-badc-dca6b1c83ccb
+          stepCounter: db977dac-abf9-43d0-a677-8387c5f11711
         config: {}
         dataType: TIMESTAMP_NTZ
         defaultValue: ""
@@ -159,9 +158,9 @@ operation:
         dependencies: []
         join:
           joinCondition: ""
-        name: DOC_NODE_test001
+        name: DOC_NODE
         noLinkRefs: []
-  name: DOC_NODE_test001
+  name: DOC_NODE
   overrideSQL: false
   schema: ""
   sqlType: "429"

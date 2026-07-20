@@ -5,7 +5,7 @@
 * [LLM Cortex Functions](#llm-cortex-functions)
 * [Top Insights](#top-insights)
 * [Classification](#classification)
-* [AI Extract](#ai-extract)
+* [Cortex File Processor](#cortex-file-processor)
 * [Cortex Search Service](#cortex-search-service)
 * [Code](#code)
 ---
@@ -213,6 +213,7 @@ The LLMs Cortex function has three configuration groups:
 * [Node Properties](#llm-cortex-functions-node-properties)
 * [Options](#llm-cortex-functions-options)
 * [Cortex Package](#llm-cortex-functions-cortex-package)
+* [Cortex AGG Package](#llm-cortex-functions-cortex-agg-package)
 
 #### LLM Cortex Functions Node Properties
 
@@ -249,6 +250,16 @@ The LLMs Cortex function has three configuration groups:
 | **AI_EXTRACT ANSWER** | True/False toggle to extract answers:<br/>- **True**: System prompts to add a column<br/>- **False**: Function remains inactive |
 | **AI_COMPLETE** | True/False toggle to generate text or responses based on the provided prompt and input data using a selected AI model:<br/>- **True**: System prompts to add a column.<br/>- **False**: Function remains inactive |
 | **AI_CLASSIFY** | True/False toggle to classify the input text into one of the user-defined categories (for example, Positive, Negative, or Neutral):<br/>- **True**: System prompts to add a column.<br/>-  **False**: Function remains inactive |
+| **AI_FILTER** | True/False toggle to evaluate whether the input text satisfies the specified filtering condition and return the result (True or False):<br/>- **True**: System prompts to add a column.<br/>- **False**: Function remains inactive |
+| **AI_REDACT** | True/False toggle to identify and redact sensitive information (such as names, email addresses, phone numbers, addresses, identification numbers, passwords, and other confidential data) from the input text:<br/>- **True**: System prompts to add a column.<br/>- **False**: Function remains inactive |
+| **AI_SIMILARITY** | True/False toggle to compare the similarity between two pieces of text and return a similarity score indicating how semantically similar they are:<br/>- **True**: System prompts to add a column.<br/>- **False**: Function remains inactive |
+| **AI_EMBED** | True/False toggle to generate vector embeddings that capture the semantic meaning of the input text for similarity search, clustering, classification, and other AI-powered tasks.<br/>- **True**: System prompts to add a column.<br/>- **False**: Function remains inactive |
+
+#### LLM Cortex Functions Cortex AGG Package
+| **Option** | **Description** |
+|------------|----------------|
+| **AI_AGG** | True/False toggle to aggregate text values across grouped rows based on the provided instruction and return a single AI-generated result for each group:<br/>- **True**: System prompts to add a column.<br/>- **False**: Function remains inactive |
+| **AI_SUMMARIZE_AGG** | True/False toggle to summarize text values across grouped rows and return a single concise summary for each group:<br/>- **True**: System prompts to add a column.<br/>- **False**: Function remains inactive |
 
 ### LLM Cortex Functions Key Points for Consideration
 
@@ -440,20 +451,17 @@ This is executed in two stages:
 | **Delete Table** | Coalesce Internal table is dropped |
 | **Delete Table** | Target table in Snowflake is dropped |
 
-## AI Extract
+## Cortex File Processor
 
-### AI_EXTRACT (document AI Legacy Models)
+### Cortex File Processor (document AI Legacy Models)
 
 > **DECOMMISSIONED FEATURE**
 >
 > Document AI and the `<model_build_name>!PREDICT` method are decommissioned. For more information, see [Document AI decommission](https://docs.snowflake.com/en/user-guide/document-ai/decommissioning).
 
-The Coalesce AI Extract UDN is a node that allows you to develop and deploy a document processing pipeline using the **SNOWFLAKE.CORTEX.AI_EXTRACT** function. This pipeline enables the extraction of structured information from documents stored in a Snowflake stage by using natural language questions, eliminating the need for manual model training or complex UI-based setups.
+The Coalesce Cortex File Processor is a node that enables intelligent processing of unstructured files stored in a Snowflake stage using Snowflake Cortex AI functions. It supports **AI_EXTRACT**, **AI_PARSE_DOCUMENT**, and **AI_TRANSCRIBE** to extract structured information from documents, parse document content into machine-readable formats, and transcribe speech from supported audio and video files into text. These AI-powered capabilities eliminate the need for manual model training and simplify the processing of documents and multimedia files. More information about these functions can be found in the official Snowflake Cortex AI documentation.
 
-AI_EXTRACT is a modern Cortex AI function that serves as the successor to the legacy AI Extract workflow. It uses a high-performance vision-language model (Arctic-Extract) to identify and retrieve entities, lists, and tables from unstructured files like invoices, receipts, or financial statements. More information about AI_EXTRACT can be found in the official [Snowflake’s Introduction to AI_EXTRACT](https://docs.snowflake.com/en/sql-reference/functions/ai_extract).
-
-
-### UsaGE Of AI Extract Node Type
+### Usage Of Cortex File Processor Node Type
 * Set up the required objects and privileges
 * Provide the stage path and file details for the documents to be processed within the configuration section of the node.
 * The node creates a pipeline to process documents
@@ -462,20 +470,20 @@ AI_EXTRACT is a modern Cortex AI function that serves as the successor to the le
 * If the node is created with 'Development mode-OFF',task is created to process the uploaded files 
 * Stages created with Client-side encryption are not supported.
 
-### AI Extract Node Configuration
+### Cortex File Processor Node Configuration
 
-The AI Extract node has the following configuration groups:
+The Cortex File Processor node has the following configuration groups:
 
 * [Node Properties](#stream-and-insert-or-merge-node-properties)
-* [General Options](#AI-Extract-general-options)
-* [Stream Options](#AI-Extract-stream-options)
-* [Source Data](#AI-Extract-Source-Data)
-* [Scheduling Options](#AI-Extract-scheduling-options)
-* [Advance Scheduling Options](#AI-Extract-advance-scheduling-options)
-* [Notification Options](#AI-Extract-notification-options)
+* [General Options](#Cortex-File-Processor-general-options)
+* [Stream Options](#Cortex-File-Processor-stream-options)
+* [Source Data](#Cortex-File-Processor-Source-Data)
+* [Scheduling Options](#Cortex-File-Processor-scheduling-options)
+* [Advance Scheduling Options](#Cortex-File-Processor-advance-scheduling-options)
+* [Notification Options](#Cortex-File-Processor-notification-options)
 
 
-#### AI Extract Node Properties
+#### Cortex File Processor Node Properties
 
 | **Property** | **Description** |
 |-------------|-----------------|
@@ -483,7 +491,7 @@ The AI Extract node has the following configuration groups:
 | **Node Type** | Name of template used to create node objects |
 | **Deploy Enabled** | If TRUE the node will be deployed or redeployed when changes are detected<br/>If FALSE the node will not be deployed or will be dropped during redeployment |
 
-#### AI Extract General Options
+#### Cortex File Processor General Options
 
 | **Option** | **Description** |
 |------------|----------------|
@@ -492,25 +500,26 @@ The AI Extract node has the following configuration groups:
 | **Truncate Before** | True / False toggle determines whether a table will be overwritten each time a task executes<br/>**True** - Uses INSERT OVERWRITE<br/>**False** - Uses INSERT to append data |
 
 
-#### AI Extract Stream Options
+#### Cortex File Processor Stream Options
 
 | **Option** | **Description** |
 |------------|----------------|
 | **Source Object** | **Directory Table**:<br/>- A directory table is an object that sits on top of a stage, similar to an external table, and stores metadata about the files in the stage. It doesn’t have its own privileges and is used to reference file-level data. Both external (cloud storage) and internal (Snowflake) stages support directory tables. You can add a directory table to a stage when creating it with CREATE STAGE or modify it later using ALTER STAGE. |
 | **Redeployment Behavior** | options for Redeployment : <br/>- Create or Replace<br/>- Create if Not Exists<br/>- Create at Existing Stream |
 
-#### AI Extract Source Data
+#### Cortex File Processor Source Data
 
 | **Option** | **Description** |
 |------------|----------------|
 | **Colaesce Storage Location of stage** | The Storage location Name in Coalesce where the stage is located |
 | **Stage Name** | The Stage name created in Snowflake |
 | **Path or Subfolder** | The path or the subfolder name where the file is present inside a stage. |
+| **AI File Function** | Choose the Cortex AI file processing function to execute:<br/>- AI_EXTRACT: Extract structured information such as entities, key-value pairs, lists, and tables from supported documents.<br/>- AI_PARSE_DOCUMENT: Parse supported documents and return their contents in a structured format for downstream processing.<br/>- AI_TRANSCRIBE: Convert speech from supported audio and video files into text transcripts. |
 | **Response Format Dictionary Toggle** | A toggle to choose the input method. Set to **TRUE** to use a dictionary or **FALSE** to use a structured table grid. |
 | **Extraction Dictionary** | (Visible when Toggle is **TRUE**)<br/> A textbox where you can directly provide a dictionary containing the field names and their corresponding questions. |
 | **AI Extract Extraction Schema (Table)** | (Visible when Toggle is **FALSE**)<br/> A list where you define what information the AI should look for.<br/> **Field Name**: The name of the column where the answer will be saved.<br/> **Question:** The question you want to ask the AI (e.g., "What is the invoice date?"). |
 
-#### AI Extract Scheduling Options
+#### Cortex File Processor Scheduling Options
 
 | **Option** | **Description** |
 |------------|----------------|
@@ -520,7 +529,7 @@ The AI Extract node has the following configuration groups:
 | **Task Schedule** | Choose schedule type:<br/>- **Minutes** - Specify interval in minutes. Enter a whole number from 1 to 11520 which represents the number of minutes between task runs.<br/>- **Cron** - Uses [Cron expressions](https://docs.coalesce.io/docs/reference/cron-reference/). Specifies a cron expression and time zone for periodically running the task. Supports a subset of standard cron utility syntax. |
 | **Execution Time** | The specific duration for the task run limit. Supported ranges:<br/>- **SECONDS**: 10 - 691200<br/>- **MINUTES**: 1 - 11520<br/>- **HOURS**: 1 - 192 <br/>*Note: For upgrades from version 2.4.3 or earlier, ensure the scheduling configuration is manually updated to align with the new tabular input format*|
 
-#### AI EXTRACT Advanced Scheduling Options
+#### Cortex File Processor Advanced Scheduling Options
 
 <img width="776" height="744" alt="image" src="https://github.com/user-attachments/assets/ab28860c-0115-4ca5-9b57-8e1f719ad37a" />
 
@@ -536,7 +545,7 @@ The AI Extract node has the following configuration groups:
 | **Retry Attempts** | Specify the number of retry attempts allowed (Range: 0 - 30). |
 
 
-#### AI EXTRACT Notification Options
+#### Cortex File Processor Notification Options
 
 <img width="785" height="371" alt="image" src="https://github.com/user-attachments/assets/d0aae222-cfcb-4497-a572-3fa7079287c8" />
 
@@ -548,7 +557,7 @@ The AI Extract node has the following configuration groups:
 > **Note:** Options under **Advanced Scheduling Options** and **Notification Options** (Execution Time, Overlapping Execution, Auto-Suspend, Auto-Retry, etc.) are only applicable to **Root** and **Independent** tasks. The only exception is **Execute As Specific User**, which can be configured for any task in the graph.
 
 
-### AI Extract - System Columns
+### Cortex File Processor - System Columns
 
 The set of columns which has source data and file metadata information.
 
@@ -558,7 +567,7 @@ The set of columns which has source data and file metadata information.
 | **FILE_URL**              | The location url of the document|
 | **FILE_LAST_MODIFIED**    | The last modified timestamp of the staged documents|
 | **SIZE**                  | The size of the document extracted|
-| **EXTRACTED_DATA**        | The data extracted from documents|
+| **PROCESSED_DATA**        | The data extracted from documents|
 | **DATA_EXTRACT_TIMESTAMP**| The load timestamp of document extraction|
 
 #### Usage Example
@@ -569,13 +578,11 @@ The set of columns which has source data and file metadata information.
 * AI Extract Extraction Schema
 <img width="878" height="375" alt="image" src="https://github.com/user-attachments/assets/fcf1a729-efb6-4c22-87ba-b73077eaf827" />
 
+### Cortex File Processor Deployment
 
+#### Cortex File Processor Deployment Parameters
 
-### AI Extract Deployment
-
-#### AI Extract Deployment Parameters
-
-The AI Extract node includes an environment parameter that allows you to specify a different warehouse used to run a task in different environments.
+The Cortex File Processor node includes an environment parameter that allows you to specify a different warehouse used to run a task in different environments.
 
 The parameter name is `targetTaskWarehouse` with default value `DEV ENVIRONMENT`.
 
@@ -595,7 +602,7 @@ For example, with the below setting for the parameter in a QA environment, the t
 }
 ```
 
-#### AI Extract Initial Deployment
+#### Cortex File Processor Initial Deployment
 
 
 | **Stage** | **Description** |
@@ -608,7 +615,7 @@ For example, with the below setting for the parameter in a QA environment, the t
 If a task is part of a DAG of tasks, the DAG needs to include a node type called `Task DAG Resume Root`. This node will resume the root node once all the dependent tasks have been created as part of a deployment.
 The task node has no ALTER capabilities. All task-enabled nodes are CREATE OR REPLACE only, though this is subject to change
 
-#### AI Extract Redeployment
+#### Cortex File Processor Redeployment
 
 Stream redeployment behavior:
 
@@ -650,7 +657,7 @@ From this version onward, a node’s materialization type can be switched from o
 
 For more information, see [Node Type Switching Logic and Limitations](#node-type-switching-logic)
 
-### AI Extract Undeployment
+### Cortex File Processor Undeployment
 
 When node is deleted, the following stages execute:
 
